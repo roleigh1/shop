@@ -1,24 +1,30 @@
-import logo from './logo.svg';
+
+import React from 'react';
 import './App.css';
+import BurgerMenu from './Components/Burger/Menu';
+import Logo from './Components/Logo/Logo';
+import Cart from './Components/Cart/Cart';
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.css';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <Row>
+        <Col>
+          <Logo></Logo>
+        </Col>
+        <Col>
+          <Cart></Cart>
+        </Col>
+        <Col>
+          <BurgerMenu></BurgerMenu>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
