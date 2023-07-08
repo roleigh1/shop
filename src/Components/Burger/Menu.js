@@ -46,9 +46,9 @@ function BurgerMenu() {
         background-color: 	#686868;
         height: 10rem;
         width: 15rem;
-        margin-top: -0px;
+        margin-top: 30px;
         position: absolute;
-        right:4.6rem;
+        right:20rem;
         border-right: 25px solid transparent;
         border-top: 25px solid white;   
         color:white;

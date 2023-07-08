@@ -12,17 +12,19 @@ import Col from 'react-bootstrap/Col';
 
 function App() {
   return (
-    <Container>
-      <Row>
-        <Col>
-          <Logo></Logo>
+    <Container >
+      <Row className="d-flex align-items-center justify-content-between">
+        <Col xs="auto"> 
+         <Logo />
         </Col>
-        <Col>
-          <Cart></Cart>
+        <Col xs="auto">
+      
         </Col>
-        <Col>
-          <BurgerMenu></BurgerMenu>
+        <Col xs="auto" className='d-flex'>
+          <Cart />
+          <BurgerMenu />
         </Col>
+
       </Row>
     </Container>
   );

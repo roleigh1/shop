@@ -7,7 +7,9 @@ return (
         <img src={cart} className="cart-img" alt="cart"/>
         <style jsx>{`
         .cart-img {
-            width:2.5rem;
+            width:2rem; 
+            margin-right:1rem;
+
             
 
         }
