@@ -48,10 +48,11 @@ function BurgerMenu() {
         width: 15rem;
         margin-top: 30px;
         position: absolute;
-        right:20rem;
+        margin-left:-15rem;
         border-right: 25px solid transparent;
         border-top: 25px solid white;   
         color:white;
+   
     }
 
     
