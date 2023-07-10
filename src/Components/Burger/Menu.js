@@ -27,7 +27,9 @@ function BurgerMenu() {
        <style jsx>{`
      
   
-    
+    .navigation {
+      
+    }
     .navigation ul li{
         list-style-type: none;
         
@@ -52,7 +54,7 @@ function BurgerMenu() {
         border-right: 25px solid transparent;
         border-top: 25px solid white;   
         color:white;
-   
+        z-index:1; 
     }
 
     
