@@ -9,6 +9,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import SlideShow from './Components/Side-show-head/SideShow';
+import SeasonProductCardSecond from './Components/Products-Main/SeasonProductsSecond';
 
 import SeasonProductCardOne from './Components/Products-Main/SeasonProducts';
 
@@ -28,8 +29,14 @@ function App() {
       <Row>
       <SlideShow className="slider"/>
       </Row>
-      <Row>
-      <SeasonProductCardOne></SeasonProductCardOne> 
+   
+      <Row  style={{ marginTop: '5rem' }}>
+        <Col>
+         <SeasonProductCardOne />
+        </Col> 
+        <Col>
+        <SeasonProductCardSecond />
+        </Col>
       </Row>
     </Container>
   );

@@ -8,11 +8,11 @@ import Typography from '@mui/material/Typography';
 
 function SeasonProductCardOne() {
     return (
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: 250 }}>
             <CardMedia
                 component="img"
                 alt="test"
-                height="140" ä
+                height="140"
                 image="https://i.ibb.co/BzJtwyx/image-16.jpg" />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
@@ -26,6 +26,7 @@ function SeasonProductCardOne() {
             <CardActions>
                 <Button size="small">Share</Button>
                 <Button size="small">Learn More</Button>
+
             </CardActions>
         </Card>
     )
