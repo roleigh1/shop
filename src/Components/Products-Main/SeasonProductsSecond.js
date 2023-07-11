@@ -13,7 +13,7 @@ function SeasonProductCardSecond() {
             <CardMedia
                 component="img"
                 alt="140"
-                height="140"
+                height="160"
                 image='https://i.ibb.co/s1ks8wP/image-8.jpg' />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
@@ -26,7 +26,7 @@ function SeasonProductCardSecond() {
                 </CardContent>
              <CardActions>
                  <Button size='small'>Share</Button>
-                 <Button size='small'>Learn More</Button>
+                 <Button size='small'>Order now</Button>
              </CardActions>
          
         </Card>

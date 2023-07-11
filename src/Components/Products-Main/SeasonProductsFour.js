@@ -6,17 +6,17 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-function SeasonProductCardOne() {
+function SeasonProductCardFour() {
     return (
         <Card sx={{ maxWidth: 250 }}>
             <CardMedia
                 component="img"
                 alt="test"
                 height="150"
-                image="https://i.ibb.co/BzJtwyx/image-16.jpg" />
+                image="https://i.ibb.co/7Wh8xhJ/apple-1327789.jpg" />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                   Lettuces
+                   Apple
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                 Lettuces, with their crisp and refreshing leaves, are a versatile and nutritious 
@@ -32,4 +32,4 @@ function SeasonProductCardOne() {
     )
 }
 
-export default SeasonProductCardOne;
+export default SeasonProductCardFour

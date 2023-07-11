@@ -9,17 +9,14 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import SlideShow from './Components/Side-show-head/SideShow';
-import SeasonProductCardSecond from './Components/Products-Main/SeasonProductsSecond';
-
-import SeasonProductCardOne from './Components/Products-Main/SeasonProducts';
-
+import SeasonProductCards from './Components/Products-Main/SeasonProductsCards';
 
 function App() {
   return (
     <Container >
       <Row className="d-flex align-items-center justify-content-between">
-        <Col xs="auto"> 
-         <Logo />
+        <Col xs="auto">
+          <Logo />
         </Col>
         <Col xs="auto" className='d-flex'>
           <Cart />
@@ -27,16 +24,11 @@ function App() {
         </Col>
       </Row>
       <Row>
-      <SlideShow className="slider"/>
+        <SlideShow className="slider" />
       </Row>
-   
-      <Row  style={{ marginTop: '5rem' }}>
-        <Col>
-         <SeasonProductCardOne />
-        </Col> 
-        <Col>
-        <SeasonProductCardSecond />
-        </Col>
+
+      <Row className="Cards" style={{ marginTop: '5rem' , marginLeft: '0.5rem'}}>
+        <SeasonProductCards />
       </Row>
     </Container>
   );
