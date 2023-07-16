@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col';
 import SeasonProductCardOne from "./SeasonProducts";
 import SeasonProductCardThird from "./SeasonProductsThird";
 import SeasonProductCardFour from "./SeasonProductsFour";
+import SeasonProductCardFive from "./SeasonProductsFive";
 import SeasonProductCardSecond from "./SeasonProductsSecond";
 function SeasonProductCards() {
     return (
@@ -21,8 +22,13 @@ function SeasonProductCards() {
                 </Col>
                 <Col>
                  <SeasonProductCardFour /> 
-
                 </Col>
+                <Col>
+                 <SeasonProductCardFive />
+                </Col>
+            </Row>
+            <Row>
+               
             </Row>
         </div>
     )
