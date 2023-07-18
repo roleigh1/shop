@@ -10,6 +10,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import SlideShow from './Components/Side-show-head/SideShow';
 import SeasonProductCards from './Components/Products-Main/SeasonProductsCards';
+import ContactForm from './Components/Contact/ContactForm';
 
 function App() {
   return (
@@ -29,6 +30,9 @@ function App() {
 
       <Row className="Cards" style={{ marginTop: '5rem' , marginLeft: '0.5rem'}}>
         <SeasonProductCards />
+      </Row>
+      <Row>
+        <ContactForm />
       </Row>
     </Container>
   );
