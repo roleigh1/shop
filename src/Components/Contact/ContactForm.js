@@ -2,26 +2,38 @@ import React, { useState } from "react";
 
 const ContactForm = () => {
   const [status, setStatus] = useState("Submit");
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus("Sending...");
+
     const { name, email, message } = e.target.elements;
     let details = {
       name: name.value,
       email: email.value,
       message: message.value,
     };
-    let response = await fetch("http://localhost:3000", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
-      },
-      body: JSON.stringify(details),
-    });
-    setStatus("Submit");
-    let result = await response.json();
-    alert(result.status);
+
+    try {
+      let response = await fetch("http://localhost:3000", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        },
+        body: JSON.stringify(details),
+      });
+
+      setStatus("Submit");
+      let result = await response.json();
+      alert(result.status);
+    } catch (error) {
+      console.error("Error sending the form:", error);
+      setStatus("Submit");
+      // Handle error if the fetch request fails
+      alert("Error sending the form. Please try again later.");
+    }
   };
+
   return (
     <form onSubmit={handleSubmit}>
       <div>
