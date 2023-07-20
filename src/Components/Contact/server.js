@@ -1,13 +1,16 @@
 const express = require("express");
+const router = express.Router();
 const cors = require("cors");
 const nodemailer = require("nodemailer");
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use("/", router);
+app.listen(5000, () => console.log("Server Running"));
 
 const contactEmail = nodemailer.createTransport({
-  service: "gmail",
+  service: 'gmail',
   auth: {
     user: "robinl.leitner1@gmail.com",
     pass: "vltxqphdauxjyops",
@@ -20,22 +23,24 @@ contactEmail.verify((error) => {
   } else {
     console.log("Ready to Send");
   }
-});
-
-app.post("/submit", async (req, res) => {
-  try {
-    const { name, email, message } = req.body;
-    // Process the data as needed (e.g., sending an email)
-
-    // For now, let's just send a success response back to the client
-    res.status(200).json({ status: "Form submitted successfully!" });
-  } catch (error) {
-    console.error("Error processing the form:", error);
-    res.status(500).json({ status: "Error processing the form." });
-  }
-});
-
-const PORT = 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+})
+router.post("/contact", (req, res) => {
+  const name = req.body.name;
+  const email = req.body.email;
+  const message = req.body.message; 
+  const mail = {
+    from: name,
+    to: "robinl.leitner1@gmail.com",
+    subject: "Contact Form Submission",
+    html: `<p>Name: ${name}</p>
+           <p>Email: ${email}</p>
+           <p>Message: ${message}</p>`,
+  };
+  contactEmail.sendMail(mail, (error) => {
+    if (error) {
+      res.json({ status: "ERROR" });
+    } else {
+      res.json({ status: "Message Sent" });
+    }
+  });
 });
