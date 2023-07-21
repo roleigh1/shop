@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import TextField from '@mui/material/TextField';
+
 const ContactForm = () => {
   const [status, setStatus] = useState("Submit");
   const handleSubmit = async (e) => {
@@ -23,21 +25,48 @@ const ContactForm = () => {
     alert(result.status);
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="name">Name:</label>
-        <input type="text" id="name" required />
-      </div>
-      <div>
-        <label htmlFor="email">Email:</label>
-        <input type="email" id="email" required />
-      </div>
-      <div>
-        <label htmlFor="message">Message:</label>
-        <textarea id="message" required />
-      </div>
+    <form className="form" onSubmit={handleSubmit}>
+    <div className="inputWrapper">
+      <TextField name="name" label="Name" required className="name" />
+    </div>
+    <div className="inputWrapper">
+      <TextField name="email" label="Email" type="email" className="email" required />
+    </div>
+    <div className="inputWrapper">
+      <TextField
+        name="message"
+        label="Message"
+        multiline
+        rows={4}
+        required className="textField"
+      />
+    </div>
+    <div className="buttonWrapper">
       <button type="submit">{status}</button>
-    </form>
+    </div>
+
+    <style jsx>
+      {`
+      .name {
+        width: 20rem;
+      }
+      .email {
+        width: 20rem;
+      }
+      .textField {
+        width: 20rem;
+      }
+      .form {
+        margin-top: 3rem;
+        display: flex;
+        flex-direction: column;
+      }
+      .inputWrapper, .buttonWrapper {
+        margin-bottom: 1rem; /* Add margin between elements */
+      }
+      `}
+    </style>
+  </form>
   );
 };
 

@@ -32,7 +32,9 @@ function App() {
         <SeasonProductCards />
       </Row>
       <Row>
-        <ContactForm />
+      <Col xs={{ span: 6, offset: 3 }} className="d-flex justify-content-center"> 
+        <ContactForm className="contactForm"/>
+      </Col>
       </Row>
     </Container>
   );
