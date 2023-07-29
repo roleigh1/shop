@@ -5,9 +5,10 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import CustomizedDialogs5 from './ProductDialogFive';
 function SeasonProductCardFive() {
     return (
-        <Card sx={{ maxWidth: 250 }}>
+        <Card sx={{ maxWidth: 250  , maxHeight: 400}}>
             <CardMedia
                 component="img"
                 alt='140'
@@ -19,10 +20,10 @@ function SeasonProductCardFive() {
                 </Typography>
                 <Typography  variant='body2'  color="text.secondary">
                     Potatoes, versatile root vegetables with a rich and starchy texture,
-                    have been a staple in various cuisines across the globe for generations.
+                    have been a staple in various cuisines across the globe.
                 </Typography>
-                <CardActions>
-                    <Button size='small'>Info</Button>
+                <CardActions style={{marginTop: '35px'}}>
+                    <CustomizedDialogs5 />
                     <Button size='small'>Order now</Button>
                 </CardActions>
             </CardContent>

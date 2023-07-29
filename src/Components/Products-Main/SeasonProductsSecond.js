@@ -5,11 +5,11 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-
+import CustomizedDialogs2 from './Dialogs/ProductDialogTwo';
 
 function SeasonProductCardSecond() {
     return (
-        <Card sx={{ maxWidth: 250 }}>
+        <Card sx={{ maxWidth: 250 , minHeight: 400}}>
             <CardMedia
                 component="img"
                 alt="140"
@@ -24,8 +24,8 @@ function SeasonProductCardSecond() {
                      worldwide for centuries.  Easy to grow and widely available.
                  </Typography>
                 </CardContent>
-             <CardActions>
-                 <Button size='small'>Info</Button>
+             <CardActions  style={{ marginTop: '35px' }}>
+                 <CustomizedDialogs2></CustomizedDialogs2>
                  <Button size='small'>Order now</Button>
              </CardActions>
          

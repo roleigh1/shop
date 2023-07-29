@@ -53,6 +53,7 @@ const ContactForm = () => {
       h1 {
         text-align:center; 
         opacity:0.7;
+        margin-top:2rem;
       }
       .name {
         width: 20rem;
@@ -65,7 +66,7 @@ const ContactForm = () => {
       }
       .textField {
         width: 20rem;
-        background-color:white;
+       
       }
       .form {
         margin-top: 3rem;

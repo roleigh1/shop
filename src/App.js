@@ -31,7 +31,7 @@ function App() {
       <Row className="Cards" style={{ marginTop: '5rem' , marginLeft: '0.5rem'}}>
         <SeasonProductCards />
       </Row>
-      <Row>
+      < Row style={{marginTop: '5rem', backgroundColor: '#E0E0E0'} }>
       <Col xs={{ span: 6, offset: 3 }} className="d-flex justify-content-center"> 
         <ContactForm className="contactForm"/>
       </Col>

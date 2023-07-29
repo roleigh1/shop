@@ -5,14 +5,14 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-
+import CustomizedDialogs4 from './Dialogs/ProductDialogFour';
 function SeasonProductCardFour() {
     return (
-        <Card sx={{ maxWidth: 250 }}>
+        <Card sx={{ maxWidth: 250 , minHeight: 400 }}>
             <CardMedia
                 component="img"
                 alt="test"
-                height="150"
+                height="159"
                 image="https://i.ibb.co/7Wh8xhJ/apple-1327789.jpg" />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
@@ -24,7 +24,7 @@ function SeasonProductCardFour() {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">Info</Button>
+                <CustomizedDialogs4 />
                 <Button size="small">Order now</Button>
 
             </CardActions>

@@ -8,11 +8,11 @@ import Typography from '@mui/material/Typography';
 import CustomizedDialogs from './Dialogs/ProductDialogOne';
 function SeasonProductCardOne() {
     return (
-        <Card sx={{ maxWidth: 250 }}>
+        <Card sx={{ maxWidth: 250 , minHeight: 390 }}>
             <CardMedia
                 component="img"
                 alt="test"
-                height="150"
+                height="155"
                 image="https://i.ibb.co/BzJtwyx/image-16.jpg" />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
