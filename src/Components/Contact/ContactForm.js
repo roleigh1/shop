@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Button from '@mui/material/Button';
 
 import TextField from '@mui/material/TextField';
 
@@ -25,6 +26,8 @@ const ContactForm = () => {
     alert(result.status);
   };
   return (
+    <div>
+    <h1>Get in Touch with us</h1>
     <form className="form" onSubmit={handleSubmit}>
     <div className="inputWrapper">
       <TextField name="name" label="Name" required className="name" />
@@ -42,24 +45,34 @@ const ContactForm = () => {
       />
     </div>
     <div className="buttonWrapper">
-      <button type="submit">{status}</button>
-    </div>
+      <Button variant="contained" type="submit">{status}</Button>
+    </div> 
 
     <style jsx>
       {`
+      h1 {
+        text-align:center; 
+        opacity:0.7;
+      }
       .name {
         width: 20rem;
+   
       }
       .email {
         width: 20rem;
+     
+
       }
       .textField {
         width: 20rem;
+        background-color:white;
       }
       .form {
         margin-top: 3rem;
         display: flex;
         flex-direction: column;
+        align-items:center;
+       
       }
       .inputWrapper, .buttonWrapper {
         margin-bottom: 1rem; /* Add margin between elements */
@@ -67,6 +80,7 @@ const ContactForm = () => {
       `}
     </style>
   </form>
+</div>
   );
 };
 

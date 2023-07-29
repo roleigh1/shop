@@ -5,7 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-
+import CustomizedDialogs from './Dialogs/ProductDialogOne';
 function SeasonProductCardOne() {
     return (
         <Card sx={{ maxWidth: 250 }}>
@@ -24,7 +24,7 @@ function SeasonProductCardOne() {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">Share</Button>
+                <CustomizedDialogs />
                 <Button size="small">Order now</Button>
 
             </CardActions>

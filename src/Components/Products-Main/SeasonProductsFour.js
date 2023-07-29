@@ -24,7 +24,7 @@ function SeasonProductCardFour() {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">Share</Button>
+                <Button size="small">Info</Button>
                 <Button size="small">Order now</Button>
 
             </CardActions>

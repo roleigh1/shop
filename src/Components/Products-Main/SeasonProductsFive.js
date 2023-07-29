@@ -22,7 +22,7 @@ function SeasonProductCardFive() {
                     have been a staple in various cuisines across the globe for generations.
                 </Typography>
                 <CardActions>
-                    <Button size='small'>Share</Button>
+                    <Button size='small'>Info</Button>
                     <Button size='small'>Order now</Button>
                 </CardActions>
             </CardContent>
