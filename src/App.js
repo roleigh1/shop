@@ -11,7 +11,7 @@ import Col from 'react-bootstrap/Col';
 import SlideShow from './Components/Side-show-head/SideShow';
 import SeasonProductCards from './Components/Products-Main/SeasonProductsCards';
 import ContactForm from './Components/Contact/ContactForm';
-
+import Bestseller from './Components/Bestsellers/BestsellerApp';
 function App() {
   return (
     <Container >
@@ -28,13 +28,18 @@ function App() {
         <SlideShow className="slider" />
       </Row>
 
-      <Row className="Cards" style={{ marginTop: '5rem' , marginLeft: '0.5rem'}}>
-        <SeasonProductCards />
+      <Row className="Cards" style={{ marginTop: '5rem' , display: 'flex', alignItems: 'center'}}>
+        <SeasonProductCards></SeasonProductCards>
       </Row>
       < Row style={{marginTop: '5rem', backgroundColor: '#E0E0E0'} }>
       <Col xs={{ span: 6, offset: 3 }} className="d-flex justify-content-center"> 
         <ContactForm className="contactForm"/>
       </Col>
+      </Row>
+      <Row style={{ marginTop: '5rem' , display: 'flex', alignItems: 'center'}}>
+        <Col>
+          <Bestseller />
+        </Col>
       </Row>
     </Container>
   );
