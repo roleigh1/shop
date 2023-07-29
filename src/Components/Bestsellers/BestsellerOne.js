@@ -13,9 +13,7 @@ import Add from '@mui/icons-material/Add';
 export default function BestSeller1() {
     return (
         <MDBContainer fluid className="my-5 text-center">
-            <h4 className="mt-4 mb-5">
-              <strong>Bestsellers</strong>
-            </h4>
+         
             <MDBRow>
                 <MDBCol md='12' lg='4' className="mb-4">
                     <MDBCard>
