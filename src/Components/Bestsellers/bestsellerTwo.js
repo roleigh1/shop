@@ -13,17 +13,18 @@ export default function BestSeller2() {
     return (
         <MDBContainer fluid className="my-5 text-center">
             <MDBRow >
-                <MDBCol md='12' lg='4' className="mb-4">
+                <MDBCol md='12' lg='8' className="mb-4">
                     <MDBCard>
                         <MDBRipple
                         rippleColor="light"
                         rippleTag='div'
-                        className="w-100"
+                        className="w-100 "
                         >
                         <MDBCardImage
                         src="https://i.ibb.co/2SY4dsY/strawberries-g8d49cd080-1280.jpg"
                         fluid
                         className="w-100" 
+                        
                         />
                         <a href="#!">
                             <div className="mask">

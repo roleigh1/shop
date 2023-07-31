@@ -1,3 +1,4 @@
+// BestSeller1.js
 import React from "react";
 import {
   MDBContainer,
@@ -14,8 +15,8 @@ export default function BestSeller1() {
     return (
         <MDBContainer fluid className="my-5 text-center">
          
-            <MDBRow >
-                <MDBCol md='12' lg='4' className="mb-4">
+            <MDBRow>
+                <MDBCol xs={6} md='12' lg='8' className="mb-4">
                     <MDBCard>
                         <MDBRipple
                         rippleColor="light"
@@ -39,7 +40,6 @@ export default function BestSeller1() {
                                 <div className="mask"
                                 style={{backgroundColor: "rgba(251, 251, 251, 0.15)"}}></div>
                             </div>
-
                         </a>
                         </MDBRipple>
                         <MDBCardBody>

@@ -37,9 +37,9 @@ function App() {
       </Col>
       </Row>
       <Row >
-        <Col>
+       
           <Bestseller />
-        </Col>
+      
       </Row>
     </Container>
   );

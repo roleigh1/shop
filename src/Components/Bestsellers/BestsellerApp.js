@@ -13,14 +13,19 @@ export default function Bestseller() {
             <Row className='text-center'>
                 <h4><strong>Bestseller</strong></h4>
             </Row>
-            <Row >
+            <Row className='d-flex justify-content-center algin-content-center' >
+                <Col  >
                 
-                <BestSeller1 />
-                <BestSeller2 />
-                <BestSeller3 />
-            
-         
+                    <BestSeller1 />
+                </Col>
+                <Col  >
+                    <BestSeller2  />
+                </Col>
+                <Col >
+                    <BestSeller3 />
+                </Col>
             </Row>
         </Container>
     );
 }
+

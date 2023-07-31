@@ -1,3 +1,4 @@
+// BestSeller3.js
 import React from "react";
 import {
   MDBContainer,
@@ -10,12 +11,13 @@ import {
 } from "mdb-react-ui-kit";
 import Button from '@mui/joy/Button';
 import Add from '@mui/icons-material/Add';
+
 export default function BestSeller3() {
     return (
         <MDBContainer fluid className="my-4 text-center">
          
-            <MDBRow >
-                <MDBCol md='12' lg='4' className="mb-4">
+            <MDBRow>
+                <MDBCol xs={6} md='12' lg='8' className="mb-4">
                     <MDBCard>
                         <MDBRipple
                         rippleColor="light"
@@ -25,7 +27,8 @@ export default function BestSeller3() {
                         <MDBCardImage
                         src="https://i.ibb.co/9NvV4sr/paprika-g0bc8a7c9e-1280.jpg"
                         fluid
-                        className="w-100" 
+                        className="w-100"
+                        style={{height:'94%'}} 
                         />
                         <a href="#!">
                             <div className="mask">
@@ -39,7 +42,6 @@ export default function BestSeller3() {
                                 <div className="mask"
                                 style={{backgroundColor: "rgba(251, 251, 251, 0.15)"}}></div>
                             </div>
-
                         </a>
                         </MDBRipple>
                         <MDBCardBody>
