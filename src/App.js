@@ -36,7 +36,7 @@ function App() {
         <ContactForm className="contactForm"/>
       </Col>
       </Row>
-      <Row style={{ marginTop: '5rem' , display: 'flex', alignItems: 'center'}}>
+      <Row >
         <Col>
           <Bestseller />
         </Col>

@@ -10,9 +10,9 @@ import {
 } from "mdb-react-ui-kit";
 import Button from '@mui/joy/Button';
 import Add from '@mui/icons-material/Add';
-export default function BestSeller1() {
+export default function BestSeller3() {
     return (
-        <MDBContainer fluid className="my-5 text-center">
+        <MDBContainer fluid className="my-4 text-center">
          
             <MDBRow >
                 <MDBCol md='12' lg='4' className="mb-4">
@@ -23,7 +23,7 @@ export default function BestSeller1() {
                         className="w-40"
                         >
                         <MDBCardImage
-                        src="https://i.ibb.co/Zm29fjS/peach-gbead77ccb-640.jpg"
+                        src="https://i.ibb.co/9NvV4sr/paprika-g0bc8a7c9e-1280.jpg"
                         fluid
                         className="w-100" 
                         />
@@ -44,12 +44,12 @@ export default function BestSeller1() {
                         </MDBRipple>
                         <MDBCardBody>
                          <a href="#!" className="text-reset">
-                            <h5 className="card-title mb-3">Saturn peach</h5>
+                            <h5 className="card-title mb-3">Paprika</h5>
                          </a>
                          <a href="#!" className="text-reset">
-                            <p>Fruits</p>
+                            <p>vegetables</p>
                          </a>
-                         <h6 className="mb-3">1 kg / €2.99</h6>
+                         <h6 className="mb-3"> 3 pcs / €2.00</h6>
                          <Button startDecorator={<Add />}>Add to cart</Button>
                         </MDBCardBody>
                     </MDBCard>
