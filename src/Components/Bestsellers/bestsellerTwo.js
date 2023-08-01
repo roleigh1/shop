@@ -13,7 +13,7 @@ export default function BestSeller2() {
     return (
         <MDBContainer fluid className="my-5 text-center">
             <MDBRow >
-                <MDBCol md='12' lg='8' className="mb-4">
+                <MDBCol   md='12' lg='7' className="mb-4">
                     <MDBCard>
                         <MDBRipple
                         rippleColor="light"
@@ -48,8 +48,8 @@ export default function BestSeller2() {
                          <a href="#!" className="text-reset">
                             <p>Fruits</p>
                          </a>
-                         <h6 className="mb-3">1 kg / €4.99</h6>
-                         <Button startDecorator={<Add />}>Add to cart</Button>
+                         <h6 className="mb-4">1 kg / €4.99</h6>
+                         <Button  style={{marginBottom:'2rem'}}  startDecorator={<Add />}>Add to cart</Button>
                         </MDBCardBody>
                     </MDBCard>
                 </MDBCol>

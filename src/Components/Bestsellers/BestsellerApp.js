@@ -6,26 +6,28 @@ import Col from 'react-bootstrap/Col';
 import BestSeller1 from './BestsellerOne';
 import BestSeller2 from './bestsellerTwo';
 import BestSeller3 from './BestsellerThree';
+import BestSeller4 from './BestsellerFour';
 
 export default function Bestseller() {
     return (
-        <Container className='text-center'>
+        <Container className='text-center '>
             <Row className='text-center'>
                 <h4><strong>Bestseller</strong></h4>
             </Row>
-            <Row className='d-flex justify-content-center algin-content-center' >
-                <Col  >
-                
+            <Row className='justify-content-center flex-nowrap'>
+                <Col className='d-flex flex-fill align-items-center'>
                     <BestSeller1 />
                 </Col>
-                <Col  >
-                    <BestSeller2  />
+                <Col className='d-flex flex-fill align-items-center'>
+                    <BestSeller2 />
                 </Col>
-                <Col >
+                <Col className='d-flex flex-fill align-items-center'>
                     <BestSeller3 />
+                </Col>
+                <Col className='d-flex flex-fill align-items-center'>
+                    <BestSeller4 />
                 </Col>
             </Row>
         </Container>
     );
 }
-

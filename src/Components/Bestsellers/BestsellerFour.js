@@ -1,9 +1,7 @@
-// BestSeller1.js
 import React from "react";
 import {
   MDBContainer,
-  MDBRow,
-  MDBCol,
+  MDBRow,  MDBCol,
   MDBCard,
   MDBCardBody,
   MDBCardImage,
@@ -11,28 +9,27 @@ import {
 } from "mdb-react-ui-kit";
 import Button from '@mui/joy/Button';
 import Add from '@mui/icons-material/Add';
-export default function BestSeller1() {
+export default function BestSeller4() {
     return (
         <MDBContainer fluid className="my-5 text-center">
-         
-            <MDBRow>
+            <MDBRow >
                 <MDBCol md='12' lg='7' className="mb-4">
                     <MDBCard>
                         <MDBRipple
                         rippleColor="light"
                         rippleTag='div'
-                        className="w-40"
+                        className="w-100 "
                         >
                         <MDBCardImage
-                        src="https://i.ibb.co/Zm29fjS/peach-gbead77ccb-640.jpg"
-                        fluid
+                        src="https://i.ibb.co/p0QrGTJ/eggplant-gbd2ba8a1c-640.jpg"
                         className="w-100" 
+                        
                         />
                         <a href="#!">
                             <div className="mask">
                                 <div className="d-flex justify-content algin-items-end h-100">
                                     <h5>
-                                        <span className="badge bg-primary ms-2">New</span>
+                                        <span className="badge bg-success ms-2">Bio</span>
                                     </h5>
                                 </div>
                             </div>
@@ -40,17 +37,18 @@ export default function BestSeller1() {
                                 <div className="mask"
                                 style={{backgroundColor: "rgba(251, 251, 251, 0.15)"}}></div>
                             </div>
+
                         </a>
                         </MDBRipple>
                         <MDBCardBody>
                          <a href="#!" className="text-reset">
-                            <h5 className="card-title mb-3">Saturn peach</h5>
+                            <h5 className="card-title mb-3">Eggplant</h5>
                          </a>
                          <a href="#!" className="text-reset">
-                            <p>Fruits</p>
+                            <p>Vegetables</p>
                          </a>
-                         <h6 className="mb-4">1 kg / €2.99</h6>
-                         <Button style={{marginBottom:'2rem'}}  startDecorator={<Add />}>Add to cart</Button>
+                         <h6 className="mb-4">1 kg / €3.50</h6>
+                         <Button  style={{marginBottom:'2rem'}}  startDecorator={<Add />}>Add to cart</Button>
                         </MDBCardBody>
                     </MDBCard>
                 </MDBCol>

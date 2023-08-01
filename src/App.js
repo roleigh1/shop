@@ -36,7 +36,7 @@ function App() {
         <ContactForm className="contactForm"/>
       </Col>
       </Row>
-      <Row >
+      <Row>
        
           <Bestseller />
       
