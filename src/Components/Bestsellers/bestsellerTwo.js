@@ -25,7 +25,7 @@ export default function BestSeller2() {
                         src="https://i.ibb.co/S6sK3C7/strawberries-g91324ddda-640.jpg"
                         fluid
                         className="w-100" 
-                        style={{height:'7.2rem'}}
+                        style={{height:'7.3rem'}}
                         
                         />
                         <a href="#!">
@@ -45,10 +45,10 @@ export default function BestSeller2() {
                         </MDBRipple>
                         <MDBCardBody>
                          <a href="#!" className="text-reset">
-                            <h5 className="card-title mb-2">Strawberrys</h5>
+                            <h5 className="card-title mb-1">Strawberrys</h5>
                          </a>
                          <a href="#!" className="text-reset">
-                            <p>Fruits</p>
+                            <p style={{marginTop:'10px'}}>Fruits</p>
                          </a>
                          <h6 className="mb-4">1 kg / €4.99</h6>
                          <input style={{width:'3rem', textAlign:'center', border:'none'}} type="number"></input><span> /kg</span>
