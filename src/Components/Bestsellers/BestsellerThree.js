@@ -17,7 +17,7 @@ export default function BestSeller3() {
          
             <MDBRow >
                 <MDBCol md='12' lg='7' className="mb-4">
-                    <MDBCard>
+                    <MDBCard  style={{height: '23rem'}}>
                         <MDBRipple
                         rippleColor="light"
                         rippleTag='div'
@@ -47,13 +47,13 @@ export default function BestSeller3() {
                         </MDBRipple>
                         <MDBCardBody>
                          <a href="#!" className="text-reset">
-                            <h5 className="card-title mt-3 mb-3">Paprika</h5>
+                            <h5 className="card-title  mb-3">Paprika</h5>
                          </a>
                          <a href="#!" className="text-reset">
                             <p>vegetables</p>
                          </a>
-                         <h6 > 3 pcs / €2.00</h6>
-                         <Button style={{marginBottom:'2rem'}} startDecorator={<Add />}>Add to cart</Button>
+                         <h6 className="mb-4"> 3 pcs / €2.00</h6>
+                         <Button startDecorator={<Add />}>Add to cart</Button>
                         </MDBCardBody>
                     </MDBCard>
                 </MDBCol>

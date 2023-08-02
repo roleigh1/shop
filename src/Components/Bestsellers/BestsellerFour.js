@@ -14,7 +14,7 @@ export default function BestSeller4() {
         <MDBContainer fluid className="my-5 text-center">
             <MDBRow >
                 <MDBCol md='12' lg='7' className="mb-4">
-                    <MDBCard>
+                    <MDBCard  style={{height: '23rem'}}>
                         <MDBRipple
                         rippleColor="light"
                         rippleTag='div'

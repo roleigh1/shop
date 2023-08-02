@@ -14,16 +14,18 @@ export default function BestSeller2() {
         <MDBContainer fluid className="my-5 text-center">
             <MDBRow >
                 <MDBCol   md='12' lg='7' className="mb-4">
-                    <MDBCard>
+                    <MDBCard  style={{height: '23rem'}}>
                         <MDBRipple
                         rippleColor="light"
                         rippleTag='div'
                         className="w-100 "
+                       
                         >
                         <MDBCardImage
-                        src="https://i.ibb.co/2SY4dsY/strawberries-g8d49cd080-1280.jpg"
+                        src="https://i.ibb.co/S6sK3C7/strawberries-g91324ddda-640.jpg"
                         fluid
                         className="w-100" 
+                        style={{height:'7.2rem'}}
                         
                         />
                         <a href="#!">
@@ -43,13 +45,14 @@ export default function BestSeller2() {
                         </MDBRipple>
                         <MDBCardBody>
                          <a href="#!" className="text-reset">
-                            <h5 className="card-title mb-3">Strawberrys</h5>
+                            <h5 className="card-title mb-2">Strawberrys</h5>
                          </a>
                          <a href="#!" className="text-reset">
                             <p>Fruits</p>
                          </a>
                          <h6 className="mb-4">1 kg / €4.99</h6>
-                         <Button  style={{marginBottom:'2rem'}}  startDecorator={<Add />}>Add to cart</Button>
+                         <input style={{width:'3rem', textAlign:'center', border:'none'}} type="number"></input><span> /kg</span>
+                         <Button  style={{marginBottom:'2rem', marginTop:'1rem'}}  startDecorator={<Add />}>Add to cart</Button>
                         </MDBCardBody>
                     </MDBCard>
                 </MDBCol>
