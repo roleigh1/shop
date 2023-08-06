@@ -53,7 +53,7 @@ export default function BestSeller3() {
                             <p  style={{position:'relative',bottom:'12px'}}>vegetables</p>
                          </a>
                          <h6 className="mb-4" style={{position:'relative',bottom:'1.4rem'}}>  €0.60/pcs</h6>
-                         <input style={{width:'3rem', textAlign:'center', border:'none'}} type="number"></input><span> /kg</span>
+                         <input style={{width:'3rem', textAlign:'center', border:'none',position:'relative',bottom:'1rem' }}type="number"></input><span style={{position:'relative', bottom:'1rem'}}>/kg</span>
                          <Button style={{marginBottom:'1rem', marginTop:'rem'}} startDecorator={<Add />}>Add to cart</Button>
                         </MDBCardBody>
                     </MDBCard>

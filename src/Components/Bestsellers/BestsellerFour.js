@@ -49,9 +49,9 @@ export default function BestSeller4() {
                             <p  style={{position:'relative',bottom:'4px'}}>Vegetables</p>
                          </a>
                          <h6 className="mb-4" style={{position:'relative',bottom:'0.9rem'}}> €3.50 /kg</h6>
-                         <input style={{width:'3rem', textAlign:'center', border:'none'}} type="number"></input><span> /kg</span>
+                         <input style={{width:'3rem', textAlign:'center', border:'none',position:'relative', bottom:'0.4rem'}} type="number"></input><span style={{position:'relative', bottom:'0.6rem'}}> /kg</span>
 
-                         <Button  style={{marginBottom:'2rem',marginTop:'1rem'}}  startDecorator={<Add />}>Add to cart</Button>
+                         <Button  style={{marginTop:'0.5rem'}}  startDecorator={<Add />}>Add to cart</Button>
                         
                         </MDBCardBody>
                     </MDBCard>

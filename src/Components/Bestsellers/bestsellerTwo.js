@@ -52,8 +52,8 @@ export default function BestSeller2() {
                             <p >Fruits</p>
                          </a>
                          <h6 className="mb-4" style={{position:'relative',bottom:'0.7rem'}}> €4.99/kg</h6>
-                         <input style={{width:'3rem', textAlign:'center', border:'none'}} type="number"></input><span> /kg</span>
-                         <Button  style={{marginBottom:'2rem', marginTop:'1rem'}}  startDecorator={<Add />}>Add to cart</Button>
+                         <input style={{width:'3rem', textAlign:'center', border:'none',position:'relative',top:'-0.2rem'}} type="number"></input><span style={{position:'relative', bottom:'0.3rem'}}>/kg</span>
+                         <Button style={{marginBottom:'1rem', marginTop:'0.8rem'}} startDecorator={<Add />}>Add to cart</Button>
                         </MDBCardBody>
                     </MDBCard>
                 </MDBCol>
