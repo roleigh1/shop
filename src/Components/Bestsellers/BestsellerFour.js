@@ -23,7 +23,8 @@ export default function BestSeller4() {
                         <MDBCardImage
                         src="https://i.ibb.co/p0QrGTJ/eggplant-gbd2ba8a1c-640.jpg"
                         className="w-100" 
-                        
+                        fluid
+                        style={{height:'180px':'rem'}}
                         />
                         <a href="#!">
                             <div className="mask">
@@ -42,13 +43,16 @@ export default function BestSeller4() {
                         </MDBRipple>
                         <MDBCardBody>
                          <a href="#!" className="text-reset">
-                            <h5 className="card-title mb-3">Eggplant</h5>
+                            <h5 className="card-title">Eggplant</h5>
                          </a>
                          <a href="#!" className="text-reset">
                             <p>Vegetables</p>
                          </a>
                          <h6 className="mb-4">1 kg / €3.50</h6>
-                         <Button  style={{marginBottom:'2rem'}}  startDecorator={<Add />}>Add to cart</Button>
+                         <input style={{width:'3rem', textAlign:'center', border:'none'}} type="number"></input><span> /kg</span>
+
+                         <Button  style={{marginBottom:'2rem',marginTop:'1rem'}}  startDecorator={<Add />}>Add to cart</Button>
+                        
                         </MDBCardBody>
                     </MDBCard>
                 </MDBCol>

@@ -17,17 +17,17 @@ export default function BestSeller3() {
          
             <MDBRow >
                 <MDBCol md='12' lg='7' className="mb-4">
-                    <MDBCard  style={{height: '23rem'}}>
+                    <MDBCard  style={{Height: '2rem'}}>
                         <MDBRipple
                         rippleColor="light"
                         rippleTag='div'
-                        className="w-100"
+                        className="w-100 photo"
                         >
                         <MDBCardImage
                         src="https://i.ibb.co/D7bBy1Q/bell-peppers-gc3855d807-640.jpg"
                         fluid
                         className="w-100"
-                        
+                        style={{ height:'6.6rem'}}
                          
                         />
                         <a href="#!">
@@ -52,8 +52,9 @@ export default function BestSeller3() {
                          <a href="#!" className="text-reset">
                             <p>vegetables</p>
                          </a>
-                         <h6 className="mb-4"> 3 pcs / €2.00</h6>
-                         <Button startDecorator={<Add />}>Add to cart</Button>
+                         <h6 className="mb-4"> 1 pcs / €0.60</h6>
+                         <input style={{width:'3rem', textAlign:'center', border:'none'}} type="number"></input><span> /kg</span>
+                         <Button style={{marginBottom:'1rem', marginTop:'rem'}} startDecorator={<Add />}>Add to cart</Button>
                         </MDBCardBody>
                     </MDBCard>
                 </MDBCol>

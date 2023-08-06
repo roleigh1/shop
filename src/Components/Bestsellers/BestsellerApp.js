@@ -7,24 +7,17 @@ import BestSeller1 from './BestsellerOne';
 import BestSeller2 from './bestsellerTwo';
 import BestSeller3 from './BestsellerThree';
 import BestSeller4 from './BestsellerFour';
-
 export default function Bestseller() {
     return (
-        <Container className='text-center '>
+        <Container className='text-center'>
             <Row className='text-center'>
                 <h4><strong>Bestseller</strong></h4>
             </Row>
-            <Row className='justify-content-center flex-nowrap'>
-                <Col className='d-flex flex-fill align-items-center'>
+            <Row className='justify-content-center'>
+                <Col xs={12} className='d-flex justify-content-center align-content-center align-items-center'>
                     <BestSeller1 />
-                </Col>
-                <Col className='d-flex flex-fill align-items-center'>
                     <BestSeller2 />
-                </Col>
-                <Col className='d-flex flex-fill align-items-center'>
                     <BestSeller3 />
-                </Col>
-                <Col className='d-flex flex-fill align-items-center'>
                     <BestSeller4 />
                 </Col>
             </Row>

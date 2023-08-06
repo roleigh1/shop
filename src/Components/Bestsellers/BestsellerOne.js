@@ -32,8 +32,8 @@ export default function BestSeller1() {
                             <MDBCardImage
                                 src="https://i.ibb.co/Zm29fjS/peach-gbead77ccb-640.jpg"
                                 fluid
-                                className="w-100"
-                                style={{ height: '7rem' }}
+                                className="w-100 "
+                                style={{ height: '7rem'}}
                             />
                             <a href="#!">
                                 <div className="mask">
