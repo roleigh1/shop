@@ -25,12 +25,13 @@ export default function BestSeller2() {
                         src="https://i.ibb.co/S6sK3C7/strawberries-g91324ddda-640.jpg"
                         fluid
                         className="w-100 " 
-                        style={{height:'7rem'}}
+                       style={{height:'6.5rem'}}
+                       
                         
                         />
                         <a href="#!">
                             <div className="mask">
-                                <div className="d-flex justify-content algin-items-end h-100">
+                                <div className="d-flex justify-content-center algin-items-end h-100">
                                     <h5>
                                         <span className="badge bg-success ms-2">Bio</span>
                                     </h5>
@@ -50,7 +51,7 @@ export default function BestSeller2() {
                          <a href="#!" className="text-reset">
                             <p >Fruits</p>
                          </a>
-                         <h6 className="mb-4">1 kg / €4.99</h6>
+                         <h6 className="mb-4" style={{position:'relative',bottom:'0.7rem'}}> €4.99/kg</h6>
                          <input style={{width:'3rem', textAlign:'center', border:'none'}} type="number"></input><span> /kg</span>
                          <Button  style={{marginBottom:'2rem', marginTop:'1rem'}}  startDecorator={<Add />}>Add to cart</Button>
                         </MDBCardBody>

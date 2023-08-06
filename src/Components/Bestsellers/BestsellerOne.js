@@ -33,7 +33,7 @@ export default function BestSeller1() {
                                 src="https://i.ibb.co/Zm29fjS/peach-gbead77ccb-640.jpg"
                                 fluid
                                 className="w-100 "
-                                style={{ height: '7rem'}}
+                                style={{ height: '6.5rem'}}
                             />
                             <a href="#!">
                                 <div className="mask">
@@ -54,9 +54,9 @@ export default function BestSeller1() {
                                 <h5 className="card-title mb-2"> Peaches</h5>
                             </a>
                             <a href="#!" className="text-reset">
-                                <p>Fruits</p>
+                                <p style={{position:'relative',bottom:'4px'}}>Fruits</p>
                             </a>
-                            <h6 className="mb-4">€2.99/kg</h6>
+                            <h6 className="mb-3" style={{position:'relative',bottom:'1rem'}}>€2.99/kg</h6>
                               <input style={{width:'3rem', textAlign:'center', border:'none'}} type="number"></input><span> /kg</span>
                             <Button style={{marginBottom: '2em' , marginTop:'1rem'}} startDecorator={<Add />}>Add to cart</Button>
                         </MDBCardBody>

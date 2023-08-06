@@ -27,9 +27,7 @@ function SeasonProductCards() {
                  <SeasonProductCardFive />
                 </Col>
             </Row>
-            <Row>
-               
-            </Row>
+           
         </div>
     )
 }

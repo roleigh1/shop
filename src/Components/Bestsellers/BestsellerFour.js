@@ -24,11 +24,11 @@ export default function BestSeller4() {
                         src="https://i.ibb.co/p0QrGTJ/eggplant-gbd2ba8a1c-640.jpg"
                         className="w-100" 
                         fluid
-                        style={{height:'180px':'rem'}}
+                        style={{height:'6.5rem'}}
                         />
                         <a href="#!">
                             <div className="mask">
-                                <div className="d-flex justify-content algin-items-end h-100">
+                                <div className="d-flex justify-content-center algin-items-end h-100">
                                     <h5>
                                         <span className="badge bg-success ms-2">Bio</span>
                                     </h5>
@@ -46,9 +46,9 @@ export default function BestSeller4() {
                             <h5 className="card-title">Eggplant</h5>
                          </a>
                          <a href="#!" className="text-reset">
-                            <p>Vegetables</p>
+                            <p  style={{position:'relative',bottom:'4px'}}>Vegetables</p>
                          </a>
-                         <h6 className="mb-4">1 kg / €3.50</h6>
+                         <h6 className="mb-4" style={{position:'relative',bottom:'0.9rem'}}> €3.50 /kg</h6>
                          <input style={{width:'3rem', textAlign:'center', border:'none'}} type="number"></input><span> /kg</span>
 
                          <Button  style={{marginBottom:'2rem',marginTop:'1rem'}}  startDecorator={<Add />}>Add to cart</Button>
