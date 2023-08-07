@@ -1,5 +1,5 @@
 // BestSeller1.js
-import React from "react";
+import React, { useState } from "react";
 
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -17,7 +17,13 @@ import Add from '@mui/icons-material/Add';
 
 
 export default function BestSeller1() {
-   
+   const [inputValue, setInputValue] = useState('');
+   const handleInputChange = (event) => {
+    const value = event.target.value;
+     setInputValue(value);
+   };
+   const result = Number(inputValue) * 2.99; 
+
     return (
         <MDBContainer fluid className="my-5 text-center">
 
@@ -33,7 +39,7 @@ export default function BestSeller1() {
                                 src="https://i.ibb.co/Zm29fjS/peach-gbead77ccb-640.jpg"
                                 fluid
                                 className="w-100 "
-                                style={{ height: '6.5rem'}}
+                                style={{ height: '6.5rem' }}
                             />
                             <a href="#!">
                                 <div className="mask">
@@ -54,11 +60,18 @@ export default function BestSeller1() {
                                 <h5 className="card-title mb-2"> Peaches</h5>
                             </a>
                             <a href="#!" className="text-reset">
-                                <p style={{position:'relative',bottom:'4px'}}>Fruits</p>
+                                <p style={{ position: 'relative', bottom: '4px' }}>Fruits</p>
                             </a>
-                            <h6 className="mb-3" style={{position:'relative',bottom:'1rem'}}>€2.99/kg</h6>
-                              <input style={{width:'3rem', textAlign:'center', border:'none'}} type="number"></input><span> /kg</span>
-                            <Button style={{marginBottom: '2em' , marginTop:'1rem'}} startDecorator={<Add />}>Add to cart</Button>
+                            <h6 className="mb-3" style={{ position: 'relative', bottom: '1rem' }}>€2.99/kg</h6>
+                            <div style={{ textAlign: 'center' }}>
+ 
+  <div style={{ display: 'flex', flexDirection:'column',  }}>
+  <span className="Sum " style={{ display: Number(inputValue) > 0 ? 'block' : 'none' }}>{result.toFixed(2)}</span>
+   <input id="inputValue" onChange={handleInputChange} value={inputValue} style={{ width: '2.5rem', textAlign: 'center', border: 'none', position:'relative',left:'2.5rem' }} type="number"></input>
+   
+  </div>
+</div>
+                            <Button style={{ marginBottom: '2em', marginTop: '1rem' }} startDecorator={<Add />}>Add to cart</Button>
                         </MDBCardBody>
                     </MDBCard>
                 </MDBCol>

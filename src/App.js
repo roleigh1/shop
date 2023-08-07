@@ -1,4 +1,3 @@
-
 import React from 'react';
 import './App.css';
 import BurgerMenu from './Components/Burger/Menu';
@@ -12,11 +11,12 @@ import SlideShow from './Components/Side-show-head/SideShow';
 import SeasonProductCards from './Components/Products-Main/SeasonProductsCards';
 import ContactForm from './Components/Contact/ContactForm';
 import Bestseller from './Components/Bestsellers/BestsellerApp';
+
 function App() {
   return (
-    <Container >
+    <Container>
       <Row className="d-flex align-items-center justify-content-between">
-        <Col xs="auto">
+        <Col xs="auto" style={{ marginTop: '1rem' }}> 
           <Logo />
         </Col>
         <Col xs="auto" className='d-flex'>
@@ -28,18 +28,16 @@ function App() {
         <SlideShow className="slider" />
       </Row>
 
-      <Row className="Cards" style={{ marginTop: '5rem' , display: 'flex', alignItems: 'center'}}>
+      <Row className="Cards" style={{ marginTop: '5rem', display: 'flex', alignItems: 'center' }}>
         <SeasonProductCards></SeasonProductCards>
       </Row>
-      < Row style={{marginTop: '5rem', backgroundColor: '#E0E0E0'} }>
-      <Col xs={{ span: 6, offset: 3 }} className="d-flex justify-content-center"> 
-        <ContactForm className="contactForm"/>
-      </Col>
+      <Row style={{ marginTop: '5rem', backgroundColor: '#E0E0E0' }}>
+        <Col xs={{ span: 6, offset: 3 }} className="d-flex justify-content-center">
+          <ContactForm className="contactForm" />
+        </Col>
       </Row>
-      <Row  style={{ marginTop: '5rem' , display: 'flex', alignItems: 'center'}}>
-       
-          <Bestseller />
-      
+      <Row style={{ marginTop: '5rem', display: 'flex', alignItems: 'center' }}>
+        <Bestseller />
       </Row>
     </Container>
   );
