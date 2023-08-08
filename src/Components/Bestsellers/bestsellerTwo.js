@@ -52,7 +52,7 @@ export default function BestSeller2() {
 
                         </a>
                         </MDBRipple>
-                        <MDBCardBody>
+                        <MDBCardBody style={{ height: '300px', overflow: 'hidden' }}>
                          <a href="#!" className="text-reset">
                             <h5 className="card-title mb-1">Strawberrys</h5>
                          </a>
@@ -60,8 +60,16 @@ export default function BestSeller2() {
                             <p >Fruits</p>
                          </a>
                          <h6 className="mb-4" style={{position:'relative',bottom:'0.7rem'}}> €4.99/kg</h6>
-                         <input style={{width:'3rem', textAlign:'center', border:'none',position:'relative',top:'-0.2rem'}} type="number"></input><span style={{position:'relative', bottom:'0.3rem'}}>/kg</span>
-                         <Button style={{marginBottom:'1rem', marginTop:'0.8rem'}} startDecorator={<Add />}>Add to cart</Button>
+                         
+                        <div style={{ display: 'flex', flexDirection:'column',  }}>
+                         <span className="Sum " style={{ visibility: Number(inputValue) > 0 ? 'visible': 'hidden' ,position:'relative',bottom:'5px' }}>{result.toFixed(2)}€</span>
+    
+                         <input  id="inputValue" onChange={handleInputChange} value={inputValue} style={{width:'2.8rem', textAlign:'center', border:'none',position:'relative',left:'2.5rem',top:'-0.3rem'}} type="number"></input>
+                         
+                         
+                         </div>
+                         <Button style={{ marginTop:'0.7rem'}} startDecorator={<Add />}>Add to cart</Button>
+                        
                         </MDBCardBody>
                     </MDBCard>
                 </MDBCol>
