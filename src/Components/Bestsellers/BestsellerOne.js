@@ -66,10 +66,12 @@ export default function BestSeller1() {
                             <div style={{ textAlign: 'center' }}>
  
   <div style={{ display: 'flex', flexDirection:'column',  }}>
-  <span className="Sum " style={{ display: Number(inputValue) > 0 ? 'block' : 'none' }}>{result.toFixed(2)}</span>
-   <input id="inputValue" onChange={handleInputChange} value={inputValue} style={{ width: '2.5rem', textAlign: 'center', border: 'none', position:'relative',left:'2.5rem' }} type="number"></input>
+  <span className="Sum " style={{ display: Number(inputValue) > 0 ? 'block' : 'none' }}>{result.toFixed(2)}€</span>
+
+  <input id="inputValue" onChange={handleInputChange} value={inputValue} style={{ width: '2.8rem', textAlign: 'center', border: 'none', position:'relative',left:'2.5rem' }} type="number"></input> 
+</div><span>Kg</span> 
    
-  </div>
+ 
 </div>
                             <Button style={{ marginBottom: '2em', marginTop: '1rem' }} startDecorator={<Add />}>Add to cart</Button>
                         </MDBCardBody>

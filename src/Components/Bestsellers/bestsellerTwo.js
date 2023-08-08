@@ -1,4 +1,4 @@
-import React from "react";
+import React , { useState } from "react";
 import {
   MDBContainer,
   MDBRow,  MDBCol,
@@ -10,6 +10,14 @@ import {
 import Button from '@mui/joy/Button';
 import Add from '@mui/icons-material/Add';
 export default function BestSeller2() {
+    const [inputValue, setInputValue] = useState('');
+    const handleInputChange = (event) => {
+     const value = event.target.value;
+      setInputValue(value);
+    };
+    const result = Number(inputValue) * 2.99; 
+ 
+
     return (
         <MDBContainer fluid className="my-5 text-center">
             <MDBRow >
