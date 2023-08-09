@@ -14,7 +14,7 @@ import Bestseller from './Components/Bestsellers/BestsellerApp';
 
 function App() {
   return (
-    <Container>
+    <Container className='conti'>
       <Row className="d-flex align-items-center justify-content-between">
         <Col xs="auto" style={{ marginTop: '1rem' }}> 
           <Logo />
@@ -36,8 +36,10 @@ function App() {
           <ContactForm className="contactForm" />
         </Col>
       </Row>
-      <Row style={{ marginTop: '5rem', display: 'flex', alignItems: 'center' }}>
-        <Bestseller />
+      <Row style={{ marginTop: '5rem',  }}>
+        <Col   style={{display:'flex',justifyContent: 'center', alignItems: 'center', width: '100%' , }}>
+         <Bestseller />
+        </Col>
       </Row>
     </Container>
   );

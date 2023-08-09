@@ -29,7 +29,7 @@ export default function BestSeller1() {
 
             <MDBRow>
                 <MDBCol md='12' lg='7' className="mb-4">
-                    <MDBCard style={{ height: '23rem' }}>
+                    <MDBCard style={{ height: '23rem',width:'10rem' }}>
                         <MDBRipple
                             rippleColor="light"
                             rippleTag='div'
@@ -68,7 +68,7 @@ export default function BestSeller1() {
   <div style={{ display: 'flex', flexDirection:'column',  }}>
      <span className="Sum " style={{visibility: Number(inputValue) > 0 ? 'visible': 'hidden' }} >{result.toFixed(2)}€</span>
     
-      <input id="inputValue" onChange={handleInputChange} value={inputValue} style={{ width: '2.8rem', textAlign: 'center', border: 'none', position:'relative',left:'2.5rem' }} type="number"></input> 
+      <input id="inputValue" onChange={handleInputChange} value={inputValue} style={{ width: '2.8rem', textAlign: 'center', border: 'none', position:'relative',display:'block',margin:'0 auto',top:'4px' }} type="number"></input> 
  </div>
  
    

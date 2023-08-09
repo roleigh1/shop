@@ -15,14 +15,14 @@ export default function BestSeller2() {
      const value = event.target.value;
       setInputValue(value);
     };
-    const result = Number(inputValue) * 2.99; 
+    const result = Number(inputValue) * 4.99; 
  
 
     return (
         <MDBContainer fluid className="my-5 text-center">
             <MDBRow >
                 <MDBCol   md='12' lg='7' className="mb-4">
-                    <MDBCard  style={{height: '23rem'}}>
+                    <MDBCard  style={{height: '23rem',width:'10rem'}}>
                         <MDBRipple
                         rippleColor="light"
                         rippleTag='div'
@@ -59,16 +59,17 @@ export default function BestSeller2() {
                          <a href="#!" className="text-reset">
                             <p >Fruits</p>
                          </a>
-                         <h6 className="mb-4" style={{position:'relative',bottom:'0.7rem'}}> €4.99/kg</h6>
+                         <h6 className="mb-4" style={{position:'relative',bottom:'0.7rem'}}>€ 4.99/Tas
+                        </h6>
                          
                         <div style={{ display: 'flex', flexDirection:'column',  }}>
                          <span className="Sum " style={{ visibility: Number(inputValue) > 0 ? 'visible': 'hidden' ,position:'relative',bottom:'5px' }}>{result.toFixed(2)}€</span>
     
-                         <input  id="inputValue" onChange={handleInputChange} value={inputValue} style={{width:'2.8rem', textAlign:'center', border:'none',position:'relative',left:'2.5rem',top:'-0.3rem'}} type="number"></input>
+                         <input  id="inputValue" onChange={handleInputChange} value={inputValue} style={{width:'2.8rem', textAlign:'center', border:'none',display:'block',margin:'0 auto'}} type="number"></input>
                          
                          
                          </div>
-                         <Button style={{ marginTop:'0.7rem'}} startDecorator={<Add />}>Add to cart</Button>
+                         <Button style={{ marginTop:'12px'}} startDecorator={<Add />}>Add to cart</Button>
                         
                         </MDBCardBody>
                     </MDBCard>

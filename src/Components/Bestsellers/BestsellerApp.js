@@ -13,7 +13,7 @@ export default function Bestseller() {
             <Row className='text-center'>
                 <h4><strong>Bestseller</strong></h4>
             </Row>
-            <Row style={{}}>
+            <Row style={{display:'flex', margin:'0 auto'}}>
                 
                      <Col>
                      <BestSeller1 />
