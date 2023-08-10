@@ -1,48 +1,16 @@
 import React from 'react';
-import './App.css';
-import BurgerMenu from './Components/Burger/Menu';
-import Logo from './Components/Logo/Logo';
-import Cart from './Components/Cart/Cart';
-import 'bootstrap/dist/css/bootstrap.css';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import SlideShow from './Components/Side-show-head/SideShow';
-import SeasonProductCards from './Components/Products-Main/SeasonProductsCards';
-import ContactForm from './Components/Contact/ContactForm';
-import Bestseller from './Components/Bestsellers/BestsellerApp';
-
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './Home/Home';
+import Checkout from './Checkout/Checkout';
 function App() {
   return (
-    <Container className='conti'>
-      <Row className="d-flex align-items-center justify-content-between">
-        <Col xs="auto" style={{ marginTop: '1rem' }}> 
-          <Logo />
-        </Col>
-        <Col xs="auto" className='d-flex'>
-          <Cart />
-          <BurgerMenu />
-        </Col>
-      </Row>
-      <Row>
-        <SlideShow className="slider" />
-      </Row>
-
-      <Row className="Cards" style={{ marginTop: '5rem', display: 'flex', alignItems: 'center' }}>
-        <SeasonProductCards></SeasonProductCards>
-      </Row>
-      <Row style={{ marginTop: '5rem', backgroundColor: '#E0E0E0' }}>
-        <Col xs={{ span: 6, offset: 3 }} className="d-flex justify-content-center">
-          <ContactForm className="contactForm" />
-        </Col>
-      </Row>
-      <Row style={{ marginTop: '5rem',  }}>
-        <Col   style={{display:'flex',justifyContent: 'center', alignItems: 'center', width: '100%' , }}>
-         <Bestseller />
-        </Col>
-      </Row>
-    </Container>
-  );
+    <Router>
+      <Routes>
+        <Route path="/" exact element={Home()} />
+        <Route path="/checkout" element={<Checkout />} />
+      </Routes>
+    </Router>
+  )
 }
 
 export default App;
