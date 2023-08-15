@@ -1,5 +1,6 @@
 // BestSeller1.js
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { CartContext } from "../../../Context";
 
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -23,7 +24,7 @@ export default function BestSeller1() {
      setInputValue(value);
    };
    const result = Number(inputValue) * 2.99; 
-
+   const { setCartCount } = useContext(CartContext)
     return (
         <MDBContainer fluid className="my-5 text-center">
 
@@ -74,7 +75,7 @@ export default function BestSeller1() {
    
  
 
-                            <Button style={{  marginTop: '1rem' }} startDecorator={<Add />}>Add to cart</Button>
+                            <Button onClick={()=> setCartCount(prevCount => prevCount + 1)} style={{  marginTop: '1rem' }} startDecorator={<Add />}>Add to cart</Button>
                         </MDBCardBody>
                     </MDBCard>
                 </MDBCol>

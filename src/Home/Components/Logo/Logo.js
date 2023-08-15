@@ -7,6 +7,7 @@ function Logo() {
            <style jsx>{`
            .App-logo {
             width:8rem;
+            margin-top:1rem;
             
            }
         `}
