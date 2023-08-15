@@ -58,7 +58,7 @@ export default function BestSeller4() {
                          <div style={{ display: 'flex', flexDirection:'column',  }}>
                          <span className="Sum " style={{ visibility: Number(inputValue) > 0 ? 'visible': 'hidden' ,position:'relative',bottom:'5px' }}>{result.toFixed(2)}€</span>
     
-                         <input  id="inputValue" onChange={handleInputChange} value={inputValue} style={{width:'2.8rem', textAlign:'center', border:'none',display:'block',margin:'0 auto',position:'relative',bottom:'5px'}} type="number"></input>
+                         <input  id="inputValue" onChange={handleInputChange} value={inputValue} style={{width:'2.8rem', textAlign:'center',display:'block',margin:'0 auto',position:'relative',bottom:'5px'}} type="number"></input>
                          
                          
                          </div>

@@ -3,6 +3,7 @@ import { Container } from 'react-bootstrap';
 import {Row,Col} from 'react-bootstrap';
 import Logo from "../Home/Components/Logo/Logo";
 import BurgerMenu from "../Home/Components/Burger/Menu";
+import SwiperSlider from "./SwiperSlider"
 function Checkout() {
     return (
     <Container>
@@ -13,6 +14,9 @@ function Checkout() {
             <Col xs="auto" className='d-flex'>
            <BurgerMenu />
         </Col>
+        </Row>
+        <Row>
+
         </Row>
     </Container>
     )
