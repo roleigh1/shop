@@ -18,19 +18,19 @@ import Add from '@mui/icons-material/Add';
 
 
 export default function BestSeller1() {
-   const [inputValue, setInputValue] = useState('');
-   const handleInputChange = (event) => {
-    const value = event.target.value;
-     setInputValue(value);
-   };
-   const result = Number(inputValue) * 2.99; 
-   const { setCartCount } = useContext(CartContext)
+    const [inputValue, setInputValue] = useState('');
+    const handleInputChange = (event) => {
+        const value = event.target.value;
+        setInputValue(value);
+    };
+    const result = Number(inputValue) * 2.99;
+    const { setCartCount } = useContext(CartContext)
     return (
         <MDBContainer fluid className="my-5 text-center">
 
             <MDBRow>
                 <MDBCol md='12' lg='7' className="mb-4">
-                    <MDBCard style={{ height: '23rem',width:'10rem' }}>
+                    <MDBCard style={{ height: '23rem', width: '10rem' }}>
                         <MDBRipple
                             rippleColor="light"
                             rippleTag='div'
@@ -40,7 +40,7 @@ export default function BestSeller1() {
                                 src="https://i.ibb.co/Zm29fjS/peach-gbead77ccb-640.jpg"
                                 fluid
                                 className="w-100 "
-                                style={{ height: '6.5rem'  }}
+                                style={{ height: '6.5rem' }}
                             />
                             <a href="#!">
                                 <div className="mask">
@@ -64,18 +64,25 @@ export default function BestSeller1() {
                                 <p style={{ position: 'relative', bottom: '4px' }}>Fruits</p>
                             </a>
                             <h6 className="mb-3" style={{ position: 'relative', bottom: '1rem' }}>€2.99/kg</h6>
-                          
- 
-  <div style={{ display: 'flex', flexDirection:'column',  }}>
-     <span className="Sum " style={{visibility: Number(inputValue) > 0 ? 'visible': 'hidden' }} >{result.toFixed(2)}€</span>
-    
-      <input id="inputValue" onChange={handleInputChange} value={inputValue} style={{ width: '2.8rem', textAlign: 'center', border: 'none', position:'relative',display:'block',margin:'0 auto',top:'4px' }} type="number"></input> 
- </div>
- 
-   
- 
 
-                            <Button onClick={()=> setCartCount(prevCount => prevCount + 1)} style={{  marginTop: '1rem' }} startDecorator={<Add />}>Add to cart</Button>
+
+                            <div style={{ display: 'flex', flexDirection: 'column', }}>
+                                <span className="Sum " style={{ visibility: Number(inputValue) > 0 ? 'visible' : 'hidden' }} >{result.toFixed(2)}€</span>
+
+                                <input id="inputValue" onChange={handleInputChange} value={inputValue} style={{ width: '2.8rem', textAlign: 'center', border: 'none', position: 'relative', display: 'block', margin: '0 auto', top: '4px' }} type="number"></input>
+                            </div>
+
+
+
+
+                            <Button onClick={() => {
+                                if (Number(inputValue) > 0) {
+                                    setCartCount(prevCount => prevCount + 1);
+                                }
+                            }}
+                                style={{ marginTop: '1rem' }}
+                                startDecorator={<Add />}
+                            >Add to cart</Button>
                         </MDBCardBody>
                     </MDBCard>
                 </MDBCol>
