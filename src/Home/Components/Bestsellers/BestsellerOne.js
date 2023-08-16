@@ -24,7 +24,7 @@ export default function BestSeller1() {
         setInputValue(value);
     };
     const result = Number(inputValue) * 2.99;
-    const { setCartCount } = useContext(CartContext)
+    
     return (
         <MDBContainer fluid className="my-5 text-center">
 
@@ -75,11 +75,7 @@ export default function BestSeller1() {
 
 
 
-                            <Button onClick={() => {
-                                if (Number(inputValue) > 0) {
-                                    setCartCount(prevCount => prevCount + 1);
-                                }
-                            }}
+                            <Button 
                                 style={{ marginTop: '1rem' }}
                                 startDecorator={<Add />}
                             >Add to cart</Button>
