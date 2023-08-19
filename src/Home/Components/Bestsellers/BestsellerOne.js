@@ -1,6 +1,6 @@
 // BestSeller1.js
-import React, { useContext, useState } from "react";
-import { CartContext } from "../../../Context";
+import React, { useState } from "react";
+
 
 import 'bootstrap/dist/css/bootstrap.css';
 

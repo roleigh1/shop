@@ -1,5 +1,5 @@
 import React , {useState} from "react";
-
+import { Link } from "react-router-dom";
 import Hamburger from "./Hamburger";
 function BurgerMenu() {
     const [hamburgerOpen, setHamburgerOpen] = useState(false);
@@ -14,7 +14,7 @@ function BurgerMenu() {
         
             <div className="navigation">
                 <ul>
-                    <li>Home</li>
+                    <li><Link style={{textDecoration:'none',color:'white'}} to='/'>Home</Link> </li>
                     <li>About</li>
                     <li>Contact us</li>
                 

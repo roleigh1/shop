@@ -1,14 +1,14 @@
-import React,{useContext} from "react";
-import { CartContext } from "../../../Context";
+import React from "react";
+
 import { useNavigate } from 'react-router-dom';
 import cart from "./cart.png";
 function Cart() {
  const navigate = useNavigate();
- const { cartCount } = useContext(CartContext);
+
   return (
    
     <div>
-        <span style={{color:'red' ,fontWeight:'bold', position:'relative',top:'-0.8rem', left:'1.5rem',zIndex:'1'}} className="countItems">{cartCount}</span>
+        <span style={{color:'red' ,fontWeight:'bold', position:'relative',top:'-0.8rem', left:'1.5rem',zIndex:'1'}} className="countItems"></span>
         <img onClick={() => navigate('/checkout')} src={cart} className="cart-img" style={{zIndex:'0'}} alt="cart"/>
         
         <style jsx>{`
@@ -24,4 +24,4 @@ function Cart() {
     </div>
 )
 }
-export default Cart;
+export default Cart; 
