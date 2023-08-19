@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { Container } from 'react-bootstrap';
 import { Row, Col } from 'react-bootstrap';
-import Data from '../Back/Data/Data';
+
 import Logo from './Components/Logo/Logo'
 import Cart from './Components/Cart/Cart'
 import BurgerMenu from './Components/Burger/Menu'
@@ -13,7 +13,7 @@ import Bestseller from './Components/Bestsellers/BestsellerApp'
 
 
 function Home() {
-  const {productItems} = Data; 
+
   return (
     <Container >
       <Row style={{display:'flex',  alignItems:'center'}} >

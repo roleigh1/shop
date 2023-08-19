@@ -1,7 +1,6 @@
 // BestSeller1.js
 import React, { useState } from "react";
-
-
+import { useCart } from "../../../CartContext";
 import 'bootstrap/dist/css/bootstrap.css';
 
 import {
@@ -17,14 +16,25 @@ import Button from '@mui/joy/Button';
 import Add from '@mui/icons-material/Add';
 
 
+
 export default function BestSeller1() {
+    // Item Calculation
     const [inputValue, setInputValue] = useState('');
     const handleInputChange = (event) => {
         const value = event.target.value;
         setInputValue(value);
     };
     const result = Number(inputValue) * 2.99;
-    
+    // Add the item to the shopping Cart
+    const { addToCart } = useCart();
+    const handleAddToCart = () => {
+        const item = {
+            name:'Peaches',
+            price: 2.99,
+            quantity: Number(inputValue)
+        };
+        addToCart(item)
+    };
     return (
         <MDBContainer fluid className="my-5 text-center">
 
@@ -37,7 +47,7 @@ export default function BestSeller1() {
                             className="w-40"
                         >
                             <MDBCardImage
-                                src="https://i.ibb.co/Zm29fjS/peach-gbead77ccb-640.jpg"
+                                src='https://i.ibb.co/Zm29fjS/peach-gbead77ccb-640.jpg'
                                 fluid
                                 className="w-100 "
                                 style={{ height: '6.5rem' }}
@@ -75,7 +85,7 @@ export default function BestSeller1() {
 
 
 
-                            <Button 
+                            <Button onClick={handleAddToCart}
                                 style={{ marginTop: '1rem' }}
                                 startDecorator={<Add />}
                             >Add to cart</Button>

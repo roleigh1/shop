@@ -1,5 +1,5 @@
  const Data = {
-   bestsellerItems:[
+   productItems:[
     {
         id: '1',
         name: 'peach',
