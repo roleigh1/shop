@@ -7,7 +7,7 @@ import Logo from './Components/Logo/Logo'
 import Cart from './Components/Cart/Cart'
 import BurgerMenu from './Components/Burger/Menu'
 import SlideShow from './Components/Side-show-head/SideShow'
-import SeasonProductCards from './Components/Products-Main/SeasonProductsCards'
+import SeasonList from './Components/Products-Main/SeasonList';
 import ContactForm from './Components/Contact/ContactForm'
 import BestSellerList from './Components/Bestsellers/BestSellerList';
 
@@ -28,8 +28,8 @@ function Home() {
         <SlideShow className="slider" />
       </Row>
 
-      <Row className="Cards " style={{ marginTop: '5rem', display: 'flex', alignItems: 'center' }}>
-        <SeasonProductCards></SeasonProductCards>
+      <Row  style={{ marginTop: '5rem'}}>
+      <SeasonList />
       </Row>
       <Row style={{ marginTop: '5rem', backgroundColor: '#E0E0E0' }}>
         <Col xs={{ span: 6, offset: 3 }} className="d-flex justify-content-center">
