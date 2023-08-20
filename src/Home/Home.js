@@ -9,8 +9,7 @@ import BurgerMenu from './Components/Burger/Menu'
 import SlideShow from './Components/Side-show-head/SideShow'
 import SeasonProductCards from './Components/Products-Main/SeasonProductsCards'
 import ContactForm from './Components/Contact/ContactForm'
-import Bestseller from './Components/Bestsellers/BestsellerApp'
-
+import BestSellerList from './Components/Bestsellers/BestSellerList';
 
 function Home() {
 
@@ -38,9 +37,9 @@ function Home() {
         </Col>
       </Row>
       <Row style={{ marginTop: '5rem', }}>
-        <Col style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', }}>
-          <Bestseller />
-        </Col>
+        
+          <BestSellerList />
+        
       </Row>
     </Container>
   )
