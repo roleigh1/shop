@@ -7,7 +7,7 @@ export const infos = [{
 {
     id:"2",
     name: "Mint",
-    text: " A fragrant herb, mint has diverse uses. From teas to cooking, its fresh taste aids digestion and offers a cool sensation.",
+    text: "Mint, a fragrant herb, aids digestion in teas and food. Lettuce, globally grown, is crispy and nutritious in salads.",
     image:'https://i.ibb.co/s1ks8wP/image-8.jpg'
 },
 {

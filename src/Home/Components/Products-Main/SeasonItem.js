@@ -5,8 +5,8 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import CustomizedDialogs5 from './ProductDialogFive';
-function SeasonItem({ item }) {
+
+function SeasonItem({ item, index }) {
     return (
         <Card sx={{ maxWidth: 250, maxHeight: 400 }}>
             <CardMedia
@@ -22,8 +22,12 @@ function SeasonItem({ item }) {
                     {item.text}
                 </Typography>
                 <CardActions style={{ marginTop: '35px' }}>
-                    <CustomizedDialogs5 />
-                    <Button size='small'>Order now</Button>
+
+                    <Button
+                        style={{
+                            marginTop: index === 1 ? '20px' : (index === 3 ? '20px' : undefined)
+                        }}
+                        size='small'>Order now</Button>
                 </CardActions>
             </CardContent>
 
