@@ -5,6 +5,8 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import AlertDialogSlide from './Dialog/seasonDialog'; 
+
 
 function SeasonItem({ item, index }) {
     return (
@@ -22,7 +24,7 @@ function SeasonItem({ item, index }) {
                     {item.text}
                 </Typography>
                 <CardActions style={{ marginTop: '35px' }}>
-
+                    <AlertDialogSlide dialogItem={item.dialogData} /> 
                     <Button
                         style={{
                             marginTop: index === 1 ? '20px' : (index === 3 ? '20px' : undefined)
@@ -30,8 +32,7 @@ function SeasonItem({ item, index }) {
                         size='small'>Order now</Button>
                 </CardActions>
             </CardContent>
-
         </Card>
-    )
+    );
 }
 export default SeasonItem;
