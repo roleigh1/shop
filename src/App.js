@@ -5,7 +5,7 @@ import Checkout from './Checkout/Checkout';
 import { CartProvider } from './CartContext';
 
 function App() {
- 
+
   return (
     <CartProvider>
       <Router>

@@ -15,21 +15,21 @@ function Home() {
 
   return (
     <Container >
-      <Row style={{display:'flex',  alignItems:'center'}} >
+      <Row style={{ display: 'flex', alignItems: 'center' }} >
         <Col xs="6">
-          <Logo  />
+          <Logo />
         </Col>
-        <Col xs='6'  style={{display:'flex',justifyContent:'flex-end',position:'relative',top:'1rem'}}>
-        <Cart />
-          <BurgerMenu  />
+        <Col xs='6' style={{ display: 'flex', justifyContent: 'flex-end', position: 'relative', top: '1rem' }}>
+          <Cart />
+          <BurgerMenu />
         </Col>
       </Row>
-      <Row style={{zIndex:0}}>
+      <Row style={{ zIndex: 0 }}>
         <SlideShow className="slider" />
       </Row>
 
-      <Row  style={{ marginTop: '5rem'}}>
-      <SeasonList />
+      <Row style={{ marginTop: '5rem' }}>
+        <SeasonList />
       </Row>
       <Row style={{ marginTop: '5rem', backgroundColor: '#E0E0E0' }}>
         <Col xs={{ span: 6, offset: 3 }} className="d-flex justify-content-center">
@@ -37,9 +37,9 @@ function Home() {
         </Col>
       </Row>
       <Row style={{ marginTop: '5rem', }}>
-        
-          <BestSellerList />
-        
+
+        <BestSellerList />
+
       </Row>
     </Container>
   )

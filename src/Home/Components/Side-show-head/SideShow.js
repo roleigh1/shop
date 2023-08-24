@@ -11,19 +11,19 @@ function SlideShow() {
 
   return (
     <Slide autoplay="true" className="slideImages">
-  
+
       <div className="each-slide-effect">
         <div style={{ 'backgroundImage': `url(${img[0]})` }}>
           <span>Slide 1</span>
         </div>
       </div>
       <div className="each-slide-effect">
-        <div style={{ 'background' : `url(${img[1]})` }}>
+        <div style={{ 'background': `url(${img[1]})` }}>
           <span>Slide 2</span>
         </div>
       </div>
       <div className="each-slide-effect">
-        <div style={{ 'background' : `url(${img[2]})` }}>
+        <div style={{ 'background': `url(${img[2]})` }}>
           <span>Slide 3</span>
         </div>
       </div>
@@ -45,7 +45,7 @@ function SlideShow() {
       }
       
       `}</style>
-   
+
     </Slide>
 
   );

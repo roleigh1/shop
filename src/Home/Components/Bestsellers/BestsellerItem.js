@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { useCart } from "../../../CartContext";
 import 'bootstrap/dist/css/bootstrap.css';
@@ -30,9 +31,18 @@ export default function BestSellerItem({ item }) {
             price: item.price,
             quantity: Number(inputValue),
             image: item.image
-        };
-        addToCart(cartItem);
+        }
+        if (Number(inputValue) > 0) {
+            addToCart(cartItem);
+            setInputValue(''); 
+        } else {
+            console.log('test');
+        }
+
     };
+
+
+
     return (
         <MDBContainer fluid className="my-5 text-center">
             <MDBRow>
