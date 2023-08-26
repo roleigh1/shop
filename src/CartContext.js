@@ -20,7 +20,7 @@ export function CartProvider({ children }) {
 
     function addToCart(item) {
         setCart(prev => {
-            // Überprüfen, ob das Artikel bereits im Warenkorb vorhanden ist.
+            
             const existingItem = prev.find(i => i.name === item.name);
             if (existingItem) {
 
