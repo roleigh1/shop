@@ -1,12 +1,12 @@
 import React from "react";
 import { useCart } from "../CartContext";
-import { Row,Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import { MDBBtn } from "mdb-react-ui-kit";
 export default function CartTable() {
-   
+
     const { cart, updateQuantity, removeFromCart } = useCart();
-    const total = cart.reduce((acc,item) => acc + item.price * item.quantity, 0) + '€';
-    
+    const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0) + '€';
+
     return (
         <Row>
             <h1 className="text-center mt-3"> Your Purchase</h1>
@@ -14,7 +14,7 @@ export default function CartTable() {
                 <thead>
 
                     <tr>
-                        <th>Items</th>
+                        <th><p style={{position:'relative',top:'8px',left:'1rem'}}>Items</p></th>
                         <th>Price</th>
                         <th></th>
                         <th>Total</th>
@@ -42,13 +42,26 @@ export default function CartTable() {
 
             <Row className="  mt-5">
                 <Col xs={7} className="d-flex justify-content-end">
-                    <MDBBtn color="info" style={{ width: '7rem', height: '2rem', textTransform: 'none', paddingTop: '0px', color: 'white', fontWeight: 'bold', letterSpacing: '1px' , }}>Checkout</MDBBtn>
+                    <MDBBtn color="info" style={{ width: '7rem', height: '2rem', textTransform: 'none', paddingTop: '0px', color: 'white', fontWeight: 'bold', letterSpacing: '1px', }}>Checkout</MDBBtn>
                 </Col>
                 <Col className="d-flex justify-content-center">
-                    <p style={{marginLeft:'-2.3rem', }}>Total:</p><span style={{textDecoration:'underline'}}>{total}</span>
+                    <p style={{ marginLeft: '-2.3rem', }}>Total:</p><span style={{ textDecoration: 'underline' }}>{total}</span>
                 </Col>
 
             </Row>
+
+
+            <style jsx>{`
+            .ite{
+                margin-left:1rem;
+            }
+
+            
+
+        }
+        
+        `}</style>
         </Row>
+
     )
 } 

@@ -8,8 +8,16 @@ function Cart() {
     return (
 
         <div>
-            <span style={{ color: 'red', fontWeight: 'bold', position: 'relative', top: '-0.8rem', left: '1.5rem', zIndex: '1' }} className="countItems">{cart.length}</span>
-            <img onClick={() => navigate('/checkout')} src={imcart} className="cart-img" style={{ zIndex: '0' }} alt="cart" />
+            {
+                cart.length > 0 && (
+                    <span style={{ color: 'red', fontWeight: 'bold', position: 'relative', top: '-0.8rem', left: '1.5rem', zIndex: '1' }} className="countItems">{cart.length}</span>
+                )
+            }
+            <img onClick={() => {
+                if (cart.length > 0) {
+                    navigate('/checkout');
+                }
+            }} src={imcart} className="cart-img" style={{ zIndex: '0' }} alt="cart" />
 
             <style jsx>{`
         .cart-img {

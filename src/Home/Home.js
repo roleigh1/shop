@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { Container } from 'react-bootstrap';
 import { Row, Col } from 'react-bootstrap';
-
+import Footer from "../Home/Components/Footer/Footer";
 import Logo from './Components/Logo/Logo'
 import Cart from './Components/Cart/Cart'
 import BurgerMenu from './Components/Burger/Menu'
@@ -40,6 +40,9 @@ function Home() {
 
         <BestSellerList />
 
+      </Row>
+      <Row>
+        <Footer></Footer>
       </Row>
     </Container>
   )
