@@ -1,4 +1,4 @@
-import { infos } from "./seasonData";
+
 import {
     MDBContainer,
     MDBRow,
@@ -6,7 +6,7 @@ import {
 } from "mdb-react-ui-kit";
 import SeasonItem from "./SeasonItem";
 
-export default function SeasonList() {
+export default function SeasonList({infos}) {
     return (
         <MDBContainer fluid className='my-5 text-center d-flex justify-content-center '>
             <MDBRow>

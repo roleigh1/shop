@@ -11,7 +11,7 @@ import SeasonList from './Components/Products-Main/SeasonList';
 import ContactForm from './Components/Contact/ContactForm'
 import BestSellerList from './Components/Bestsellers/BestSellerList';
 
-function Home() {
+function Home({ items, infos }) {
 
   return (
     <Container >
@@ -29,7 +29,7 @@ function Home() {
       </Row>
 
       <Row style={{ marginTop: '5rem' }}>
-        <SeasonList />
+        <SeasonList infos={infos}/>
       </Row>
       <Row style={{ marginTop: '5rem', backgroundColor: '#E0E0E0' }}>
         <Col xs={{ span: 6, offset: 3 }} className="d-flex justify-content-center">
@@ -38,7 +38,7 @@ function Home() {
       </Row>
       <Row style={{ marginTop: '5rem', }}>
 
-        <BestSellerList />
+        <BestSellerList items={items} />
 
       </Row>
       <Row>
@@ -47,4 +47,4 @@ function Home() {
     </Container>
   )
 }
-export default Home; 
+export default Home;

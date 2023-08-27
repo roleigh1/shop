@@ -1,4 +1,4 @@
-import { items } from "./item";
+
 import {
     MDBContainer,
     MDBRow,
@@ -7,7 +7,7 @@ import {
 } from "mdb-react-ui-kit";
 import './style.css'
 import BestSellerItem from "./BestsellerItem";
-export default function BestSellerList() {
+export default function BestSellerList({items}) {
     return (
         <MDBContainer fluid className="my-5 text-center d-flex justify-content-center ">
             <MDBRow className="mobile" >
@@ -19,4 +19,4 @@ export default function BestSellerList() {
             </MDBRow>
         </MDBContainer>
     );
-}
+} 
