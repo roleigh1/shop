@@ -4,6 +4,7 @@ import Home from './Home/Home';
 import Checkout from './Checkout/Checkout';
 import { CartProvider } from './CartContext';
 import { useState } from 'react';
+import ProductPage from './ProductPage/ProductPage';
 function App() {
   const [items] = useState([
     {
@@ -61,14 +62,141 @@ function App() {
       text: "Favored globally, apples are both delicious and health-promoting. Eaten raw or cooked, they're a testament to nature's bounty.",
       image: 'https://i.ibb.co/7Wh8xhJ/apple-1327789.jpg'
   }
-  
-  ])
+])
+  const [products] = useState([
+    {
+    id:1,
+    name:"Brokkoli",
+    price:4.00,
+    image:"",
+    type:"vegetables"
+  },
+  {
+    id:2,
+    name:"chanterelles",
+    price:2.20,
+    image:"",
+    type:""
+  },
+  {
+    id:1,
+    name:"blueberry",
+    price:5.00,
+    image:"",
+    type:""
+  },
+  {
+    id:1,
+    name:"grape",
+    price:2.00,
+    image:"",
+    type:""
+  },
+  {
+    id:1,
+    name:"cucumber",
+    price:1.00,
+    image:"",
+    type:""
+  },
+  {
+    id:1,
+    name:"courgette",
+    price:4.50,
+    image:"",
+    type:""
+  },
+  {
+    id:1,
+    name:"Carrot",
+    price:2.50,
+    image:"",
+    type:""
+  },
+  {
+    id:1,
+    name:"celeriac",
+    price:2.00,
+    image:"",
+    type:""
+  },
+  {
+    id:1,
+    name:"parsley",
+    price:1.20,
+    image:"",
+    type:""
+  }, {
+    id:1,
+    name:"basil",
+    price:4,
+    image:"",
+    type:""
+  },
+   {
+
+    id:1,
+    name:"chives",
+    price:1.20,
+    image:"",
+    type:""
+  },
+  {
+
+    id:1,
+    name:"dill",
+    price:1.20,
+    image:"",
+    type:""
+  },
+  {
+
+    id:1,
+    name:"lovage",
+    price:3.00,
+    image:"",
+    type:""
+  },
+
+  {
+
+    id:1,
+    name:"nectarine",
+    price:4.00,
+    image:"",
+    type:""
+  },
+
+  {
+
+    id:1,
+    name:"cabbage",
+    price:2.00,
+    image:"",
+    type:""
+  },
+
+  {
+
+    id:1,
+    name:"yellow turnip",
+    price:3.00,
+    image:"",
+    type:""
+  }
+
+
+
+
+])
+
   return (
     <CartProvider>
       <Router>
         <Routes>
           <Route path="/"  element={<Home items={items}  infos={infos}/>} />
           <Route path="/checkout" element={<Checkout  />} />
+           <Route path='/products' element={<ProductPage />} />
         </Routes>
       </Router>
     </CartProvider>

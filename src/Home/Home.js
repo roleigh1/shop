@@ -19,7 +19,7 @@ function Home({ items, infos }) {
         <Col xs="6">
           <Logo />
         </Col>
-        <Col xs='6' style={{ display: 'flex', justifyContent: 'flex-end', position: 'relative', top: '1rem' }}>
+        <Col xs='6' className='d-flex mt-5' style={{ display: 'flex', justifyContent: 'flex-end',  }}>
           <Cart />
           <BurgerMenu />
         </Col>

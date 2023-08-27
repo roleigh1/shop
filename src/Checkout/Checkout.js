@@ -14,7 +14,7 @@ function Checkout() {
                 <Col xs="auto" style={{ marginTop: '1rem' }}>
                     <Logo />
                 </Col>
-                <Col xs="auto" className='d-flex'>
+                <Col xs="auto" className='d-flex mt-5' >
                     <BurgerMenu />
                 </Col>
             </Row>

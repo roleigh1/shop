@@ -15,7 +15,7 @@ function BurgerMenu() {
             <div className="navigation">
                 <ul>
                     <li><Link style={{textDecoration:'none',color:'white'}} to='/'>Home</Link> </li>
-                    <li>About</li>
+                    <li> <Link style={{textDecoration:'none',color:'white'}} to='/products'>Products</Link></li>
                     <li>Contact us</li>
                 
                 </ul>
