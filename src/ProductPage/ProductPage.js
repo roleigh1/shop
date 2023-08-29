@@ -5,8 +5,9 @@ import Logo from "../Home/Components/Logo/Logo";
 import BurgerMenu from "../Home/Components/Burger/Menu";
 import Cart from "../Home/Components/Cart/Cart";
 import BgImg from "./Bg-Producs";
-
-export default function ProductPage() {
+import ProductList from "./ProductList";
+import Footer from "../Home/Components/Footer/Footer";
+export default function ProductPage({products}) {
     return (
         <Container>
             <Row className="d-flex align-items-center justify-content-between"  >
@@ -19,15 +20,17 @@ export default function ProductPage() {
                 </Col>
             </Row>
             <Row>
-
                 <Col>
-
                     <BgImg />
                 </Col>
-
             </Row>
             <Row>
-            
+                <Col>
+                <ProductList products={products}/>
+                </Col>
+            </Row>
+            <Row>
+                <Footer />
             </Row>
         </Container>
     )

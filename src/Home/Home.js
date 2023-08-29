@@ -15,7 +15,8 @@ function Home({ items, infos }) {
 
   return (
     <Container >
-      <Row style={{ display: 'flex', alignItems: 'center' }} >
+
+      <Row style={{ display: 'flex', alignItems: 'center', }} >
         <Col xs="6">
           <Logo />
         </Col>

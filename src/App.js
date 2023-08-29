@@ -68,122 +68,144 @@ function App() {
     id:1,
     name:"Brokkoli",
     price:4.00,
-    image:"",
+    image:"https://i.ibb.co/GvXpWLv/pexels-mart-production-7890206-1.jpg",
     type:"vegetables"
   },
   {
     id:2,
     name:"chanterelles",
     price:2.20,
-    image:"",
-    type:""
+    image:"https://i.ibb.co/1TqVVCS/pexels-alleksana-5950422",
+    type:"shroomes"
   },
   {
-    id:1,
+    id:3,
     name:"blueberry",
     price:5.00,
-    image:"",
-    type:""
+    image:"https://i.ibb.co/3pv5JNw/pexels-olga-1153655.jpg",
+    type:"berrys"
   },
   {
-    id:1,
+    id:4,
     name:"grape",
     price:2.00,
-    image:"",
-    type:""
+    image:"https://i.ibb.co/X8psF6n/pexels-maria-orlova-4946876.jpg",
+    type:"fruit"
   },
   {
-    id:1,
+    id:5,
     name:"cucumber",
     price:1.00,
-    image:"",
-    type:""
+    image:"https://i.ibb.co/2WTP9qb/pexels-matthias-zomer-3568039.jpg",
+    type:"vegetables"
   },
   {
-    id:1,
+    id:6,
     name:"courgette",
     price:4.50,
-    image:"",
-    type:""
+    image:"https://i.ibb.co/jH5rzTX/pexels-ellie-burgin-3375263.jpg",
+    type:"vegetables"
   },
   {
-    id:1,
+    id:7,
     name:"Carrot",
     price:2.50,
-    image:"",
-    type:""
+    image:"https://i.ibb.co/4WhhK2s/pexels-suzy-hazelwood-1306559.jpg",
+    type:"vegetables"
   },
   {
-    id:1,
-    name:"celeriac",
-    price:2.00,
-    image:"",
-    type:""
-  },
-  {
-    id:1,
+    id:8,
     name:"parsley",
     price:1.20,
-    image:"",
-    type:""
+    image:"https://i.ibb.co/xsW3bdQ/pexels-alleksana-4113888.jpg",
+    type:"herbs"
   }, {
-    id:1,
+    id:9,
     name:"basil",
     price:4,
-    image:"",
-    type:""
+    image:"https://i.ibb.co/r4x3q97/pexels-eva-bronzini-5501050.jpg",
+    type:"herbs"
   },
    {
 
-    id:1,
+    id:10,
     name:"chives",
     price:1.20,
-    image:"",
-    type:""
+    image:"https://i.ibb.co/9GmjhD4/pexels-jonathan-kemper-11761921.jpg",
+    type:"herbs"
   },
   {
 
-    id:1,
+    id:11,
     name:"dill",
     price:1.20,
-    image:"",
-    type:""
+    image:"https://i.ibb.co/SXQ9Gbx/pexels-kokokara-12098996.jpg",
+    type:"herbs"
   },
   {
 
-    id:1,
+    id:12,
     name:"lovage",
     price:3.00,
-    image:"",
-    type:""
+    image:"https://i.ibb.co/1M7WSNT/pexels-jordan-rushton-12329989-1.jpg",
+    type:"vegetables"
   },
 
   {
 
-    id:1,
+    id:13,
     name:"nectarine",
     price:4.00,
-    image:"",
+    image:"https://i.ibb.co/VC0qXWZ/pexels-kseniya-kobi-8085336.jpg",
     type:""
   },
 
   {
 
-    id:1,
+    id:14,
     name:"cabbage",
     price:2.00,
-    image:"",
+    image:'https://i.ibb.co/X7wJN5P/pexels-pixabay-257259.jpg',
     type:""
   },
 
   {
 
-    id:1,
+    id:15,
     name:"yellow turnip",
     price:3.00,
     image:"",
     type:""
-  }
+  },
+  {
+    id: 16,
+    name: 'Peaches',
+    price: 2.99,
+    image: 'https://i.ibb.co/Zm29fjS/peach-gbead77ccb-640.jpg',
+    type: 'Fruit'
+},
+{
+    id: 17,
+    name: 'Strawberrys',
+    price: 4.99,
+    image: 'https://i.ibb.co/S6sK3C7/strawberries-g91324ddda-640.jpg',
+    type: 'Fruit'
+},
+{
+    id: 18,
+    name: 'Paprika',
+    price: 1,
+    image: 'https://i.ibb.co/D7bBy1Q/bell-peppers-gc3855d807-640.jpg"',
+    type: 'Vegetable'
+},
+{
+    id: 19,
+    name: 'Eggplant',
+    price: 3.50,
+    image: 'https://i.ibb.co/p0QrGTJ/eggplant-gbd2ba8a1c-640.jpg',
+    type: 'Vegetable'
+
+}
 
 
 
@@ -196,7 +218,7 @@ function App() {
         <Routes>
           <Route path="/"  element={<Home items={items}  infos={infos}/>} />
           <Route path="/checkout" element={<Checkout  />} />
-           <Route path='/products' element={<ProductPage />} />
+           <Route path='/products' element={<ProductPage products={products} />} /> 
         </Routes>
       </Router>
     </CartProvider>
