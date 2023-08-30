@@ -75,7 +75,7 @@ function App() {
     id:2,
     name:"chanterelles",
     price:2.20,
-    image:"https://i.ibb.co/1TqVVCS/pexels-alleksana-5950422",
+    image:"https://i.ibb.co/g7xZhjV/pexels-joerg-hartmann-17739208.jpg",
     type:"shroomes"
   },
   {
@@ -166,40 +166,33 @@ function App() {
     name:"cabbage",
     price:2.00,
     image:'https://i.ibb.co/X7wJN5P/pexels-pixabay-257259.jpg',
-    type:""
+    type:"vegetables"
   },
 
-  {
 
-    id:15,
-    name:"yellow turnip",
-    price:3.00,
-    image:"",
-    type:""
-  },
   {
-    id: 16,
+    id: 15,
     name: 'Peaches',
     price: 2.99,
     image: 'https://i.ibb.co/Zm29fjS/peach-gbead77ccb-640.jpg',
-    type: 'Fruit'
+    type: 'Fruit',
 },
 {
-    id: 17,
+    id: 16,
     name: 'Strawberrys',
     price: 4.99,
     image: 'https://i.ibb.co/S6sK3C7/strawberries-g91324ddda-640.jpg',
     type: 'Fruit'
 },
 {
-    id: 18,
+    id: 17,
     name: 'Paprika',
     price: 1,
     image: 'https://i.ibb.co/D7bBy1Q/bell-peppers-gc3855d807-640.jpg"',
     type: 'Vegetable'
 },
 {
-    id: 19,
+    id: 18,
     name: 'Eggplant',
     price: 3.50,
     image: 'https://i.ibb.co/p0QrGTJ/eggplant-gbd2ba8a1c-640.jpg',

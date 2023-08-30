@@ -1,4 +1,4 @@
-
+import "./style.css"
 import React, { useState } from "react";
 import { useCart } from "../CartContext";
 import 'bootstrap/dist/css/bootstrap.css';

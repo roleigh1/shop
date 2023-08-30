@@ -9,7 +9,8 @@ import './style.css'
 import BestSellerItem from "./BestsellerItem";
 export default function BestSellerList({items}) {
     return (
-        <MDBContainer fluid className="my-5 text-center d-flex justify-content-center ">
+        <MDBContainer fluid   
+         className="my-5 text-center d-flex justify-content-center ">
             <MDBRow className="mobile" >
                 {items.map(item => (
                     <MDBCol key={item.id} md='6' lg='3' className="mb-4">
