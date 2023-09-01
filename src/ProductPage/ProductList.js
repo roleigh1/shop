@@ -22,7 +22,7 @@ export default function ProductList({ products }) {
         <MDBContainer fluid className=" text-center ">
             <MDBRow style={{}}>
                 <MDBCol style={{border:"1px solid rgba(0, 0, 0, 0.3)", marginTop:"-1rem",height:"3rem", display:"flex", flexDirection:"column", }}>
-                    <p style={{position:"relative",top:"0.3rem"}}>categorys:</p>
+                    <p style={{position:"relative",top:"0.3rem"}}><strong>Categorys:</strong></p>
                     <select  value={selectedType} style={{marginTop:"-0.2rem" , borderRadius:"0", border:"1px solid rgba(0, 0, 0, 0.3)",backgroundColor:"white"}} onChange={e => setSelectedType(e.target.value)}>
                         <option style={{}} value="">All</option>
                         {types.map(type => (

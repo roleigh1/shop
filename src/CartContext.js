@@ -31,13 +31,19 @@ export function CartProvider({ children }) {
             }
         });
     }
-    function updateQuantity(name,delta) {
-        setCart(prev => 
-            prev.map(item => 
-                item.name === name
-                ?{...item,quantity: item.quantity + delta }
-                : item
-                ))
+    function updateQuantity(name, delta) {
+        setCart(prev => {
+            return prev.map(item => {
+                if (item.name === name) {
+                    if (item.quantity + delta > 0) {
+                        return { ...item, quantity: item.quantity + delta };
+                    } else {
+                        return null;  // Indicate that we'll be removing this item
+                    }
+                }
+                return item;
+            }).filter(Boolean);  // Removes null items, i.e., items that reached quantity 0
+        });
     }
     function removeFromCart(itemName) {
         setCart(prevCart => prevCart.filter(item => item.name !== itemName));

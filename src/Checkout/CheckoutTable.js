@@ -42,7 +42,7 @@ export default function CartTable() {
 
             <Row className="  mt-5">
                 <Col xs={7} className="d-flex justify-content-end">
-                    <MDBBtn color="info" style={{ width: '7rem', height: '2rem', textTransform: 'none', paddingTop: '0px', color: 'white', fontWeight: 'bold', letterSpacing: '1px', }}>Checkout</MDBBtn>
+                    <MDBBtn color="danger" style={{ width: '7rem', height: '2rem', textTransform: 'none', paddingTop: '0px', color: 'white', fontWeight: 'bold', letterSpacing: '1px', }}>Checkout</MDBBtn>
                 </Col>
                 <Col className="d-flex justify-content-center">
                     <p style={{ marginLeft: '-2.3rem', }}>Total:</p><span style={{ textDecoration: 'underline' }}>{total}</span>
