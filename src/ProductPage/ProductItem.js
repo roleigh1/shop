@@ -26,7 +26,10 @@ export default function ProductItem({ product }) {
 
 
     }
-    const result = Number(inputValue) * product.price;
+    
+    const multiplier = 100;
+    const calc = Number(inputValue) * product.price / 100;
+    const result = calc * 100;
     const { addToCart } = useCart();
 
     const handleAddToCart = () => {

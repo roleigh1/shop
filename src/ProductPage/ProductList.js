@@ -7,6 +7,7 @@ import {
 
 } from "mdb-react-ui-kit";
 import ProductItem from "./ProductItem";
+import "./style.css"
 
 
 export default function ProductList({ products }) {
@@ -31,10 +32,10 @@ export default function ProductList({ products }) {
                     </select>
                 </MDBCol>
             </MDBRow>
-            <MDBRow className="mobile mt-5  ">
+            <MDBRow className="mobile mt-5  " style={{display:"flex", justifyContent:"center"}}>
 
                 {filteredProducts.map((product, index) => (
-                    <MDBCol key={product.id} md="6" lg="2" style={{display:"flex", justifyContent:"center"}} className={`mb-4 ${index >= products.length - 2 ? "center-card" : ""}`}>
+                    <MDBCol key={product.id} md="6" lg="2"  className={`mb-4 mobile-col ${index >= products.length - 2 ? "center-card" : ""}`}>
                         <ProductItem className="card  " style={{}} product={product} />
                     </MDBCol>
                 ))}
