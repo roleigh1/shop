@@ -16,7 +16,7 @@ import Button from '@mui/joy/Button';
 import Add from '@mui/icons-material/Add';
 
 export default function BestSellerItem({ item }) {
-    const [inputValue, setInputValue] = useState('');
+    const [inputValue, setInputValue] = useState('1');
 
     const handleInputChange = (event) => {
         const value = event.target.value;

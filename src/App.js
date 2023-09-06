@@ -70,7 +70,7 @@ function App() {
     price:4.00,
     image:"https://i.ibb.co/GvXpWLv/pexels-mart-production-7890206-1.jpg",
     type:"vegetables",
-    subtype: "all"
+    
   },
   {
     id:2,
@@ -78,7 +78,7 @@ function App() {
     price:2.20,
     image:"https://i.ibb.co/g7xZhjV/pexels-joerg-hartmann-17739208.jpg",
     type:"shroomes",
-    subtype: "all"
+    
   },
   {
     id:3,
@@ -86,39 +86,39 @@ function App() {
     price:5.00,
     image:"https://i.ibb.co/3pv5JNw/pexels-olga-1153655.jpg",
     type:"berrys",
-    subtype: "all"
+    
   },
   {
     id:4,
     name:"grape",
     price:2.00,
     image:"https://i.ibb.co/X8psF6n/pexels-maria-orlova-4946876.jpg",
-    type:"fruit",
-    subtype: "all"
+    type:"fruit"
+    
   },
   {
     id:5,
     name:"cucumber",
     price:1.00,
     image:"https://i.ibb.co/2WTP9qb/pexels-matthias-zomer-3568039.jpg",
-    type:"vegetables",
-    subtype: "all"
+    type:"vegetables"
+    
   },
   {
     id:6,
     name:"courgette",
     price:4.50,
     image:"https://i.ibb.co/jH5rzTX/pexels-ellie-burgin-3375263.jpg",
-    type:"vegetables",
-    subtype: "all"
+    type:"vegetables"
+    
   },
   {
     id:7,
     name:"Carrot",
     price:2.50,
     image:"https://i.ibb.co/4WhhK2s/pexels-suzy-hazelwood-1306559.jpg",
-    type:"vegetables",
-    subtype: "all"
+    type:"vegetables"
+
   },
   {
     id:8,
@@ -126,14 +126,14 @@ function App() {
     price:1.20,
     image:"https://i.ibb.co/xsW3bdQ/pexels-alleksana-4113888.jpg",
     type:"herbs",
-    subtype: "all"
+    
   }, {
     id:9,
     name:"basil",
     price:4,
     image:"https://i.ibb.co/r4x3q97/pexels-eva-bronzini-5501050.jpg",
-    type:"herbs",
-    subtype: "all"
+    type:"herbs"
+ 
   },
    {
 
@@ -141,8 +141,8 @@ function App() {
     name:"chives",
     price:1.20,
     image:"https://i.ibb.co/9GmjhD4/pexels-jonathan-kemper-11761921.jpg",
-    type:"herbs",
-    subtype: "all"
+    type:"herbs"
+
   },
   {
 
@@ -150,8 +150,8 @@ function App() {
     name:"dill",
     price:1.20,
     image:"https://i.ibb.co/SXQ9Gbx/pexels-kokokara-12098996.jpg",
-    type:"herbs",
-    subtype: "all"
+    type:"herbs"
+    
   },
   {
 
@@ -159,8 +159,8 @@ function App() {
     name:"lovage",
     price:3.00,
     image:"https://i.ibb.co/1M7WSNT/pexels-jordan-rushton-12329989-1.jpg",
-    type:"vegetables",
-    subtype: "all"
+    type:"vegetables"
+
   },
 
   {
@@ -169,8 +169,7 @@ function App() {
     name:"nectarine",
     price:4.00,
     image:"https://i.ibb.co/VC0qXWZ/pexels-kseniya-kobi-8085336.jpg",
-    type:"fruit",
-    subtype: "all"
+    type: 'fruit'
   },
 
   {
@@ -179,8 +178,8 @@ function App() {
     name:"cabbage",
     price:2.00,
     image:'https://i.ibb.co/X7wJN5P/pexels-pixabay-257259.jpg',
-    type:"vegetables",
-    subtype: "all"
+    type:"vegetables"
+    
   },
 
 
@@ -189,32 +188,32 @@ function App() {
     name: 'Peaches',
     price: 2.99,
     image: 'https://i.ibb.co/Zm29fjS/peach-gbead77ccb-640.jpg',
-    type: 'fruit',
-    subtype: "all"
+    type: 'fruit'
+   
 },
 {
     id: 16,
     name: 'Strawberrys',
     price: 4.99,
     image: 'https://i.ibb.co/S6sK3C7/strawberries-g91324ddda-640.jpg',
-    type: 'fruit',
-    subtype: "all"
+    type: 'fruit'
+  
 },
 {
     id: 17,
     name: 'Paprika',
     price: 1,
     image: 'https://i.ibb.co/D7bBy1Q/bell-peppers-gc3855d807-640.jpg"',
-    type: 'vegetable',
-    subtype: "all"
+    type: 'vegetable'
+    
 },
 {
     id: 18,
     name: 'Eggplant',
     price: 3.50,
     image: 'https://i.ibb.co/p0QrGTJ/eggplant-gbd2ba8a1c-640.jpg',
-    type: 'vegetable',
-    subtype: "all"
+    type: 'vegetable'
+    
 
 }
 
