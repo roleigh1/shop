@@ -17,8 +17,10 @@ import Add from '@mui/icons-material/Add';
 import './style.css'
 
 export default function ProductItem({ product }) {
-    const [inputValue, setInputValue] = useState('');
 
+    const [inputValue, setInputValue] = useState('');
+    const [highlight, setHighlight] = useState(false); 
+    
     const handleInputChange = (event) => {
         const value = event.target.value;
 
@@ -26,12 +28,11 @@ export default function ProductItem({ product }) {
 
 
     }
-    
-    const multiplier = 100;
+
     const calc = Number(inputValue) * product.price / 100;
     const result = calc * 100;
     const { addToCart } = useCart();
-
+    
     const handleAddToCart = () => {
         const cartItem = {
             name: product.name,
@@ -42,6 +43,12 @@ export default function ProductItem({ product }) {
         if (Number(inputValue) > 0) {
             addToCart(cartItem);
             setInputValue('');
+
+            setHighlight(true);
+
+            setTimeout(() => {
+                setHighlight(false);
+            }, 3000)
         } else {
             console.log('test');
         }
@@ -50,10 +57,10 @@ export default function ProductItem({ product }) {
 
 
     return (
-        <MDBContainer fluid className="my-5 text-center">
+        <MDBContainer fluid className="my-5 text-center" >
             <MDBRow>
                 <MDBCol md='12' lg='7' className="mb-4">
-                    <MDBCard className="card" style={{ height: '23rem', width: '10rem' }}>
+                    <MDBCard className="card" style={{ height: '23rem', width: '10rem' , border: highlight  ? "2px solid #93D296" : "none"}}>
                         <MDBRipple
                             rippleColor="light"
                             rippleTag='div'
@@ -105,10 +112,10 @@ export default function ProductItem({ product }) {
                             </div>
 
                             <Button onClick={handleAddToCart}
-                                style={{ marginTop: '1rem' }}
+                                style={{ marginTop: '1rem' , backgroundColor: highlight ? "#93D296" : "#0B6BCB"}}
                                 startDecorator={<Add />}
                             >
-                                Add to cart
+                                {highlight ? "Added!" :"Add to cart" }
                             </Button>
                         </MDBCardBody>
                     </MDBCard>
