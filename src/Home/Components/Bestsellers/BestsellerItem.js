@@ -15,8 +15,11 @@ import {
 import Button from '@mui/joy/Button';
 import Add from '@mui/icons-material/Add';
 
+
 export default function BestSellerItem({ item }) {
     const [inputValue, setInputValue] = useState('1');
+    const [highlight , setHighlight] = useState(false);
+
 
     const handleInputChange = (event) => {
         const value = event.target.value;
@@ -35,6 +38,11 @@ export default function BestSellerItem({ item }) {
         if (Number(inputValue) > 0) {
             addToCart(cartItem);
             setInputValue(''); 
+            setHighlight(true); 
+
+            setTimeout(() => {
+            setHighlight(false);
+            },    3000);
         } else {
             console.log('test');
         }
@@ -47,7 +55,7 @@ export default function BestSellerItem({ item }) {
         <MDBContainer fluid className="my-5 text-center">
             <MDBRow>
                 <MDBCol md='12' lg='7' className="mb-4">
-                    <MDBCard className="card" style={{ height: '23rem', width: '10rem' }}>
+                    <MDBCard className="card" style={{ height: '23rem', width: '10rem', border: highlight  ? "2px solid #00FF00" : "none"}}>
                         <MDBRipple
                             rippleColor="light"
                             rippleTag='div'
@@ -100,9 +108,9 @@ export default function BestSellerItem({ item }) {
 
                             <Button onClick={handleAddToCart}
                                 style={{ marginTop: '1rem' }}
-                                startDecorator={<Add />}
+                                startDecorator={ highlight ? null : <Add />}
                             >
-                                Add to cart
+                                {highlight ? "Added!" : "Add to cart"}
                             </Button>
                         </MDBCardBody>
                     </MDBCard>
