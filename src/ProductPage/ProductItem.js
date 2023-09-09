@@ -13,7 +13,7 @@ import {
     MDBRipple,
 } from "mdb-react-ui-kit";
 import Button from '@mui/joy/Button';
-import Add from '@mui/icons-material/Add';
+import { Add } from "@mui/icons-material";
 import './style.css'
 
 export default function ProductItem({ product }) {
@@ -29,8 +29,8 @@ export default function ProductItem({ product }) {
 
     }
 
-    const calc = Number(inputValue) * product.price / 100;
-    const result = calc * 100;
+    const result = Number(inputValue) * product.price;
+
     const { addToCart } = useCart();
     
     const handleAddToCart = () => {
@@ -60,7 +60,7 @@ export default function ProductItem({ product }) {
         <MDBContainer fluid className="my-5 text-center" >
             <MDBRow>
                 <MDBCol md='12' lg='7' className="mb-4">
-                    <MDBCard className="card" style={{ height: '23rem', width: '10rem' , border: highlight  ? "2px solid #93D296" : "none"}}>
+                    <MDBCard className="card" style={{ height: '23rem', width: '10rem' , border: highlight  ? "2px solid #00FF00" : "none"}}>
                         <MDBRipple
                             rippleColor="light"
                             rippleTag='div'
@@ -112,10 +112,10 @@ export default function ProductItem({ product }) {
                             </div>
 
                             <Button onClick={handleAddToCart}
-                                style={{ marginTop: '1rem' , backgroundColor: highlight ? "#93D296" : "#0B6BCB"}}
-                                startDecorator={<Add />}
+                                style={{ marginTop: '1rem' }}
+                                startDecorator={highlight ? null : <Add />}
                             >
-                                {highlight ? "Added!" :"Add to cart" }
+                                {highlight ? "Added!" : "Add to cart" }
                             </Button>
                         </MDBCardBody>
                     </MDBCard>
