@@ -5,11 +5,11 @@ import Logo from "../Home/Components/Logo/Logo";
 import BurgerMenu from "../Home/Components/Burger/Menu";
 import Footer from "../Home/Components/Footer/Footer";
 import Cart from "../Home/Components/Cart/Cart";
-import { useCart } from "../CartContext";
+import Total from "./TotalComponent";
+
 
 export function Checkout() {
-    const {totalValue} = useCart();
-
+    
     return (
         <Container>
             <Row className="d-flex align-items-center justify-content-between">
@@ -21,10 +21,13 @@ export function Checkout() {
                     <BurgerMenu />
                 </Col>
             </Row>
-            <Row> 
-                <Col>
-                 <h2>{totalValue}</h2>
+            <Row style={{marginTop:"5rem"}} > 
+                <Col> 
+                   <Total />
                 </Col>
+            </Row>
+            <Row>
+                <Footer />
             </Row>
         </Container>
     )
