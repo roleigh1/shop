@@ -1,10 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './Home/Home';
-import Checkout from './Checkout/Checkout';
+import CartPage from './CartPage/CartPage';
 import { CartProvider } from './CartContext';
 import { useState } from 'react';
 import ProductPage from './ProductPage/ProductPage';
+import { Checkout } from './Checkout/Checkout';
 function App() {
   const [items] = useState([
     {
@@ -236,8 +237,9 @@ function App() {
       <Router>
         <Routes>
           <Route path="/"  element={<Home items={items}  infos={infos}/>} />
-          <Route path="/checkout" element={<Checkout  />} />
+          <Route path="/cartpage" element={<CartPage  />} />
            <Route path='/products' element={<ProductPage products={products} />} /> 
+           <Route path="/checkout" element={<Checkout />}/>
         </Routes>
       </Router>
     </CartProvider>

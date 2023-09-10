@@ -15,7 +15,7 @@ function Cart() {
             }
             <img onClick={() => {
                 if (cart.length > 0) {
-                    navigate('/checkout');
+                    navigate('/cartpage');
                 }
             }} src={imcart} className="cart-img" style={{ zIndex: '0' }} alt="cart" />
 

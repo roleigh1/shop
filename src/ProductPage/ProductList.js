@@ -3,7 +3,7 @@ import {
     MDBContainer,
     MDBRow,
     MDBCol,
-    MDBBtn
+    
 } from "mdb-react-ui-kit";
 import ProductItem from "./ProductItem";
 import "./style.css"
@@ -14,8 +14,8 @@ export default function ProductList({ products }) {
     let filteredProducts;
 
     if (selectedType === "") {
-        filteredProducts = [...products]; 
-        
+        filteredProducts = [...products];
+
         const typesOrder = ["vegetables", "fruit", "berrys", "herbs", "shroomes"];
         filteredProducts.sort((a, b) => typesOrder.indexOf(a.type) - typesOrder.indexOf(b.type));
     } else {
@@ -37,7 +37,7 @@ export default function ProductList({ products }) {
                     </select>
                 </MDBCol>
             </MDBRow>
-            <MDBRow className="mobile mt-5" style={{ display: "flex", justifyContent: "center" }}>
+            <MDBRow className="mobile mt-5" style={{ display: "flex", justifyContent: "center",marginBottom:"-3rem" }}>
                 {filteredProducts.slice(0, visibleProducts).map((product, index) => (
                     <MDBCol key={product.id} md="6" lg="2" className={`mb-4 mobile-col ${index >= products.length - 2 ? "center-card" : ""}`}>
                         <ProductItem className="card" product={product} />
@@ -45,9 +45,11 @@ export default function ProductList({ products }) {
                 ))}
             </MDBRow>
             {filteredProducts.length > visibleProducts && (
-                <MDBRow className="mt-4">
+                <MDBRow  className="mb-5">
                     <MDBCol className="text-center">
-                        <MDBBtn onClick={loadMoreProducts}>See more</MDBBtn>
+                        <button type="button" class="btn btn-light" data-mdb-ripple-color="dark" >
+                           <i onClick={loadMoreProducts} class="fas fa-angles-down fa-2x"></i>
+                        </button>
                     </MDBCol>
                 </MDBRow>
             )}

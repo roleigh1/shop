@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-
+import Decimal from "decimal.js";
 const CartContext = createContext();
 
 export function useCart() {
@@ -17,6 +17,15 @@ export function CartProvider({ children }) {
 
         localStorage.setItem('cart', JSON.stringify(cart));
     }, [cart]);
+
+    const calculateTotalValue = () => {
+        return cart.reduce((acc,item) => {
+            const itemTotal = new Decimal(item.price).times(item.quantity);
+            return new Decimal(acc).plus(itemTotal);
+        }, new Decimal(0)).toFixed(2);
+    }
+
+    const totalValue = calculateTotalValue();
 
     function addToCart(item) {
         setCart(prev => {
@@ -50,7 +59,7 @@ export function CartProvider({ children }) {
     }
 
     return (
-        <CartContext.Provider value={{ cart, addToCart, updateQuantity , removeFromCart}}>
+        <CartContext.Provider value={{ cart, addToCart, updateQuantity , removeFromCart, totalValue}}>
             {children}
         </CartContext.Provider>
     );

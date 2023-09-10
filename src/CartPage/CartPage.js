@@ -4,11 +4,13 @@ import { Row, Col } from 'react-bootstrap';
 import Logo from "../Home/Components/Logo/Logo";
 import BurgerMenu from "../Home/Components/Burger/Menu";
 import Footer from "../Home/Components/Footer/Footer";
-import Cart from "../Home/Components/Cart/Cart";
-import { useCart } from "../CartContext";
+import CartTable from "./CartTable";
+import { MDBBtn } from "mdb-react-ui-kit";
+import { useNavigate } from "react-router-dom";
 
-export function Checkout() {
-    const {totalValue} = useCart();
+function CartPage() {
+    const navigate = useNavigate();
+
 
     return (
         <Container>
@@ -17,15 +19,27 @@ export function Checkout() {
                     <Logo />
                 </Col>
                 <Col xs="auto" className='d-flex mt-5' >
-                    <Cart />
                     <BurgerMenu />
                 </Col>
             </Row>
-            <Row> 
-                <Col>
-                 <h2>{totalValue}</h2>
-                </Col>
+            <Row className="w-100">
+
+                <CartTable />
+
+            </Row>
+
+            <Row>
+                <MDBBtn onClick={() => {
+                    navigate("/checkout")
+                }} style={{ width: "7rem" }}>Checkout</MDBBtn>
+            </Row>
+            <Row style={{ marginTop: '6rem' }} className="">
+
+                <Footer />
+
+
             </Row>
         </Container>
     )
 }
+export default CartPage; 

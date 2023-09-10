@@ -18,7 +18,7 @@ import './style.css'
 
 export default function ProductItem({ product }) {
 
-    const [inputValue, setInputValue] = useState('');
+    const [inputValue, setInputValue] = useState(1);
     const [highlight, setHighlight] = useState(false); 
     
     const handleInputChange = (event) => {

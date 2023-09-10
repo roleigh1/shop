@@ -10,44 +10,46 @@ function SlideShow() {
   ];
 
   return (
-    <Slide autoplay="true" className="slideImages">
+    <div>
+      <div className="each-slide-effect mt-5">
+        <div className="background-image" style={{ 'backgroundImage': `url(${img[0]})` }}>
+        
+        </div>
+      </div>
 
-      <div className="each-slide-effect">
-        <div style={{ 'backgroundImage': `url(${img[0]})` }}>
-          <span>Slide 1</span>
-        </div>
-      </div>
-      <div className="each-slide-effect">
-        <div style={{ 'background': `url(${img[1]})` }}>
-          <span>Slide 2</span>
-        </div>
-      </div>
-      <div className="each-slide-effect">
-        <div style={{ 'background': `url(${img[2]})` }}>
-          <span>Slide 3</span>
-        </div>
-      </div>
-      <style jsx>{` 
-     
-      .each-slide-effect > div {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-size: cover;
-        height: 350px;
-      }
-      
-      .each-slide-effect span {
-        padding: 20px;
-        font-size: 20px;
-        background: #efefef;
-        text-align: center;
-      }
-      
+      <style jsx>{`
+          .each-slide-effect > .background-image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: cover;
+            height: 350px;
+            position: relative;
+            border-radius: 5px;
+          }
+    
+          .each-slide-effect .background-image::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-image: inherit;
+   
+            z-index: -1;
+            border-radius: 5px;
+          }
+          
+         
+          .each-slide-effect span {
+            padding: 20px;
+            font-size: 20px;
+            background: #efefef;
+            text-align: center;
+          }    
       `}</style>
-
-    </Slide>
-
+    </div>
   );
 }
 

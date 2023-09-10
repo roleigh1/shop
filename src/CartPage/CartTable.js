@@ -4,10 +4,11 @@ import { useCart } from "../CartContext";
 import { Row, Col } from "react-bootstrap";
 import { MDBBtn } from "mdb-react-ui-kit";
 import Decimal from "decimal.js";
+import { useNavigate } from "react-router-dom";
 
 export default function CartTable() {
     const { cart, updateQuantity, removeFromCart } = useCart();
-
+    const navigate= useNavigate(); 
     const totalValue = cart.reduce((acc, item) => {
         return new Decimal(acc).plus(new Decimal(item.price).times(item.quantity));
     }, 0).toFixed(2);
@@ -46,9 +47,7 @@ export default function CartTable() {
             </table>
 
             <Row className="mt-5">
-                <Col xs={7} className="d-flex justify-content-end">
-                    <MDBBtn color="danger" style={{ width: '7rem', height: '2rem', textTransform: 'none', paddingTop: '0px', color: 'white', fontWeight: 'bold', letterSpacing: '1px', }}>Checkout</MDBBtn>
-                </Col>
+        
                 <Col className="d-flex justify-content-center">
                     <p style={{ marginLeft: '-2.3rem', }}>Total:</p><span style={{ textDecoration: 'underline' }}>{totalValue}</span>
                 </Col>
