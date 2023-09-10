@@ -215,7 +215,16 @@ function App() {
     type: 'vegetable'
     
 
-}
+},
+{
+  id: 19,
+  name: 'Tomato',
+  price: 7.00,
+  image: 'https://i.ibb.co/p0QrGTJ/eggplant-gbd2ba8a1c-640.jpg',
+  type: 'vegetable'
+  
+
+},
 
 
 

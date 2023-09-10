@@ -101,7 +101,7 @@ export default function BestSellerItem({ item }) {
                                     id="inputValue"
                                     onChange={handleInputChange}
                                     value={inputValue}
-                                    style={{ width: '2.8rem', textAlign: 'center', border: 'none', position: 'relative', display: 'block', margin: '0 auto', top: '4px' }}
+                                    style={{ width: '2.8rem', textAlign: 'center', position: 'relative', display: 'block', margin: '0 auto', top: '4px' }}
                                     type="number"
                                 />
                             </div>

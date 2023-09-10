@@ -70,16 +70,10 @@ export default function ProductItem({ product }) {
                                 src={product.image}
                                 fluid
                                 className="w-100 "
-                                style={{ height: '6.5rem' }}
+                                style={{ height: '6.5rem', objectFit:"cover"}}
                             />
                             <a href="#!">
-                                <div className="mask">
-                                    <div className="d-flex justify-content algin-items-end h-100">
-                                        <h5>
-                                            <span className="badge bg-primary ms-2">New</span>
-                                        </h5>
-                                    </div>
-                                </div>
+                             
                                 <div className="hover-overlay">
                                     <div className="mask"
                                         style={{ backgroundColor: "rgba(251, 251, 251, 0.15)" }}></div>
@@ -106,10 +100,10 @@ export default function ProductItem({ product }) {
                                     id="inputValue"
                                     onChange={handleInputChange}
                                     value={inputValue}
-                                    style={{ width: '2.8rem', textAlign: 'center', border: 'none', position: 'relative', display: 'block', margin: '0 auto', top: '4px' }}
+                                    style={{ width: '2.8rem', textAlign: 'center', border: '1px solid grey', position: 'relative', display: 'block', margin: '0 auto', top: '4px' }}
                                     type="number"
                                 />
-                            </div>
+                             </div>
 
                             <Button onClick={handleAddToCart}
                                 style={{ marginTop: '1rem' }}
