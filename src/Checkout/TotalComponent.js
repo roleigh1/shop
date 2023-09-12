@@ -17,12 +17,42 @@ function formatDate(date) {
 
 
 export default function Total() {
-    const { totalValue } = useCart();
+    const { totalValue, cart } = useCart();
+    const [status, setStatus] = useState("Pay"); 
+
+    const handleSending = async (e) => {
+        e.preventDefault();
+        setStatus("Sending...");
+        const { name, email, message, date, number } = e.target.elements;
+        let details = {
+         name: name.value,
+         email: email.value,
+         message: message.value, 
+         date: date.value,
+         number: number.value,
+         cart: cart,
+         totalValue: totalValue
+        };
+        
+      
+        let response = await fetch("http://localhost:5000/checkout", {
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json;charset=utf-8",
+            },
+            body: JSON.stringify(details),
+        });
+        setStatus("Submit");
+        let result = await response.json();
+        alert(result.status);
+    };
+    
+
 
     const nextFriday = formatDate(getNextDateByDay(5));
     const nextSaturday = formatDate(getNextDateByDay(6));
 
-    // Zustand für das ausgewählte Datum
+    
     const [selectedDate, setSelectedDate] = useState(formatDate(new Date()));
 
     return (
@@ -32,17 +62,15 @@ export default function Total() {
             <Row>
                 <Col xs={12} md={6} className="center-on-mobile" style={{ display: "flex",justifyContent:"center"}}>
 
-                    <form style={{ display: "flex", flexDirection: "column",  gap:"1rem"}}>
+                    <form onSubmit={handleSending} style={{ display: "flex", flexDirection: "column",  gap:"1rem"}}>
                         
                             <h2  className="text-center">Contact details</h2>
                             <div className="inputWrapper">
                                 <TextField name="name" label="Name" required className="name " />
                             </div>
+                    
                             <div className="inputWrapper">
-                                <TextField label="Last Name" required className="name " />
-                            </div>
-                            <div className="inputWrapper">
-                                <TextField name="number " label="number" required className="number" />
+                                <TextField name="number" label="number" required className="number" />
                             </div>
                             <div className="inputWrapper">
                                 <TextField name="email" label="Email" required className="mail " />
@@ -57,6 +85,7 @@ export default function Total() {
                                     className="date"
                                     style={{ width: "8rem", margin: "0 auto"}}
                                     type="date"
+                                    name="date"
                                     value={selectedDate}
                                     onChange={(e) => setSelectedDate(e.target.value)}
                                     slotProps={{
@@ -67,7 +96,7 @@ export default function Total() {
                                     }}
                                 />
                             </div>
-                      
+                            <button  className="btn btn-danger">{status}</button>
                     </form>
 
                 </Col>
@@ -75,13 +104,13 @@ export default function Total() {
                 <Col xs={12} md={6} style={{ display: "flex", justifyContent: "center" }}>
 
 
-                    <div style={{ marginTop: "4rem", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", height: "20rem", width: "15rem", textAlign: "center" }}>
+                    <div style={{ marginTop: "3rem", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", height: "25rem", width: "15rem", textAlign: "center" }}>
                         <h5 className="mt-5">The Total amount</h5>
                         
 
                         <p> The total amout of (including VAT) € {totalValue}</p>
                         <hr />
-                        <button className="btn btn-danger"> Pay</button>
+                       
                         <hr />
                         <div>
                             <TextField name="voucher" label="voucher" className="voucher"></TextField>

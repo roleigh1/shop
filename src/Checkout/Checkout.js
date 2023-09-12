@@ -27,6 +27,7 @@ export function Checkout() {
             </Row>
             <Row>
                 <Footer />
+                
             </Row>
         </Container>
     )
