@@ -18,7 +18,7 @@ app.post("/checkout", async (req,res) => {
         service: "gmail",
         auth: {
             user: "robinl.leitner1@gmail.com",
-            pass: "vltxqphdauxjyops"
+            pass: ""
         }
     });
 
