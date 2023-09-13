@@ -18,6 +18,18 @@ export function CartProvider({ children }) {
         localStorage.setItem('cart', JSON.stringify(cart));
     }, [cart]);
 
+<<<<<<< Updated upstream
+=======
+   const calculateTotalValue = () => {
+        return cart.reduce((acc,item) => {
+            const itemTotal = new Decimal(item.price).times(item.quantity);
+            return new Decimal(acc).plus(itemTotal);
+        }, new Decimal(0)).toFixed(2);
+    }
+
+    const totalValue = calculateTotalValue();
+
+>>>>>>> Stashed changes
     function addToCart(item) {
         setCart(prev => {
             
