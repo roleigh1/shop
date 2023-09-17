@@ -5,11 +5,8 @@ import Logo from "../Home/Components/Logo/Logo";
 import BurgerMenu from "../Home/Components/Burger/Menu";
 import Footer from "../Home/Components/Footer/Footer";
 import CartTable from "./CartTable";
-import { MDBBtn } from "mdb-react-ui-kit";
-import { useNavigate } from "react-router-dom";
 
-function CartPage() {
-    const navigate = useNavigate();
+function Checkout() {
 
 
     return (
@@ -23,16 +20,10 @@ function CartPage() {
                 </Col>
             </Row>
             <Row className="w-100">
-
                 <CartTable />
 
             </Row>
 
-            <Row>
-                <MDBBtn onClick={() => {
-                    navigate("/checkout")
-                }} style={{ width: "7rem" }}>Checkout</MDBBtn>
-            </Row>
             <Row style={{ marginTop: '6rem' }} className="">
 
                 <Footer />
@@ -42,4 +33,4 @@ function CartPage() {
         </Container>
     )
 }
-export default CartPage; 
+export default Checkout; 

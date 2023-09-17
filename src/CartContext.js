@@ -14,19 +14,22 @@ export function CartProvider({ children }) {
     });
 
     useEffect(() => {
-
+        console.log(cart)
         localStorage.setItem('cart', JSON.stringify(cart));
     }, [cart]);
 
     const calculateTotalValue = () => {
         return cart.reduce((acc,item) => {
+            if (!item.price || !item.hasOwnProperty('quantity')) {
+                console.warn("Malformed item in cart:", item);
+                return acc;
+            }
             const itemTotal = new Decimal(item.price).times(item.quantity);
             return new Decimal(acc).plus(itemTotal);
         }, new Decimal(0)).toFixed(2);
     }
 
     const totalValue = calculateTotalValue();
-
     function addToCart(item) {
         setCart(prev => {
             
@@ -47,16 +50,17 @@ export function CartProvider({ children }) {
                     if (item.quantity + delta > 0) {
                         return { ...item, quantity: item.quantity + delta };
                     } else {
-                        return null;  // Indicate that we'll be removing this item
+                        return null; 
                     }
                 }
                 return item;
-            }).filter(Boolean);  // Removes null items, i.e., items that reached quantity 0
+            }).filter(Boolean); 
         });
     }
     function removeFromCart(itemName) {
         setCart(prevCart => prevCart.filter(item => item.name !== itemName));
     }
+
 
     return (
         <CartContext.Provider value={{ cart, addToCart, updateQuantity , removeFromCart, totalValue}}>

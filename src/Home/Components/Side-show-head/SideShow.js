@@ -1,6 +1,6 @@
 import "react-slideshow-image/dist/styles.css";
 import React from 'react';
-import { Slide } from 'react-slideshow-image';
+
 
 function SlideShow() {
   const img = [

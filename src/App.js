@@ -5,7 +5,7 @@ import CartPage from './CartPage/CartPage';
 import { CartProvider } from './CartContext';
 import { useState } from 'react';
 import ProductPage from './ProductPage/ProductPage';
-import { Checkout } from './Checkout/Checkout';
+import Checkout from './CartPage/CartPage';
 function App() {
   const [items] = useState([
     {
@@ -25,7 +25,7 @@ function App() {
   {
       id: 3,
       name: 'Paprika',
-      price: 1,
+      price: 1.00,
       image: 'https://i.ibb.co/D7bBy1Q/bell-peppers-gc3855d807-640.jpg"',
       type: 'Vegetable'
   },
@@ -131,7 +131,7 @@ function App() {
   }, {
     id:9,
     name:"basil",
-    price:4,
+    price:4.00,
     image:"https://i.ibb.co/r4x3q97/pexels-eva-bronzini-5501050.jpg",
     type:"herbs"
  
@@ -203,7 +203,7 @@ function App() {
 {
     id: 17,
     name: 'Paprika',
-    price: 1,
+    price: 1.00,
     image: 'https://i.ibb.co/D7bBy1Q/bell-peppers-gc3855d807-640.jpg"',
     type: 'vegetable'
     
@@ -225,7 +225,7 @@ function App() {
   type: 'vegetable'
   
 
-},
+}
 
 
 
