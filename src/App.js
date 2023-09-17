@@ -6,6 +6,13 @@ import { CartProvider } from './CartContext';
 import { useState } from 'react';
 import ProductPage from './ProductPage/ProductPage';
 import Checkout from './Checkout/Checkout'
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+
+const stripePromise= loadStripe("pk_test_51NpahnKW38JNXmg0QqPyvbwMWABgGkMsf0qJjAIWGSPgHjrQuQca1ExywkWe1WI5k0zTe7bYfmGS8FCTbUNQZRhr00AkCvoTrF")
+
+
+
 function App() {
   const [items] = useState([
     {
@@ -233,6 +240,7 @@ function App() {
 ])
 
   return (
+    <Elements stripe={stripePromise}>
     <CartProvider>
       <Router>
         <Routes>
@@ -243,6 +251,7 @@ function App() {
         </Routes>
       </Router>
     </CartProvider>
+    </Elements>
   )
 }
 

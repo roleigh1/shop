@@ -3,17 +3,29 @@ import { useCart } from "../CartContext";
 import { Row, Col } from "react-bootstrap";
 import { MDBBtn } from "mdb-react-ui-kit";
 import Decimal from "decimal.js";
-import { Link } from "react-router-dom";
+import { loadStripe } from "@stripe/stripe-js";
+
 export default function CartTable() {
     const { cart, updateQuantity, removeFromCart, totalValue } = useCart();
-   /* const total = cart.reduce((acc, item) => {
-        return new Decimal(acc).plus(new Decimal(item.price).times(item.quantity));
-    }, 0).toFixed(2) + "€";
+    
+    const stripePromise = loadStripe("pk_test_51NpahnKW38JNXmg0QqPyvbwMWABgGkMsf0qJjAIWGSPgHjrQuQca1ExywkWe1WI5k0zTe7bYfmGS8FCTbUNQZRhr00AkCvoTrF")
+    const handleStripeCheckout = async () => {
+ 
 
-*/
+        const response = await fetch("/create-checkout-session",  {
+            method: "POST",
+            body: JSON.stringify({ items: cart })
+        });
 
-  
-
+        const session = await response.json();
+        const stripe = await stripePromise;
+        const error = await stripe.redirectToCheckout({
+            sessionId: session.id
+        })
+        if(error) {
+            console.error(error);
+        }
+    };
 
     return (
         <Row>
@@ -50,7 +62,7 @@ export default function CartTable() {
 
             <Row className="  mt-5">
                 <Col xs={7} className="d-flex justify-content-end">
-                    <MDBBtn  color="danger" style={{ width: '7rem', height: '2rem', textTransform: 'none', paddingTop: '0px', color: 'white', fontWeight: 'bold', letterSpacing: '1px', }}> <Link to={"/checkout"} >Checkout</Link></MDBBtn>
+                    <MDBBtn onClick={handleStripeCheckout} color="danger" style={{ width: '7rem', height: '2rem', textTransform: 'none', paddingTop: '0px', color: 'white', fontWeight: 'bold', letterSpacing: '1px', }}> Checkout</MDBBtn>
                 </Col>
                 <Col className="d-flex justify-content-center">
                     <p style={{ marginLeft: '-2.3rem', }}>Total:</p><span style={{ textDecoration: 'underline' }}>{totalValue}</span>
@@ -59,16 +71,6 @@ export default function CartTable() {
             </Row>
 
 
-            <style >{`
-            .ite{
-                margin-left:1rem;
-            }
-
-            
-
-        }
-        
-        `}</style>
         </Row>
 
     )

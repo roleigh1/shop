@@ -1,44 +1,41 @@
-const express = require("express"); 
-const bodyParser = require("body-parser"); // Hier "body-parser" statt "body"
-const nodemailer = require("nodemailer");
-
-
-
+const express = require('express');
 const app = express();
-const port = 5000; 
+const stripe = require("stripe")("sk_test_51NpahnKW38JNXmg0k5GZ56wkE44G9ldI0xZMvm2NHuIbQP8WM7IdvsRKg2oAIpnySrB24bKclSj0H6DGsMQUmWPa00uwWcvMJvnod");
 
-const cors = require('cors');
-app.use(cors());
-app.use(bodyParser.json());
+app.post("/create-checkout-session", async (req, res) => {
+    try {
+        const { items } = req.body;
 
-app.post("/checkout", async (req,res) => {
-    let { name, email, message, date, number, cart, totalValue } = req.body;
+        const line_items = transformItemsForStripe(items);
 
-    let transporter = nodemailer.createTransport({
-        service: "gmail",
-        auth: {
-            user: "robinl.leitner1@gmail.com",
-            pass: ""
-        }
-    });
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ["card"],
+            line_items,
+            mode: "payment",
+            success_url: "YOUR_SUCCESS_URL",
+            cancel_url: "YOUR_CANCEL_URL"
+        });
 
-    await transporter.sendMail({
-        from: "robinl.leitner1@gmail.com",
-        to: email,
-        subject: "Bestellung", 
-        text: `Hallo ${name}, danke für Ihre Bestellung. Warenkorb: ${JSON.stringify(cart)}. Gesamtwert: ${totalValue}. Datum: ${date}.`
-    });
-    
-    await transporter.sendMail({
-        from: "robinl.leitner1@gmail.com", 
-        to: "robinl.leitner1@gmail.com", 
-        subject: "Neue Bestellung",
-        text: `Name: ${name}. E-Mail: ${email}. Nachricht: ${message}. Datum: ${date}. Nummer: ${number}. Warenkorb: ${JSON.stringify(cart)}. Gesamtwert: ${totalValue}.`
-    });
+        res.json({ id: session.id });
 
-    res.json({ status: "Emails sent" });
+    } catch (error) {
+        res.status(500).json({ error: "Stripe checkout session creation failed" });
+    }
 });
 
-app.listen(port, () => {
-    console.log(`server running on http://localhost:5000/`); 
+function transformItemsForStripe(items) {
+    return items.map(item => ({
+        price_data: {
+            currency: "eur",
+            product_data: {
+                name: item.name
+            },
+            unit_amount: item.price * 100 
+        },
+        quantity: item.quantity
+    }));
+}
+const PORT = 3000;  // Oder welchen Port Sie bevorzugen
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
 });
