@@ -6,7 +6,7 @@ function Hamburger({isOpen}){
             <div className="burger burger1" />
             <div className="burger burger2" />
             <div className="burger burger3" />
-            <style jsx>{`
+            <style >{`
                 .burger1{
                     transform: ${ isOpen ? "rotate(45deg)": "rotate(0)"};
                 }

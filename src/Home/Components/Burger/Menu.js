@@ -24,7 +24,7 @@ function BurgerMenu() {
                 </div>
             </div>
         
-       <style jsx>{`
+       <style >{`
      
   
     .navigation {

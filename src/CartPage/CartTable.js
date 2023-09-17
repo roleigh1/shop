@@ -3,7 +3,7 @@ import { useCart } from "../CartContext";
 import { Row, Col } from "react-bootstrap";
 import { MDBBtn } from "mdb-react-ui-kit";
 import Decimal from "decimal.js";
-import { useNavigate } from "react-router-dom/dist";
+import { Link } from "react-router-dom";
 export default function CartTable() {
     const { cart, updateQuantity, removeFromCart, totalValue } = useCart();
    /* const total = cart.reduce((acc, item) => {
@@ -12,7 +12,7 @@ export default function CartTable() {
 
 */
 
-    const navigate = useNavigate();
+  
 
 
     return (
@@ -50,7 +50,7 @@ export default function CartTable() {
 
             <Row className="  mt-5">
                 <Col xs={7} className="d-flex justify-content-end">
-                    <MDBBtn onClick={navigate("/checkout")} color="danger" style={{ width: '7rem', height: '2rem', textTransform: 'none', paddingTop: '0px', color: 'white', fontWeight: 'bold', letterSpacing: '1px', }}>Checkout</MDBBtn>
+                    <MDBBtn  color="danger" style={{ width: '7rem', height: '2rem', textTransform: 'none', paddingTop: '0px', color: 'white', fontWeight: 'bold', letterSpacing: '1px', }}> <Link to={"/checkout"} >Checkout</Link></MDBBtn>
                 </Col>
                 <Col className="d-flex justify-content-center">
                     <p style={{ marginLeft: '-2.3rem', }}>Total:</p><span style={{ textDecoration: 'underline' }}>{totalValue}</span>
@@ -59,7 +59,7 @@ export default function CartTable() {
             </Row>
 
 
-            <style jsx>{`
+            <style >{`
             .ite{
                 margin-left:1rem;
             }

@@ -19,8 +19,8 @@ function Cart() {
                 }
             }} src={imcart} className="cart-img" style={{ zIndex: '0' }} alt="cart" />
 
-            <style jsx>{`
-        .cart-img {
+            <style >{`
+            .cart-img {
             width:2rem; 
             margin-right:1rem;
 

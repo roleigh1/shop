@@ -7,7 +7,7 @@ import Footer from "../Home/Components/Footer/Footer";
 import Cart from "../Home/Components/Cart/Cart";
 import Total from "./TotalComponent";
 
-export function Checkout() {
+export default function Checkout() {
     
     return (
         <Container>

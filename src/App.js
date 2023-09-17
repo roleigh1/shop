@@ -5,7 +5,7 @@ import CartPage from './CartPage/CartPage';
 import { CartProvider } from './CartContext';
 import { useState } from 'react';
 import ProductPage from './ProductPage/ProductPage';
-import Checkout from './CartPage/CartPage';
+import Checkout from './Checkout/Checkout'
 function App() {
   const [items] = useState([
     {
