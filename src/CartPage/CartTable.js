@@ -1,34 +1,43 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useCart } from "../CartContext";
 import { Row, Col } from "react-bootstrap";
 import { MDBBtn } from "mdb-react-ui-kit";
 import Decimal from "decimal.js";
-import { loadStripe } from "@stripe/stripe-js";
+
+
+const Message = ({ message }) => (
+    <section>
+      <p>{message}</p>
+    </section>
+  );
+  
 
 export default function CartTable() {
-    const { cart, updateQuantity, removeFromCart, totalValue } = useCart();
     
-    const stripePromise = loadStripe("pk_test_51NpahnKW38JNXmg0QqPyvbwMWABgGkMsf0qJjAIWGSPgHjrQuQca1ExywkWe1WI5k0zTe7bYfmGS8FCTbUNQZRhr00AkCvoTrF")
-    const handleStripeCheckout = async () => {
- 
+    
+    const [message, setMessage] = useState("");
+  const { cart, updateQuantity, removeFromCart, totalValue } = useCart(); 
+  useEffect(() => {
+   
+    const query = new URLSearchParams(window.location.search);
 
-        const response = await fetch("/create-checkout-session",  {
-            method: "POST",
-            body: JSON.stringify({ items: cart })
-        });
+    if (query.get("success")) {
+      setMessage("Order placed! You will receive an email confirmation.");
+    }
 
-        const session = await response.json();
-        const stripe = await stripePromise;
-        const error = await stripe.redirectToCheckout({
-            sessionId: session.id
-        })
-        if(error) {
-            console.error(error);
-        }
-    };
+    if (query.get("canceled")) {
+      setMessage(
+        "Order canceled -- continue to shop around and checkout when you're ready."
+      );
+    }
+  }, []);
 
+  if (message) {
+    return <Message message={message} />;
+  }
     return (
         <Row>
+
             <h1 className="text-center mt-3"> Your Purchase</h1>
             <table className="mt-3">
                 <thead>
@@ -62,7 +71,9 @@ export default function CartTable() {
 
             <Row className="  mt-5">
                 <Col xs={7} className="d-flex justify-content-end">
-                    <MDBBtn onClick={handleStripeCheckout} color="danger" style={{ width: '7rem', height: '2rem', textTransform: 'none', paddingTop: '0px', color: 'white', fontWeight: 'bold', letterSpacing: '1px', }}> Checkout</MDBBtn>
+                <form action="/create-checkout-session" method="POST">
+                        <MDBBtn  color="danger" style={{ width: '7rem', height: '2rem', textTransform: 'none', paddingTop: '0px', color: 'white', fontWeight: 'bold', letterSpacing: '1px', }}> Checkout</MDBBtn>
+                   </form>
                 </Col>
                 <Col className="d-flex justify-content-center">
                     <p style={{ marginLeft: '-2.3rem', }}>Total:</p><span style={{ textDecoration: 'underline' }}>{totalValue}</span>
@@ -74,4 +85,4 @@ export default function CartTable() {
         </Row>
 
     )
-} 
+};

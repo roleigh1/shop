@@ -17,7 +17,7 @@ function SlideShow() {
         </div>
       </div>
 
-      <style jsx>{`
+      <style >{`
           .each-slide-effect > .background-image {
             display: flex;
             align-items: center;

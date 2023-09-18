@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container } from 'react-bootstrap';
 import { Row, Col } from 'react-bootstrap';
 import Logo from "../Home/Components/Logo/Logo";
@@ -6,9 +6,9 @@ import BurgerMenu from "../Home/Components/Burger/Menu";
 import Footer from "../Home/Components/Footer/Footer";
 import CartTable from "./CartTable";
 
-function Checkout() {
+function CartPage() {
 
-
+    
     return (
         <Container>
             <Row className="d-flex align-items-center justify-content-between">
@@ -19,8 +19,11 @@ function Checkout() {
                     <BurgerMenu />
                 </Col>
             </Row>
+           
             <Row className="w-100">
-                <CartTable />
+               
+         
+                    <CartTable />
 
             </Row>
 
@@ -33,4 +36,4 @@ function Checkout() {
         </Container>
     )
 }
-export default Checkout; 
+export default CartPage; 

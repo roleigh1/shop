@@ -1,41 +1,26 @@
+
+const stripe = require('stripe')('sk_test_51NpahnKW38JNXmg0k5GZ56wkE44G9ldI0xZMvm2NHuIbQP8WM7IdvsRKg2oAIpnySrB24bKclSj0H6DGsMQUmWPa00uwWcvMJv');
 const express = require('express');
 const app = express();
-const stripe = require("stripe")("sk_test_51NpahnKW38JNXmg0k5GZ56wkE44G9ldI0xZMvm2NHuIbQP8WM7IdvsRKg2oAIpnySrB24bKclSj0H6DGsMQUmWPa00uwWcvMJvnod");
+app.use(express.static('public'));
 
-app.post("/create-checkout-session", async (req, res) => {
-    try {
-        const { items } = req.body;
+const YOUR_DOMAIN = 'http://localhost:3000';
 
-        const line_items = transformItemsForStripe(items);
+app.post('/create-checkout-session', async (req, res) => {
+  const session = await stripe.checkout.sessions.create({
+    line_items: [
+      {
+        // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
+        price: '{{PRICE_ID}}',
+        quantity: 1,
+      },
+    ],
+    mode: 'payment',
+    success_url: `${YOUR_DOMAIN}?success=true`,
+    cancel_url: `${YOUR_DOMAIN}?canceled=true`,
+  });
 
-        const session = await stripe.checkout.sessions.create({
-            payment_method_types: ["card"],
-            line_items,
-            mode: "payment",
-            success_url: "YOUR_SUCCESS_URL",
-            cancel_url: "YOUR_CANCEL_URL"
-        });
-
-        res.json({ id: session.id });
-
-    } catch (error) {
-        res.status(500).json({ error: "Stripe checkout session creation failed" });
-    }
+  res.redirect(303, session.url);
 });
 
-function transformItemsForStripe(items) {
-    return items.map(item => ({
-        price_data: {
-            currency: "eur",
-            product_data: {
-                name: item.name
-            },
-            unit_amount: item.price * 100 
-        },
-        quantity: item.quantity
-    }));
-}
-const PORT = 3000;  // Oder welchen Port Sie bevorzugen
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-});
+app.listen(4242, () => console.log('Running on port 3000'));
