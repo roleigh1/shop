@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Container } from 'react-bootstrap';
 import { Row, Col } from 'react-bootstrap';
 import Logo from "../Home/Components/Logo/Logo";

@@ -48,7 +48,7 @@ const ContactForm = () => {
       <Button variant="contained" type="submit">{status}</Button>
     </div> 
 
-    <style jsx>
+    <style >
       {`
       h1 {
         text-align:center; 
