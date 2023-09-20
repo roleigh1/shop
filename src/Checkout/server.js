@@ -43,15 +43,26 @@ app.post('/create-checkout-session', async (req, res) => {
     res.status(500).json({ error: 'Interner Serverfehler' });
   }
 });
-/*
-app.post("(stripe-webhook",bodyParser.raw({type: "application/json"}), (req, res) => {
+
+app.post("/stripe-webhook",bodyParser.raw({type: "application/json"}), (req, res) => {
   const sig = req.headers["stripe-signature"];
 
   let event; 
 
   try{
     event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret)
+  } catch (error){
+    return res.status(400).send(`Webhook Error: ${err.message}`);
   }
+  if (event.type === "checkout.session.completed") {
+    const session = event.data.object;
+
+    console.log("test")
+  
+  
+  }
+
+  res.status(200).send("Success");
 })
-*/
+
 app.listen(4242, () => console.log('Running on port 4242'));
