@@ -57,7 +57,7 @@ app.post("/stripe-webhook",bodyParser.raw({type: "application/json"}), (req, res
   if (event.type === "checkout.session.completed") {
     const session = event.data.object;
 
-    console.log("test")
+    console.log("Hello ")
   
   
   }
