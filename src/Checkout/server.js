@@ -52,7 +52,7 @@ app.post("/stripe-webhook",bodyParser.raw({type: "application/json"}), (req, res
   try{
     event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret)
   } catch (error){
-    return res.status(400).send(`Webhook Error: ${err.message}`);
+    return res.status(400).send(`Webhook Error: ${error.message}`);
   }
   if (event.type === "checkout.session.completed") {
     const session = event.data.object;
