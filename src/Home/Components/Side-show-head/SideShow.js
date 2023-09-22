@@ -12,11 +12,11 @@ function SlideShow() {
   return (
     <div>
       <div className="each-slide-effect mt-5">
-        <div className="background-image" style={{ 'backgroundImage': `url(${img[0]})` }}>
-        
+        <div className="background-image" style={{ 'backgroundImage': `url(${img[0]})`,position:"relative" }}>
+       
         </div>
       </div>
-
+      <h1 style={{color:"black", position:"absolute",top:"8rem"}}>Gärtnerei Leitner</h1>
       <style >{`
           .each-slide-effect > .background-image {
             display: flex;

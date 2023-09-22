@@ -71,7 +71,7 @@ export default function BestSellerItem({ item }) {
                                 <div className="mask">
                                     <div className="d-flex justify-content algin-items-end h-100">
                                         <h5>
-                                            <span className="badge bg-primary ms-2">New</span>
+                                            <span className="badge bg-danger ms-2">Bestseller </span>
                                         </h5>
                                     </div>
                                 </div>

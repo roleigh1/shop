@@ -1,7 +1,7 @@
 const stripe = require('stripe')('sk_test_51NpahnKW38JNXmg0k5GZ56wkE44G9ldI0xZMvm2NHuIbQP8WM7IdvsRKg2oAIpnySrB24bKclSj0H6DGsMQUmWPa00uwWcvMJv');
 const express = require('express');
 const bodyParser = require('body-parser');
-const endpointSecret = "whsec_91c9d54c6ad7e73607868c34061ec1182e340c9155571f9104ab9902b2a7319b";
+
 
 const app = express();
 app.use(express.static('public'));
@@ -44,25 +44,5 @@ app.post('/create-checkout-session', async (req, res) => {
   }
 });
 
-app.post("/stripe-webhook",bodyParser.raw({type: "application/json"}), (req, res) => {
-  const sig = req.headers["stripe-signature"];
-
-  let event; 
-
-  try{
-    event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret)
-  } catch (error){
-    return res.status(400).send(`Webhook Error: ${error.message}`);
-  }
-  if (event.type === "checkout.session.completed") {
-    const session = event.data.object;
-
-    console.log("Hello ")
-  
-  
-  }
-
-  res.status(200).send("Success");
-})
 
 app.listen(4242, () => console.log('Running on port 4242'));
