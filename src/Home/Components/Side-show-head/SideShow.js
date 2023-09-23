@@ -10,46 +10,29 @@ function SlideShow() {
   ];
 
   return (
-    <div>
-      <div className="each-slide-effect mt-5">
-        <div className="background-image" style={{ 'backgroundImage': `url(${img[0]})`,position:"relative" }}>
-       
-        </div>
+    <section className="bg-image_1" style={{ position: "relative", height: "20rem", textAlign: "center", marginTop: "3rem" }}>
+
+      <div style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundImage: `url(${img[0]})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        opacity: 0.8,
+        zIndex: -1,
+       borderRadius:"5px"
+      }}></div>
+
+      <div className="content" style={{ color: "black"}}>
+        <h1 style={{ marginTop: "5rem", opacity:"1"  }}>Fresh from the Fields of Simmering!</h1>
+        <h3 style={{fontSize:"24px", }}>Dive into the rich flavors of homegrown vegetables and fruits by our dedicated gardeners from Simmering.<br/> Meet us at Karmelitermarkt, Südtiroler Platz, and Vorgarten Markt. <br/>Taste nature's best, straight from our garden to your plate</h3>
       </div>
-      <h1 style={{color:"black", position:"absolute",top:"8rem"}}>Gärtnerei Leitner</h1>
-      <style >{`
-          .each-slide-effect > .background-image {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-size: cover;
-            height: 350px;
-            position: relative;
-            border-radius: 5px;
-          }
-    
-          .each-slide-effect .background-image::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            background-image: inherit;
-   
-            z-index: -1;
-            border-radius: 5px;
-          }
-          
-         
-          .each-slide-effect span {
-            padding: 20px;
-            font-size: 20px;
-            background: #efefef;
-            text-align: center;
-          }    
-      `}</style>
-    </div>
+
+    </section>
+
   );
 }
 
