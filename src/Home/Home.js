@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Container } from 'react-bootstrap';
 import { Row, Col } from 'react-bootstrap';
@@ -10,9 +10,20 @@ import SlideShow from './Components/Side-show-head/SideShow'
 import SeasonList from './Components/Products-Main/SeasonList';
 import ContactForm from './Components/Contact/ContactForm'
 import BestSellerList from './Components/Bestsellers/BestSellerList';
-
+import { useLocation } from 'react-router-dom';
+import { useCart } from '../CartContext';
 function Home({ items, infos }) {
-
+  const location = useLocation();
+  const { setCart } = useCart();
+  const [success, setSuccess] = useState(false);
+ 
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.search);
+    if(urlParams.get("success") === "true") {
+      setSuccess(true);
+      setCart([])
+    }
+  }, [location.search, setCart]);
   return (
     <Container >
 

@@ -1,11 +1,13 @@
 const stripe = require('stripe')('sk_test_51NpahnKW38JNXmg0k5GZ56wkE44G9ldI0xZMvm2NHuIbQP8WM7IdvsRKg2oAIpnySrB24bKclSj0H6DGsMQUmWPa00uwWcvMJv');
 const express = require('express');
 const bodyParser = require('body-parser');
-
+const cors = require('cors');
 
 const app = express();
 app.use(express.static('public'));
 app.use(bodyParser.json());
+
+app.use(cors());
 
 const YOUR_DOMAIN = 'http://localhost:3000';
 

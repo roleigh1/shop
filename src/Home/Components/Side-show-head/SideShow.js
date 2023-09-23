@@ -21,12 +21,12 @@ function SlideShow() {
         backgroundImage: `url(${img[0]})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        opacity: 0.8,
+      
         zIndex: -1,
        borderRadius:"5px"
       }}></div>
 
-      <div className="content" style={{ color: "black"}}>
+      <div className="content" style={{ color: "white"}}>
         <h1 style={{ marginTop: "5rem", opacity:"1"  }}>Fresh from the Fields of Simmering!</h1>
         <h3 style={{fontSize:"24px", }}>Dive into the rich flavors of homegrown vegetables and fruits by our dedicated gardeners from Simmering.<br/> Meet us at Karmelitermarkt, Südtiroler Platz, and Vorgarten Markt. <br/>Taste nature's best, straight from our garden to your plate</h3>
       </div>
