@@ -27,7 +27,7 @@ function SeasonItem({ item, index }) {
 
                     <Button
                       style={{
-                        marginTop: (index === 1 || index === 2 || index === 3) ? '20px' : undefined
+                        marginTop: (index === 1 ||  index === 3) ? '20px' : undefined
                       }}
                         size='small'>Order now</Button>
                 </CardActions>
