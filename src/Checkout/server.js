@@ -2,9 +2,11 @@ const stripe = require('stripe')('sk_test_51NpahnKW38JNXmg0k5GZ56wkE44G9ldI0xZMv
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+
+
 const app = express();
 app.use(express.static('public'));
-app.use(bodyParser.json());
+;
 app.use(cors());
 
 const YOUR_DOMAIN = 'http://localhost:3000';
@@ -46,7 +48,7 @@ app.post('/create-checkout-session', async (req, res) => {
 
 const endpointSecret = "whsec_91c9d54c6ad7e73607868c34061ec1182e340c9155571f9104ab9902b2a7319b";
 
-app.post('/webhook', express.raw({type: 'application/json'}), (request, response) => {
+app.post('/webhook', bodyParser.raw({type: 'application/json'}), (request, response) => {
   const sig = request.headers['stripe-signature'];
 
   let event;
@@ -54,6 +56,7 @@ app.post('/webhook', express.raw({type: 'application/json'}), (request, response
   try {
     event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
   } catch (err) {
+    console.log(err);
     response.status(400).send(`Webhook Error: ${err.message}`);
     return;
   }
@@ -74,7 +77,7 @@ app.post('/webhook', express.raw({type: 'application/json'}), (request, response
   response.send();
 });
 
-
+app.use(bodyParser.json())
 app.get('/', (req, res) => {
   res.send('Willkommen zu meinem Express-Server!');
 });
