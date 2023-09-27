@@ -63,6 +63,7 @@
     ]
   },
   "devDependencies": {
-    "@babel/preset-react": "^7.22.15"
+    "@babel/preset-react": "^7.22.15",
+    "webpack-dev-server": "^4.15.1"
   }
 }
