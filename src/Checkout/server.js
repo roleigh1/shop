@@ -2,14 +2,22 @@ const stripe = require('stripe')('sk_test_51NpahnKW38JNXmg0k5GZ56wkE44G9ldI0xZMv
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-
+const nodemailer = require("nodemailer");
 
 const app = express();
 app.use(express.static('public'));
-;
+
 app.use(cors());
 
 const YOUR_DOMAIN = 'http://localhost:3000';
+
+let transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "robinl.leitner1@gmail.com",
+    pass: "bvhbjwhellonuuem"
+  }
+});
 
 app.post('/create-checkout-session', async (req, res) => {
   try {
@@ -48,7 +56,7 @@ app.post('/create-checkout-session', async (req, res) => {
 
 const endpointSecret = "whsec_91c9d54c6ad7e73607868c34061ec1182e340c9155571f9104ab9902b2a7319b";
 
-app.post('/webhook', bodyParser.raw({type: 'application/json'}), (request, response) => {
+app.post('/webhook', bodyParser.raw({ type: 'application/json' }), (request, response) => {
   const sig = request.headers['stripe-signature'];
 
   let event;
@@ -66,7 +74,7 @@ app.post('/webhook', bodyParser.raw({type: 'application/json'}), (request, respo
     case 'payment_intent.succeeded':
       const checkoutSessionCompleted = event.data.object;
       console.log("payment successfull")
-      // Then define and call a function to handle the event checkout.session.completed
+      sendMail();
       break;
     // ... handle other event types
     default:
@@ -76,6 +84,31 @@ app.post('/webhook', bodyParser.raw({type: 'application/json'}), (request, respo
   // Return a 200 response to acknowledge receipt of the event
   response.send();
 });
+
+function sendMail() {
+
+  let mailOptions = {
+    from: "robinl.leitner1@gmail.com",
+    to: "robinl.leitner1@gmail.com",
+    subject: "bezahlung erfolgt",
+    text: "ihre bezahlung wurde erfolgreich abgeschlossen"
+  };
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.log("Fehler beim senden der Email");
+    } else {
+      console.log("Email gesendet:", info.response);
+    }
+
+  });
+}
+
+
+
+
+
+
+
 
 app.use(bodyParser.json())
 app.get('/', (req, res) => {
