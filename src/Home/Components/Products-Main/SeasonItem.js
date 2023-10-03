@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography';
 
 function SeasonItem({ item, index }) {
     return (
-        <Card sx={{ maxWidth: 250, maxHeight: 400 }}>
+        <Card sx={{ maxWidth: 250, height: 400 }}>
             <CardMedia
                 component="img"
                 alt='140'
@@ -25,14 +25,10 @@ function SeasonItem({ item, index }) {
                 </Typography>
                 <CardActions style={{ marginTop: '35px' }}>
 
-                    <Button
-                      style={{
-                        marginTop: (index === 1 ||  index === 3) ? '20px' : undefined
-                      }}
-                        size='small'>Order now</Button>
+                  
                 </CardActions>
             </CardContent>
         </Card>
-    );
+    ); console.log("")
 }
 export default SeasonItem;
