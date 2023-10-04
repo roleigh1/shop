@@ -29,6 +29,6 @@ function SeasonItem({ item, index }) {
                 </CardActions>
             </CardContent>
         </Card>
-    ); console.log("")
+    ); 
 }
 export default SeasonItem;
