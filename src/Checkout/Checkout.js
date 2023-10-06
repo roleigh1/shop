@@ -4,11 +4,10 @@ import { Row, Col } from 'react-bootstrap';
 import Logo from "../Home/Components/Logo/Logo";
 import BurgerMenu from "../Home/Components/Burger/Menu";
 import Footer from "../Home/Components/Footer/Footer";
-import Cart from "../Home/Components/Cart/Cart";
-import Total from "./TotalComponent";
+import CartTable from "./CheckoutTable";
+function Checkout() {
 
-export default function Checkout() {
-    
+
     return (
         <Container>
             <Row className="d-flex align-items-center justify-content-between">
@@ -16,19 +15,21 @@ export default function Checkout() {
                     <Logo />
                 </Col>
                 <Col xs="auto" className='d-flex mt-5' >
-                    <Cart />
                     <BurgerMenu />
                 </Col>
             </Row>
-            <Row style={{marginTop:"5rem"}} > 
-                <Col> 
-                   <Total />
-                </Col>
+            <Row className="w-100">
+                <CartTable />
+
             </Row>
-            <Row>
+
+            <Row style={{ marginTop: '6rem' }} className="">
+
                 <Footer />
-                
+
+
             </Row>
         </Container>
     )
 }
+export default Checkout; 
