@@ -3,17 +3,31 @@ import { useCart } from "../CartContext";
 import { Row, Col } from "react-bootstrap";
 import { MDBBtn } from "mdb-react-ui-kit";
 import Decimal from "decimal.js";
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import axios from "axios";
+export default function CartTable() {
 
+  
 const Message = ({ message }) => (
   <section>
     <p>{message}</p>
   </section>
 );
 
-export default function CartTable() {
+
   const [message, setMessage] = useState("");
   const { cart, updateQuantity, removeFromCart, totalValue } = useCart();
+  const [startDate, setStartDate] = useState(new Date());
+  function isWeekend(date) {
+    const day = date.getDay();
+    return day !== 5 && day !== 6;
+  }
+  function handelChangeDate(date){
+    setStartDate(date);
 
+    axios.post("http://localhost:4242/selected-date")
+  }
   useEffect(() => {
     const query = new URLSearchParams(window.location.search);
 
@@ -80,12 +94,22 @@ export default function CartTable() {
         </tbody>
       </table>
 
-      <Row className="mt-5">
-        <Col xs={7} className="d-flex justify-content-end">
-          <MDBBtn onClick={handleCheckout} color="danger" style={{ width: '7rem', height: '2rem', textTransform: 'none', paddingTop: '0px', color: 'white', fontWeight: 'bold', letterSpacing: '1px' }}>Checkout</MDBBtn>
+      <Row className="mt-5 flex-column align-items-center text-center">
+
+        <Col md={3} className="mb-3 ">
+          <p>Pickup date:</p>
+          <DatePicker
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+            filterDate={(date) => !isWeekend(date)}
+          />
         </Col>
-        <Col className="d-flex justify-content-center">
-          <p style={{ marginLeft: '-2.3rem', }}>Total:</p><span style={{ textDecoration: 'underline' }}>{totalValue}</span>
+        <Col md={3} className="">
+          <MDBBtn onClick={handleCheckout} color="danger" style={{ width: '7rem', height: '2rem', textTransform: 'none', paddingTop: '0px', color: 'white', fontWeight: 'bold', letterSpacing: '1px', marginTop: "1.25rem" }}>Checkout</MDBBtn>
+        </Col>
+
+        <Col md={3} className=" ">
+          <p style={{ marginTop: "2rem" }}>Total:{totalValue}</p>
         </Col>
       </Row>
     </Row>

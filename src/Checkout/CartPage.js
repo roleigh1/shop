@@ -30,7 +30,7 @@ function CartPage() {
             <Row style={{ marginTop: '6rem' }} className="">
 
                 <Footer />
-
+             
 
             </Row>
         </Container>
