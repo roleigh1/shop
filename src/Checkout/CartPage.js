@@ -10,7 +10,7 @@ function CartPage() {
 
     
     return (
-        <Container>
+        <Container >
             <Row className="d-flex align-items-center justify-content-between">
                 <Col xs="auto" style={{ marginTop: '1rem' }}>
                     <Logo />
@@ -20,7 +20,7 @@ function CartPage() {
                 </Col>
             </Row>
            
-            <Row className="w-100">
+            <Row className="w-100" style={{margin:"0"}}>
                
          
                     <CartTable />

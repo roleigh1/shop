@@ -26,7 +26,7 @@ function Home({ items, infos }) {
     }
   }, [location.search, setCart]);
   return (
-    <Container >
+    <Container  >
 
       <Row style={{ display: 'flex', alignItems: 'center', }} >
         <Col xs="6">
@@ -44,8 +44,8 @@ function Home({ items, infos }) {
         </Col>
       </Row>
 
-      <Row style={{ marginTop: '2rem' }}>
-        <SeasonList infos={infos} />
+      <Row style={{ marginTop: '2rem',}}>
+        <SeasonList  infos={infos} />
       </Row>
       <Row style={{ marginTop: '-1rem', backgroundColor: '#E0E0E0' }}>
         <Col xs={{ span: 6, offset: 3 }} className="d-flex justify-content-center">
