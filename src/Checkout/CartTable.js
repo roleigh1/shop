@@ -19,8 +19,8 @@ export default function CartTable() {
 
   const [message, setMessage] = useState("");
   const { cart, updateQuantity, removeFromCart, totalValue } = useCart();
-
-
+  const [selectLocation, setSelectedLocation] = useState("");
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
 
 
@@ -52,9 +52,10 @@ export default function CartTable() {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ warenkorb: cart })
+      
+        body: JSON.stringify({ cart: cart, selectLocation: selectLocation , selectedDate: selectedDate})
       });
-
+  
       const data = await response.json();
       if (data.url) {
         window.location.href = data.url;
@@ -101,14 +102,19 @@ export default function CartTable() {
         <Row className="mt-5 flex-column align-items-center text-center endCont">
 
           <Col md={3} className="mb-3 ">
-            <PickupDate />
+            <PickupDate 
+            selectedDate={selectedDate}
+            setSelectedDate={setSelectedDate}
+            />
           </Col>
 
           <Col>
-            <SelectLocation />
+            <SelectLocation 
+             selectLocation={selectLocation}  
+             setSelectedLocation={setSelectedLocation} />
           </Col>
           <Col className="">
-            <MDBBtn onClick={handleCheckout} color="danger" style={{ width: '7rem', height: '2rem', textTransform: 'none', paddingTop: '0px', color: 'white', fontWeight: 'bold', letterSpacing: '1px', marginTop: "1.25rem" }}>Checkout</MDBBtn>
+            <MDBBtn  onClick={handleCheckout} color="danger" style={{ width: '7rem', height: '2rem', textTransform: 'none', paddingTop: '0px', color: 'white', fontWeight: 'bold', letterSpacing: '1px', marginTop: "1.25rem" }}>Checkout</MDBBtn>
           </Col>
           <Col sm={6} className=" ">
             <p style={{ marginTop: "2rem" }}>Total:{totalValue}</p>
