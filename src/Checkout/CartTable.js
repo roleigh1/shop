@@ -21,10 +21,13 @@ export default function CartTable() {
   const { cart, updateQuantity, removeFromCart, totalValue } = useCart();
   const [selectLocation, setSelectedLocation] = useState("");
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [showError, setShowError] = useState(false);
 
-
-
-
+useEffect(() => {
+  if(selectLocation || selectedDate) {
+    setShowError(false);
+  }
+},[selectLocation,selectedDate]);
 
 
   useEffect(() => {
@@ -46,6 +49,11 @@ export default function CartTable() {
 
 
   const handleCheckout = async () => {
+    if(!selectedDate || !selectLocation){
+      setShowError(true); 
+      return;
+   
+    }
     try {
       const response = await fetch('http://localhost:4242/create-checkout-session', {
         method: 'POST',
@@ -100,7 +108,7 @@ export default function CartTable() {
         </table>
 
         <Row className="mt-5 flex-column align-items-center text-center endCont">
-
+          { showError  && <p style={{color: 'red', marginTop: '1rem' }}>Choose a pickup location & date</p> }
           <Col md={3} className="mb-3 ">
             <PickupDate 
             selectedDate={selectedDate}
