@@ -9,10 +9,14 @@ import ProductItem from "./ProductItem";
 import "./style.css"
 
 export default function ProductList({ products }) {
+
     const [selectedType, setSelectedType] = useState("");
     const [visibleProducts, setVisibleProducts] = useState(6)
     let filteredProducts;
-
+    if (!Array.isArray(products)) {
+        console.error("Invalid products prop provided to ProductList");
+        return null; // or return a fallback UI
+    }
     if (selectedType === "") {
         filteredProducts = [...products];
 

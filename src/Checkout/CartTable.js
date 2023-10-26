@@ -84,7 +84,9 @@ useEffect(() => {
         <table className="mt-3">
           <thead>
             <tr>
+
               <th><p style={{ position: 'relative', top: '8px', left: '1rem' }}>Items</p></th>
+              <th><p>Name</p></th>
               <th>Price</th>
               <th></th>
               <th>Total</th>
@@ -93,6 +95,7 @@ useEffect(() => {
           <tbody>
             {cart.map((item, index) => (
               <tr key={index} style={{ borderBottom: '1px solid rgba(0, 0, 0, 0.4)', verticalAlign: 'middle' }}>
+                  <td><img style={{width:'6rem',height:"4rem", borderRadius:'5px'}} src={item.image} /></td>
                 <td><h5 style={{ marginLeft: '15px' }}>{item.name}</h5></td>
                 <td><p style={{ marginTop: '1rem' }}>{item.price}€</p></td>
                 <td style={{ display: 'flex', gap: '0.3rem', marginTop: '1rem' }}>
