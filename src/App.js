@@ -17,7 +17,7 @@ function App() {
   const [products, setProducts] = useState([]);
 
   const fetchInfo = () => {
-    fetch('http://localhost:5555/infos')
+    fetch('http://localhost:4242/infos')
       .then(response => {
         return response.json()
       })
@@ -32,7 +32,7 @@ function App() {
   })
 
   const fetchItems = () => {
-    fetch('http://localhost:5555/items')
+    fetch('http://localhost:4242/items')
       .then(response => {
         return response.json()
       })
@@ -41,7 +41,7 @@ function App() {
       })
   }
   const fetchProducts = () =>  {
-    fetch('http://localhost:5555/products')
+    fetch('http://localhost:4242/products')
     .then(response => {
       return response.json()
     })
