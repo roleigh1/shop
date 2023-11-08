@@ -55,8 +55,11 @@ useEffect(() => {
    
     }
     try {
-      const response = await fetch('http://localhost:4242/create-checkout-session', {
+      const response = await fetch('http://localhost:4242/api/create-checkout-session', {
         method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
         headers: {
           'Content-Type': 'application/json'
         },
