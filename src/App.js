@@ -18,18 +18,18 @@ function App() {
 
   const fetchInfo = () => {
     fetch('http://localhost:4242/api/infos')
-      .then(response => {
-        return response.json()
-      })
-      .then(data => {
-        setInfos(data)
-      })
+    .then(response => response.json())
+    .then(data => {
+        // Angenommen, 'data' ist das Objekt mit dem Array in 'result'
+        setInfos(data.result); // Stellen Sie sicher, dass 'setInfos' das Array speichert
+    })
+    .catch(error => console.error('Error:', error));
   }
   useEffect(() => {
     fetchInfo()
     fetchItems()
     fetchProducts()
-  })
+  },[])
 
   const fetchItems = () => {
     fetch('http://localhost:4242/api/items')
