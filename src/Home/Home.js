@@ -47,7 +47,7 @@ function Home({ items, infos }) {
       <Row style={{ marginTop: '2rem',}}>
         <SeasonList  infos={infos} />
       </Row>
-      <Row style={{ marginTop: '-1rem', backgroundColor: '#E0E0E0' }}>
+      <Row style={{ marginTop: '-1rem', backgroundColor: '#E0E0E0',borderRadius:"10px" }}>
         <Col xs={{ span: 6, offset: 3 }} className="d-flex justify-content-center">
           <ContactForm className="contactForm" />
         </Col>

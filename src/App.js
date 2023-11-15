@@ -16,42 +16,41 @@ function App() {
   const [items, setItems] = useState([])
   const [products, setProducts] = useState([]);
 
+
+
+
   const fetchInfo = () => {
-    fetch('http://localhost:4242/api/infos')
-    .then(response => response.json())
+    fetch('http://localhost:4242/api/CardInfos')
+    .then(res => res.json())
     .then(data => {
-        // Angenommen, 'data' ist das Objekt mit dem Array in 'result'
-        setInfos(data.result); // Stellen Sie sicher, dass 'setInfos' das Array speichert
+        
+        setInfos(data.result); 
     })
     .catch(error => console.error('Error:', error));
   }
+
+
+  const fetchItems = () => {
+    fetch('http://localhost:4242/api/BestsellerItems')
+      .then(res =>  res.json())
+      .then(data => {
+        setItems(data.result);
+      })
+  }
+  const fetchProducts = () =>  {
+    fetch('http://localhost:4242/api/Products')
+    .then(res => res.json()
+    .then(data => {
+      setProducts(data.result);
+    }))
+  }
+
+
   useEffect(() => {
     fetchInfo()
     fetchItems()
     fetchProducts()
   },[])
-
-  const fetchItems = () => {
-    fetch('http://localhost:4242/api/items')
-      .then(response => {
-        return response.json()
-      })
-      .then(data => {
-        setItems(data);
-      })
-  }
-  const fetchProducts = () =>  {
-    fetch('http://localhost:4242/api/products')
-    .then(response => {
-      return response.json()
-    })
-    .then(data => {
-      setProducts(data);
-    })
-  }
-
-
-
 
 
   return (

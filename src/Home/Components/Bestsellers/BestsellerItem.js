@@ -55,7 +55,7 @@ export default function BestSellerItem({ item }) {
         <MDBContainer fluid className="my-5 text-center">
             <MDBRow>
                 <MDBCol md='12' lg='7' className="mb-4">
-                    <MDBCard className="card" style={{ height: '23rem', width: '10rem', border: highlight  ? "2px solid #00FF00" : "none"}}>
+                    <MDBCard className="card" style={{ height: '23rem', width: '10rem', border: highlight  ? "2px solid #00FF00" : "none", borderRadius:"10px"}}>
                         <MDBRipple
                             rippleColor="light"
                             rippleTag='div'
@@ -65,7 +65,7 @@ export default function BestSellerItem({ item }) {
                                 src={item.image}
                                 fluid
                                 className="w-100 "
-                                style={{ height: '6.5rem' }}
+                                style={{ height: '6.5rem',borderRadius:"10px" }}
                             />
                             <a href="#!">
                                 <div className="mask">
