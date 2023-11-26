@@ -49,9 +49,7 @@ export default function ProductItem({ product }) {
             setTimeout(() => {
                 setHighlight(false);
             }, 3000)
-        } else {
-            console.log('test');
-        }
+   
     };
 
 
@@ -117,4 +115,5 @@ export default function ProductItem({ product }) {
             </MDBRow>
         </MDBContainer>
     )
+    }
 }

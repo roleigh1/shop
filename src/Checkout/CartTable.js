@@ -7,15 +7,13 @@ import Decimal from "decimal.js";
 import "./styles.css";
 import PickupDate from "./SelectedDate";
 import SelectLocation from "./SelectLocation";
+
 export default function CartTable() {
-
-
   const Message = ({ message }) => (
     <section>
       <p>{message}</p>
     </section>
   );
-
 
   const [message, setMessage] = useState("");
   const { cart, updateQuantity, removeFromCart, totalValue } = useCart();
@@ -23,36 +21,25 @@ export default function CartTable() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [showError, setShowError] = useState(false);
 
-useEffect(() => {
-  if(selectLocation || selectedDate) {
-    setShowError(false);
-  }
-},[selectLocation,selectedDate]);
-
-
   useEffect(() => {
     const query = new URLSearchParams(window.location.search);
+    const successMessage = "Order placed! You will receive an email confirmation.";
+    const canceledMessage = "Order canceled -- continue to shop around and checkout when you're ready.";
 
-    if (query.get("success")) {
-      setMessage("Order placed! You will receive an email confirmation.");
+    const status = query.get("success") ? "success" : query.get("canceled") ? "canceled" : null;
+
+    if (status) {
+      setMessage(status === "success" ? successMessage : canceledMessage);
     }
-
-    if (query.get("canceled")) {
-      setMessage(
-        "Order canceled -- continue to shop around and checkout when you're ready."
-      );
+    if (selectLocation || selectedDate) {
+      setShowError(false);
     }
-  }, []);
-    
-    
-
-
+  }, [selectLocation, selectedDate]);
 
   const handleCheckout = async () => {
-    if(!selectedDate || !selectLocation){
-      setShowError(true); 
+    if (!selectedDate && !selectLocation) {
+      setShowError(true);
       return;
-   
     }
     try {
       const response = await fetch('http://localhost:4242/api/create-checkout-session', {
@@ -63,10 +50,9 @@ useEffect(() => {
         headers: {
           'Content-Type': 'application/json'
         },
-      
-        body: JSON.stringify({ cart: cart, selectLocation: selectLocation , selectedDate: selectedDate})
+        body: JSON.stringify({ cart: cart, selectLocation: selectLocation, selectedDate: selectedDate })
       });
-  
+
       const data = await response.json();
       if (data.url) {
         window.location.href = data.url;
@@ -81,15 +67,18 @@ useEffect(() => {
   }
 
   return (
-    <Container >
+    <Container>
       <Row>
         <h1 className="text-center mt-3">Your Purchase</h1>
         <table className="mt-3">
           <thead>
             <tr>
-
-              <th><p style={{ position: 'relative', top: '8px', left: '1rem' }}>Items</p></th>
-              <th><p>Name</p></th>
+              <th>
+                <p style={{ position: 'relative', top: '8px', left: '1rem' }}>Items</p>
+              </th>
+              <th>
+                <p>Name</p>
+              </th>
               <th>Price</th>
               <th></th>
               <th>Total</th>
@@ -98,7 +87,7 @@ useEffect(() => {
           <tbody>
             {cart.map((item, index) => (
               <tr key={index} style={{ borderBottom: '1px solid rgba(0, 0, 0, 0.4)', verticalAlign: 'middle' }}>
-                  <td><img style={{width:'6rem',height:"4rem", borderRadius:'5px'}} src={item.image} /></td>
+                <td><img style={{ width: '6rem', height: "4rem", borderRadius: '5px', objectFit: "cover" }} src={item.image} alt={item.name} /></td>
                 <td><h5 style={{ marginLeft: '15px' }}>{item.name}</h5></td>
                 <td><p style={{ marginTop: '1rem' }}>{item.price}€</p></td>
                 <td style={{ display: 'flex', gap: '0.3rem', marginTop: '1rem' }}>
@@ -114,28 +103,28 @@ useEffect(() => {
         </table>
 
         <Row className="mt-5 flex-column align-items-center text-center endCont">
-          { showError  && <p style={{color: 'red', marginTop: '1rem' }}>Choose a pickup location & date</p> }
+          {showError && <p style={{ color: 'red', marginTop: '1rem' }}>Choose a pickup location & date</p>}
           <Col md={3} className="mb-3 ">
-            <PickupDate 
-            selectedDate={selectedDate}
-            setSelectedDate={setSelectedDate}
+            <PickupDate
+              selectedDate={selectedDate}
+              setSelectedDate={setSelectedDate}
             />
           </Col>
 
           <Col>
-            <SelectLocation 
-             selectLocation={selectLocation}  
-             setSelectedLocation={setSelectedLocation} />
+            <SelectLocation
+              selectLocation={selectLocation}
+              setSelectedLocation={setSelectedLocation}
+            />
           </Col>
           <Col className="">
-            <MDBBtn  onClick={handleCheckout} color="danger" style={{ width: '7rem', height: '2rem', textTransform: 'none', paddingTop: '0px', color: 'white', fontWeight: 'bold', letterSpacing: '1px', marginTop: "1.25rem" }}>Checkout</MDBBtn>
+            <MDBBtn onClick={handleCheckout} color="danger" style={{ width: '7rem', height: '2rem', textTransform: 'none', paddingTop: '0px', color: 'white', fontWeight: 'bold', letterSpacing: '1px', marginTop: "1.25rem" }}>Checkout</MDBBtn>
           </Col>
           <Col sm={6} className=" ">
-            <p style={{ marginTop: "2rem" }}>Total:{totalValue}</p>
+            <p style={{ marginTop: "2rem" }}>Total: {totalValue}</p>
           </Col>
         </Row>
       </Row>
     </Container>
-
   );
 }
