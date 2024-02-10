@@ -12,11 +12,16 @@ import ContactForm from './Components/Contact/ContactForm'
 import BestSellerList from './Components/Bestsellers/BestSellerList';
 import { useLocation } from 'react-router-dom';
 import { useCart } from '../CartContext';
+
+
 import Alert from './Components/Alert/Alert';
-function Home({ items, infos }) {
+
+function Home({ items, infos,products }) {
+
   const location = useLocation();
   const { setCart } = useCart();
   const [success, setSuccess] = useState(false);
+  console.log("products im Home",test)
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
@@ -53,9 +58,7 @@ function Home({ items, infos }) {
         </Col>
       </Row>
       <Row style={{ marginTop: '-2rem', }}>
-
         <BestSellerList items={items} />
-
       </Row>
       <Row>
         <Footer></Footer>

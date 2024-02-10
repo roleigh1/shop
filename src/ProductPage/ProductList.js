@@ -11,7 +11,7 @@ import ProductItem from "./ProductItem";
 export default function ProductList({ products }) {
 
     const [selectedType, setSelectedType] = useState("");
-    const [visibleProducts, setVisibleProducts] = useState(6)
+    const [visibleProducts, setVisibleProducts] = useState(4)
     let filteredProducts;
  
     if (selectedType === "") {

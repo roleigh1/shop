@@ -1,4 +1,4 @@
-import "./style.css"
+
 import React, { useState } from "react";
 import { useCart } from "../CartContext";
 import 'bootstrap/dist/css/bootstrap.css';
@@ -13,26 +13,21 @@ import {
     MDBRipple,
 } from "mdb-react-ui-kit";
 import Button from '@mui/joy/Button';
-import { Add } from "@mui/icons-material";
-import './style.css'
+import Add from '@mui/icons-material/Add';
 
-export default function ProductItem({ product }) {
 
-    const [inputValue, setInputValue] = useState(1);
-    const [highlight, setHighlight] = useState(false); 
-    
+export default function PItem({ product }) {
+    const [inputValue, setInputValue] = useState("1");
+    const [highlight , setHighlight] = useState(false);
+
+
     const handleInputChange = (event) => {
         const value = event.target.value;
-
         setInputValue(value);
-
-
-    }
-
+    };
     const result = Number(inputValue) * product.price;
 
     const { addToCart } = useCart();
-    
     const handleAddToCart = () => {
         const cartItem = {
             name: product.name,
@@ -42,23 +37,25 @@ export default function ProductItem({ product }) {
         }
         if (Number(inputValue) > 0) {
             addToCart(cartItem);
-            setInputValue('');
-
-            setHighlight(true);
+            setInputValue(''); 
+            setHighlight(true); 
 
             setTimeout(() => {
-                setHighlight(false);
-            }, 3000)
-   
+            setHighlight(false);
+            },    3000);
+        } else {
+            console.log('test');
+        }
+
     };
 
 
 
     return (
-        <MDBContainer fluid className="my-5 text-center" >
+        <MDBContainer fluid className="my-5 text-center">
             <MDBRow>
                 <MDBCol md='12' lg='7' className="mb-4">
-                    <MDBCard className="card" style={{ height: '23rem', width: '10rem' , border: highlight  ? "2px solid #00FF00" : "none"}}>
+                    <MDBCard className="card" style={{ height: '23rem', width: '10rem', border: highlight  ? "2px solid #00FF00" : "none", borderRadius:"10px"}}>
                         <MDBRipple
                             rippleColor="light"
                             rippleTag='div'
@@ -68,10 +65,10 @@ export default function ProductItem({ product }) {
                                 src={product.image}
                                 fluid
                                 className="w-100 "
-                                style={{ height: '6.5rem', objectFit:"cover"}}
+                                style={{ height: '6.5rem',borderRadius:"10px" , objectFit:"cover"}}
                             />
                             <a href="#!">
-                             
+                               
                                 <div className="hover-overlay">
                                     <div className="mask"
                                         style={{ backgroundColor: "rgba(251, 251, 251, 0.15)" }}></div>
@@ -98,16 +95,16 @@ export default function ProductItem({ product }) {
                                     id="inputValue"
                                     onChange={handleInputChange}
                                     value={inputValue}
-                                    style={{ width: '2.8rem', textAlign: 'center', border: '1px solid grey', position: 'relative', display: 'block', margin: '0 auto', top: '4px' }}
+                                    style={{ width: '2.8rem', textAlign: 'center', position: 'relative', display: 'block', margin: '0 auto', top: '4px' }}
                                     type="number"
                                 />
-                             </div>
+                            </div>
 
                             <Button onClick={handleAddToCart}
                                 style={{ marginTop: '1rem' }}
-                                startDecorator={highlight ? null : <Add />}
+                                startDecorator={ highlight ? null : <Add />}
                             >
-                                {highlight ? "Added!" : "Add to cart" }
+                                {highlight ? "Added!" : "Add to cart"}
                             </Button>
                         </MDBCardBody>
                     </MDBCard>
@@ -115,5 +112,5 @@ export default function ProductItem({ product }) {
             </MDBRow>
         </MDBContainer>
     )
-    }
 }
+    

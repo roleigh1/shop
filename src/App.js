@@ -5,7 +5,9 @@ import CartPage from './Checkout/CartPage';
 import { CartProvider } from './CartContext';
 import { useState, useEffect } from 'react';
 import ProductPage from './ProductPage/ProductPage';
-
+const cardInfoURL = process.env.REACT_APP_API_CARDINFOS
+const itemsURL= process.env.REACT_APP_API_ITEMS
+const productsURL= process.env.REACT_APP_API_PRODUCTS
 
 
 
@@ -20,7 +22,7 @@ function App() {
 
 
   const fetchInfo = () => {
-    fetch('http://localhost:4242/api/CardInfos')
+    fetch(cardInfoURL)
     .then(res => res.json())
     .then(data => {
         
@@ -31,14 +33,14 @@ function App() {
 
 
   const fetchItems = () => {
-    fetch('http://localhost:4242/api/BestsellerItems')
+    fetch(itemsURL)
       .then(res =>  res.json())
       .then(data => {
         setItems(data.result);
       })
   }
   const fetchProducts = () =>  {
-    fetch('http://localhost:4242/api/Products')
+    fetch(productsURL)
     .then(res => res.json()
     .then(data => {
       setProducts(data.result);
@@ -58,7 +60,7 @@ function App() {
     <CartProvider>
       <Router>
         <Routes>
-          <Route path="/" element={<Home items={items} infos={infos} />} />
+          <Route path="/" element={<Home items={items} infos={infos} products={products}/>} />
           <Route path="/cartpage" element={<CartPage />} />
           <Route path='/products' element={<ProductPage products={products} />} />
 

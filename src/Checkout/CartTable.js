@@ -7,7 +7,7 @@ import Decimal from "decimal.js";
 import "./styles.css";
 import PickupDate from "./SelectedDate";
 import SelectLocation from "./SelectLocation";
-
+const checkOutURL = process.env.REACT_APP_API_CREATECHECKOUT
 export default function CartTable() {
   const Message = ({ message }) => (
     <section>
@@ -42,7 +42,7 @@ export default function CartTable() {
       return;
     }
     try {
-      const response = await fetch('http://localhost:4242/api/create-checkout-session', {
+      const response = await fetch(checkOutURL, {
         method: 'POST',
         mode: 'cors',
         cache: 'no-cache',
