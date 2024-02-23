@@ -16,12 +16,12 @@ import { useCart } from '../CartContext';
 
 import Alert from './Components/Alert/Alert';
 
-function Home({ items, infos,products }) {
+function Home({ items, infos }) {
 
   const location = useLocation();
   const { setCart } = useCart();
   const [success, setSuccess] = useState(false);
-  console.log("products im Home",test)
+
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
