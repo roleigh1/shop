@@ -65,7 +65,7 @@ export default function BestSellerItem({ item }) {
                                 src={item.image}
                                 fluid
                                 className="w-100 "
-                                style={{ height: '6.5rem',borderRadius:"10px" }}
+                                style={{ height: '6.5rem',borderRadius:"10px" ,objectFit:"cover"}}
                             />
                             <a href="#!">
                                 <div className="mask">

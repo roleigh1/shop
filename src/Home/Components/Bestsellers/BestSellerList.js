@@ -8,6 +8,7 @@ import {
 import './style.css'
 import BestSellerItem from "./BestsellerItem";
 export default function BestSellerList({items}) {
+    console.log(items); 
     return (
         <MDBContainer fluid   
          className="my-5 text-center d-flex justify-content-center ">

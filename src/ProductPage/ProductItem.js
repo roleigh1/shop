@@ -53,9 +53,9 @@ export default function PItem({ product }) {
 
     return (
         <MDBContainer fluid className="my-5 text-center">
-            <MDBRow>
-                <MDBCol md='12' lg='7' className="mb-4">
-                    <MDBCard className="card" style={{ height: '23rem', width: '10rem', border: highlight  ? "2px solid #00FF00" : "none", borderRadius:"10px"}}>
+            <MDBRow style={{display:"flex" , justifyContent:"center", alignContent:"center"}} >
+                <MDBCol md='12' lg='7' style={{display:"flex" , justifyContent:"center", alignContent:"center"}}>
+                    <MDBCard className="card"  style={{ height: '23rem', minWidth: '10rem', border: highlight  ? "2px solid #00FF00" : "none", borderRadius:"10px"}}>
                         <MDBRipple
                             rippleColor="light"
                             rippleTag='div'

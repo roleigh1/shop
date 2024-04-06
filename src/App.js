@@ -22,7 +22,7 @@ function App() {
 
 
   const fetchInfo = () => {
-    fetch(cardInfoURL)
+    fetch("http://localhost:4242/api/CardInfos")
     .then(res => res.json())
     .then(data => {
         
@@ -33,14 +33,14 @@ function App() {
 
 
   const fetchItems = () => {
-    fetch(itemsURL)
+    fetch("http://localhost:4242/api/BestsellerItems")
       .then(res =>  res.json())
       .then(data => {
         setItems(data.result);
       })
   }
   const fetchProducts = () =>  {
-    fetch(productsURL)
+    fetch("http://localhost:4242/api/Products")
     .then(res => res.json()
     .then(data => {
       setProducts(data.result);
@@ -52,6 +52,7 @@ function App() {
     fetchInfo()
     fetchItems()
     fetchProducts()
+    console.log("Infos:",infos);
   },[])
 
 
