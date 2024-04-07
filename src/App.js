@@ -4,6 +4,7 @@ import Home from './Home/Home';
 import CartPage from './Checkout/CartPage';
 import { CartProvider } from './CartContext';
 import { useState, useEffect } from 'react';
+import "./app.css";
 import ProductPage from './ProductPage/ProductPage';
 const cardInfoURL = process.env.REACT_APP_API_CARDINFOS
 const itemsURL= process.env.REACT_APP_API_ITEMS
