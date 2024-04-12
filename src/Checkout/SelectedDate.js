@@ -15,8 +15,9 @@ export default function PickupDate({selectedDate,setSelectedDate}){
   
     return (
         <div>
-            <p>Pickup date:</p>
+            <p style={{marginBottom:"-0.1rem"}}>Pickup date:</p>
             <DatePicker
+              style={{}}
               selected={selectedDate}
               onChange={handleDateChange}
               filterDate={(date) => !isWeekend(date)}

@@ -6,9 +6,7 @@ import { CartProvider } from './CartContext';
 import { useState, useEffect } from 'react';
 import "./app.css";
 import ProductPage from './ProductPage/ProductPage';
-const cardInfoURL = process.env.REACT_APP_API_CARDINFOS
-const itemsURL= process.env.REACT_APP_API_ITEMS
-const productsURL= process.env.REACT_APP_API_PRODUCTS
+
 
 
 
@@ -21,31 +19,36 @@ function App() {
 
 
 
+  const api_base_url = process.env.REACT_APP_API_BASEURL;
 
-  const fetchInfo = () => {
-    fetch("http://localhost:4242/api/CardInfos")
-    .then(res => res.json())
-    .then(data => {
-        
-        setInfos(data.result); 
-    })
-    .catch(error => console.error('Error:', error));
+  const fetchInfo = async () => {
+      try {
+          const res = await fetch(api_base_url  + "/CardInfos");
+          const data = await res.json();
+          setInfos(data.result);
+      } catch (error) {
+          console.error('Error fetching CardInfos:', error);
+      }
   }
-
-
-  const fetchItems = () => {
-    fetch("http://localhost:4242/api/BestsellerItems")
-      .then(res =>  res.json())
-      .then(data => {
-        setItems(data.result);
-      })
+  
+  const fetchItems = async () => {
+      try {
+          const res = await fetch(api_base_url  + "/BestsellerItems");
+          const data = await res.json();
+          setItems(data.result);
+      } catch (error) {
+          console.error('Error fetching BestsellerItems:', error);
+      }
   }
-  const fetchProducts = () =>  {
-    fetch("http://localhost:4242/api/Products")
-    .then(res => res.json()
-    .then(data => {
-      setProducts(data.result);
-    }))
+  
+  const fetchProducts = async () => {
+      try {
+          const res = await fetch(api_base_url  + "/Products");
+          const data = await res.json();
+          setProducts(data.result);
+      } catch (error) {
+          console.error('Error fetching Products:', error);
+      }
   }
 
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { MDBFooter, MDBContainer, MDBRow, MDBCol, MDBIcon } from 'mdb-react-ui-kit';
-
+import ContactForm from '../Contact/ContactForm';
 export default function Footer() {
     return (
         <MDBFooter style={{fontSize:'12px'}} bgColor='light' className='text-center text-lg-start text-muted'>
@@ -43,21 +43,15 @@ export default function Footer() {
 
                         <MDBCol md='3' lg='2' xl='2' className='mx-auto mb-4'>
                             <h6 className=' fw-bold mb-4'>Useful links</h6>
+                      
                             <p>
-                                <a href='#!' className='text-reset'>
-                                    Products
-                                </a>
-                            </p>
-                            <p>
-                                <a href='#!' className='text-reset'>
+                                <a href='' className='text-reset'>
                                     Contact us
                                 </a>
                             </p>
 
                             <p>
-                                <a href='#!' className='text-reset'>
-                                    Impressum
-                                </a>
+                              
                             </p>
                         </MDBCol>
 

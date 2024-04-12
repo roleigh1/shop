@@ -104,24 +104,25 @@ export default function CartTable() {
 
         <Row className="mt-5 flex-column align-items-center text-center endCont">
           {showError && <p style={{ color: 'red', marginTop: '1rem' }}>Choose a pickup location & date</p>}
-          <Col md={3} className="mb-3 ">
-            <PickupDate
-              selectedDate={selectedDate}
-              setSelectedDate={setSelectedDate}
+          <Col md={3} className="">
+          
+              <SelectLocation
+               selectLocation={selectLocation}
+              setSelectedLocation={setSelectedLocation}
             />
           </Col>
 
           <Col>
-            <SelectLocation
-              selectLocation={selectLocation}
-              setSelectedLocation={setSelectedLocation}
+          <PickupDate
+              selectedDate={selectedDate}
+              setSelectedDate={setSelectedDate}
             />
           </Col>
           <Col className="">
-            <MDBBtn onClick={handleCheckout} color="danger" style={{ width: '7rem', height: '2rem', textTransform: 'none', paddingTop: '0px', color: 'white', fontWeight: 'bold', letterSpacing: '1px', marginTop: "1.25rem" }}>Checkout</MDBBtn>
+            <MDBBtn onClick={handleCheckout} color="danger" style={{ width: '7rem', height: '2rem', textTransform: 'none', paddingTop: '3px', color: 'white', fontWeight: 'bold', letterSpacing: '1px', marginTop: "1rem" }}>Checkout</MDBBtn>
           </Col>
           <Col sm={6} className=" ">
-            <p style={{ marginTop: "2rem" }}>Total: {totalValue}</p>
+            <p style={{ marginTop: "0.5rem" }}>Total: {totalValue}</p>
           </Col>
         </Row>
       </Row>

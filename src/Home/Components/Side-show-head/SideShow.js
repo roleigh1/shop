@@ -3,7 +3,7 @@ import React from 'react';
 
 
 function SlideShow() {
-  const img = 'banner_Home.jpg';
+  
 
   return (
     <section className="bg-image_1" style={{
@@ -18,7 +18,7 @@ function SlideShow() {
         left: 0,
         right: 0,
         bottom: -30,
-        backgroundImage: `url(${img})`,
+        backgroundImage: `url('http://localhost:3131/uploads/banner_Home.jpg')`,
         backgroundSize: "cover",
         backgroundPosition: "center",
        
