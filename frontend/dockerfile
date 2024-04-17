@@ -1,0 +1,23 @@
+# Verwende ein Basis-Image mit Node.js
+FROM node:20-alpine
+
+# Setze das Arbeitsverzeichnis im Container
+WORKDIR /app
+
+# Kopiere die Abhängigkeiten
+COPY package*.json .
+
+# Installiere die Abhängigkeiten
+RUN npm install
+
+# Kopiere den Rest des Frontend-Codes
+COPY . .
+
+# Befehl zum Erstellen des Frontend-Builds
+RUN npm run build
+
+# Exponiere den Port für den Webserver (z.B. Nginx)
+EXPOSE 3000
+
+# Befehl zum Ausführen des Webservers (z.B. Nginx)
+CMD ["npm", "run","start"]

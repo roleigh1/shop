@@ -1,0 +1,23 @@
+{
+  "name": "meine-nodejs-app",
+  "version": "1.0.0",
+  "description": "Eine tolle Node.js-Anwendung",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "decimal.js": "^10.4.3",
+    "dotenv": "^16.3.1",
+    "express": "^4.19.2",
+    "googleapis": "^127.0.0",
+    "mongoose": "^7.5.3",
+    "mysql2": "^3.9.4",
+    "nodemailer": "^6.9.13",
+    "pg": "^8.11.3",
+    "sequelize": "^6.33.0",
+    "stripe": "^13.11.0"
+  }
+}

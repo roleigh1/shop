@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  backend:
+    build: ./backend         # Pfad zum Verzeichnis mit dem Dockerfile für das Backend
+    ports:
+      - "4242:4242"          # Portmapping für den Backend-Service
+    depends_on:
+      - database             # Abhängigkeit vom Datenbank-Service
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PW}  # Verwendung von Umgebungsvariablen für das Root-Passwort
+
+  frontend:
+    build: ./frontend        # Pfad zum Verzeichnis mit dem Dockerfile für das Frontend
+    ports:
+      - "3000:3000"              # Portmapping für den Frontend-Service
+    depends_on:
+      - backend              # Abhängigkeit vom Backend-Service
+
+  database:
+    image: mysql:5.7         # Verwendetes Docker-Image für die Datenbank
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PW}  # Verwendung von Umgebungsvariablen für das Root-Passwort
+      MYSQL_DATABASE: shopdb
