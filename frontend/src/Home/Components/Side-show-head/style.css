@@ -1,0 +1,10 @@
+@media screen and (max-width: 768px) {
+h3 {
+margin-top: 4rem;
+font-size: 24px;
+}
+p {
+    font-size:15px!important;
+}
+
+}

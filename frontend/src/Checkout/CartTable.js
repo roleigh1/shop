@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from "react";
-
 import { useCart } from "../CartContext";
-import { Row, Col, Container } from "react-bootstrap";
+import { Row, Col, Container, Form } from "react-bootstrap";
 import { MDBBtn } from "mdb-react-ui-kit";
 import Decimal from "decimal.js";
-import "./styles.css";
-import PickupDate from "./SelectedDate";
-import SelectLocation from "./SelectLocation";
-const checkOutURL = process.env.REACT_APP_API_CREATECHECKOUT
+import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from "react-datepicker";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+
+const checkOutURL = process.env.REACT_APP_API_CREATECHECKOUT;
+
 export default function CartTable() {
   const Message = ({ message }) => (
     <section>
@@ -19,47 +23,58 @@ export default function CartTable() {
   const { cart, updateQuantity, removeFromCart, totalValue } = useCart();
   const [selectLocation, setSelectedLocation] = useState("");
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [showError, setShowError] = useState(false);
+
 
   useEffect(() => {
     const query = new URLSearchParams(window.location.search);
-    const successMessage = "Order placed! You will receive an email confirmation.";
-    const canceledMessage = "Order canceled -- continue to shop around and checkout when you're ready.";
+    const successMessage =
+      "Order placed! You will receive an email confirmation.";
+    const canceledMessage =
+      "Order canceled -- continue to shop around and checkout when you're ready.";
 
-    const status = query.get("success") ? "success" : query.get("canceled") ? "canceled" : null;
+    const status = query.get("success")
+      ? "success"
+      : query.get("canceled")
+      ? "canceled"
+      : null;
 
     if (status) {
       setMessage(status === "success" ? successMessage : canceledMessage);
     }
-    if (selectLocation || selectedDate) {
-      setShowError(false);
-    }
-  }, [selectLocation, selectedDate]);
+  });
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
+
+  const handleSelectChange = (event) => {
+    setSelectedLocation(event.target.value);
+  };
 
   const handleCheckout = async () => {
-    if (!selectedDate && !selectLocation) {
-      setShowError(true);
-      return;
-    }
-    try {
-      const response = await fetch(checkOutURL, {
-        method: 'POST',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ cart: cart, selectLocation: selectLocation, selectedDate: selectedDate })
-      });
 
-      const data = await response.json();
-      if (data.url) {
-        window.location.href = data.url;
+      try {
+        const response = await fetch(checkOutURL, {
+          method: "POST",
+          mode: "cors",
+          cache: "no-cache",
+          credentials: "same-origin",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            cart: cart,
+            selectLocation: selectLocation,
+            selectedDate: selectedDate,
+          }),
+        });
+        const data = await response.json();
+        if (data.url) {
+          window.location.href = data.url;
+        }
+      } catch (error) {
+        console.error("Error during checkout:", error);
       }
-    } catch (error) {
-      console.error("Error during checkout:", error);
-    }
   };
 
   if (message) {
@@ -73,54 +88,157 @@ export default function CartTable() {
         <table className="mt-3">
           <thead>
             <tr>
-              <th>
-                <p style={{ position: 'relative', top: '8px', left: '1rem' }}>Items</p>
-              </th>
-              <th>
-                <p>Name</p>
-              </th>
-              <th>Price</th>
-              <th></th>
+              <th>Items</th>
+              <th>Name</th>
+              <th style={{}}>Price</th>
+              <th style={{ position: "relative", left: "1rem" }}>Qty</th>
               <th>Total</th>
             </tr>
           </thead>
           <tbody>
             {cart.map((item, index) => (
-              <tr key={index} style={{ borderBottom: '1px solid rgba(0, 0, 0, 0.4)', verticalAlign: 'middle' }}>
-                <td><img style={{ width: '6rem', height: "4rem", borderRadius: '5px', objectFit: "cover" }} src={item.image} alt={item.name} /></td>
-                <td><h5 style={{ marginLeft: '15px' }}>{item.name}</h5></td>
-                <td><p style={{ marginTop: '1rem' }}>{item.price}€</p></td>
-                <td style={{ display: 'flex', gap: '0.3rem', marginTop: '1rem' }}>
-                  <button style={{ fontWeight: 'bold', height: '1.5rem', width: '1rem', borderRadius: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center', paddingBottom: '10px' }} className="btn btn-danger" onClick={() => updateQuantity(item.name, -1)}>-</button>
-                  <p>{item.quantity}</p>
-                  <button className='btn btn-success' style={{ fontWeight: 'bold', height: '1.5rem', borderRadius: '50%', width: '1rem', display: 'flex', justifyContent: 'center', alignItems: 'center', paddingBottom: '10px' }} onClick={() => updateQuantity(item.name, 1)}>+</button>
+              <tr
+                key={index}
+                style={{
+                  borderBottom: "1px solid rgba(0, 0, 0, 0.4)",
+                  verticalAlign: "middle",
+                }}
+              >
+                <td>
+                  <img
+                    style={{
+                      width: "4rem",
+                      height: "3rem",
+                      borderRadius: "5px",
+                      objectFit: "cover",
+                    }}
+                    src={item.image}
+                    alt={item.name}
+                  />
                 </td>
-                <td><div>{new Decimal(item.price).times(item.quantity).toFixed(2)}€</div></td>
-                <td><button style={{ fontWeight: 'bold', height: '1.5rem', borderRadius: '50%', width: '1.5rem', display: 'flex', justifyContent: 'center', alignItems: 'center', paddingBottom: '9px' }} className='btn btn-danger' onClick={() => removeFromCart(item.name)}>x</button></td>
+                <td>{item.name}</td>
+                <td>{item.price}€</td>
+                <td
+                  style={{
+                    display: "flex",
+                    gap: "0.3rem",
+                    position: "relative",
+                    top: "0.8rem",
+                  }}
+                >
+                  <button
+                    style={{
+                      fontWeight: "bold",
+                      height: "1.5rem",
+                      width: "1rem",
+                      borderRadius: "50%",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      paddingBottom: "10px",
+                    }}
+                    className="btn btn-danger"
+                    onClick={() => updateQuantity(item.name, -1)}
+                  >
+                    -
+                  </button>
+                  {item.quantity}
+                  <button
+                    className="btn btn-success"
+                    style={{
+                      fontWeight: "bold",
+                      height: "1.5rem",
+                      borderRadius: "50%",
+                      width: "1rem",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      paddingBottom: "10px",
+                    }}
+                    onClick={() => updateQuantity(item.name, 1)}
+                  >
+                    +
+                  </button>
+                </td>
+                <td>
+                  {new Decimal(item.price).times(item.quantity).toFixed(2)}€
+                </td>
+                <td>
+                  <button
+                    style={{
+                      fontWeight: "bold",
+                      height: "1.5rem",
+                      borderRadius: "50%",
+                      width: "1.5rem",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      paddingBottom: "9px",
+                    }}
+                    className="btn btn-danger"
+                    onClick={() => removeFromCart(item.name)}
+                  >
+                    x
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
 
         <Row className="mt-5 flex-column align-items-center text-center endCont">
-          {showError && <p style={{ color: 'red', marginTop: '1rem' }}>Choose a pickup location & date</p>}
-          <Col md={3} className="">
-          
-              <SelectLocation
-               selectLocation={selectLocation}
-              setSelectedLocation={setSelectedLocation}
-            />
-          </Col>
+         
+          <form onSubmit={handleCheckout} style={{display:"flex",flexDirection:"column", justifyContent:"center",alignItems:"center", gap:"1rem"}}>
+            <Col md={3} className="">
+              <FormControl style={{ width: "10rem" }}>
+                <InputLabel id="demo-simple-select-label">Location</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={selectLocation}
+                  label="Pick a Location"
+                  onChange={handleSelectChange}
+                  required
+                >
+                  <MenuItem value={"Karmelitermarkt"}>Karmelitermarkt</MenuItem>
+                  <MenuItem value={"Vorgartenmarkt"}>Vorgartenmarkt</MenuItem>
+                  <MenuItem value={"Südtiroler Platz"}>
+                    Südtiroler Platz
+                  </MenuItem>
+                </Select>
+              </FormControl>
+            </Col>
 
-          <Col>
-          <PickupDate
-              selectedDate={selectedDate}
-              setSelectedDate={setSelectedDate}
-            />
-          </Col>
-          <Col className="">
-            <MDBBtn onClick={handleCheckout} color="danger" style={{ width: '7rem', height: '2rem', textTransform: 'none', paddingTop: '3px', color: 'white', fontWeight: 'bold', letterSpacing: '1px', marginTop: "1rem" }}>Checkout</MDBBtn>
-          </Col>
+            <Col>
+              <DatePicker
+                required
+             
+                selected={selectedDate}
+                onChange={handleDateChange}
+                filterDate={(date) =>
+                  date.getDay() !== 5 && date.getDay() !== 6
+                }
+              />
+            </Col>
+            <Col className="">
+              <MDBBtn
+           
+                color="danger"
+                style={{
+                  width: "7rem",
+                  height: "2rem",
+                  textTransform: "none",
+                  paddingTop: "3px",
+                  color: "white",
+                  fontWeight: "bold",
+                  letterSpacing: "1px",
+                  
+                }}
+              >
+                Checkout
+              </MDBBtn>
+            </Col>
+          </form>
           <Col sm={6} className=" ">
             <p style={{ marginTop: "0.5rem" }}>Total: {totalValue}</p>
           </Col>

@@ -4,7 +4,7 @@ const Decimail = require('decimal.js');
 const inserController = require('./insertController');
 
 const Decimal = require('decimal.js');
-const YOUR_DOMAIN = 'http://localhost:3000';
+const YOUR_DOMAIN = 'https://www.xn--grtnereileitner-0kb.at/#/';
 
 let selectedDate = null;
 let selectedLocation;
@@ -65,6 +65,8 @@ const endpointSecret = process.env.ENDPOINT_SECRET;
  
 const handleWebhook = async (request, response) => {
     const sig = request.headers['stripe-signature'];
+
+
     let event;
     try {
         event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);

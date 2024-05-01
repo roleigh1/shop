@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { MDBContainer, MDBRow, MDBCol } from "mdb-react-ui-kit";
 
 import "./style.css";
@@ -8,31 +8,34 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
+
 export default function ProductList({ products }) {
   const [selectedType, setSelectedType] = useState("");
   const [visibleProducts, setVisibleProducts] = useState(4);
   const [filteredProducts, setFilteredProducts] = useState([]);
 
+  const filterProducts = () => {
+    if (selectedType === "") {
+      return products;
+    } else {
+      return products.filter((product) => product.type === selectedType);
+    }
+  };
+
+  useEffect(() => {
+    const updatedFilteredProducts = filterProducts();
+    setFilteredProducts(updatedFilteredProducts);
+  }, [selectedType, products]);
+
+  // Funktion zum Laden weiterer Produkte
   const loadMoreProducts = () => {
     setVisibleProducts((prevCount) => prevCount + 6);
   };
 
+  // Handler für Änderungen des Filterauswahls
   const handleFilterChange = (event) => {
     setSelectedType(event.target.value);
   };
-
-  useEffect(() => {
-    const filterProducts = () => {
-      if (selectedType === "") {
-        return products;
-      } else {
-        return products.filter((product) => product.type === selectedType);
-      }
-    };
-
-    const updatedFilteredProducts = filterProducts();
-    setFilteredProducts(updatedFilteredProducts);
-  }, [selectedType, products]);
 
   return (
     <MDBContainer fluid className="text-center">

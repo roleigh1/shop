@@ -1,7 +1,7 @@
 import "react-slideshow-image/dist/styles.css";
 import React from 'react';
-
-
+import banner from "./banner_Home.jpg"
+import "./style.css"
 function SlideShow() {
   
 
@@ -18,7 +18,7 @@ function SlideShow() {
         left: 0,
         right: 0,
         bottom: -30,
-        backgroundImage: `url('http://localhost:3131/uploads/banner_Home.jpg')`,
+        backgroundImage: `url(${banner})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
        
@@ -27,9 +27,9 @@ function SlideShow() {
         borderRadius: "10px"
       }}></div>
 
-      <div className="content" style={{ color: "black",marginTop:"5rem" }}>
-        <h1 style={{ opacity: "0.7" }}>Fresh from the Fields of Simmering!</h1>
-        <h3 style={{ fontSize: "24px", opacity: "0.7"  }}>Dive into the rich flavors of homegrown vegetables and fruits by our dedicated gardeners from Simmering.<br /> Meet us at Karmelitermarkt, Südtiroler Platz, and Vorgarten Markt. <br />Taste nature's best, straight from our garden to your plate</h3>
+      <div className="content" style={{ color: "black",marginTop:"10rem" }}>
+        <h3  style={{ opacity: "0.7" }}>Fresh from the Fields of Simmering!</h3>
+        <p style={{ fontSize: "20px", opacity: "0.7"  }}>Dive into the rich flavors of homegrown vegetables and fruits by our dedicated gardeners from Simmering.<br /> Meet us at Karmelitermarkt, Südtiroler Platz, and Vorgarten Markt. <br />Taste nature's best, straight from our garden to your plate</p>
       </div>
 
     </section>

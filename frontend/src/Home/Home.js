@@ -7,7 +7,7 @@ import Logo from './Components/Logo/Logo'
 import Cart from './Components/Cart/Cart'
 import BurgerMenu from './Components/Burger/Menu'
 import SlideShow from './Components/Side-show-head/SideShow'
-import SeasonList from './Components/Products-Main/SeasonList';
+import SeasonList from './Components/SeasonItems/SeasonList';
 import ContactForm from './Components/Contact/ContactForm'
 import BestSellerList from './Components/Bestsellers/BestSellerList';
 import { useLocation } from 'react-router-dom';
@@ -38,8 +38,10 @@ function Home({ items, infos }) {
           <Logo />
         </Col>
         <Col xs='6' className='d-flex mt-5' style={{ display: 'flex', justifyContent: 'flex-end', }}>
+ 
           <Cart />
-          <BurgerMenu />
+          <BurgerMenu  />
+         
         </Col>
       </Row>
       <Row style={{ zIndex: 0 }}>

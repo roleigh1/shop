@@ -46,7 +46,7 @@ export default function BestSellerItem({ item }) {
         } else {
             console.log('test');
         }
-
+        setInputValue("1")
     };
 
 

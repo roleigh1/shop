@@ -1,43 +1,54 @@
-import React , {useState} from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Hamburger from "./Hamburger";
 function BurgerMenu() {
-    const [hamburgerOpen, setHamburgerOpen] = useState(false);
+  const [hamburgerOpen, setHamburgerOpen] = useState(false);
 
-    const toggleHamburger = () => {
-            setHamburgerOpen(!hamburgerOpen)
-    }
-   
+  const toggleHamburger = () => {
+    setHamburgerOpen(!hamburgerOpen);
+  };
 
-    return (
-        <div>
-        
-            <div className="navigation">
-                <ul>
-                    <li><Link style={{textDecoration:'none',color:'white'}} to='/'>Home</Link> </li>
-                    <li> <Link style={{textDecoration:'none',color:'white'}} to='/products'>Products</Link></li>
-                    <li>Contact us</li>
-                
-                </ul>
-                <div className="hamburger" onClick={toggleHamburger}>
-                    <Hamburger isOpen={hamburgerOpen}/>
-                </div>
-            </div>
-        
-       <style >{`
+  return (
+    <div>
+      <div className="navigation">
+        <ul>
+          <li>
+            <Link style={{ textDecoration: "none", color: "white" }} to="/">
+              Home
+            </Link>{" "}
+          </li>
+          <li>
+            {" "}
+            <Link
+              style={{ textDecoration: "none", color: "white" }}
+              to="/products"
+            >
+              Products
+            </Link>
+          </li>
+        </ul>
+        <div className="hamburger" onClick={toggleHamburger}>
+          <Hamburger isOpen={hamburgerOpen} />
+        </div>
+      </div>
+
+      <style>{`
      
   
     .navigation {
-      
+
+  
     }
     .navigation ul li{
         list-style-type: none;
         
+        
     }
     li {
         text-align: center;
-        position: relative;
-        top:25%;
+        position:relative;
+        top:30%;
+     
         
     }
     li:hover {
@@ -59,7 +70,7 @@ function BurgerMenu() {
 
     
     `}</style>
-       </div>
-    )
+    </div>
+  );
 }
 export default BurgerMenu;

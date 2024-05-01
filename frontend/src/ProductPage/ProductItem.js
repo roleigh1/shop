@@ -46,7 +46,7 @@ export default function PItem({ product }) {
         } else {
             console.log('test');
         }
-
+        setInputValue('1');
     };
 
 

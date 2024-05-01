@@ -13,7 +13,7 @@ services:
   frontend:
     build: ./frontend        # Pfad zum Verzeichnis mit dem Dockerfile für das Frontend
     ports:
-      - "3000:3000"              # Portmapping für den Frontend-Service
+      - "3000:80"              # Portmapping für den Frontend-Service
     depends_on:
       - backend              # Abhängigkeit vom Backend-Service
 

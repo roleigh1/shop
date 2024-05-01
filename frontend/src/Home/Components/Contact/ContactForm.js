@@ -4,6 +4,9 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
 const ContactForm = () => {
+
+  const contactUrl = process.env.REACT_APP_POST_CONTACT;
+
   const [status, setStatus] = useState("Submit");
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,7 +18,7 @@ const ContactForm = () => {
       message: message.value,
     };
     console.log(details)
-    let response = await fetch("http://185.211.61.155:4242/api/contact", {
+    let response = await fetch(contactUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
@@ -24,7 +27,8 @@ const ContactForm = () => {
     });
     setStatus("Submit");
     let result = await response.json();
-    alert(result.status);
+    alert("message sent");
+ 
   };
   return (
     <div>

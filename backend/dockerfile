@@ -13,8 +13,14 @@ RUN npm install
 # Kopiere den Rest des Backend-Codes
 COPY . .
 
+# Kopiere den Ordner mit den Bildern in das Arbeitsverzeichnis im Container
+COPY uploads /app/uploads
 # Exponiere den Port, auf dem der Server läuft
 EXPOSE 4242
+
+# SSL-Cert and key
+COPY ssl/server.crt /etc/ssl/certs/server.crt
+COPY ssl/server.key /etc/ssl/private/server.key
 
 # Befehl zum Ausführen des Servers
 CMD ["npm", "start"]
