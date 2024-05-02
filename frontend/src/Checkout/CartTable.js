@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useCart } from "../CartContext";
-import { Row, Col, Container, Form } from "react-bootstrap";
+import { Row, Col, Container} from "react-bootstrap";
 import { MDBBtn } from "mdb-react-ui-kit";
 import Decimal from "decimal.js";
 import "react-datepicker/dist/react-datepicker.css";
@@ -41,7 +41,7 @@ export default function CartTable() {
     if (status) {
       setMessage(status === "success" ? successMessage : canceledMessage);
     }
-  });
+  },[]);
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -80,7 +80,10 @@ export default function CartTable() {
   if (message) {
     return <Message message={message} />;
   }
-
+  function isWeekend(date) {
+    const day = date.getDay();
+    return day !== 5 && day !== 6;
+  }
   return (
     <Container>
       <Row>
@@ -215,9 +218,7 @@ export default function CartTable() {
              
                 selected={selectedDate}
                 onChange={handleDateChange}
-                filterDate={(date) =>
-                  date.getDay() !== 5 && date.getDay() !== 6
-                }
+                filterDate={(date) => !isWeekend(date)}
               />
             </Col>
             <Col className="">

@@ -70,7 +70,12 @@ function generateEmailTemplate(order, lineItems) {
                 <th>Price</th>
                 <th>Total Price</th>
             </tr>
+            <tr>
+            <td>
             ${tableRows}
+            </td>
+    
+            </tr>
         </table>
         <strong>Total Price: € ${order.dataValues.total}</strong>
         <hr size="1.5px" color="black" />
