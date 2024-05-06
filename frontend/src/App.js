@@ -13,7 +13,16 @@ function App() {
   const [products, setProducts] = useState([]);
 
   const api_base_url = process.env.REACT_APP_API_BASEURL;
-
+  const countVisitor = async () => {
+    try{
+      const res = await fetch("http://localhost:3131/api/vistors",{
+        method:"POST",
+      }); 
+      const data =  await res.json(); 
+    } catch (error){
+      console.error("countVisitor",error); 
+    }
+  }
   const fetchInfo = async () => {
       try {
           const res = await fetch(api_base_url  + "/CardInfos");
@@ -48,6 +57,7 @@ function App() {
     fetchInfo()
     fetchItems()
     fetchProducts()
+    countVisitor()
   },[])
 
   return (
