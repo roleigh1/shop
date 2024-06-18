@@ -5,7 +5,7 @@ function Logo() {
   return (
     <div>
       <Link style={{ textDecoration: "none", color: "white" }} to="/">
-          <img
+        <img
           src={logo}
           className="App-logo"
           alt="logo"

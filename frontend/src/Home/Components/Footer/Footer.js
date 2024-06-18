@@ -6,9 +6,8 @@ import {
   MDBCol,
   MDBIcon,
 } from "mdb-react-ui-kit";
-import { Link } from "react-router-dom";
 
-export default function Footer() {
+const Footer = () => {
   return (
     <MDBFooter
       style={{ fontSize: "12px" }}
@@ -21,16 +20,16 @@ export default function Footer() {
         </div>
 
         <div>
-          <a href="https://www.facebook.com" className="me-4 text-reset">
+          <a href="www.facebook.com" className="me-4 text-reset">
             <MDBIcon color="secondary" fab icon="facebook-f" />
           </a>
-          <a href="https://www.twitter.com" className="me-4 text-reset">
+          <a href="www.twitter.com" className="me-4 text-reset">
             <MDBIcon color="secondary" fab icon="twitter" />
           </a>
-          <a href="https://www.google.com" className="me-4 text-reset">
+          <a href="www.google.com" className="me-4 text-reset">
             <MDBIcon color="secondary" fab icon="google" />
           </a>
-          <a href="https://www.instagram.com" className="me-4 text-reset">
+          <a href="www.instagram.com" className="me-4 text-reset">
             <MDBIcon color="secondary" fab icon="instagram" />
           </a>
         </div>
@@ -42,21 +41,22 @@ export default function Footer() {
             <MDBCol md="3" lg="4" xl="3" className="mx-auto mb-4">
               <h6 className="e fw-bold mb-4">
                 <MDBIcon color="secondary" icon="gem" className="me-3" />
-                Gärtnerei Leitner: Fresh Vegetables for Vienna's Markets
+                Gärtnerei Leitner:Frisches Gemüse für Wiens Märkte
               </h6>
               <p>
-                In the heart of Simmering, a vibrant district in Vienna, blooms
-                a special nursery. Here, shielded from the hustle and bustle of
-                the city, thrive crisp salads, aromatic herbs, and colorful
-                vegetables that delight every palate.
+                Mitten im Herzen von Simmering, einem lebhaften Bezirk in Wien,
+                blüht eine besondere Gärtnerei. Hier, geschützt von der Hektik
+                der Stadt, wachsen knackige Salate, aromatische Kräuter und
+                bunte Gemüsesorten, die jeden Gaumen begeistern.
               </p>
             </MDBCol>
 
             <MDBCol md="3" lg="2" xl="2" className="mx-auto mb-4">
               <h6 className=" fw-bold mb-4">Useful links</h6>
-
               <p>
-                <Link to="/">Contact us</Link>
+                <a href="./" className="text-reset">
+                  Contact us
+                </a>
               </p>
             </MDBCol>
 
@@ -88,8 +88,10 @@ export default function Footer() {
         style={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}
       >
         Developed @RoLeigh
-
+        <a className="text-reset fw-bold" href="https://mdbootstrap.com/"></a>
       </div>
     </MDBFooter>
   );
-}
+};
+
+export default Footer;

@@ -1,21 +1,21 @@
 import React from "react";
-
-function Hamburger({isOpen}){
-    return(
-        <div className="hamburger"> 
-            <div className="burger burger1" />
-            <div className="burger burger2" />
-            <div className="burger burger3" />
-            <style >{`
+import PropTypes from "prop-types";
+function Hamburger({ isOpen }) {
+  return (
+    <div className="hamburger">
+      <div className="burger burger1" />
+      <div className="burger burger2" />
+      <div className="burger burger3" />
+      <style>{`
                 .burger1{
-                    transform: ${ isOpen ? "rotate(45deg)": "rotate(0)"};
+                    transform: ${isOpen ? "rotate(45deg)" : "rotate(0)"};
                 }
                 .burger2{
-                    transform: ${ isOpen ? "rotate(45deg)" : "rotate(0)"};
-                    opacity: ${ isOpen ? 0 : 1};
+                    transform: ${isOpen ? "rotate(45deg)" : "rotate(0)"};
+                    opacity: ${isOpen ? 0 : 1};
                 }
                 .burger3 {
-                    transform: ${ isOpen ? "rotate(-45deg)" : "rotate(0)"}
+                    transform: ${isOpen ? "rotate(-45deg)" : "rotate(0)"}
                 }
                 .hamburger {
                     width: 2rem;
@@ -33,15 +33,17 @@ function Hamburger({isOpen}){
                     width: 2rem;
                     height: 0.25rem;
                     border-radius:10px;
-                    background-color: ${ isOpen ? "#686868" : "black"};
+                    background-color: ${isOpen ? "#686868" : "black"};
                     transform-origin: 1px;
                     transition:all 0.3s linear;
                 }
                 
                
             `}</style>
-        </div>
-      
-    )
+    </div>
+  );
 }
+Hamburger.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+};
 export default Hamburger;

@@ -7,9 +7,8 @@ const emailSevices = require("../controllers/emailService");
 const express = require("express")
 const router = express.Router(); 
 
-router.get('/CardInfos', fetchData.getCardInfo);
-router.get('/Products',fetchData.getProducts);
-router.get('/BestsellerItems' , fetchData.getBestsellerItems); 
+
+router.get('/content/:whichContent' , fetchData.getContent); 
 router.post('/create-checkout-session', bodyParser.json(),stripeController.createCheckoutSession);
 router.post('/webhook', express.raw({type: 'application/json'}), stripeController.handleWebhook);
 router.post("/contact", express.json(),emailSevices.sendContactMail);

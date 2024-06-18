@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { MDBContainer, MDBRow, MDBCol } from "mdb-react-ui-kit";
-
+import PropTypes from "prop-types";
 import "./style.css";
 import ProductItem from "./ProductItem";
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
 export default function ProductList({ products }) {
   const [selectedType, setSelectedType] = useState("");
@@ -27,12 +26,10 @@ export default function ProductList({ products }) {
     setFilteredProducts(updatedFilteredProducts);
   }, [selectedType, products]);
 
-  // Funktion zum Laden weiterer Produkte
   const loadMoreProducts = () => {
     setVisibleProducts((prevCount) => prevCount + 6);
   };
 
-  // Handler für Änderungen des Filterauswahls
   const handleFilterChange = (event) => {
     setSelectedType(event.target.value);
   };
@@ -42,15 +39,11 @@ export default function ProductList({ products }) {
       <MDBRow style={{ justifyContent: "center" }}>
         <MDBCol>
           <FormControl>
-          <InputLabel id="demo-simple-select-label">Kategorien</InputLabel>
+            <InputLabel id="demo-simple-select-label">Kategorien</InputLabel>
             <Select
               value={selectedType}
               onChange={handleFilterChange}
-              style={{
-                marginTop: "-0.2rem",
-       
-                width: "8rem",
-              }}
+              style={{ marginTop: "-0.2rem", width: "8rem" }}
               label="Kategorien"
             >
               <MenuItem value="">Alle</MenuItem>
@@ -63,13 +56,8 @@ export default function ProductList({ products }) {
           </FormControl>
         </MDBCol>
       </MDBRow>
-      <MDBRow
-        className="mobile mt-5"
-        style={{
-          justifyContent: "center",
-        }}
-      >
-        {filteredProducts.slice(0, visibleProducts).map((product, index) => (
+      <MDBRow className="mobile mt-5" style={{ justifyContent: "center" }}>
+        {filteredProducts.slice(0, visibleProducts).map((product) => (
           <MDBCol key={product.id}>
             <ProductItem className="card" product={product} />
           </MDBCol>
@@ -92,3 +80,12 @@ export default function ProductList({ products }) {
     </MDBContainer>
   );
 }
+
+ProductList.propTypes = {
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      type: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};

@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 
-import TextField from '@mui/material/TextField';
+import TextField from "@mui/material/TextField";
 
 const ContactForm = () => {
-
   const contactUrl = process.env.REACT_APP_POST_CONTACT;
 
   const [status, setStatus] = useState("Submit");
@@ -17,44 +16,52 @@ const ContactForm = () => {
       email: email.value,
       message: message.value,
     };
-    console.log(details)
+    console.log(details);
     let response = await fetch(contactUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
       },
-      body: JSON.stringify({details}),
+      body: JSON.stringify({ details }),
     });
     setStatus("Submit");
-    let result = await response.json();
+    await response.json();
     alert("message sent");
- 
   };
   return (
     <div>
-    <h1>Get in Touch with us</h1>
-    <form className="form" onSubmit={handleSubmit}>
-    <div className="inputWrapper">
-      <TextField name="name" label="Name" required className="name" />
-    </div>
-    <div className="inputWrapper">
-      <TextField name="email" label="Email" type="email" className="email" required />
-    </div>
-    <div className="inputWrapper">
-      <TextField
-        name="message"
-        label="Message"
-        multiline
-        rows={4}
-        required className="textField"
-      />
-    </div>
-    <div className="buttonWrapper">
-      <Button variant="contained" type="submit">{status}</Button>
-    </div> 
+      <h1>Get in Touch with us</h1>
+      <form className="form" onSubmit={handleSubmit}>
+        <div className="inputWrapper">
+          <TextField name="name" label="Name" required className="name" />
+        </div>
+        <div className="inputWrapper">
+          <TextField
+            name="email"
+            label="Email"
+            type="email"
+            className="email"
+            required
+          />
+        </div>
+        <div className="inputWrapper">
+          <TextField
+            name="message"
+            label="Message"
+            multiline
+            rows={4}
+            required
+            className="textField"
+          />
+        </div>
+        <div className="buttonWrapper">
+          <Button variant="contained" type="submit">
+            {status}
+          </Button>
+        </div>
 
-    <style >
-      {`
+        <style>
+          {`
       h1 {
         text-align:center; 
         opacity:0.7;
@@ -84,9 +91,9 @@ const ContactForm = () => {
         margin-bottom: 1rem; /* Add margin between elements */
       }
       `}
-    </style>
-  </form>
-</div>
+        </style>
+      </form>
+    </div>
   );
 };
 

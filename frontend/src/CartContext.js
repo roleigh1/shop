@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import Decimal from "decimal.js";
+import PropTypes from "prop-types";
 const CartContext = createContext();
 
 export function useCart() {
@@ -19,7 +20,7 @@ export function CartProvider({ children }) {
   const calculateTotalValue = () => {
     return cart
       .reduce((acc, item) => {
-        if (!item.price || !item.hasOwnProperty("quantity")) {
+        if (!item.price || !("quantity" in item)) {
           console.warn("Malformed item in cart:", item);
           return acc;
         }
@@ -79,3 +80,6 @@ export function CartProvider({ children }) {
     </CartContext.Provider>
   );
 }
+CartProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};

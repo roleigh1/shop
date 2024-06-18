@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useCart } from "../CartContext";
-import { Row, Col, Container} from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 import { MDBBtn } from "mdb-react-ui-kit";
 import Decimal from "decimal.js";
 import "react-datepicker/dist/react-datepicker.css";
@@ -9,7 +9,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-
+import PropTypes from "prop-types";
 const checkOutURL = process.env.REACT_APP_API_CREATECHECKOUT;
 
 export default function CartTable() {
@@ -23,7 +23,6 @@ export default function CartTable() {
   const { cart, updateQuantity, removeFromCart, totalValue } = useCart();
   const [selectLocation, setSelectedLocation] = useState("");
   const [selectedDate, setSelectedDate] = useState(new Date());
-
 
   useEffect(() => {
     const query = new URLSearchParams(window.location.search);
@@ -41,7 +40,7 @@ export default function CartTable() {
     if (status) {
       setMessage(status === "success" ? successMessage : canceledMessage);
     }
-  },[]);
+  }, []);
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -52,29 +51,28 @@ export default function CartTable() {
   };
 
   const handleCheckout = async () => {
-
-      try {
-        const response = await fetch(checkOutURL, {
-          method: "POST",
-          mode: "cors",
-          cache: "no-cache",
-          credentials: "same-origin",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            cart: cart,
-            selectLocation: selectLocation,
-            selectedDate: selectedDate,
-          }),
-        });
-        const data = await response.json();
-        if (data.url) {
-          window.location.href = data.url;
-        }
-      } catch (error) {
-        console.error("Error during checkout:", error);
+    try {
+      const response = await fetch(checkOutURL, {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          cart: cart,
+          selectLocation: selectLocation,
+          selectedDate: selectedDate,
+        }),
+      });
+      const data = await response.json();
+      if (data.url) {
+        window.location.href = data.url;
       }
+    } catch (error) {
+      console.error("Error during checkout:", error);
+    }
   };
 
   if (message) {
@@ -190,8 +188,16 @@ export default function CartTable() {
         </table>
 
         <Row className="mt-5 flex-column align-items-center text-center endCont">
-         
-          <form onSubmit={handleCheckout} style={{display:"flex",flexDirection:"column", justifyContent:"center",alignItems:"center", gap:"1rem"}}>
+          <form
+            onSubmit={handleCheckout}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "1rem",
+            }}
+          >
             <Col md={3} className="">
               <FormControl style={{ width: "10rem" }}>
                 <InputLabel id="demo-simple-select-label">Location</InputLabel>
@@ -215,7 +221,6 @@ export default function CartTable() {
             <Col>
               <DatePicker
                 required
-             
                 selected={selectedDate}
                 onChange={handleDateChange}
                 filterDate={(date) => !isWeekend(date)}
@@ -223,7 +228,6 @@ export default function CartTable() {
             </Col>
             <Col className="">
               <MDBBtn
-           
                 color="danger"
                 style={{
                   width: "7rem",
@@ -233,7 +237,6 @@ export default function CartTable() {
                   color: "white",
                   fontWeight: "bold",
                   letterSpacing: "1px",
-                  
                 }}
               >
                 Checkout
@@ -248,3 +251,6 @@ export default function CartTable() {
     </Container>
   );
 }
+CartTable.propTypes = {
+  message: PropTypes.string.isRequired,
+};

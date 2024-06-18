@@ -1,7 +1,7 @@
 const emailService = require('./emailService');
 const { Order } = require('../models/models'); 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const { OAuth2_client } = require('../config');
+
 
 async function insertRecord(session,customerEmail,customerName,totalAmount,selectedLocation,selectedDate) {
     console.log(customerEmail)
