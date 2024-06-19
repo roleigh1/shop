@@ -12,6 +12,7 @@
     "decimal.js": "^10.4.3",
     "dotenv": "^16.3.1",
     "express": "^4.19.2",
+    "express-winston": "^4.2.0",
     "googleapis": "^127.0.0",
     "mongoose": "^7.5.3",
     "mysql2": "^3.9.4",
@@ -19,7 +20,8 @@
     "pg": "^8.11.3",
     "prop-types": "^15.8.1",
     "sequelize": "^6.33.0",
-    "stripe": "^13.11.0"
+    "stripe": "^13.11.0",
+    "winston": "^3.13.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.5.0",
