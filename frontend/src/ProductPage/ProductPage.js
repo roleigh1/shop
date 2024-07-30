@@ -4,11 +4,11 @@ import { Row, Col } from "react-bootstrap";
 import Logo from "../Home/Components/Logo/Logo";
 import BurgerMenu from "../Home/Components/Burger/Menu";
 import Cart from "../Home/Components/Cart/Cart";
-import BgImg from "./Bg-Producs";
+import Banner from "./Bg-Producs";
 import ProductList from "./ProductList";
 import Footer from "../Home/Components/Footer/Footer";
 import PropTypes from "prop-types";
-export default function ProductPage({ products }) {
+export default function ProductPage({ products, banners }) {
   return (
     <Container>
       <Row className="d-flex align-items-center justify-content-between">
@@ -22,7 +22,7 @@ export default function ProductPage({ products }) {
       </Row>
       <Row>
         <Col>
-          <BgImg />
+          <Banner banners={banners}/>
         </Col>
       </Row>
       <Row>
@@ -38,4 +38,5 @@ export default function ProductPage({ products }) {
 }
 ProductPage.propTypes = {
   products: PropTypes.array.isRequired,
+  banners:PropTypes.array.isRequired
 };

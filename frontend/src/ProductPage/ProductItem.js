@@ -156,7 +156,7 @@ PItem.propTypes = {
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
     image: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
   }).isRequired,
 };

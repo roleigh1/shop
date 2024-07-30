@@ -1,12 +1,19 @@
 import React from "react";
-import banner from "./productsBG.jpg";
 
-export default function BgImg() {
+import PropTypes from "prop-types";
+export default function Banner({ banners }) {
+  if (!banners || banners.length === 0) {
+    return null; 
+  }
   return (
     <div className="container my-5">
       <div
         className="bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white opacity-"
-        style={{ backgroundImage: `url(${banner})`, objectFit: "cover" }}
+        style={{
+          backgroundImage: `url(${banners[1].img})`,
+          objectFit: "cover",
+          top: banners[1].top,
+        }}
       >
         <h1
           style={{
@@ -19,7 +26,7 @@ export default function BgImg() {
           }}
           className="mb-3 h2"
         >
-          Our sortiment
+          {banners[1].headline}
         </h1>
         <p
           style={{
@@ -29,11 +36,12 @@ export default function BgImg() {
             opacity: "1",
           }}
         >
-          Our sortiment boasts a diverse range of Austrian-grown vegetables and
-          fruits, celebrating the rich agricultural heritage and flavors of the
-          region
+          {banners[1].text}
         </p>
       </div>
     </div>
   );
 }
+Banner.propTypes = {
+  banners: PropTypes.array.isRequired,
+};

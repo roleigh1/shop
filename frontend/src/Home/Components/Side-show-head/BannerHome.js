@@ -1,7 +1,11 @@
 import "react-slideshow-image/dist/styles.css";
 import React from "react";
+import PropTypes from "prop-types";
 
-function SlideShow() {
+function BannerHome({banners}) {
+  if (!banners || banners.length === 0) {
+    return null; 
+  }
   return (
     <section
       className="bg-image_1"
@@ -17,11 +21,11 @@ function SlideShow() {
       <div
         style={{
           position: "absolute",
-          top: 0,
+          top: banners[0].top,
           left: 0,
           right: 0,
           bottom: -30,
-          backgroundImage: `url('http://localhost:3131/uploads/banner_Home.jpg')`,
+          backgroundImage: `url(${banners[0].img})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
 
@@ -31,17 +35,24 @@ function SlideShow() {
       ></div>
 
       <div className="content" style={{ color: "black", marginTop: "5rem" }}>
-        <h1 style={{ opacity: "0.7" }}>Fresh from the Fields of Simmering!</h1>
+        <h1 style={{ opacity: "0.7" }}>{banners[0].headline}</h1>
         <h3 style={{ fontSize: "24px", opacity: "0.7" }}>
-          Dive into the rich flavors of homegrown vegetables and fruits by our
-          dedicated gardeners from Simmering.
-          <br /> Meet us at Karmelitermarkt, Südtiroler Platz, and Vorgarten
-          Markt. <br />
-          Taste nature&#39;s best, straight from our garden to your plate
+          {banners[0].text}
         </h3>
       </div>
     </section>
   );
 }
 
-export default SlideShow;
+BannerHome.propTypes = {
+  banners: PropTypes.arrayOf(
+    PropTypes.shape({
+      top: PropTypes.number,
+      img: PropTypes.string.isRequired,
+      headline: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired
+    })
+  ).isRequired
+};
+
+export default BannerHome;

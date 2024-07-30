@@ -11,7 +11,7 @@ const getContent = async (req, res) => {
     BestsellerItemsDB,
     4,
     req.query.page
-  );
+  );  
   const resultProducts = await fetchData(ProductsDB, 40, req.query.page);
   const resultBanner = await fetchData(BannerData, 2, req.query.page);
   switch (req.params.whichContent) {

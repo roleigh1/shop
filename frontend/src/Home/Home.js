@@ -6,7 +6,7 @@ import Footer from "../Home/Components/Footer/Footer";
 import Logo from "./Components/Logo/Logo";
 import Cart from "./Components/Cart/Cart";
 import BurgerMenu from "./Components/Burger/Menu";
-import SlideShow from "./Components/Side-show-head/SideShow";
+import BannerHome from "./Components/Side-show-head/BannerHome";
 import SeasonList from "./Components/SeasonItems/SeasonList";
 import ContactForm from "./Components/Contact/ContactForm";
 import BestSellerList from "./Components/Bestsellers/BestSellerList";
@@ -16,7 +16,7 @@ import PropTypes from "prop-types";
 
 import Alert from "./Components/Alert/Alert";
 
-function Home({ items, infos }) {
+function Home({ items, infos, banners }) {
   const location = useLocation();
   const { setCart } = useCart();
   const [success, setSuccess] = useState(false);
@@ -46,7 +46,7 @@ function Home({ items, infos }) {
       <Row style={{ zIndex: 0 }}>
         <Col style={{ marginTop: "2rem" }}>
           {success && <Alert />}
-          <SlideShow className="slider" />
+          <BannerHome banners={banners} className="slider" />
         </Col>
       </Row>
 
@@ -79,5 +79,6 @@ function Home({ items, infos }) {
 Home.propTypes = {
   items: PropTypes.array.isRequired,
   infos: PropTypes.array.isRequired,
+  banners: PropTypes.array.isRequired
 };
 export default Home;

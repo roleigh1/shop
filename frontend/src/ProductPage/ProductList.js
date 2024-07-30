@@ -59,7 +59,10 @@ export default function ProductList({ products }) {
       <MDBRow className="mobile mt-5" style={{ justifyContent: "center" }}>
         {filteredProducts.slice(0, visibleProducts).map((product) => (
           <MDBCol key={product.id}>
-            <ProductItem className="card" product={product} />
+            <ProductItem
+              className="card"
+              product={{ ...product, price: parseFloat(product.price) }}
+            />
           </MDBCol>
         ))}
       </MDBRow>
@@ -85,7 +88,9 @@ ProductList.propTypes = {
   products: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
       type: PropTypes.string.isRequired,
+      price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     })
   ).isRequired,
 };
