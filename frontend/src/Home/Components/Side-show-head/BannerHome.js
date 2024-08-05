@@ -1,48 +1,31 @@
 import "react-slideshow-image/dist/styles.css";
 import React from "react";
 import PropTypes from "prop-types";
+import "./style.css";
 
-function BannerHome({banners}) {
+function BannerHome({ banners }) {
   if (!banners || banners.length === 0) {
-    return null; 
+    return null;
   }
+  console.log(banners);
   return (
-    <section
-      className="bg-image_1"
-      style={{
-        position: "relative",
-        height: "25rem",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        textAlign: "center",
-      }}
-    >
-      <div
-        style={{
-          position: "absolute",
-          top: banners[0].top,
-          left: 0,
-          right: 0,
-          bottom: -30,
-          backgroundImage: `url(${banners[0].img})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-
-          zIndex: -1,
-          borderRadius: "10px",
-        }}
-      ></div>
-
-      <div className="content" style={{ color: "black", marginTop: "5rem" }}>
-        <h1 style={{ opacity: "0.7" }}>{banners[0].headline}</h1>
-        <h3 style={{ fontSize: "24px", opacity: "0.7" }}>
-          {banners[0].text}
-        </h3>
+    <div className="container my-5 relative max-w-xl mx-auto mt-20">
+    <div className="relative">
+      <img
+        className="h-60 w-full object-cover rounded-md"
+        src={banners[0]?.img}
+        alt="Banner"
+      />
+      <div className="absolute inset-0 bg-gray-700 opacity-60 rounded-md"></div>
+      <div className="absolute inset-0 text-center flex items-center justify-center flex-col">
+        <h2 className="text-white text-1xl ">{banners[0]?.headline}</h2>
+        <p className="text-white text-xl ">{banners[0]?.text}</p>
       </div>
-    </section>
-  );
+    </div>
+  </div>
+);
 }
+
 
 BannerHome.propTypes = {
   banners: PropTypes.arrayOf(
@@ -50,9 +33,9 @@ BannerHome.propTypes = {
       top: PropTypes.number,
       img: PropTypes.string.isRequired,
       headline: PropTypes.string.isRequired,
-      text: PropTypes.string.isRequired
+      text: PropTypes.string.isRequired,
     })
-  ).isRequired
+  ).isRequired,
 };
 
 export default BannerHome;

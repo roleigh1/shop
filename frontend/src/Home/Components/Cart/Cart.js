@@ -2,23 +2,15 @@ import React from "react";
 import { useCart } from "../../../CartContext";
 import { useNavigate } from "react-router-dom";
 import imcart from "./imcart.png";
+
 function Cart() {
   const navigate = useNavigate();
   const { cart } = useCart();
+
   return (
-    <div>
+    <div className="relative inline-block">
       {cart.length > 0 && (
-        <span
-          style={{
-            color: "red",
-            fontWeight: "bold",
-            position: "relative",
-            top: "-0.8rem",
-            left: "1.5rem",
-            zIndex: "1",
-          }}
-          className="countItems"
-        >
+        <span className="absolute text-red-500 font-bold top-[-0.8rem] left-[1.5rem] z-10">
           {cart.length}
         </span>
       )}
@@ -29,22 +21,11 @@ function Cart() {
           }
         }}
         src={imcart}
-        className="cart-img"
-        style={{ zIndex: "0" }}
+        className=" mr-4 w-8 mb-1 z-0 cursor-pointer"
         alt="cart"
       />
-
-      <style>{`
-            .cart-img {
-            width:2rem; 
-            margin-right:1rem;
-
-            
-
-        }
-        
-        `}</style>
     </div>
   );
 }
+
 export default Cart;

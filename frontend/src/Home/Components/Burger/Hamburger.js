@@ -1,49 +1,33 @@
 import React from "react";
 import PropTypes from "prop-types";
+
 function Hamburger({ isOpen }) {
   return (
-    <div className="hamburger">
-      <div className="burger burger1" />
-      <div className="burger burger2" />
-      <div className="burger burger3" />
-      <style>{`
-                .burger1{
-                    transform: ${isOpen ? "rotate(45deg)" : "rotate(0)"};
-                }
-                .burger2{
-                    transform: ${isOpen ? "rotate(45deg)" : "rotate(0)"};
-                    opacity: ${isOpen ? 0 : 1};
-                }
-                .burger3 {
-                    transform: ${isOpen ? "rotate(-45deg)" : "rotate(0)"}
-                }
-                .hamburger {
-                    width: 2rem;
-                    height: 2rem;
-                    display: flex;
-                    justify-content: space-around;
-                    flex-flow: column nowrap;
-                    z-index: 10;
-                    display: fixed;
-                   
-                    
-                    
-                }
-                .burger {
-                    width: 2rem;
-                    height: 0.25rem;
-                    border-radius:10px;
-                    background-color: ${isOpen ? "#686868" : "black"};
-                    transform-origin: 1px;
-                    transition:all 0.3s linear;
-                }
-                
-               
-            `}</style>
+    <div className="flex flex-col justify-around w-8 h-8 fixed z-10">
+      <div
+        className={`w-8 h-1 rounded transform transition-all duration-300 ${
+          isOpen ? "rotate-45 bg-gray-500" : "rotate-0 bg-black"
+        }`}
+        style={{ transformOrigin: "1px" }}
+      />
+      <div
+        className={`w-8 h-1 rounded transform transition-all duration-300 ${
+          isOpen ? "opacity-0 bg-gray-500" : "opacity-100 bg-black"
+        }`}
+        style={{ transformOrigin: "1px" }}
+      />
+      <div
+        className={`w-8 h-1 rounded transform transition-all duration-300 ${
+          isOpen ? "-rotate-45 bg-gray-500" : "rotate-0 bg-black"
+        }`}
+        style={{ transformOrigin: "1px" }}
+      />
     </div>
   );
 }
+
 Hamburger.propTypes = {
   isOpen: PropTypes.bool.isRequired,
 };
+
 export default Hamburger;

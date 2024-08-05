@@ -1,18 +1,21 @@
 import React from "react";
 import logo from "./logo.png";
 import { Link } from "react-router-dom";
+
 function Logo() {
   return (
     <div>
-      <Link style={{ textDecoration: "none", color: "white" }} to="/">
+      <Link to="/" className="no-underline text-white">
         <img
           src={logo}
-          className="App-logo"
+         className=" mt-4"
+         style={{width:"8rem"}}
           alt="logo"
-          style={{ width: "8rem", marginTop: "1rem" }}
+          
         />
       </Link>
     </div>
   );
 }
+
 export default Logo;

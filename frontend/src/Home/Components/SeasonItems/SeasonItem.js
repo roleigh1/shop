@@ -17,7 +17,7 @@ function SeasonItem({ item }) {
         <Typography variant="body2" color="text.secondary">
           {item.text}
         </Typography>
-        <CardActions style={{ marginTop: "35px" }}></CardActions>
+        <CardActions  className="mt-27" ></CardActions>
       </CardContent>
     </Card>
   );

@@ -145,7 +145,7 @@ export default function BestSellerItem({ item }) {
 BestSellerItem.propTypes = {
   item: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
+    price: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
   }).isRequired,

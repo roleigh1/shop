@@ -1,6 +1,8 @@
 
 @media (max-width: 768px) {
-    
+    .text-banner{
+        top:40px!important;
+    }
 
 
 }

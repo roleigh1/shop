@@ -11,8 +11,7 @@ export default function SeasonList({ infos }) {
       className="my-5 text-center d-flex justify-content-center"
     >
       <MDBRow
-        className="mobile"
-        style={{ display: "flex", justifyContent: "center" }}
+        className="mobile flex justify-center"
       >
         {infos.map((info, index) => (
           <MDBCol key={info.id} md="6" lg="3" className="mb-4">
