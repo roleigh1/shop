@@ -8,8 +8,8 @@ function Logo() {
       <Link to="/" className="no-underline text-white">
         <img
           src={logo}
-         className=" mt-4"
-         style={{width:"8rem"}}
+         className="w-[8rem]"
+
           alt="logo"
           
         />

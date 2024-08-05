@@ -9,7 +9,8 @@ import PropTypes from "prop-types";
 function SeasonItem({ item }) {
   return (
     <Card sx={{ maxWidth: 250, height: 400 }}>
-      <CardMedia component="img" alt="140" height="160" image={item.image} />
+      <CardMedia component="img" alt="140" 
+      className="h-40" image={item.image} />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {item.name}

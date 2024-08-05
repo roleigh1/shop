@@ -2,15 +2,7 @@ import React, { useState } from "react";
 import { useCart } from "../CartContext";
 import "bootstrap/dist/css/bootstrap.css";
 
-import {
-  MDBContainer,
-  MDBRow,
-  MDBCol,
-  MDBCard,
-  MDBCardBody,
-  MDBCardImage,
-  MDBRipple,
-} from "mdb-react-ui-kit";
+
 import Button from "@mui/joy/Button";
 import Add from "@mui/icons-material/Add";
 import PropTypes from "prop-types";
@@ -48,106 +40,61 @@ export default function PItem({ product }) {
   };
 
   return (
-    <MDBContainer fluid className="my-5 text-center">
-      <MDBRow
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignContent: "center",
-        }}
-      >
-        <MDBCol
-          md="12"
-          lg="7"
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignContent: "center",
-          }}
+    <div className="my-5 text-center">
+    <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center">
+        <div
+          className={`card h-96 min-w-40 ${
+            highlight ? "border-2 border-green-500" : ""
+          } rounded-lg`}
         >
-          <MDBCard
-            className="card"
-            style={{
-              height: "23rem",
-              minWidth: "10rem",
-              border: highlight ? "2px solid #00FF00" : "none",
-              borderRadius: "10px",
-            }}
-          >
-            <MDBRipple rippleColor="light" rippleTag="div" className="w-40">
-              <MDBCardImage
-                src={product.image}
-                fluid
-                className="w-100 "
+          <div className="w-full relative">
+            <img
+              src={product.image}
+              className="w-full h-24 object-cover rounded-t-lg"
+              alt={product.name}
+            />
+            <div className="hover-overlay absolute inset-0 bg-white opacity-0 hover:opacity-15 rounded-t-lg"></div>
+          </div>
+          <div className="p-4 overflow-hidden h-60">
+            <div className="text-reset">
+              <h5 className="card-title mb-2">{product.name}</h5>
+            </div>
+            <div className="text-reset">
+              <p className="relative bottom-1">{product.type}</p>
+            </div>
+            <h6 className="mb-3 relative bottom-4">
+              €{product.price}/kg
+            </h6>
+            <div className="flex flex-col">
+              <span
+                className="Sum"
                 style={{
-                  height: "6.5rem",
-                  borderRadius: "10px",
-                  objectFit: "cover",
+                  visibility: Number(inputValue) > 0 ? "visible" : "hidden",
                 }}
+              >
+                {result.toFixed(2)}€
+              </span>
+              <input
+                id="inputValue"
+                onChange={handleInputChange}
+                value={inputValue}
+                className="w-10 text-center mx-auto relative top-1"
+                type="number"
               />
-              <a href="#!">
-                <div className="hover-overlay">
-                  <div
-                    className="mask"
-                    style={{ backgroundColor: "rgba(251, 251, 251, 0.15)" }}
-                  ></div>
-                </div>
-              </a>
-            </MDBRipple>
-            <MDBCardBody style={{ height: "300px", overflow: "hidden" }}>
-              <a href="#!" className="text-reset">
-                <h5 className="card-title mb-2">{product.name}</h5>
-              </a>
-              <a href="#!" className="text-reset">
-                <p style={{ position: "relative", bottom: "4px" }}>
-                  {product.type}
-                </p>
-              </a>
-              <h6
-                className="mb-3"
-                style={{ position: "relative", bottom: "1rem" }}
-              >
-                €{product.price}/kg
-              </h6>
-
-              <div style={{ display: "flex", flexDirection: "column" }}>
-                <span
-                  className="Sum "
-                  style={{
-                    visibility: Number(inputValue) > 0 ? "visible" : "hidden",
-                  }}
-                >
-                  {result.toFixed(2)}€
-                </span>
-
-                <input
-                  id="inputValue"
-                  onChange={handleInputChange}
-                  value={inputValue}
-                  style={{
-                    width: "2.8rem",
-                    textAlign: "center",
-                    position: "relative",
-                    display: "block",
-                    margin: "0 auto",
-                    top: "4px",
-                  }}
-                  type="number"
-                />
-              </div>
-
-              <Button
-                onClick={handleAddToCart}
-                style={{ marginTop: "1rem" }}
-                startDecorator={highlight ? null : <Add />}
-              >
-                {highlight ? "Added!" : "Add to cart"}
-              </Button>
-            </MDBCardBody>
-          </MDBCard>
-        </MDBCol>
-      </MDBRow>
-    </MDBContainer>
+            </div>
+            <Button
+              onClick={handleAddToCart}
+              className="mt-2"
+              startIcon={!highlight ? <Add /> : null}
+            >
+              {highlight ? "Added!" : "Add to cart"}
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   );
 }
 

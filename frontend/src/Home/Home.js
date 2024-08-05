@@ -29,51 +29,40 @@ function Home({ items, infos, banners }) {
     }
   }, [location.search, setCart]);
   return (
-    <Container>
-      <Row style={{ display: "flex", alignItems: "center" }}>
-        <Col xs="6">
-          <Logo />
-        </Col>
-        <Col
-          xs="6"
-          className="d-flex mt-5"
-          style={{ display: "flex", justifyContent: "flex-end" }}
-        >
-          <Cart />
-          <BurgerMenu />
-        </Col>
-      </Row>
-      <Row style={{ zIndex: 0 }}>
-        <Col style={{ marginTop: "2rem" }}>
-          {success && <Alert />}
-          <BannerHome banners={banners} className="slider" />
-        </Col>
-      </Row>
+    <div className="container mx-auto">
+    <div className="flex items-center mt-1">
+      <div className="flex-grow">
+        <Logo />
+      </div>
+      <div className="flex flex-grow-0 mt-4 justify-end space-x-4">
+        <Cart />
+        <BurgerMenu />
+      </div>
+    </div>
 
-      <Row style={{ marginTop: "2rem" }}>
-        <SeasonList infos={infos} />
-      </Row>
-      <Row
-        style={{
-          marginTop: "-1rem",
-          backgroundColor: "#E0E0E0",
-          borderRadius: "10px",
-        }}
-      >
-        <Col
-          xs={{ span: 6, offset: 3 }}
-          className="d-flex justify-content-center"
-        >
-          <ContactForm className="contactForm" />
-        </Col>
-      </Row>
-      <Row style={{ marginTop: "-2rem" }}>
-        <BestSellerList items={items} />
-      </Row>
-      <Row>
-        <Footer></Footer>
-      </Row>
-    </Container>
+    <div className="relative z-0 mt-8">
+      {success && <Alert />}
+      <BannerHome banners={banners} className="slider" />
+    </div>
+
+    <div className="mt-8">
+      <SeasonList infos={infos} />
+    </div>
+
+    <div className="mt-4 bg-gray-300 rounded-lg">
+      <div className="flex justify-center">
+        <ContactForm className="contactForm" />
+      </div>
+    </div>
+
+    <div className="mt-8">
+      <BestSellerList items={items} />
+    </div>
+
+    <div className="mt-8">
+      <Footer />
+    </div>
+  </div>
   );
 }
 Home.propTypes = {

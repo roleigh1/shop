@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 function Hamburger({ isOpen }) {
   return (
-    <div className="flex flex-col justify-around w-8 h-8 fixed z-10">
+    <div className="flex flex-col justify-around w-8 h-8  z-10">
       <div
         className={`w-8 h-1 rounded transform transition-all duration-300 ${
           isOpen ? "rotate-45 bg-gray-500" : "rotate-0 bg-black"
