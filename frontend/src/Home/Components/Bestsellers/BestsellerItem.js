@@ -51,12 +51,12 @@ export default function BestSellerItem({ item }) {
       <MDBRow>
         <MDBCol md="12" lg="7" className="mb-4">
           <MDBCard
-            className="card"
+            className="card rounded "
             style={{
               height: "23rem",
               width: "10rem",
               border: highlight ? "2px solid #00FF00" : "none",
-              borderRadius: "10px",
+       
             }}
           >
             <MDBRipple rippleColor="light" rippleTag="div" className="w-40">

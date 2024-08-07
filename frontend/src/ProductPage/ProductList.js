@@ -36,14 +36,14 @@ export default function ProductList({ products }) {
 
   return (
     <MDBContainer fluid className="text-center">
-      <MDBRow style={{ justifyContent: "center" }}>
+      <MDBRow>
         <MDBCol>
           <FormControl>
             <InputLabel id="demo-simple-select-label">Kategorien</InputLabel>
             <Select
               value={selectedType}
               onChange={handleFilterChange}
-              style={{ marginTop: "-0.2rem", width: "8rem" }}
+              className="mt-1 w-[8rem]"
               label="Kategorien"
             >
               <MenuItem value="">Alle</MenuItem>
@@ -90,7 +90,8 @@ ProductList.propTypes = {
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
       type: PropTypes.string.isRequired,
-      price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      price: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+        .isRequired,
     })
   ).isRequired,
 };

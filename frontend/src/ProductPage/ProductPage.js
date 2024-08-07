@@ -1,6 +1,5 @@
 import React from "react";
-import { Container } from "react-bootstrap";
-import { Row, Col } from "react-bootstrap";
+
 import Logo from "../Home/Components/Logo/Logo";
 import BurgerMenu from "../Home/Components/Burger/Menu";
 import Cart from "../Home/Components/Cart/Cart";
@@ -10,30 +9,26 @@ import Footer from "../Home/Components/Footer/Footer";
 import PropTypes from "prop-types";
 export default function ProductPage({ products, banners }) {
   return (
-    <Container>
-      <Row className="d-flex align-items-center justify-content-between">
-        <Col xs="auto">
-          <Logo />
-        </Col>
-        <Col xs="auto" className="d-flex mt-5">
-          <Cart />
-          <BurgerMenu />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <Banner banners={banners}/>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <ProductList products={products} />
-        </Col>
-      </Row>
-      <Row>
-        <Footer />
-      </Row>
-    </Container>
+    <div className="container mx-auto ">
+    <div className="flex items-center justify-between">
+      <div className="flex-none">
+        <Logo />
+      </div>
+      <div className="flex mt-5">
+        <Cart />
+        <BurgerMenu />
+      </div>
+    </div>
+    <div className="mt-5">
+      <Banner banners={banners} />
+    </div>
+    <div className="mt-5">
+      <ProductList products={products} />
+    </div>
+    <div className="mt-5">
+      <Footer />
+    </div>
+  </div>
   );
 }
 ProductPage.propTypes = {

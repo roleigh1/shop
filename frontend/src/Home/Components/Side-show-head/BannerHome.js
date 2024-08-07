@@ -4,10 +4,7 @@ import PropTypes from "prop-types";
 import "./style.css";
 
 function BannerHome({ banners }) {
-  if (!banners || banners.length === 0) {
-    return null;
-  }
-  console.log(banners);
+
   return (
     <div className="container my-5 relative max-w-xl mx-auto mt-20">
     <div className="relative">

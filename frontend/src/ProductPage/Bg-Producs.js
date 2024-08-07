@@ -21,9 +21,6 @@ export default function Banner({ banners }) {
     }
   }, [banners]);
 
-  if (!banners || banners.length === 0) {
-    return null;
-  }
 
   return (
     <div className="container my-5 relative max-w-xl mx-auto mt-20">

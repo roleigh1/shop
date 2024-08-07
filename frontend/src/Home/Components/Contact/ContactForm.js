@@ -6,10 +6,10 @@ const ContactForm = () => {
   const contactUrl = process.env.REACT_APP_POST_CONTACT;
 
   const [status, setStatus] = useState("Submit");
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setStatus("Sending...");
+
     const { name, email, message } = e.target.elements;
     let details = {
       name: name.value,
@@ -24,7 +24,7 @@ const ContactForm = () => {
       },
       body: JSON.stringify({ details }),
     });
-    setStatus("Submit");
+    setStatus("Sending...");
     await response.json();
     alert("Message sent");
   };

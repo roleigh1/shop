@@ -8,7 +8,7 @@ export default function BestSellerList({ items }) {
     <MDBContainer
       fluid
       className="my-5 text-center d-flex justify-content-center "
-    >
+ >
       <MDBRow className="mobile">
         {items.map((item) => (
           <MDBCol key={item.id} md="6" lg="3" className="mb-4">

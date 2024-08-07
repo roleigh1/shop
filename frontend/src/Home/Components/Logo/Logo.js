@@ -9,9 +9,7 @@ function Logo() {
         <img
           src={logo}
          className="w-[8rem]"
-
           alt="logo"
-          
         />
       </Link>
     </div>
