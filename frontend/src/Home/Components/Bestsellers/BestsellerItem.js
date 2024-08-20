@@ -70,7 +70,7 @@ export default function BestSellerItem({ item }) {
                   objectFit: "cover",
                 }}
               />
-              <a href="#!">
+              <a >
                 <div className="mask">
                   <div className="d-flex justify-content algin-items-end h-100">
                     <h5>
@@ -87,10 +87,10 @@ export default function BestSellerItem({ item }) {
               </a>
             </MDBRipple>
             <MDBCardBody style={{ height: "300px", overflow: "hidden" }}>
-              <a href="#!" className="text-reset">
+              <a  className="text-reset">
                 <h5 className="card-title mb-2">{item.name}</h5>
               </a>
-              <a href="#!" className="text-reset">
+              <a className="text-reset">
                 <p style={{ position: "relative", bottom: "4px" }}>
                   {item.type}
                 </p>
