@@ -10,11 +10,11 @@ import PropTypes from "prop-types";
 export default function ProductPage({ products, banners }) {
   return (
     <div className="container mx-auto ">
-    <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between mt-3">
       <div className="flex-none">
         <Logo />
       </div>
-      <div className="flex mt-5">
+      <div className="flex mt-4">
         <Cart />
         <BurgerMenu />
       </div>

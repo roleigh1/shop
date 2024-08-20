@@ -5,28 +5,45 @@ import TextField from "@mui/material/TextField";
 const ContactForm = () => {
   const contactUrl = process.env.REACT_APP_POST_CONTACT;
 
-  const [status, setStatus] = useState("Submit");
-  
+  // State für die Eingabefelder
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  // Handle input change
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
+
+  // Handle form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { name, email, message } = e.target.elements;
-    let details = {
-      name: name.value,
-      email: email.value,
-      message: message.value,
-    };
-    console.log(details);
     let response = await fetch(contactUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
       },
-      body: JSON.stringify({ details }),
+      body: JSON.stringify({ formData }),
     });
-    setStatus("Sending...");
-    await response.json();
-    alert("Message sent");
+    if (response.ok) {
+      alert("Message sent");
+
+      // Textfelder leeren
+      setFormData({
+        name: "",
+        email: "",
+        message: "",
+      });
+    } else {
+      alert("Failed to send message");
+    }
   };
 
   return (
@@ -34,10 +51,25 @@ const ContactForm = () => {
       <h1 className="text-center opacity-70 mb-4">Get in Touch with us</h1>
       <form className="flex flex-col items-center mt-6" onSubmit={handleSubmit}>
         <div className="mb-4 w-80">
-          <TextField name="name" label="Name" required fullWidth />
+          <TextField
+            name="name"
+            label="Name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+            fullWidth
+          />
         </div>
         <div className="mb-4 w-80">
-          <TextField name="email" label="Email" type="email" required fullWidth />
+          <TextField
+            name="email"
+            label="Email"
+            type="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            fullWidth
+          />
         </div>
         <div className="mb-4 w-80">
           <TextField
@@ -45,13 +77,15 @@ const ContactForm = () => {
             label="Message"
             multiline
             rows={4}
+            value={formData.message}
+            onChange={handleChange}
             required
             fullWidth
           />
         </div>
         <div className="mb-4">
           <Button variant="contained" type="submit">
-            {status}
+            send
           </Button>
         </div>
       </form>

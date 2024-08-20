@@ -145,8 +145,8 @@ function sendConfirmationEmail(customerEmail, order, lineItems) {
 }
 function sendContactMail(req, res) {
   try {
-    const { details } = req.body;
-    console.log(details);
+    const { name ,email,message} = req.body;
+
     const accessToken = process.env.ACCESS_TOKEN;
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -163,9 +163,9 @@ function sendContactMail(req, res) {
       from: "robinl.leitner1@gmail.com",
       to: "robinl.leitner1@gmail.com",
       subject: "Contact reqest",
-      html: `<p>Name: ${details.name}</p>
-    <p>Email: ${details.email}</p>
-    <p>Message: ${details.message}</p>`,
+      html: `<p>Name: ${name}</p>
+    <p>Email: ${email}</p>
+    <p>Message: ${message}</p>`,
       attachments: [
         {
           filename: "logo.png",

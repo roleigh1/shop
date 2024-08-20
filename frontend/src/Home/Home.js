@@ -30,11 +30,11 @@ function Home({ items, infos, banners }) {
   }, [location.search, setCart]);
   return (
     <div className="container mx-auto">
-    <div className="flex items-center mt-1">
+    <div className="flex items-center mt-3">
       <div className="flex-grow">
         <Logo />
       </div>
-      <div className="flex flex-grow-0 mt-4 justify-end space-x-4">
+      <div className="flex  mt-4  ">
         <Cart />
         <BurgerMenu />
       </div>
