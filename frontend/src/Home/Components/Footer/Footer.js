@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import {
   MDBFooter,
   MDBContainer,
@@ -54,9 +56,9 @@ const Footer = () => {
             <MDBCol md="3" lg="2" xl="2" className="mx-auto mb-4">
               <h6 className=" fw-bold mb-4">Useful links</h6>
               <p>
-                <a href="./" className="text-reset">
-                  Contact us
-                </a>
+                <Link className="text-reset" to="/#contact">
+                  Contact Us
+                </Link>
               </p>
             </MDBCol>
 

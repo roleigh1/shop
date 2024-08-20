@@ -22,11 +22,15 @@ function Home({ items, infos, banners }) {
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
+    const hash = window.location.hash; 
     const urlParams = new URLSearchParams(location.search);
     if (urlParams.get("success") === "true") {
       setSuccess(true);
       setCart([]);
+    } else if(hash === "#contact"){
+      document.getElementById("contact-section").scrollIntroView({ behavior: "smooth"}); 
     }
+
   }, [location.search, setCart]);
   return (
     <div className="container mx-auto">
@@ -50,8 +54,8 @@ function Home({ items, infos, banners }) {
     </div>
 
     <div className="mt-4 bg-gray-300 rounded-lg">
-      <div className="flex justify-center">
-        <ContactForm className="contactForm" />
+      <div  className="flex justify-center">
+        <ContactForm id="contact-section" className="contactForm" />
       </div>
     </div>
 

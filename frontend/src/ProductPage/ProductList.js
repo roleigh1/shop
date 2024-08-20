@@ -35,7 +35,7 @@ export default function ProductList({ products }) {
   };
 
   return (
-    <MDBContainer fluid className="text-center">
+    <MDBContainer fluid className="text-center ">
       <MDBRow>
         <MDBCol>
           <FormControl>

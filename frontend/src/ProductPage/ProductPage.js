@@ -22,7 +22,7 @@ export default function ProductPage({ products, banners }) {
     <div className="mt-5">
       <Banner banners={banners} />
     </div>
-    <div className="mt-5">
+    <div className="mt-5 ">
       <ProductList products={products} />
     </div>
     <div className="mt-5">
