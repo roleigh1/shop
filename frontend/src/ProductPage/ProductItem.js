@@ -3,7 +3,7 @@ import { useCart } from "../CartContext";
 import Button from "@mui/joy/Button";
 import Add from "@mui/icons-material/Add";
 import PropTypes from "prop-types";
-
+import CheckIcon from '@mui/icons-material/Check';
 export default function PItem({ product }) {
   const [inputValue, setInputValue] = useState("1");
   const [highlight, setHighlight] = useState(false);
@@ -80,8 +80,9 @@ export default function PItem({ product }) {
               </div>
               <Button
                 onClick={handleAddToCart}
-                className="mt-2"
-                startIcon={!highlight ? <Add /> : null}
+                className="mt-4 w-32 h-14 "
+                sx={{ whiteSpace: 'nowrap' }}
+                startDecorator={highlight ? <CheckIcon/> : <Add />}
               >
                 {highlight ? "Added!" : "Add to cart"}
               </Button>

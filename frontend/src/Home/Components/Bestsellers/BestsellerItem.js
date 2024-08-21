@@ -13,7 +13,7 @@ import {
 } from "mdb-react-ui-kit";
 import Button from "@mui/joy/Button";
 import Add from "@mui/icons-material/Add";
-
+import CheckIcon from '@mui/icons-material/Check';
 export default function BestSellerItem({ item }) {
   const [inputValue, setInputValue] = useState("1");
   const [highlight, setHighlight] = useState(false);
@@ -54,8 +54,8 @@ export default function BestSellerItem({ item }) {
             className="card rounded "
             style={{
               height: "23rem",
-              width: "10rem",
-              border: highlight ? "2px solid #00FF00" : "none",
+              width: "100%",
+    
        
             }}
           >
@@ -66,7 +66,7 @@ export default function BestSellerItem({ item }) {
                 className="w-100 "
                 style={{
                   height: "6.5rem",
-                  borderRadius: "10px",
+                  borderRadius: "5px",   
                   objectFit: "cover",
                 }}
               />
@@ -130,8 +130,9 @@ export default function BestSellerItem({ item }) {
 
               <Button
                 onClick={handleAddToCart}
-                style={{ marginTop: "1rem" }}
-                startDecorator={highlight ? null : <Add />}
+                className="mt-4 w-32 h-10 "
+                sx={{ whiteSpace: 'nowrap' }}
+                startDecorator={highlight ? <CheckIcon/> : <Add />}
               >
                 {highlight ? "Added!" : "Add to cart"}
               </Button>

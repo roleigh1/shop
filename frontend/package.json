@@ -8,7 +8,7 @@
     "@emotion/styled": "^11.11.5",
     "@fortawesome/fontawesome-free": "^6.4.0",
     "@mui/icons-material": "^5.14.1",
-    "@mui/joy": "^5.0.0-alpha.89",
+    "@mui/joy": "^5.0.0-beta.48",
     "@mui/material": "^5.15.15",
     "@stripe/react-stripe-js": "^2.3.0",
     "@stripe/stripe-js": "^2.1.5",
