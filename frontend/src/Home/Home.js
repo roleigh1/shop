@@ -8,6 +8,7 @@ import BannerHome from "./Components/Side-show-head/BannerHome";
 import SeasonList from "./Components/SeasonItems/SeasonList";
 import ContactForm from "./Components/Contact/ContactForm";
 import BestSellerList from "./Components/Bestsellers/BestSellerList";
+import NewBestSellerList from "./Components/Bestsellers/newBestsellerlist";
 import { useLocation } from "react-router-dom";
 import { useCart } from "../CartContext";
 import PropTypes from "prop-types";
@@ -59,6 +60,9 @@ function Home({ items, infos, banners }) {
 
     <div className="mt-8">
       <BestSellerList items={items} />
+    </div>
+    <div className="mt-8">
+      <NewBestSellerList items={items} />
     </div>
 
     <div className="mt-8">

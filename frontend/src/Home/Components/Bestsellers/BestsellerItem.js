@@ -51,24 +51,16 @@ export default function BestSellerItem({ item }) {
       <MDBRow>
         <MDBCol md="12" lg="7" className="mb-4">
           <MDBCard
-            className="card rounded "
-            style={{
-              height: "23rem",
-              width: "100%",
+            className="card rounded-md  h-96 w-[10.1rem]  "
     
-       
-            }}
           >
-            <MDBRipple rippleColor="light" rippleTag="div" className="w-40">
+            <MDBRipple rippleColor="light" rippleTag="div" className="w-[11rem]">
               <MDBCardImage
                 src={item.image}
                 fluid
-                className="w-100 "
-                style={{
-                  height: "6.5rem",
-                  borderRadius: "5px",   
-                  objectFit: "cover",
-                }}
+                className="w-[10rem] max-h-24  rounded-t-md object-cover  "
+               
+              
               />
               <a >
                 <div className="mask">
