@@ -21,59 +21,57 @@ function Home({ items, infos, banners }) {
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
-    const hash = window.location.hash; 
+    const hash = window.location.hash;
     const urlParams = new URLSearchParams(location.search);
     if (urlParams.get("success") === "true") {
       setSuccess(true);
       setCart([]);
-    } else if(hash === "#contact"){
-      document.getElementById("contact-section").scrollIntroView({ behavior: "smooth"}); 
+    } else if (hash === "#contact") {
+      document
+        .getElementById("contact-section")
+        .scrollIntroView({ behavior: "smooth" });
     }
-
   }, [location.search, setCart]);
   return (
     <div className="container mx-auto">
-    <div className="flex items-center mt-3">
-      <div className="flex-grow">
-        <Logo />
+      <div className="flex items-center mt-3">
+        <div className="flex-grow">
+          <Logo />
+        </div>
+        <div className="flex  mt-4  ">
+          <Cart />
+          <BurgerMenu />
+        </div>
       </div>
-      <div className="flex  mt-4  ">
-        <Cart />
-        <BurgerMenu />
+
+      <div className="relative z-0 mt-8">
+        {success && <Alert />}
+        <BannerHome banners={banners} className="slider" />
+      </div>
+
+      <div className="mt-8">
+        <SeasonList infos={infos} />
+      </div>
+
+      <div className="mt-4 bg-gray-300 rounded-lg">
+        <div className="flex justify-center">
+          <ContactForm id="contact-section" className="contactForm" />
+        </div>
+      </div>
+
+      <div className="mt-8">
+        <NewBestSellerList items={items} />
+      </div>
+
+      <div className="mt-8">
+        <Footer />
       </div>
     </div>
-
-    <div className="relative z-0 mt-8">
-      {success && <Alert />}
-      <BannerHome banners={banners} className="slider" />
-    </div>
-
-    <div className="mt-8">
-      <SeasonList infos={infos} />
-    </div>
-
-    <div className="mt-4 bg-gray-300 rounded-lg">
-      <div  className="flex justify-center">
-        <ContactForm id="contact-section" className="contactForm" />
-      </div>
-    </div>
-
-    <div className="mt-8">
-      <BestSellerList items={items} />
-    </div>
-    <div className="mt-8">
-      <NewBestSellerList items={items} />
-    </div>
-
-    <div className="mt-8">
-      <Footer />
-    </div>
-  </div>
   );
 }
 Home.propTypes = {
   items: PropTypes.array.isRequired,
   infos: PropTypes.array.isRequired,
-  banners: PropTypes.array.isRequired
+  banners: PropTypes.array.isRequired,
 };
 export default Home;
