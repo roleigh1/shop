@@ -6,6 +6,7 @@ import { CartProvider } from "./CartContext";
 import { useState, useEffect } from "react";
 import "./app.css";
 import ProductPage from "./ProductPage/ProductPage";
+import DetailsPage from "./DetailsPage/DetailsPage";
 
 function App() {
   const [infos, setInfos] = useState([]);
@@ -43,10 +44,10 @@ function App() {
         console.error("Error fetching data:", error);
       }
     };
- 
+
     fetchData();
   }, [api_base_url]);
-  console.log("in App.js Products",infos)
+  console.log("in App.js Products", infos);
   return (
     <CartProvider>
       <Router>
@@ -65,13 +66,13 @@ function App() {
           <Route path="/cartpage" element={<CartPage />} />
           <Route
             path="/products"
-            element={
-              <ProductPage banners={banners} products={products} />
-            }
+            element={<ProductPage banners={banners} products={products} />}
           />
+          <Route path="/details" element={<DetailsPage />} />
         </Routes>
       </Router>
     </CartProvider>
   );
 }
+
 export default App;
