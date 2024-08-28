@@ -24,7 +24,7 @@ export default function NewBestsellerItem({ item }) {
           }}
           alt="Sunset in the mountains"
         ></div>
-        <Link to="/details">
+        <Link to={`/details/${item.id}/bestsellers`}>
           <svg
             height="24"
             width="24"
@@ -51,6 +51,7 @@ export default function NewBestsellerItem({ item }) {
 
 NewBestsellerItem.propTypes = {
   item: PropTypes.shape({
+    id:PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,

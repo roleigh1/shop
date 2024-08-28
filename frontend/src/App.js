@@ -68,7 +68,10 @@ function App() {
             path="/products"
             element={<ProductPage banners={banners} products={products} />}
           />
-          <Route path="/details" element={<DetailsPage />} />
+          <Route
+            path="/details/:id/:whichProduct"
+            element={<DetailsPage items={items} products={products} />}
+          />
         </Routes>
       </Router>
     </CartProvider>
