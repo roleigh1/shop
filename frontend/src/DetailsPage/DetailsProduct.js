@@ -1,12 +1,13 @@
 import React, { useState,useEffect } from "react";
 import PropTypes from "prop-types";
 import {  useParams } from "react-router-dom";
+import Images from "./imageGallery";
 export default function DetailsItem({ items, products }){
     const { id, whichProduct } = useParams();
-    const [detailsItem, setDetailsItem] = useState(null);  // Richtig initialisiert
+    const [detailsItem, setDetailsItem] = useState(null); 
 
     useEffect(() => {
-      const numericId = parseInt(id, 10);  // id in Zahl umwandeln, falls nötig
+      const numericId = parseInt(id, 10);  
   
       if (whichProduct === "bestsellers") {
         setDetailsItem(items.find((obj) => obj.id === numericId));
@@ -19,9 +20,9 @@ export default function DetailsItem({ items, products }){
   
     
     return (
-        <div >
-
-      </div>
+      <div>
+        <Images />
+    </div>
     )
 }
 DetailsItem.propTypes = {
