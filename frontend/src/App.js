@@ -47,7 +47,13 @@ function App() {
 
     fetchData();
   }, [api_base_url]);
-  console.log("in App.js Products", infos);
+  console.log("in App.js items", items);
+  console.log("in App.js banners", banners);
+  console.log("in App.js products", products);
+  console.log("in App.js infos", infos);
+  useEffect(() => {
+    console.log("API Base URL:", api_base_url);
+  }, [api_base_url]);
   return (
     <CartProvider>
       <Router>

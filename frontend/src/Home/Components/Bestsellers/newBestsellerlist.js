@@ -20,13 +20,12 @@ export default function NewBestSellerList({ items }) {
   );
 }
 NewBestSellerList.propTypes = {
-  items: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      price: PropTypes.string.isRequired,
-      image: PropTypes.string.isRequired,
-      type: PropTypes.string.isRequired,
-    })
-  ).isRequired,
+  item: PropTypes.shape({
+    id:PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
+    firstImage: PropTypes.string.isRequired,
+    secondImage: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+  }).isRequired,
 };

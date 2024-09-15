@@ -17,7 +17,7 @@ export default function NewBestsellerItem({ item }) {
         <div
           className="w-[13rem] h-[12rem] mt-1 m-auto object-contain"
           style={{
-            backgroundImage: `url(${isHovered ? testImage : item.image})`,
+            backgroundImage: `url(${isHovered ? item.secondImage : item.firstImage})`,
             backgroundSize: "contain",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
@@ -54,7 +54,8 @@ NewBestsellerItem.propTypes = {
     id:PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
+    firstImage: PropTypes.string.isRequired,
+    secondImage: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
   }).isRequired,
 };

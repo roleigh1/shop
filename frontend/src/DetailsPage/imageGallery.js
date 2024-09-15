@@ -1,22 +1,31 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 
-export default function Images() {
+export default function Images({ detailsItem }) {
+  console.log(detailsItem);
+  if (!detailsItem) {
+    return <p>Loading...</p>; // Oder eine andere Platzhalter-Komponente anzeigen
+  }
   const images = [
     {
-      original: "https://picsum.photos/id/1018/1000/600/",
-      thumbnail: "https://picsum.photos/id/1018/250/150/"
+      original: detailsItem.firstImage,
+      thumbnail: detailsItem.firstImage,
     },
     {
-      original: "https://picsum.photos/id/1015/1000/600/",
-      thumbnail: "https://picsum.photos/id/1015/250/150/"
+      original: detailsItem.secondImage,
+      thumbnail: detailsItem.secondImage,
     },
     {
-      original: "https://picsum.photos/id/1019/1000/600/",
-      thumbnail: "https://picsum.photos/id/1019/250/150/"
-    }
+      original: detailsItem.thirdImage,
+      thumbnail: detailsItem.thirdImage,
+    },
+    {
+      original: detailsItem.fourthImage,
+      thumbnail: detailsItem.fourthImage,
+    },
   ];
 
   return (
@@ -37,3 +46,11 @@ export default function Images() {
     </div>
   );
 }
+Images.propTypes = {
+  detailsItem: PropTypes.shape({
+    firstImage: PropTypes.string,
+    secondImage: PropTypes.string,
+    thirdImage: PropTypes.string,
+    fourthImage: PropTypes.string,
+  }),
+};

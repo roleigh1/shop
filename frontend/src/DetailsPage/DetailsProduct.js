@@ -21,7 +21,7 @@ export default function DetailsItem({ items, products }){
     
     return (
       <div>
-        <Images />
+          <Images detailsItem={detailsItem}/>
     </div>
     )
 }
