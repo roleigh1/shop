@@ -2,12 +2,11 @@ import React, { useState, useEffect } from "react";
 import { MDBContainer, MDBRow, MDBCol } from "mdb-react-ui-kit";
 import PropTypes from "prop-types";
 import "./style.css";
-import ProductItem from "./ProductItem";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-
+import NewProductsItem from "./newProductItem";
 export default function ProductList({ products }) {
   const [selectedType, setSelectedType] = useState("");
   const [visibleProducts, setVisibleProducts] = useState(4);
@@ -59,7 +58,7 @@ export default function ProductList({ products }) {
       <MDBRow className="mobile mt-5" style={{ justifyContent: "center" }}>
         {filteredProducts.slice(0, visibleProducts).map((product) => (
           <MDBCol key={product.id}>
-            <ProductItem
+            <NewProductsItem
               className="card"
               product={{ ...product, price: parseFloat(product.price) }}
             />

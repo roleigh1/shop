@@ -19,13 +19,16 @@ export default function NewBestSellerList({ items }) {
     </MDBContainer>
   );
 }
+
 NewBestSellerList.propTypes = {
-  item: PropTypes.shape({
-    id:PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
-    firstImage: PropTypes.string.isRequired,
-    secondImage: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-  }).isRequired,
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      price: PropTypes.string.isRequired,
+      firstImage: PropTypes.string.isRequired,
+      secondImage: PropTypes.string,
+      type: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };

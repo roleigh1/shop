@@ -1,0 +1,28 @@
+ .image-gallery-image  {
+
+    width:300px;
+    height: 300px;
+    object-fit: contain;  /* Ensures the image covers the area while maintaining aspect ratio */
+  }
+  /* Thumbnails in the gallery */
+  .image-gallery-thumbnail img {
+
+    width: 50px;
+    height: 80px;
+    object-fit: cover; /* Same for thumbnails */
+  }
+  .image-gallery-thumbnail{
+    margin-top: 4rem;
+  }
+.image-gallery-index {
+  display: none;
+}
+.image-gallery-icon:hover {
+  color: white !important;  /* Beibehaltung der Originalfarbe */
+  background-color: inherit !important; /* Entferne die Hintergrundfarbe beim Hover */
+}
+
+/* Optional: Entferne den Hintergrund der Pfeilcontainer beim Hover */
+.image-gallery-left-nav:hover, .image-gallery-right-nav:hover {
+  background: none !important;  /* Kein Hintergrund beim Hover */
+}

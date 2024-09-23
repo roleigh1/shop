@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import testImage from "./testImage.png";
 import { Link } from "react-router-dom";
 import "./style.css";
 
@@ -24,7 +23,7 @@ export default function NewBestsellerItem({ item }) {
           }}
           alt="Sunset in the mountains"
         ></div>
-        <Link to={`/details/${item.id}/bestsellers`}>
+        <Link to={`/details/${item.id}/bestseller`}>
           <svg
             height="24"
             width="24"

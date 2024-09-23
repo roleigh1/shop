@@ -3,23 +3,6 @@ import PropTypes from "prop-types";
 import "./style.css";
 
 export default function Banner({ banners }) {
-  const [topPosition, setTopPosition] = useState(null);
-
-  useEffect(() => {
-    if (banners && banners[1]) {
-      const handleResize = () => {
-        if (window.matchMedia("(max-width: 786px)").matches) {
-          setTopPosition(banners[1].topPhone);
-        } else {
-          setTopPosition(banners[1].top);
-        }
-      };
-
-      handleResize();
-      window.addEventListener("resize", handleResize);
-      return () => window.removeEventListener("resize", handleResize);
-    }
-  }, [banners]);
 
 
   return (

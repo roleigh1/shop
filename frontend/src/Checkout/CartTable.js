@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useCart } from "../CartContext";
-import { Row, Col, Container } from "react-bootstrap";
-import { MDBBtn } from "mdb-react-ui-kit";
 import Decimal from "decimal.js";
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
@@ -78,179 +76,119 @@ export default function CartTable() {
   if (message) {
     return <Message message={message} />;
   }
+
   function isWeekend(date) {
     const day = date.getDay();
     return day !== 5 && day !== 6;
   }
+
   return (
-    <Container>
-      <Row>
-        <h1 className="text-center mt-3">Your Purchase</h1>
-        <table className="mt-3">
-          <thead>
-            <tr>
-              <th>Items</th>
-              <th>Name</th>
-              <th style={{}}>Price</th>
-              <th style={{ position: "relative", left: "1rem" }}>Qty</th>
-              <th>Total</th>
+    <div className="container mx-auto p-4">
+      <h1 className="text-center mt-3 text-2xl font-bold">Your Purchase</h1>
+      <table className="w-full mt-3 border-separate border-spacing-y-3">
+        <thead>
+          <tr className="">
+            <th className="text-left p-2"></th>
+            <th className="text-left p-2">Name</th>
+            <th className="text-left p-2">Price</th>
+            <th className="text-left pl-8">Qty</th>
+            <th className="text-left p-2">Total</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {cart.map((item, index) => (
+            <tr key={index} className="border-b">
+              <td className="p-2">
+                <img
+                  className="w-16 h-12 rounded object-cover"
+                  src={item.image}
+                  alt={item.name}
+                />
+              </td>
+              <td className="p-2">{item.name}</td>
+              <td className="p-2">{item.price}€</td>
+              <td className="p-2 mt-[11px] flex items-center gap-2">
+                <button
+                  className="bg-red-500 text-white font-bold w-6 h-6 rounded-full flex items-center justify-center"
+                  onClick={() => updateQuantity(item.name, -1)}
+                >
+                  -
+                </button>
+                {item.quantity}
+                <button
+                  className="bg-green-500 text-white font-bold w-6 h-6 rounded-full flex items-center justify-center"
+                  onClick={() => updateQuantity(item.name, 1)}
+                >
+                  +
+                </button>
+              </td>
+              <td className="p-2">
+                {new Decimal(item.price).times(item.quantity).toFixed(2)}€
+              </td>
+              <td className="p-2">
+             
+                <svg
+                  onClick={() => removeFromCart(item.name)}
+                  className="w-[15px] h-[15px] fill-[#8e8e8e]"
+                  viewBox="0 0 448 512"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0H284.2c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3zM32 128H416V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zm96 64c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16z"></path>
+                </svg>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {cart.map((item, index) => (
-              <tr
-                key={index}
-                style={{
-                  borderBottom: "1px solid rgba(0, 0, 0, 0.4)",
-                  verticalAlign: "middle",
-                }}
-              >
-                <td>
-                  <img
-                    style={{
-                      width: "4rem",
-                      height: "3rem",
-                      borderRadius: "5px",
-                      objectFit: "cover",
-                    }}
-                    src={item.image}
-                    alt={item.name}
-                  />
-                </td>
-                <td>{item.name}</td>
-                <td>{item.price}€</td>
-                <td
-                  style={{
-                    display: "flex",
-                    gap: "0.3rem",
-                    position: "relative",
-                    top: "0.8rem",
-                  }}
-                >
-                  <button
-                    style={{
-                      fontWeight: "bold",
-                      height: "1.5rem",
-                      width: "1rem",
-                      borderRadius: "50%",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      paddingBottom: "10px",
-                    }}
-                    className="btn btn-danger"
-                    onClick={() => updateQuantity(item.name, -1)}
-                  >
-                    -
-                  </button>
-                  {item.quantity}
-                  <button
-                    className="btn btn-success"
-                    style={{
-                      fontWeight: "bold",
-                      height: "1.5rem",
-                      borderRadius: "50%",
-                      width: "1rem",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      paddingBottom: "10px",
-                    }}
-                    onClick={() => updateQuantity(item.name, 1)}
-                  >
-                    +
-                  </button>
-                </td>
-                <td>
-                  {new Decimal(item.price).times(item.quantity).toFixed(2)}€
-                </td>
-                <td>
-                  <button
-                    style={{
-                      fontWeight: "bold",
-                      height: "1.5rem",
-                      borderRadius: "50%",
-                      width: "1.5rem",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      paddingBottom: "9px",
-                    }}
-                    className="btn btn-danger"
-                    onClick={() => removeFromCart(item.name)}
-                  >
-                    x
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+          ))}
+        </tbody>
+      </table>
 
-        <Row className="mt-5 flex-column align-items-center text-center endCont">
-          <form
-            onSubmit={handleCheckout}
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-              gap: "1rem",
-            }}
-          >
-            <Col md={3} className="">
-              <FormControl style={{ width: "10rem" }}>
-                <InputLabel id="demo-simple-select-label">Location</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={selectLocation}
-                  label="Pick a Location"
-                  onChange={handleSelectChange}
-                  required
-                >
-                  <MenuItem value={"Karmelitermarkt"}>Karmelitermarkt</MenuItem>
-                  <MenuItem value={"Vorgartenmarkt"}>Vorgartenmarkt</MenuItem>
-                  <MenuItem value={"Südtiroler Platz"}>
-                    Südtiroler Platz
-                  </MenuItem>
-                </Select>
-              </FormControl>
-            </Col>
-
-            <Col>
-              <DatePicker
+      <div className="mt-8 flex flex-col items-center">
+        <form
+          onSubmit={handleCheckout}
+          className="flex flex-col items-center gap-4"
+        >
+          <div className="w-full md:w-1/3">
+            <FormControl fullWidth>
+              <InputLabel id="location-select-label">Location</InputLabel>
+              <Select
+                labelId="location-select-label"
+                id="location-select"
+                value={selectLocation}
+                label="Pick a Location"
+                onChange={handleSelectChange}
                 required
-                selected={selectedDate}
-                onChange={handleDateChange}
-                filterDate={(date) => !isWeekend(date)}
-              />
-            </Col>
-            <Col className="">
-              <MDBBtn
-                color="danger"
-                style={{
-                  width: "7rem",
-                  height: "2rem",
-                  textTransform: "none",
-                  paddingTop: "3px",
-                  color: "white",
-                  fontWeight: "bold",
-                  letterSpacing: "1px",
-                }}
               >
-                Checkout
-              </MDBBtn>
-            </Col>
-          </form>
-          <Col sm={6} className=" ">
-            <p style={{ marginTop: "0.5rem" }}>Total: {totalValue}</p>
-          </Col>
-        </Row>
-      </Row>
-    </Container>
+                <MenuItem value={"Karmelitermarkt"}>Karmelitermarkt</MenuItem>
+                <MenuItem value={"Vorgartenmarkt"}>Vorgartenmarkt</MenuItem>
+                <MenuItem value={"Südtiroler Platz"}>Südtiroler Platz</MenuItem>
+              </Select>
+            </FormControl>
+          </div>
+
+          <div>
+            <DatePicker
+              required
+              selected={selectedDate}
+              onChange={handleDateChange}
+              filterDate={(date) => !isWeekend(date)}
+              className="border border-gray-300 p-2 rounded"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="bg-red-500 text-white font-bold py-2 px-6 rounded hover:bg-red-600"
+          >
+            Checkout
+          </button>
+        </form>
+
+        <p className="mt-4 text-lg font-semibold">Total: {totalValue}€</p>
+      </div>
+    </div>
   );
 }
+
 CartTable.propTypes = {
-  message: PropTypes.string.isRequired,
+  message: PropTypes.string,
 };
