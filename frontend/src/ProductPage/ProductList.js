@@ -6,7 +6,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import NewProductsItem from "./newProductItem";
+import NewProductsItem from "./ProductItem";
 export default function ProductList({ products }) {
   const [selectedType, setSelectedType] = useState("");
   const [visibleProducts, setVisibleProducts] = useState(4);

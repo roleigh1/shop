@@ -41,7 +41,7 @@ export default function NewProductsItem({ product }) {
       </div>
       <div className="relative bottom-5">
         <span className="bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-3">
-          {product.price}
+          {(parseFloat(product.price)).toFixed(2)} /{product.unit} 
         </span>
       </div>
     </div>
@@ -56,5 +56,6 @@ NewProductsItem.propTypes = {
     firstImage: PropTypes.string.isRequired,
     secondImage: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
+    unit: PropTypes.string.isRequired,
   }).isRequired,
 };

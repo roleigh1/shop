@@ -1,6 +1,5 @@
- .image-gallery-image  {
-
-    width:300px;
+ .image-gallery-slide .image-gallery-image   {
+    width:35rem!important;
     height: 300px;
     object-fit: contain;  /* Ensures the image covers the area while maintaining aspect ratio */
   }

@@ -29,6 +29,7 @@ export default function DetailsItem({ items, products }) {
       name: detailsItem.name,
       price: detailsItem.price,
       quantity: quantity,
+      unit: detailsItem.unit,
       image: detailsItem.firstImage,
     };
     if (Number(quantity) > 0) {
@@ -84,13 +85,10 @@ export default function DetailsItem({ items, products }) {
       <div className="flex flex-col mr-5 w-[30rem]">
         <h2>{detailsItem.name}</h2>
         <hr className="h-px my-8 w-72 bg-gray-500 border-0 dark:bg-gray-700"></hr>
-        <p>{(parseFloat(detailsItem.price) * quantity).toFixed(2)}</p>
+    
+        {(parseFloat(detailsItem.price)).toFixed(2)} / {detailsItem.unit}
         <p>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-          nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-          sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
-          rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
-          ipsum dolor sit amet.
+          {detailsItem.description}
         </p>
 
         <label
@@ -100,7 +98,7 @@ export default function DetailsItem({ items, products }) {
           Choose quantity:
         </label>
 
-        <div className="relative flex items-center max-w-[8rem]">
+<div className="relative flex items-center max-w-[8rem]">
           <button
             type="button"
             id="decrement-button"
@@ -155,7 +153,11 @@ export default function DetailsItem({ items, products }) {
               />
             </svg>
           </button>
-        </div>
+          </div>
+
+        
+ 
+       
         <button
           type="button"
           onClick={handleAddToCart}
