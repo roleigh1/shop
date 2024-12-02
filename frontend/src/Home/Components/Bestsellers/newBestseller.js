@@ -3,8 +3,10 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import "./style.css";
 
-export default function NewBestsellerItem({ item }) {
+
+export default function NewBestsellerItem({item}) {
   const [isHovered, setIsHovered] = useState(false);
+
 
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg h-[23rem]">
@@ -16,14 +18,16 @@ export default function NewBestsellerItem({ item }) {
         <div
           className="w-[13rem] h-[12rem] mt-1 m-auto object-contain"
           style={{
-            backgroundImage: `url(${isHovered ? item.secondImage : item.firstImage})`,
+            backgroundImage: `url(${
+              isHovered ? item.secondImage : item.firstImage
+            })`,
             backgroundSize: "contain",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
           }}
           alt="Sunset in the mountains"
         ></div>
-        <Link to={`/details/${item.id}/bestseller`}>
+        <Link to={`/details/${item.id}/bestsellerDetails`}>
           <svg
             height="24"
             width="24"
@@ -41,7 +45,7 @@ export default function NewBestsellerItem({ item }) {
       </div>
       <div className="relative bottom-5">
         <span className="bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-3">
-        {(parseFloat(item.price)).toFixed(2)}/{item.unit}
+          {parseFloat(item.price).toFixed(2)}/{item.unit}
         </span>
       </div>
     </div>
@@ -50,12 +54,12 @@ export default function NewBestsellerItem({ item }) {
 
 NewBestsellerItem.propTypes = {
   item: PropTypes.shape({
-    id:PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
     firstImage: PropTypes.string.isRequired,
     secondImage: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
-    unit:PropTypes.string.isRequired
+    unit: PropTypes.string.isRequired,
   }).isRequired,
 };

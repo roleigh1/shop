@@ -5,6 +5,7 @@ import BurgerMenu from "../Home/Components/Burger/Menu";
 import Cart from "../Home/Components/Cart/Cart";
 import Footer from "../Home/Components/Footer/Footer";
 import DetailsItem from "./DetailsProduct";
+
 export default function DetailsPage({ items, products }) {
   return (
     <div className="container mx-auto">
@@ -17,7 +18,6 @@ export default function DetailsPage({ items, products }) {
           <BurgerMenu />
         </div>
       </div>
-
       <div className="mt-20">
         <DetailsItem items={items} products={products} />
       </div>

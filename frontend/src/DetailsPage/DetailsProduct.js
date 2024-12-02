@@ -11,15 +11,33 @@ export default function DetailsItem({ items, products }) {
   const [detailsItem, setDetailsItem] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const { addToCart } = useCart();
+  const api_base_url = process.env.REACT_APP_API_BASEURL;
   useEffect(() => {
-    const numericId = parseInt(id, 10);
-
-    if (whichProduct === "bestsellers") {
-      setDetailsItem(items.find((obj) => obj.id === numericId));
-    } else {
-      setDetailsItem(products.find((obj) => obj.id === numericId));
-    }
-  }, [id, products, whichProduct, items]);
+    const fetchDetailsData = async () => {
+      if (whichProduct === "bestsellerDetails") {
+        try {
+          const response = await fetch(
+            `${api_base_url}/content/${whichProduct}/${id}`
+          );
+          const data = await response.json();
+          setDetailsItem(data);
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        try {
+          const response = await fetch(
+            `${api_base_url}/content/${whichProduct}/${id}`
+          );
+          const data = await response.json();
+          setDetailsItem(data);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    };
+    fetchDetailsData()
+  }, [id, products, whichProduct, items, api_base_url]);
 
   if (!detailsItem) {
     return <p>Loading...</p>;
@@ -85,20 +103,15 @@ export default function DetailsItem({ items, products }) {
       <div className="flex flex-col mr-5 w-[30rem]">
         <h2>{detailsItem.name}</h2>
         <hr className="h-px my-8 w-72 bg-gray-500 border-0 dark:bg-gray-700"></hr>
-    
-        {(parseFloat(detailsItem.price)).toFixed(2)} / {detailsItem.unit}
-        <p>
-          {detailsItem.description}
-        </p>
-
+        {parseFloat(detailsItem.price).toFixed(2)} / {detailsItem.unit}
+        <p>{detailsItem.description}</p>
         <label
           htmlFor="quantity-input"
           className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
         >
           Choose quantity:
         </label>
-
-<div className="relative flex items-center max-w-[8rem]">
+        <div className="relative flex items-center max-w-[8rem]">
           <button
             type="button"
             id="decrement-button"
@@ -153,11 +166,7 @@ export default function DetailsItem({ items, products }) {
               />
             </svg>
           </button>
-          </div>
-
-        
- 
-       
+        </div>
         <button
           type="button"
           onClick={handleAddToCart}

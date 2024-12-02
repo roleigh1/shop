@@ -164,7 +164,7 @@ const Order = sequelize.define(
   }
 );
 const BannerData = sequelize.define(
-  "Banner",
+  "banners",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -183,10 +183,7 @@ const BannerData = sequelize.define(
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    location: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-    },
+    
   },
   {
     tableName: "banners",
@@ -194,10 +191,12 @@ const BannerData = sequelize.define(
   }
 );
 
+
 module.exports = {
   BannerData,
   BestsellerItemsDB,
   SeasonCardsDB,
   ProductsDB,
   Order,
+
 };

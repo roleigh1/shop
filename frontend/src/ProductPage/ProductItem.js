@@ -7,7 +7,7 @@ export default function NewProductsItem({ product }) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg h-[23rem]">
+    <div className="w-[15rem] rounded overflow-hidden shadow-lg h-[23rem]">
       <div
         className="image-container"
         onMouseEnter={() => setIsHovered(true)}
@@ -23,7 +23,7 @@ export default function NewProductsItem({ product }) {
           }}
           alt="Sunset in the mountains"
         ></div>
-        <Link to={`/details/${product.id}/products`}>
+        <Link to={`/details/${product.id}/productDetails`}>
           <svg
             height="24"
             width="24"

@@ -29,17 +29,17 @@ function App() {
 
     const fetchData = async () => {
       try {
-        const [infosData, itemsData, productsData, bannersData] =
+        const [infosData,  productsData,] =
           await Promise.all([
             fetchContent("cardInfos"),
-            fetchContent("bestseller"),
+
             fetchContent("products"),
-            fetchContent("banners"),
+
           ]);
         setInfos(infosData);
-        setItems(itemsData);
+  
         setProducts(productsData);
-        setBanners(bannersData);
+
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -47,12 +47,9 @@ function App() {
 
     fetchData();
   }, [api_base_url]);
-  console.log("in App.js items", items);
-  console.log("in App.js banners", banners);
-  console.log("in App.js products", products);
-  console.log("in App.js infos", infos);
+
   useEffect(() => {
-    console.log("API Base URL:", api_base_url);
+
   }, [api_base_url]);
   return (
     <CartProvider>
@@ -62,7 +59,7 @@ function App() {
             path="/"
             element={
               <Home
-                banners={banners}
+     
                 items={items}
                 infos={infos}
                 products={products}
@@ -72,7 +69,7 @@ function App() {
           <Route path="/cartpage" element={<CartPage />} />
           <Route
             path="/products"
-            element={<ProductPage banners={banners} products={products} />}
+            element={<ProductPage  products={products} />}
           />
           <Route
             path="/details/:id/:whichProduct"
