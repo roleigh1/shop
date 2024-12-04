@@ -1,12 +1,42 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, {useState,useEffect} from "react";
+import { useParams } from "react-router-dom";
 import Logo from "../Home/Components/Logo/Logo";
 import BurgerMenu from "../Home/Components/Burger/Menu";
 import Cart from "../Home/Components/Cart/Cart";
 import Footer from "../Home/Components/Footer/Footer";
 import DetailsItem from "./DetailsProduct";
 
-export default function DetailsPage({ items, products }) {
+export default function DetailsPage() {
+  const { id, whichProduct } = useParams();
+  const api_base_url = process.env.REACT_APP_API_BASEURL;
+  const [detailsItem, setDetailsItem] = useState(null);
+  useEffect(() => {
+  const fetchDetailsData = async () => {
+    if (whichProduct === "bestsellerDetails") {
+      try {
+        const response = await fetch(
+          `${api_base_url}/content/${whichProduct}/${id}`
+        );
+        const data = await response.json();
+        setDetailsItem(data);
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      try {
+        const response = await fetch(
+          `${api_base_url}/content/${whichProduct}/${id}`
+        );
+        const data = await response.json();
+        setDetailsItem(data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+  fetchDetailsData()
+}, [id, whichProduct, api_base_url]);
+
   return (
     <div className="container mx-auto">
       <div className="flex items-center mt-3">
@@ -19,7 +49,7 @@ export default function DetailsPage({ items, products }) {
         </div>
       </div>
       <div className="mt-20">
-        <DetailsItem items={items} products={products} />
+        <DetailsItem detailsItem={detailsItem}/>
       </div>
 
       <div className="mt-8">
@@ -28,31 +58,3 @@ export default function DetailsPage({ items, products }) {
     </div>
   );
 }
-DetailsPage.propTypes = {
-  items: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      price: PropTypes.string.isRequired,
-      firstImage: PropTypes.string.isRequired,
-      secondImage: PropTypes.string.isRequired,
-      thirdImage: PropTypes.string.isRequired,
-      fourthImage: PropTypes.string.isRequired,
-
-      type: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-  products: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      type: PropTypes.string.isRequired,
-      firstImage: PropTypes.string.isRequired,
-      secondImage: PropTypes.string.isRequired,
-      thirdImage: PropTypes.string.isRequired,
-      fourthImage: PropTypes.string.isRequired,
-      price: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-        .isRequired,
-    })
-  ).isRequired,
-};

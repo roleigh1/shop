@@ -14,7 +14,7 @@ export default function NewProductsItem({ product }) {
         onMouseLeave={() => setIsHovered(false)}
       >
         <div
-          className="w-[13rem] h-[12rem] mt-1 m-auto object-contain"
+          className="w-[13rem] h-[12rem] mt-1 m-auto object-contain  " 
           style={{
             backgroundImage: `url(${isHovered ? product.secondImage : product.firstImage})`,
             backgroundSize: "contain",

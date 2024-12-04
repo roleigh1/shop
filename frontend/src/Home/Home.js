@@ -11,7 +11,7 @@ import ContactForm from "./Components/Contact/ContactForm";
 import NewBestSellerList from "./Components/Bestsellers/newBestsellerlist";
 import { useLocation } from "react-router-dom";
 import { useCart } from "../CartContext";
-import PropTypes from "prop-types";
+
 
 import Alert from "./Components/Alert/Alert";
 
@@ -69,9 +69,5 @@ function Home({ items, infos, banners }) {
     </div>
   );
 }
-Home.propTypes = {
-  items: PropTypes.array.isRequired,
-  infos: PropTypes.array.isRequired,
-  banners: PropTypes.array.isRequired,
-};
+
 export default Home;

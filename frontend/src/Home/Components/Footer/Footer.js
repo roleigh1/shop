@@ -90,7 +90,7 @@ const Footer = () => {
         style={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}
       >
         Developed @RoLeigh
-        <a className="text-reset fw-bold" href="https://mdbootstrap.com/"></a>
+   
       </div>
     </MDBFooter>
   );

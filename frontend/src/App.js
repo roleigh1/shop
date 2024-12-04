@@ -10,9 +10,9 @@ import DetailsPage from "./DetailsPage/DetailsPage";
 
 function App() {
   const [infos, setInfos] = useState([]);
-  const [items, setItems] = useState([]);
-  const [products, setProducts] = useState([]);
-  const [banners, setBanners] = useState([]);
+ 
+
+
   const api_base_url = process.env.REACT_APP_API_BASEURL;
 
   useEffect(() => {
@@ -29,16 +29,16 @@ function App() {
 
     const fetchData = async () => {
       try {
-        const [infosData,  productsData,] =
+        const [infosData] =
           await Promise.all([
             fetchContent("cardInfos"),
 
-            fetchContent("products"),
+       
 
           ]);
         setInfos(infosData);
   
-        setProducts(productsData);
+
 
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -60,21 +60,20 @@ function App() {
             element={
               <Home
      
-                items={items}
+          
                 infos={infos}
-                products={products}
+      
               />
             }
           />
           <Route path="/cartpage" element={<CartPage />} />
           <Route
             path="/products"
-            element={<ProductPage  products={products} />}
+            element={<ProductPage  />}
           />
           <Route
             path="/details/:id/:whichProduct"
-            element={<DetailsPage items={items} products={products} />}
-          />
+            element={<DetailsPage />} />
         </Routes>
       </Router>
     </CartProvider>

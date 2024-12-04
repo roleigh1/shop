@@ -6,7 +6,7 @@ import Cart from "../Home/Components/Cart/Cart";
 import Banner from "./Bg-Producs";
 import ProductList from "./ProductList";
 import Footer from "../Home/Components/Footer/Footer";
-import PropTypes from "prop-types";
+
 export default function ProductPage({ products, banners }) {
   return (
     <div className="container mx-auto ">
@@ -31,7 +31,3 @@ export default function ProductPage({ products, banners }) {
   </div>
   );
 }
-ProductPage.propTypes = {
-  products: PropTypes.array.isRequired,
-  banners:PropTypes.array.isRequired
-};

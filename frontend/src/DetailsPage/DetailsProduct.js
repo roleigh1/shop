@@ -1,44 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import PropTypes from "prop-types";
-import { useParams } from "react-router-dom";
+
 import "./style.css";
 import { useCart } from "../CartContext";
 import "react-image-gallery/styles/css/image-gallery.css";
 import ImageGallery from "react-image-gallery";
 
-export default function DetailsItem({ items, products }) {
-  const { id, whichProduct } = useParams();
-  const [detailsItem, setDetailsItem] = useState(null);
+export default function DetailsItem({detailsItem}) {
+
+
   const [quantity, setQuantity] = useState(1);
   const { addToCart } = useCart();
-  const api_base_url = process.env.REACT_APP_API_BASEURL;
-  useEffect(() => {
-    const fetchDetailsData = async () => {
-      if (whichProduct === "bestsellerDetails") {
-        try {
-          const response = await fetch(
-            `${api_base_url}/content/${whichProduct}/${id}`
-          );
-          const data = await response.json();
-          setDetailsItem(data);
-        } catch (error) {
-          console.log(error);
-        }
-      } else {
-        try {
-          const response = await fetch(
-            `${api_base_url}/content/${whichProduct}/${id}`
-          );
-          const data = await response.json();
-          setDetailsItem(data);
-        } catch (error) {
-          console.log(error);
-        }
-      }
-    };
-    fetchDetailsData()
-  }, [id, products, whichProduct, items, api_base_url]);
 
+
+    
   if (!detailsItem) {
     return <p>Loading...</p>;
   }
