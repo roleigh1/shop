@@ -1,5 +1,5 @@
 import React, { useState} from "react";
-import PropTypes from "prop-types";
+
 
 import "./style.css";
 import { useCart } from "../CartContext";
@@ -154,29 +154,4 @@ export default function DetailsItem({detailsItem}) {
   );
 }
 
-DetailsItem.propTypes = {
-  items: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      price: PropTypes.string.isRequired,
-      firstImage: PropTypes.string.isRequired,
-      secondImage: PropTypes.string,
-      thirdImage: PropTypes.string,
-      fourthImage: PropTypes.string,
-    })
-  ).isRequired,
-  products: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      type: PropTypes.string.isRequired,
-      price: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-        .isRequired,
-      firstImage: PropTypes.string.isRequired,
-      secondImage: PropTypes.string,
-      thirdImage: PropTypes.string,
-      fourthImage: PropTypes.string,
-    })
-  ).isRequired,
-};
+

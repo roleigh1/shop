@@ -11,6 +11,7 @@ export default function DetailsPage() {
   const api_base_url = process.env.REACT_APP_API_BASEURL;
   const [detailsItem, setDetailsItem] = useState(null);
   useEffect(() => {
+    console.log(id,whichProduct,"id,und wo")
   const fetchDetailsData = async () => {
     if (whichProduct === "bestsellerDetails") {
       try {
@@ -18,6 +19,7 @@ export default function DetailsPage() {
           `${api_base_url}/content/${whichProduct}/${id}`
         );
         const data = await response.json();
+        console.log(data,"data")
         setDetailsItem(data);
       } catch (error) {
         console.log(error);
@@ -28,6 +30,7 @@ export default function DetailsPage() {
           `${api_base_url}/content/${whichProduct}/${id}`
         );
         const data = await response.json();
+        console.log(data,"data")
         setDetailsItem(data);
       } catch (error) {
         console.log(error);
@@ -35,6 +38,7 @@ export default function DetailsPage() {
     }
   };
   fetchDetailsData()
+
 }, [id, whichProduct, api_base_url]);
 
   return (

@@ -9,7 +9,7 @@ const {
 const getContent = async (req, res) => {
   const { whichContent, id } = req.params;
 
-
+  const sortValue = req.query.selectedSort; 
   const limit = parseInt(req.query.limit) || 12; // Default auf 12
   const offset = parseInt(req.query.offset) || 0; // Standard-Offset 0
 

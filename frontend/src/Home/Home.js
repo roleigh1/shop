@@ -15,10 +15,11 @@ import { useCart } from "../CartContext";
 
 import Alert from "./Components/Alert/Alert";
 
-function Home({ items, infos, banners }) {
+function Home({ infos }) {
   const location = useLocation();
   const { setCart } = useCart();
   const [success, setSuccess] = useState(false);
+  
 
   useEffect(() => {
     const hash = window.location.hash;
@@ -46,7 +47,7 @@ function Home({ items, infos, banners }) {
 
       <div className="relative z-0 mt-8">
         {success && <Alert />}
-        <BannerHome banners={banners} className="slider" />
+        <BannerHome  className="slider" />
       </div>
 
       <div className="mt-8">
@@ -60,7 +61,7 @@ function Home({ items, infos, banners }) {
       </div>
 
       <div className="mt-8">
-        <NewBestSellerList items={items} />
+        <NewBestSellerList />
       </div>
 
       <div className="mt-8">

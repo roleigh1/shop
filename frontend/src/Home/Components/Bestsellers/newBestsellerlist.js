@@ -1,45 +1,65 @@
-import PropTypes from "prop-types";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { MDBContainer, MDBRow, MDBCol } from "mdb-react-ui-kit";
-import "./style.css";
-import useSWR from "swr";
+import { useInView } from "react-intersection-observer";
+import { motion } from "framer-motion";
+import axios from "axios";
 import NewBestsellerItem from "./newBestseller";
 
-const fetcher = (url) => fetch(url).then((res) => res.json());
-export default function NewBestSellerList({items}) {
+export default function NewBestSellerList() {
   const api_base_url = process.env.REACT_APP_API_BASEURL;
-  const { data, error } = useSWR(`${api_base_url}/content/bestseller`, fetcher);
+  const [items, setItems] = useState([]);
+  const [hasAnimated, setHasAnimated] = useState(false); // Animation-Zustand
+  const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: false }); // Kein `triggerOnce`, da wir wieder animieren wollen
 
-  if (error) return <div>Error loading images</div>;
+  const ITEMS_PER_PAGE = 4;
 
-  if (!data) return <div>Loading...</div>;
+  useEffect(() => {
+    if (inView && !hasAnimated) {
+      // API-Call ausführen, wenn sichtbar und noch nicht animiert
+      axios
+        .get(`${api_base_url}/content/bestseller?offset=0&limit=${ITEMS_PER_PAGE}`)
+        .then((res) => {
+          setItems(res.data.result || []);
+          setHasAnimated(true); // Markiere, dass die Animation und der API-Call bereits ausgeführt wurden
+        })
+        .catch((err) => {
+          console.error("API error:", err);
+        });
+    }
+  }, [inView, hasAnimated, api_base_url]);
 
-  items = data.result || [];
+  const slideInVariant = {
+    hidden: { x: 100, opacity: 0 },
+    visible: { x: 0, opacity: 1 },
+  };
+
   return (
-    <MDBContainer
-      fluid
-      className="my-5 text-center d-flex justify-content-center "
-    >
-      <MDBRow className="mobile">
-        {items.map((item) => (
-          <MDBCol key={item.id} md="6" lg="3" className="mb-4">
-            <NewBestsellerItem className="card" item={item} />
-          </MDBCol>
-        ))}
-      </MDBRow>
-    </MDBContainer>
+    <div ref={ref}>
+      <MDBContainer
+        fluid
+        className="my-5 text-center d-flex justify-content-center"
+      >
+        <MDBRow className="mobile">
+          {items.length > 0 ? (
+            items.map((item, index) => (
+              <motion.div
+                key={item.id}
+                variants={slideInVariant}
+                initial="hidden"
+                animate={inView ? "visible" : "hidden"} // Animation neu starten bei Sichtbarkeitswechsel
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                style={{ width: "25%" }}
+              >
+                <MDBCol className="mb-4">
+                  <NewBestsellerItem className="card" item={item} />
+                </MDBCol>
+              </motion.div>
+            ))
+          ) : (
+            <p>No products available</p>
+          )}
+        </MDBRow>
+      </MDBContainer>
+    </div>
   );
 }
-
-NewBestSellerList.propTypes = {
-  items: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      price: PropTypes.string.isRequired,
-      firstImage: PropTypes.string.isRequired,
-      secondImage: PropTypes.string,
-      type: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-};
