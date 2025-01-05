@@ -7,6 +7,7 @@ const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function Banner() {
   const api_base_url = process.env.REACT_APP_API_BASEURL;
+  console.log("api url",api_base_url)
   const { data, error } = useSWR(`${api_base_url}/content/bannersProducts`, fetcher);
 
   if (error) return <div>Error loading images</div>;
@@ -19,7 +20,7 @@ export default function Banner() {
       {banners.length > 0 && banners.map((banner) => (
         <div className="relative" key={banner.id}>
           <img
-            className="h-60 w-full object-cover rounded-md"
+            className="h-60  object-cover rounded-md w-full"
             src={banner.img}
             alt={banner.headline}
           />
