@@ -1,5 +1,5 @@
 import React from "react";
-import Input from "./components/input";
+import Input from "./components/Input";
 import "./category.css"
 export default function Category({ handleChange }) {
   return (

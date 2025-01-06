@@ -23,7 +23,7 @@ export default function ProductPage({ products, banners }) {
       <Banner banners={banners} />
     </div>
     
-    <div className="mt-5 flex flex-row gap-3">
+    <div className="mt-5 flex flex-row  justify-center ">
       <Sidebar />
 
 

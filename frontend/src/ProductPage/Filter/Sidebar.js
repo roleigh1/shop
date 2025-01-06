@@ -12,7 +12,7 @@ export default function Sidebar() {
     setSelectedCategory(event.target.value);
   };
   return (
-    <div className="mt-5 ml-8  sm:block hidden">
+    <div className="mt-5 sm:block hidden">
 
       <Category handleChange={handleChange} />
 

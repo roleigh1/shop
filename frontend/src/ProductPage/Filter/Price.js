@@ -1,5 +1,5 @@
 import React from 'react'
-import Input from './components/input'
+import Input from './components/Input'
 import "./price.css"
 import "./category.css"
 export default function Price({handleChange}) {
@@ -35,7 +35,7 @@ export default function Price({handleChange}) {
                 handleChange={handleChange}
                 value="9"
                 title="€6 - €9"
-                name="price"
+                name="prices"
               />
             </div>
     </div>
