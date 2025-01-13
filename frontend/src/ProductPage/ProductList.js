@@ -7,6 +7,8 @@ import { motion } from "framer-motion";
 import { Menu } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import MobileDrawer from "./Filter/MobileDrawer";
+import useCategoryFilter from "./Filter/useCategoryFilter";
+
 const sortOptions = [
   { name: "Price: Low to High", value: "lowToHigh" },
   { name: "Price: High to Low", value: "highToLow" },
@@ -17,60 +19,98 @@ function classNames(...classes) {
 }
 
 const ProductList = () => {
-  const [products, setProducts] = useState([]);
   const [hasMore, setHasMore] = useState(true);
   const [selectedSort, setSelectedSort] = useState(null);
   const [isDrawerShowing, setDrawerShowing] = useState(false);
-  let ITEMS_PER_PAGE = 6;
+  const {
+    products,
+    setProducts,
+    filterProducts,
+    selectedCategory,
+    selectedPrice,
+  } = useCategoryFilter();
+
+  const ITEMS_PER_PAGE = 6;
 
   const api_base_url = process.env.REACT_APP_API_BASEURL;
+
   const handleTogglerDrawer = () => {
     setDrawerShowing((prev) => !prev);
   };
+
   useEffect(() => {
     axios
       .get(`${api_base_url}/content/products?offset=0&limit=${ITEMS_PER_PAGE}`)
       .then((res) => {
-        const initialProduct = res.data.result || [];
-        setProducts(sortProduct(initialProduct, selectedSort));
-        if (initialProduct.length < ITEMS_PER_PAGE) setHasMore(false);
+        const initialProducts = res.data.result || [];
+        setProducts((prev) => {
+          const uniqueProducts = [
+            ...prev.items,
+            ...initialProducts.filter(
+              (newProduct) => !prev.items.some((item) => item.id === newProduct.id)
+            ),
+          ];
+          const filteredProducts = filterProducts(
+            { items: uniqueProducts },
+            selectedCategory,
+            selectedPrice
+          );
+          return { items: sortProduct(filteredProducts, selectedSort) };
+        });
+  
+    
+
+        if (initialProducts.length < ITEMS_PER_PAGE) setHasMore(false);
       })
-      .catch((err) => {
-        console.error("API error:", err);
-      });
-  }, [api_base_url]);
+      .catch((err) => console.error("API error:", err));
+  }, [api_base_url,selectedCategory,selectedCategory]);
 
   const fetchMoreData = () => {
-    const offset = products.length;
+    const offset = products.items.length;
     axios
       .get(
         `${api_base_url}/content/products?offset=${offset}&limit=${ITEMS_PER_PAGE}`
       )
       .then((res) => {
         const newProducts = res.data.result || [];
-        setProducts((prevProducts) => {
-          const combinedProducts = [...prevProducts, ...newProducts]; // Richtige Kombination
-          return sortProduct(combinedProducts, selectedSort); // Sortierte Rückgabe
+        setProducts((prev) => {
+          const combinedProducts = [
+            ...prev.items,
+            ...newProducts.filter(
+              (newProduct) => !prev.items.some((item) => item.id === newProduct.id)
+            ),
+          ];
+          const filteredProducts = filterProducts(
+            { items: combinedProducts },
+            selectedCategory,
+            selectedPrice
+          );
+          return { items: sortProduct(filteredProducts, selectedSort) };
         });
+  
         if (newProducts.length < ITEMS_PER_PAGE) setHasMore(false);
       })
       .catch((err) => console.error("Failed to fetch products:", err));
   };
 
   const sortProduct = (products, sortType) => {
+    const sortedProducts = [...products];
     if (sortType === "lowToHigh") {
-      return products.sort((a, b) => a.price - b.price);
+      return sortedProducts.sort((a, b) => a.price - b.price);
     }
     if (sortType === "highToLow") {
-      return products.sort((a, b) => b.price - a.price);
+      return sortedProducts.sort((a, b) => b.price - a.price);
     }
-    return products;
+    return sortedProducts;
   };
 
   const handleSortChange = (value) => {
     setSelectedSort(value);
-    console.log("Selected Sort Option:", value);
-    setProducts((prevProducts) => sortProduct([...prevProducts], value));
+    setProducts((prev) => {
+      return {
+        items: sortProduct([...prev.items], value),
+      };
+    });
   };
   const slideInVariant = {
     hidden: { x: 100, opacity: 0 },
@@ -91,25 +131,27 @@ const ProductList = () => {
   },[])
   return (
     <InfiniteScroll
-      dataLength={products.length}
+      dataLength={products.items.length}
       next={fetchMoreData}
       hasMore={hasMore}
       loader={<p>Loading...</p>}
       className="infinite-scroll"
     >
       <MDBContainer fluid className="text-center">
-        <MDBRow>
-          <MDBCol className="d-flex justify-content-end flex-row gap-1 ">
-            <Menu as="div" className="relative inline-block text-left sm:mr-15 ">
-              <div>
+        <MDBRow className="ml-3">
+          <MDBCol   className="d-flex  flex-row justify-end pl-11 ">
+
+
+            <Menu as="div" className="relative inline-block text-left ml-2 ">
+            <div>
                 <Menu.Button className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
                   Sort
                   <ChevronDownIcon
                     aria-hidden="true"
-                    className="-mr-1 ml-1 h-5 w-5 text-gray-400 group-hover:text-gray-500"
+                    className="  size-5 text-gray-400 group-hover:text-gray-500"
                   />
                 </Menu.Button>
-              </div>
+                </div>
 
               <Menu.Items className="absolute right-0 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black/5 focus:outline-none z-10">
                 <div className="py-1">
@@ -133,9 +175,9 @@ const ProductList = () => {
                 </div>
               </Menu.Items>
             </Menu>
-            <button className="sm:hidden block" onClick={handleTogglerDrawer}>
+           < button className="sm:hidden block " onClick={handleTogglerDrawer}>
               <svg
-                className="size-4 mr-10"
+                className="size-4 "
                 aria-hidden="true"
                 viewBox="0 0 20 20"
                 fill="currentColor"
@@ -153,15 +195,20 @@ const ProductList = () => {
               <MobileDrawer
                 className=""
                 show={isDrawerShowing}
+                handleTogglerDrawer={handleTogglerDrawer}
+      
+       
               />
   
             )}
+   
+          
           </MDBCol>
         </MDBRow>
 
         <MDBRow className="mobile ">
-          {products.length > 0 ? (
-            products.map((product, index) => (
+          {products.items.length > 0 ? (
+            products.items.map((product, index) => (
               <motion.div
                 key={product.id}
                 variants={slideInVariant}
@@ -170,7 +217,7 @@ const ProductList = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 style={{ flex: "1 0 25%" }}
               >
-                <MDBCol md="3" className="mt-5 pb-10 ml-8">
+                <MDBCol md="3" className="mt-5 pb-10 ">
                   <NewProductsItem className="card" product={product} />
                 </MDBCol>
               </motion.div>

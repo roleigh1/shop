@@ -1,37 +1,40 @@
-import React from "react";
+import React , {useEffect } from "react";
 import Input from "./components/Input";
-import "./category.css"
-export default function Category({ handleChange }) {
+import "./category.css";
+import useCategoryFilter from "./useCategoryFilter";
+export default function Category() {
+  const{ handleCategoryChange }= useCategoryFilter();
+
   return (
     <div>
-      <h2 className="sidebar-title">Category</h2>
+      <h2 className="sidebar-title  text-sm sm:text-lg">Category</h2>
       <div>
-      <Input
-          handleChange={handleChange}
+        <Input
+          handleChange={handleCategoryChange}
           value="All"
           title="All"
           name="category"
         />
         <Input
-          handleChange={handleChange}
+               handleChange={handleCategoryChange}
           value="Fruits"
           title="Fruits"
           name="category"
         />
         <Input
-          handleChange={handleChange}
+               handleChange={handleCategoryChange}
           value="Vegetables"
           title="Vegetables"
           name="category"
         />
         <Input
-          handleChange={handleChange}
+              handleChange={handleCategoryChange}
           value="Herbs"
           title="Herbs"
           name="category"
         />
         <Input
-          handleChange={handleChange}
+             handleChange={handleCategoryChange}
           value="Mushrooms"
           title="Mushrooms"
           name="category"

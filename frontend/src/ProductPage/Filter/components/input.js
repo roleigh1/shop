@@ -1,11 +1,11 @@
 import React from "react";
 
-export default function Input({ handleChange, value, title, name, color }){
+export default function Input({handleChange,value,name,color,title}){
 
-    
+
     return (
         <div>
-            <label className="sidebar-label-container"> 
+            <label className="sidebar-label-container text-sm sm:text-[14px]"> 
                 <input 
             
                     onChange={handleChange} 

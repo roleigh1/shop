@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 
 import Logo from "../Home/Components/Logo/Logo";
 import BurgerMenu from "../Home/Components/Burger/Menu";
@@ -7,7 +7,8 @@ import Banner from "./Bg-Producs";
 import ProductList from "./ProductList";
 import Footer from "../Home/Components/Footer/Footer";
 import Sidebar from "./Filter/Sidebar";
-export default function ProductPage({ products, banners }) {
+export default function ProductPage({banners}) {
+
   return (
     <div className="container mx-auto ">
     <div className="flex items-center justify-between mt-3">
@@ -24,10 +25,10 @@ export default function ProductPage({ products, banners }) {
     </div>
     
     <div className="mt-5 flex flex-row  justify-center ">
-      <Sidebar />
+      <Sidebar/>
 
 
-      <ProductList products={products}  />
+      <ProductList/>
      
     </div>
     
