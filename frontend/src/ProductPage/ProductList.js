@@ -8,6 +8,7 @@ import { Menu } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import MobileDrawer from "./Filter/MobileDrawer";
 import useCategoryFilter from "./Filter/useCategoryFilter";
+import { apiConfig } from "../config";
 
 const sortOptions = [
   { name: "Price: Low to High", value: "lowToHigh" },
@@ -25,72 +26,60 @@ const ProductList = () => {
   const {
     products,
     setProducts,
-    filterProducts,
     selectedCategory,
     selectedPrice,
   } = useCategoryFilter();
+  const {BASE_URL, endpoints} = apiConfig;
 
   const ITEMS_PER_PAGE = 6;
 
-  const api_base_url = process.env.REACT_APP_API_BASEURL;
+  
 
   const handleTogglerDrawer = () => {
     setDrawerShowing((prev) => !prev);
   };
 
   useEffect(() => {
-    axios
-      .get(`${api_base_url}/content/products?offset=0&limit=${ITEMS_PER_PAGE}`)
-      .then((res) => {
-        const initialProducts = res.data.result || [];
-        setProducts((prev) => {
-          const uniqueProducts = [
-            ...prev.items,
-            ...initialProducts.filter(
-              (newProduct) => !prev.items.some((item) => item.id === newProduct.id)
-            ),
-          ];
-          const filteredProducts = filterProducts(
-            { items: uniqueProducts },
-            selectedCategory,
-            selectedPrice
-          );
-          return { items: sortProduct(filteredProducts, selectedSort) };
-        });
+    // Fetch products whenever the category, price filter, or sort option changes
+    const fetchProducts = () => {
+      axios
+        .get(
+          ` ${BASE_URL}${endpoints.products}?offset=0&limit=${ITEMS_PER_PAGE}&category=${selectedCategory}&price=${selectedPrice}`
+        )
+        .then((res) => {
+          const initialProducts = res.data.result || [];
+          setProducts({
+            items: sortProduct(initialProducts, selectedSort),
+          });
   
-    
-
-        if (initialProducts.length < ITEMS_PER_PAGE) setHasMore(false);
-      })
-      .catch((err) => console.error("API error:", err));
-  }, [api_base_url,selectedCategory,selectedCategory]);
+          // Update `hasMore` based on the fetched data length
+          if (initialProducts.length < ITEMS_PER_PAGE) {
+            setHasMore(false);
+          } else {
+            setHasMore(true); // Reset if more items exist
+          }
+        })
+        .catch((err) => console.error("Failed to fetch products:", err));
+    };
+  
+    fetchProducts();
+  }, [selectedCategory, selectedPrice, selectedSort]);
 
   const fetchMoreData = () => {
     const offset = products.items.length;
     axios
       .get(
-        `${api_base_url}/content/products?offset=${offset}&limit=${ITEMS_PER_PAGE}`
+        `${BASE_URL}${endpoints.products}?offset=${offset}&limit=${ITEMS_PER_PAGE}&category=${selectedCategory}&price=${selectedPrice}`
       )
       .then((res) => {
         const newProducts = res.data.result || [];
-        setProducts((prev) => {
-          const combinedProducts = [
-            ...prev.items,
-            ...newProducts.filter(
-              (newProduct) => !prev.items.some((item) => item.id === newProduct.id)
-            ),
-          ];
-          const filteredProducts = filterProducts(
-            { items: combinedProducts },
-            selectedCategory,
-            selectedPrice
-          );
-          return { items: sortProduct(filteredProducts, selectedSort) };
-        });
-  
+        setProducts((prev) => ({
+          ...prev,
+          items: sortProduct([...prev.items, ...newProducts], selectedSort),
+        }));
         if (newProducts.length < ITEMS_PER_PAGE) setHasMore(false);
       })
-      .catch((err) => console.error("Failed to fetch products:", err));
+      .catch((err) => console.error("Failed to fetch products 2nd Time:", err));
   };
 
   const sortProduct = (products, sortType) => {
@@ -131,7 +120,7 @@ const ProductList = () => {
   },[])
   return (
     <InfiniteScroll
-      dataLength={products.items.length}
+    dataLength={products?.items?.length || 0}
       next={fetchMoreData}
       hasMore={hasMore}
       loader={<p>Loading...</p>}

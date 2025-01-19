@@ -1,76 +1,109 @@
+const { Sequelize } = require("sequelize");
 const {
   SeasonCardsDB,
   BestsellerItemsDB,
   ProductsDB,
   BannerData,
 } = require("../models/models");
+const { Op } = require("sequelize");
 
-// Main API Controller
 const getContent = async (req, res) => {
-  const { whichContent, id } = req.params;
+  const { whichContent, id } = req.params; 
 
-  const sortValue = req.query.selectedSort; 
-  const limit = parseInt(req.query.limit) || 12; // Default auf 12
-  const offset = parseInt(req.query.offset) || 0; // Standard-Offset 0
+const selectedCategory  = req.query.category; 
+const selectedPrice = req.query.price; 
+
+
+  const limit = parseInt(req.query.limit) || 12 
+  const offset = parseInt(req.query.offset) || 0; 
 
   try {
+    let result;
     switch (whichContent) {
-      case "products":
-    
-        const resultProducts = await fetchData(ProductsDB, limit, offset);
-        res.status(200).json(resultProducts);
+      case "productsContentData": {
+        const productFilter = {};
+        console.log("categoryy" ,selectedCategory, "Price", selectedPrice); 
+
+        if (selectedPrice !== "All") {
+          productFilter.price = {
+            [Op.gt]: Number(selectedPrice) - 3,
+            [Op.lte]: Number(selectedPrice),
+          };
+        } else {
+          delete productFilter.price; 
+        }
+        
+        if (selectedCategory === "Fruits") {
+          productFilter.type = { 
+            [Op.eq]: "Fruits"
+          }
+        } else if (selectedCategory === "Vegetables")  {
+          productFilter.type = { [Op.eq]: "Vegetables" }; 
+        } else if (selectedCategory === "Mushrooms"){
+          productFilter.type = {[Op.eq] : "Mushrooms"}; 
+        } else if (selectedCategory === "Herbs"){
+          productFilter.type = {[Op.eq] : "Herbs"}; 
+        } else if(selectedCategory === "All"){
+          delete productFilter.type;
+        }
+        
+        result = await fetchData(ProductsDB, limit, offset, productFilter);
+        res.status(200).json(result);
+        break;
+      }
+
+      case "seasonContentData":
+        result = await fetchData(SeasonCardsDB, limit, offset);
+        res.status(200).json(result);
         break;
 
-      case "cardInfos":
-        const resultCardInfo = await fetchData(SeasonCardsDB, limit, offset);
-        res.status(200).json(resultCardInfo);
+      case "bestsellerContentData":
+        result = await fetchData(BestsellerItemsDB, limit, offset);
+        res.status(200).json(result);
         break;
 
-      case "bestseller":
-        const resultBestseller = await fetchData(BestsellerItemsDB, limit, offset);
-        res.status(200).json(resultBestseller);
+      case "bannerhomeSite":
+        result = await fetchData(BannerData, limit, offset, { location: "home" });
+        res.status(200).json(result);
         break;
 
-      case "bannersHome":
-        const resultBannersHome = await fetchData(BannerData, limit, offset, {
-          location: "home",
-        });
-        res.status(200).json(resultBannersHome);
-        break;
-
-      case "bannersProducts":
-        const resultBannerProduct = await fetchData(BannerData, limit, offset, {
-          location: "products",
-        });
-        res.status(200).json(resultBannerProduct);
+      case "bannershopProductSite":
+        result = await fetchData(BannerData, limit, offset, { location: "products" });
+        res.status(200).json(result);
         break;
 
       case "bestsellerDetails":
-        if (!id) {
-          return res.status(400).json({ message: "Product ID is required" });
+        if (!id || isNaN(Number(id))) {
+          return res.status(400).json({ message: "Valid Product ID is required" });
         }
-        const resultBestsellerDetails = await fetchItemById(BestsellerItemsDB, id);
-        res.status(200).json(resultBestsellerDetails);
+        result = await fetchItemById(BestsellerItemsDB, id);
+        if (!result) {
+          return res.status(404).json({ message: "Item not found" });
+        }
+        res.status(200).json(result);
         break;
 
       case "productDetails":
-        if (!id) {
-          return res.status(400).json({ message: "Product ID is required" });
+        if (!id || isNaN(Number(id))) {
+          return res.status(400).json({ message: "Valid Product ID is required" });
         }
-        const resultProductsDetails = await fetchItemById(ProductsDB, id);
-        res.status(200).json(resultProductsDetails);
+        result = await fetchItemById(ProductsDB, id);
+        if (!result) {
+          return res.status(404).json({ message: "Item not found" });
+        }
+        res.status(200).json(result);
         break;
 
       default:
         return res.status(400).json({ message: "Invalid content type" });
     }
   } catch (error) {
-    console.error("Error processing request: ", error);
-    return res.status(500).json({ message: "Internal Server Error" });
+    console.error(`Error in getContent (${whichContent}):`, error);
+    res.status(500).json({ message: `Internal Server Error: ${error.message}` });
   }
 };
 
-// Hilfsfunktion zum Abrufen der Daten
+
 const fetchData = async (db, limit, offset, filter = {}) => {
   try {
     const { count, rows } = await db.findAndCountAll({
@@ -94,10 +127,7 @@ const fetchData = async (db, limit, offset, filter = {}) => {
 const fetchItemById = async (db, id) => {
   try {
     const item = await db.findOne({ where: { id } });
-    if (!item) {
-      throw new Error("Item not found");
-    }
-    return item;
+    return item || null;
   } catch (error) {
     console.error("Error fetching item: ", error);
     throw new Error("Internal Server Error");

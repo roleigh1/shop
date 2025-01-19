@@ -15,7 +15,7 @@ import { useCart } from "../CartContext";
 
 import Alert from "./Components/Alert/Alert";
 
-function Home({ infos }) {
+function Home() {
   const location = useLocation();
   const { setCart } = useCart();
   const [success, setSuccess] = useState(false);
@@ -51,7 +51,7 @@ function Home({ infos }) {
       </div>
 
       <div className="mt-8">
-        <SeasonList infos={infos} />
+        <SeasonList  />
       </div>
 
       <div className="mt-4 bg-gray-300 rounded-lg">

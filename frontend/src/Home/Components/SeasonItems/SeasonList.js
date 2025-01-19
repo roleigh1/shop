@@ -1,10 +1,24 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import PropTypes from "prop-types";
 import "./styles.css";
 import { MDBContainer, MDBRow, MDBCol } from "mdb-react-ui-kit";
 import SeasonItem from "./SeasonItem";
+import axios from "axios";
+import { apiConfig } from "../../../config";
 
-export default function SeasonList({ infos }) {
+export default function SeasonList() {
+  const [infos,setInfos] = useState([]); 
+  const {BASE_URL,endpoints} = apiConfig; 
+  useEffect(() => {
+    axios
+    .get(`${BASE_URL}${endpoints.seasonCards}`)
+    .then((res) => {
+      setInfos(res.data.result || [])
+    })
+    .catch((err) => {
+      console.error("Api fetch Error Season Cards",err)
+    })
+  },[BASE_URL,endpoints,setInfos])
   return (
     <MDBContainer
       fluid
@@ -23,10 +37,3 @@ export default function SeasonList({ infos }) {
   );
 }
 
-SeasonList.propTypes = {
-  infos: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-    })
-  ).isRequired,
-};

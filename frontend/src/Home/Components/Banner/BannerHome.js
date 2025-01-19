@@ -2,12 +2,13 @@ import "react-slideshow-image/dist/styles.css";
 import React from "react";
 import "./style.css";
 import useSWR from "swr"; 
+import { apiConfig } from "../../../config";
 
 const fetcher = (url) => fetch(url).then((res) => res.json()); 
 
 function BannerHome() {  
-  const api_base_url = process.env.REACT_APP_API_BASEURL;
-  const { data, error } = useSWR(`${api_base_url}/content/bannersHome`, fetcher);
+  const {BASE_URL,endpoints} = apiConfig; 
+  const { data, error } = useSWR(`${BASE_URL}${endpoints.bannerHome}`, fetcher);
 
 
   if (error) return <div>Error loading images</div>;

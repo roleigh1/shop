@@ -2,13 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./style.css";
 import useSWR from "swr";
+import { apiConfig } from "../config";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function Banner() {
-  const api_base_url = process.env.REACT_APP_API_BASEURL;
-  console.log("api url",api_base_url)
-  const { data, error } = useSWR(`${api_base_url}/content/bannersProducts`, fetcher);
+  const {BASE_URL,endpoints} = apiConfig; 
+
+  const { data, error } = useSWR(`${BASE_URL}${endpoints.bannerProducts}`, fetcher);
 
   if (error) return <div>Error loading images</div>;
   if (!data) return <div>Loading...</div>;

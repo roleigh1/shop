@@ -4,23 +4,24 @@ import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 import axios from "axios";
 import NewBestsellerItem from "./newBestseller";
+import { apiConfig } from "../../../config";
 
 export default function NewBestSellerList() {
   const api_base_url = process.env.REACT_APP_API_BASEURL;
   const [items, setItems] = useState([]);
   const [hasAnimated, setHasAnimated] = useState(false); // Animation-Zustand
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: false }); // Kein `triggerOnce`, da wir wieder animieren wollen
-
+  const {BASE_URL,endpoints} = apiConfig; 
   const ITEMS_PER_PAGE = 4;
 
   useEffect(() => {
     if (inView && !hasAnimated) {
-      // API-Call ausführen, wenn sichtbar und noch nicht animiert
+   
       axios
-        .get(`${api_base_url}/content/bestseller?offset=0&limit=${ITEMS_PER_PAGE}`)
+        .get(`${BASE_URL}${endpoints.bestseller}?offset=0&limit=${ITEMS_PER_PAGE}`)
         .then((res) => {
           setItems(res.data.result || []);
-          setHasAnimated(true); // Markiere, dass die Animation und der API-Call bereits ausgeführt wurden
+          setHasAnimated(true); 
         })
         .catch((err) => {
           console.error("API error:", err);

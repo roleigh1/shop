@@ -1,9 +1,12 @@
-import React, { useState } from "react";
-
+import React, {useState, useEffect} from "react";
 export default function useCategoryFilter() {
-  const [selectedCategory, setSelectedCategory] = useState("Fruits");
-  const [selectedPrice, setSelectedPrice] = useState("all");
-  const [products, setProducts] = useState({ items: [] }); // Default als Objekt mit "items"
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedPrice, setSelectedPrice] = useState("All");
+  const [products, setProducts] = useState({ items: [] });
+
+  useEffect(() => {
+    console.log("Category or price changed:", selectedCategory, selectedPrice);
+  }, [selectedCategory, selectedPrice]);  // Dies zeigt an, ob die Filter korrekt geändert werden.
 
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value);
@@ -11,22 +14,6 @@ export default function useCategoryFilter() {
 
   const handlePriceChange = (event) => {
     setSelectedPrice(event.target.value);
-  };
-
-  const filterProducts = (products, selectedCategory, selectedPrice) => {
-    const productList = Array.isArray(products.items) ? products.items : [];
-    return productList.filter((product) => {
-      const categoryMatch =
-        selectedCategory === "all" || product.type === selectedCategory;
-      const priceMatch =
-        selectedPrice === "all" ||
-        (selectedPrice <= 1 && product.price <= 1) ||
-        (product.price >= selectedPrice - 3 && product.price < selectedPrice);
-
-      return categoryMatch && priceMatch;
-    });
-  };
-
   return {
     selectedCategory,
     handleCategoryChange,
@@ -34,6 +21,5 @@ export default function useCategoryFilter() {
     handlePriceChange,
     products,
     setProducts,
-    filterProducts,
   };
 }
