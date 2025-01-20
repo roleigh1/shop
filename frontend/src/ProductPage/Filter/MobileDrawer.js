@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSpring, animated } from "react-spring";
 import SidebarMobile from "./SidebarMobile";
 
-export default function MobileDrawer({ show,handleTogglerDrawer }) {
+export default function MobileDrawer({ show,handleTogglerDrawer,handleCategoryChange,handlePriceChange }) {
   const [drawerHeight, setDrawerHeight] = useState(window.innerHeight);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ export default function MobileDrawer({ show,handleTogglerDrawer }) {
         </svg>
         </button>
        
-        <SidebarMobile />
+        <SidebarMobile handleCategoryChange={handleCategoryChange} handlePriceChange={handlePriceChange} />
       </div>
     </animated.div>
   );

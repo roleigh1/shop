@@ -2,8 +2,8 @@ import React , {useEffect } from "react";
 import Input from "./components/Input";
 import "./category.css";
 import useCategoryFilter from "./useCategoryFilter";
-export default function Category() {
-  const{ handleCategoryChange }= useCategoryFilter();
+export default function Category({handleCategoryChange}) {
+
 
   return (
     <div>

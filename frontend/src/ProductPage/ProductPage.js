@@ -24,8 +24,8 @@ export default function ProductPage({banners}) {
       <Banner banners={banners} />
     </div>
     
-    <div className="mt-5 flex flex-row  justify-center ">
-      <Sidebar/>
+    <div className="mt-5   ">
+     
 
 
       <ProductList/>

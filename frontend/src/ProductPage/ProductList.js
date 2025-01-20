@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { Menu } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import MobileDrawer from "./Filter/MobileDrawer";
+import Sidebar from "./Filter/Sidebar";
 import useCategoryFilter from "./Filter/useCategoryFilter";
 import { apiConfig } from "../config";
 
@@ -23,45 +24,36 @@ const ProductList = () => {
   const [hasMore, setHasMore] = useState(true);
   const [selectedSort, setSelectedSort] = useState(null);
   const [isDrawerShowing, setDrawerShowing] = useState(false);
-  const {
-    products,
-    setProducts,
-    selectedCategory,
-    selectedPrice,
-  } = useCategoryFilter();
-  const {BASE_URL, endpoints} = apiConfig;
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedPrice, setSelectedPrice] = useState("All");
+  const [products, setProducts] = useState({ items: [] });
+
+  const { BASE_URL, endpoints } = apiConfig;
 
   const ITEMS_PER_PAGE = 6;
-
-  
 
   const handleTogglerDrawer = () => {
     setDrawerShowing((prev) => !prev);
   };
 
   useEffect(() => {
-    // Fetch products whenever the category, price filter, or sort option changes
     const fetchProducts = () => {
       axios
         .get(
-          ` ${BASE_URL}${endpoints.products}?offset=0&limit=${ITEMS_PER_PAGE}&category=${selectedCategory}&price=${selectedPrice}`
+          `${BASE_URL}${endpoints.products}?offset=0&limit=${ITEMS_PER_PAGE}&category=${selectedCategory}&price=${selectedPrice}`
         )
         .then((res) => {
           const initialProducts = res.data.result || [];
           setProducts({
             items: sortProduct(initialProducts, selectedSort),
           });
-  
+
           // Update `hasMore` based on the fetched data length
-          if (initialProducts.length < ITEMS_PER_PAGE) {
-            setHasMore(false);
-          } else {
-            setHasMore(true); // Reset if more items exist
-          }
+          setHasMore(initialProducts.length >= ITEMS_PER_PAGE);
         })
         .catch((err) => console.error("Failed to fetch products:", err));
     };
-  
+
     fetchProducts();
   }, [selectedCategory, selectedPrice, selectedSort]);
 
@@ -82,6 +74,13 @@ const ProductList = () => {
       .catch((err) => console.error("Failed to fetch products 2nd Time:", err));
   };
 
+  const handleCategoryChange = (event) => {
+    setSelectedCategory(event.target.value);
+  };
+
+  const handlePriceChange = (event) => {
+    setSelectedPrice(event.target.value);
+  };
   const sortProduct = (products, sortType) => {
     const sortedProducts = [...products];
     if (sortType === "lowToHigh") {
@@ -108,31 +107,30 @@ const ProductList = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      if(window.innerWidth >= 768){
+      if (window.innerWidth >= 768) {
         setDrawerShowing(false);
       }
-    }
-    window.addEventListener("resize", handleResize)
+    };
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener("resize",handleResize); 
-    }
-  },[])
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   return (
+    <MDBContainer fluid className="text-center">
     <InfiniteScroll
-    dataLength={products?.items?.length || 0}
+      dataLength={products?.items?.length || 0}
       next={fetchMoreData}
       hasMore={hasMore}
       loader={<p>Loading...</p>}
-      className="infinite-scroll"
+      className="infinite-scroll "
     >
-      <MDBContainer fluid className="text-center">
+ 
         <MDBRow className="ml-3">
-          <MDBCol   className="d-flex  flex-row justify-end pl-11 ">
-
-
+          <MDBCol className="d-flex  flex-row justify-end pl-11 ">
             <Menu as="div" className="relative inline-block text-left ml-2 ">
-            <div>
+              <div>
                 <Menu.Button className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
                   Sort
                   <ChevronDownIcon
@@ -140,7 +138,7 @@ const ProductList = () => {
                     className="  size-5 text-gray-400 group-hover:text-gray-500"
                   />
                 </Menu.Button>
-                </div>
+              </div>
 
               <Menu.Items className="absolute right-0 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black/5 focus:outline-none z-10">
                 <div className="py-1">
@@ -164,7 +162,7 @@ const ProductList = () => {
                 </div>
               </Menu.Items>
             </Menu>
-           < button className="sm:hidden block " onClick={handleTogglerDrawer}>
+            <button className="sm:hidden block " onClick={handleTogglerDrawer}>
               <svg
                 className="size-4 "
                 aria-hidden="true"
@@ -180,43 +178,46 @@ const ProductList = () => {
               </svg>
             </button>
             {isDrawerShowing && (
-   
               <MobileDrawer
                 className=""
                 show={isDrawerShowing}
                 handleTogglerDrawer={handleTogglerDrawer}
-      
-       
               />
-  
             )}
-   
-          
           </MDBCol>
         </MDBRow>
 
-        <MDBRow className="mobile ">
-          {products.items.length > 0 ? (
-            products.items.map((product, index) => (
-              <motion.div
-                key={product.id}
-                variants={slideInVariant}
-                initial="hidden"
-                animate="visible"
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                style={{ flex: "1 0 25%" }}
-              >
-                <MDBCol md="3" className="mt-5 pb-10 ">
-                  <NewProductsItem className="card" product={product} />
-                </MDBCol>
-              </motion.div>
-            ))
-          ) : (
-            <p>No products available</p>
-          )}
+        <MDBRow className="mobile flex flex-row justify-center">
+          <MDBCol>
+            <Sidebar
+              handleCategoryChange={handleCategoryChange}
+              handlePriceChange={handlePriceChange}
+            />
+          </MDBCol>
+          <MDBCol className="">
+            {products.items.length > 0 ? (
+              products.items.map((product, index) => (
+                <motion.div
+                  key={product.id}
+                  variants={slideInVariant}
+                  initial="hidden"
+                  animate="visible"
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  style={{ flex: "1 0 25%" }}
+                >
+                
+                    <NewProductsItem className="card" product={product} />
+     
+                </motion.div>
+              ))
+            ) : (
+              <p>No products available</p>
+            )}
+          </MDBCol>
         </MDBRow>
-      </MDBContainer>
+    
     </InfiniteScroll>
+    </MDBContainer>
   );
 };
 

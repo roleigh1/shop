@@ -2,10 +2,10 @@ import React from "react";
 import Input from "./components/Input";
 import "./price.css";
 import "./category.css";
-import useCategoryFilter from "./useCategoryFilter";
-export default function Price() {
 
-  const{ handlePriceChange}= useCategoryFilter();
+export default function Price({handlePriceChange}) {
+
+
 
   return (
     <div>
