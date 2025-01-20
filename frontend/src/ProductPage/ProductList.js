@@ -30,7 +30,7 @@ const ProductList = () => {
 
   const { BASE_URL, endpoints } = apiConfig;
 
-  const ITEMS_PER_PAGE = 6;
+  const ITEMS_PER_PAGE = 8;
 
   const handleTogglerDrawer = () => {
     setDrawerShowing((prev) => !prev);
@@ -117,15 +117,15 @@ const ProductList = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  return (
+  return (<InfiniteScroll
+    dataLength={products?.items?.length || 0}
+    next={fetchMoreData}
+    hasMore={hasMore}
+    loader={<p className="text-center">Loading...</p>}
+    className="infinite-scroll "
+  >
     <MDBContainer fluid className="text-center">
-    <InfiniteScroll
-      dataLength={products?.items?.length || 0}
-      next={fetchMoreData}
-      hasMore={hasMore}
-      loader={<p>Loading...</p>}
-      className="infinite-scroll "
-    >
+    
  
         <MDBRow className="ml-3">
           <MDBCol className="d-flex  flex-row justify-end pl-11 ">
@@ -187,14 +187,14 @@ const ProductList = () => {
           </MDBCol>
         </MDBRow>
 
-        <MDBRow className="mobile flex flex-row justify-center">
-          <MDBCol>
+        <div className="mobile grid grid-cols-5 grid-rows-1 gap-1">
+          <div className="">
             <Sidebar
               handleCategoryChange={handleCategoryChange}
               handlePriceChange={handlePriceChange}
             />
-          </MDBCol>
-          <MDBCol className="">
+          </div>
+          <div className="col-span-4 flex flex-wrap pb-6 flex-row ">
             {products.items.length > 0 ? (
               products.items.map((product, index) => (
                 <motion.div
@@ -204,20 +204,22 @@ const ProductList = () => {
                   animate="visible"
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   style={{ flex: "1 0 25%" }}
+                  className="flex justify-center"
                 >
                 
-                    <NewProductsItem className="card" product={product} />
+                    <NewProductsItem className="card " product={product} />
      
                 </motion.div>
               ))
             ) : (
-              <p>No products available</p>
+              <p className="text-center">No products available</p>
             )}
-          </MDBCol>
-        </MDBRow>
+          </div>
+        </div>
     
-    </InfiniteScroll>
+
     </MDBContainer>
+    </InfiniteScroll>
   );
 };
 
