@@ -8,9 +8,8 @@ import { Menu } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import MobileDrawer from "./Filter/MobileDrawer";
 import Sidebar from "./Filter/Sidebar";
-import useCategoryFilter from "./Filter/useCategoryFilter";
 import { apiConfig } from "../config";
-
+import "./style.css"
 const sortOptions = [
   { name: "Price: Low to High", value: "lowToHigh" },
   { name: "Price: High to Low", value: "highToLow" },
@@ -28,27 +27,28 @@ const ProductList = () => {
   const [selectedPrice, setSelectedPrice] = useState("All");
   const [products, setProducts] = useState({ items: [] });
 
+
   const { BASE_URL, endpoints } = apiConfig;
 
-  const ITEMS_PER_PAGE = 8;
+  const ITEMS_PER_PAGE = 5;
 
   const handleTogglerDrawer = () => {
     setDrawerShowing((prev) => !prev);
   };
-
+  console.log("Selected Category in ProductList:", selectedCategory);
   useEffect(() => {
+ 
     const fetchProducts = () => {
       axios
         .get(
-          `${BASE_URL}${endpoints.products}?offset=0&limit=${ITEMS_PER_PAGE}&category=${selectedCategory}&price=${selectedPrice}`
+          `${BASE_URL}${endpoints.products}?offset=0&limit=${ITEMS_PER_PAGE}&category=${selectedCategory}&price=${selectedPrice}&sort=${selectedSort}`
         )
         .then((res) => {
-          const initialProducts = res.data.result || [];
+          console.log("Fetched products:", res.data); // Logge die Antwort der API
+          const initialProducts = res.data || [];
           setProducts({
-            items: sortProduct(initialProducts, selectedSort),
+            items: initialProducts,
           });
-
-          // Update `hasMore` based on the fetched data length
           setHasMore(initialProducts.length >= ITEMS_PER_PAGE);
         })
         .catch((err) => console.error("Failed to fetch products:", err));
@@ -64,10 +64,10 @@ const ProductList = () => {
         `${BASE_URL}${endpoints.products}?offset=${offset}&limit=${ITEMS_PER_PAGE}&category=${selectedCategory}&price=${selectedPrice}`
       )
       .then((res) => {
-        const newProducts = res.data.result || [];
+        const newProducts = res.data|| [];
         setProducts((prev) => ({
           ...prev,
-          items: sortProduct([...prev.items, ...newProducts], selectedSort),
+          items: [...prev.items, ...newProducts],
         }));
         if (newProducts.length < ITEMS_PER_PAGE) setHasMore(false);
       })
@@ -81,24 +81,10 @@ const ProductList = () => {
   const handlePriceChange = (event) => {
     setSelectedPrice(event.target.value);
   };
-  const sortProduct = (products, sortType) => {
-    const sortedProducts = [...products];
-    if (sortType === "lowToHigh") {
-      return sortedProducts.sort((a, b) => a.price - b.price);
-    }
-    if (sortType === "highToLow") {
-      return sortedProducts.sort((a, b) => b.price - a.price);
-    }
-    return sortedProducts;
-  };
-
+  
   const handleSortChange = (value) => {
     setSelectedSort(value);
-    setProducts((prev) => {
-      return {
-        items: sortProduct([...prev.items], value),
-      };
-    });
+    
   };
   const slideInVariant = {
     hidden: { x: 100, opacity: 0 },
@@ -122,9 +108,9 @@ const ProductList = () => {
     next={fetchMoreData}
     hasMore={hasMore}
     loader={<p className="text-center">Loading...</p>}
-    className="infinite-scroll "
+    className="infinite-scroll  "
   >
-    <MDBContainer fluid className="text-center">
+    <MDBContainer fluid className="text-center ">
     
  
         <MDBRow className="ml-3">
@@ -181,30 +167,33 @@ const ProductList = () => {
               <MobileDrawer
                 className=""
                 show={isDrawerShowing}
+                handleCategoryChange={handleCategoryChange}
+                handlePriceChange={handlePriceChange}
                 handleTogglerDrawer={handleTogglerDrawer}
               />
             )}
           </MDBCol>
         </MDBRow>
 
-        <div className="mobile grid grid-cols-5 grid-rows-1 gap-1">
+        <div className="mobile flex flex-row gap-4">
           <div className="">
             <Sidebar
               handleCategoryChange={handleCategoryChange}
               handlePriceChange={handlePriceChange}
+              selectedCategory={selectedCategory}
             />
           </div>
-          <div className="col-span-4 flex flex-wrap pb-6 flex-row ">
+          <div className="flex flex-wrap gap-3 ">
             {products.items.length > 0 ? (
               products.items.map((product, index) => (
                 <motion.div
-                  key={product.id}
+                key={`${product.id}-${index}`}
                   variants={slideInVariant}
                   initial="hidden"
                   animate="visible"
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  style={{ flex: "1 0 25%" }}
-                  className="flex justify-center"
+                 
+                  className=" text-center "
                 >
                 
                     <NewProductsItem className="card " product={product} />
@@ -212,7 +201,7 @@ const ProductList = () => {
                 </motion.div>
               ))
             ) : (
-              <p className="text-center">No products available</p>
+              <p className="text-center absolute right-0 left-0 mt-10 ">No products available</p>
             )}
           </div>
         </div>

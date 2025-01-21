@@ -7,7 +7,7 @@ export default function Sidebar({handleCategoryChange, handlePriceChange}) {
   return (
     <div className="mt-5 sm:flex sm:flex-col hidden text-left">
 
-      <Category handleCategoryChange={handleCategoryChange}/>
+      <Category handleCategoryChange={handleCategoryChange}  />
 
       <Price handlePriceChange={handlePriceChange} />
 

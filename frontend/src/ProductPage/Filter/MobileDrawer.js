@@ -15,7 +15,7 @@ export default function MobileDrawer({ show,handleTogglerDrawer,handleCategoryCh
     right: show ? 0 : 320,
     top: 0,
     backgroundColor: "white",
-    height: `${drawerHeight}px`,
+    height: `200rem`,
     width: `${drawerWidth}px`,
     config: { tension: 220, friction: 20 },
   });

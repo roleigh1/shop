@@ -12,6 +12,7 @@ const getContent = async (req, res) => {
 
 const selectedCategory  = req.query.category; 
 const selectedPrice = req.query.price; 
+const selectedSort = req.query.sort; 
 
 
   const limit = parseInt(req.query.limit) || 12 
@@ -46,12 +47,20 @@ const selectedPrice = req.query.price;
         } else if(selectedCategory === "All"){
           delete productFilter.type;
         }
-        
+       
         result = await fetchData(ProductsDB, limit, offset, productFilter);
-        res.status(200).json(result);
-        break;
-      }
+        let products = result.result; 
+            
+            if (selectedSort === "lowToHigh") {
+                products = products.sort((a, b) => a.price - b.price); 
+            } else if (selectedSort === "highToLow") {
+                products = products.sort((a, b) => b.price - a.price); 
+            }
 
+            res.status(200).json(products);
+            break;
+      
+      }
       case "seasonContentData":
         result = await fetchData(SeasonCardsDB, limit, offset);
         res.status(200).json(result);

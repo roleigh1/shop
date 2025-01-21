@@ -1,4 +1,6 @@
-
+.infinite-scroll {
+    overflow-y: hidden !important;
+}
 @media (max-width: 768px) {
     .text-banner{
         top:40px!important;
@@ -8,4 +10,26 @@
 }
 .center-card {
     margin: 0 auto; 
+}
+.image-container {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.image-container img {
+    display: block;
+
+}
+
+.image-container .icon {
+    position: absolute;
+    top: -100%; /* Start außerhalb des Bildes */
+    left: 90%;
+    transform: translateX(-50%);
+    transition: top 0.5s ease-in-out;
+}
+
+.image-container:hover .icon {
+    top: calc(100% - 24px); /* Stoppt am unteren Rand des Bildes minus der Höhe des Icons */
 }
