@@ -18,11 +18,12 @@ export default function MobileDrawer({ show,handleTogglerDrawer,handleCategoryCh
     height: `200rem`,
     width: `${drawerWidth}px`,
     config: { tension: 220, friction: 20 },
+  
   });
   return (
-    <animated.div style={props} className="absolute top-0   z-10">
-      <div className="p-4">
-        <button onClick={handleTogglerDrawer} className="mr-40">
+    <animated.div style={props} className="absolute top-0   z-10  ">
+      <div className="p-4 overflow-x-hidden">
+        <button onClick={handleTogglerDrawer} className="mr-40 mt-10">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           x="0px"

@@ -35,20 +35,22 @@ const ProductList = () => {
   const handleTogglerDrawer = () => {
     setDrawerShowing((prev) => !prev);
   };
-  console.log("Selected Category in ProductList:", selectedCategory);
+
   useEffect(() => {
  
     const fetchProducts = () => {
+
       axios
         .get(
-          `${BASE_URL}${endpoints.products}?offset=0&limit=${ITEMS_PER_PAGE}&category=${selectedCategory}&price=${selectedPrice}&sort=${selectedSort}`
+          `${BASE_URL}${endpoints.products}?offset=0&limit=${ITEMS_PER_PAGE}&category=${selectedCategory}&price=${selectedPrice}`
         )
         .then((res) => {
-          console.log("Fetched products:", res.data); // Logge die Antwort der API
-          const initialProducts = res.data || [];
+          console.log("Fetched products:", res.data.result); 
+          const initialProducts = res.data.result || [];
           setProducts({
-            items: initialProducts,
+            items: sortProduct(initialProducts, selectedSort),
           });
+
           setHasMore(initialProducts.length >= ITEMS_PER_PAGE);
         })
         .catch((err) => console.error("Failed to fetch products:", err));
@@ -56,6 +58,13 @@ const ProductList = () => {
 
     fetchProducts();
   }, [selectedCategory, selectedPrice, selectedSort]);
+  useEffect(() => {
+    if(isDrawerShowing){
+       document.body.classList.add("no-scroll"); 
+    } else {
+      document.body.classList.remove("no-scroll"); 
+    }; 
+  },[isDrawerShowing]) 
 
   const fetchMoreData = () => {
     const offset = products.items.length;
@@ -64,16 +73,16 @@ const ProductList = () => {
         `${BASE_URL}${endpoints.products}?offset=${offset}&limit=${ITEMS_PER_PAGE}&category=${selectedCategory}&price=${selectedPrice}`
       )
       .then((res) => {
-        const newProducts = res.data|| [];
+        const newProducts = res.data.result|| [];
         setProducts((prev) => ({
           ...prev,
-          items: [...prev.items, ...newProducts],
-        }));
+          items: sortProduct([...prev.items,...newProducts],selectedSort),
+        }))
         if (newProducts.length < ITEMS_PER_PAGE) setHasMore(false);
       })
       .catch((err) => console.error("Failed to fetch products 2nd Time:", err));
   };
-
+  
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value);
   };
@@ -84,7 +93,21 @@ const ProductList = () => {
   
   const handleSortChange = (value) => {
     setSelectedSort(value);
-    
+    setProducts((prev) => {
+      return {
+        items: sortProduct([...prev.items], value),
+      };
+    });
+  };
+  const sortProduct = (products, sortType) => {
+    const sortedProducts = [...products];
+    if (sortType === "lowToHigh") {
+      return sortedProducts.sort((a, b) => a.price - b.price);
+    }
+    if (sortType === "highToLow") {
+      return sortedProducts.sort((a, b) => b.price - a.price);
+    }
+    return sortedProducts;
   };
   const slideInVariant = {
     hidden: { x: 100, opacity: 0 },
@@ -113,7 +136,7 @@ const ProductList = () => {
     <MDBContainer fluid className="text-center ">
     
  
-        <MDBRow className="ml-3">
+        <MDBRow className="ml-3 mb-3">
           <MDBCol className="d-flex  flex-row justify-end pl-11 ">
             <Menu as="div" className="relative inline-block text-left ml-2 ">
               <div>
@@ -175,15 +198,15 @@ const ProductList = () => {
           </MDBCol>
         </MDBRow>
 
-        <div className="mobile flex flex-row gap-4">
-          <div className="">
+        <div className="flex flex-row sm:flex-row gap-4 ">
+          <div className="hidden sm:block  ">
             <Sidebar
               handleCategoryChange={handleCategoryChange}
               handlePriceChange={handlePriceChange}
               selectedCategory={selectedCategory}
             />
           </div>
-          <div className="flex flex-wrap gap-3 ">
+          <div className=" w-full flex flex-wrap gap-3 justify-center">
             {products.items.length > 0 ? (
               products.items.map((product, index) => (
                 <motion.div

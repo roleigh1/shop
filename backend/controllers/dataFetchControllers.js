@@ -12,7 +12,7 @@ const getContent = async (req, res) => {
 
 const selectedCategory  = req.query.category; 
 const selectedPrice = req.query.price; 
-const selectedSort = req.query.sort; 
+
 
 
   const limit = parseInt(req.query.limit) || 12 
@@ -49,15 +49,11 @@ const selectedSort = req.query.sort;
         }
        
         result = await fetchData(ProductsDB, limit, offset, productFilter);
-        let products = result.result; 
+  
             
-            if (selectedSort === "lowToHigh") {
-                products = products.sort((a, b) => a.price - b.price); 
-            } else if (selectedSort === "highToLow") {
-                products = products.sort((a, b) => b.price - a.price); 
-            }
+           
 
-            res.status(200).json(products);
+            res.status(200).json(result);
             break;
       
       }
@@ -92,7 +88,7 @@ const selectedSort = req.query.sort;
         res.status(200).json(result);
         break;
 
-      case "productDetails":
+      case "productsDetails":
         if (!id || isNaN(Number(id))) {
           return res.status(400).json({ message: "Valid Product ID is required" });
         }

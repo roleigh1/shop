@@ -33,3 +33,6 @@
 .image-container:hover .icon {
     top: calc(100% - 24px); /* Stoppt am unteren Rand des Bildes minus der Höhe des Icons */
 }
+.no-scroll {
+    overflow: hidden; 
+}
