@@ -7,7 +7,7 @@ export default function NewProductsItem({ product }) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-     <div className="max-w-sm rounded overflow-hidden shadow-lg h-[23rem] mt-5">
+     <div className="max-w-sm rounded overflow-hidden shadow-lg h-[23rem]  mb-5">
          <div
            className="image-container"
            onMouseEnter={() => setIsHovered(true)}
