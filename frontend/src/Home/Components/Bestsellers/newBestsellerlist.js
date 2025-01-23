@@ -7,7 +7,7 @@ import NewBestsellerItem from "./newBestseller";
 import { apiConfig } from "../../../config";
 
 export default function NewBestSellerList() {
-  const api_base_url = process.env.REACT_APP_API_BASEURL;
+
   const [items, setItems] = useState([]);
   const [hasAnimated, setHasAnimated] = useState(false); // Animation-Zustand
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: false }); // Kein `triggerOnce`, da wir wieder animieren wollen
@@ -27,7 +27,7 @@ export default function NewBestSellerList() {
           console.error("API error:", err);
         });
     }
-  }, [inView, hasAnimated, api_base_url]);
+  }, [inView, hasAnimated, BASE_URL]);
 
   const slideInVariant = {
     hidden: { x: 100, opacity: 0 },

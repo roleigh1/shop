@@ -8,7 +8,8 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import PropTypes from "prop-types";
-const checkOutURL = process.env.REACT_APP_API_CREATECHECKOUT;
+import { apiConfig } from "../config";
+
 
 export default function CartTable() {
   const Message = ({ message }) => (
@@ -21,7 +22,7 @@ export default function CartTable() {
   const { cart, updateQuantity, removeFromCart, totalValue } = useCart();
   const [selectLocation, setSelectedLocation] = useState("");
   const [selectedDate, setSelectedDate] = useState(new Date());
-
+    const {BASE_URL,endpoints} = apiConfig; 
   useEffect(() => {
     const query = new URLSearchParams(window.location.search);
     const successMessage =
@@ -50,7 +51,7 @@ export default function CartTable() {
 
   const handleCheckout = async () => {
     try {
-      const response = await fetch(checkOutURL, {
+      const response = await fetch(`${BASE_URL}${endpoints.checkout}`, {
         method: "POST",
         mode: "cors",
         cache: "no-cache",
@@ -147,7 +148,7 @@ export default function CartTable() {
           onSubmit={handleCheckout}
           className="flex flex-col items-center gap-4"
         >
-          <div className="w-full md:w-1/3">
+          <div className="w-full md:w-2/4">
             <FormControl fullWidth>
               <InputLabel id="location-select-label">Location</InputLabel>
               <Select
@@ -157,6 +158,7 @@ export default function CartTable() {
                 label="Pick a Location"
                 onChange={handleSelectChange}
                 required
+
               >
                 <MenuItem value={"Karmelitermarkt"}>Karmelitermarkt</MenuItem>
                 <MenuItem value={"Vorgartenmarkt"}>Vorgartenmarkt</MenuItem>
