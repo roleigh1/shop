@@ -6,7 +6,7 @@ import Cart from "./Components/Cart/Cart";
 import BurgerMenu from "./Components/Burger/Menu";
 import BannerHome from "./Components/Banner/BannerHome";
 import SeasonList from "./Components/SeasonItems/SeasonList";
-import ContactForm from "./Components/Contact/ContactForm";
+import ContactSection from "./Components/Contact/ContactSection";
 
 import NewBestSellerList from "./Components/Bestsellers/newBestsellerlist";
 import { useLocation } from "react-router-dom";
@@ -19,6 +19,7 @@ function Home() {
   const location = useLocation();
   const { setCart } = useCart();
   const [success, setSuccess] = useState(false);
+  const [test,setTest] = useState(false);
   
 
   useEffect(() => {
@@ -55,8 +56,8 @@ function Home() {
       </div>
 
       <div className="mt-4 bg-gray-300 rounded-lg">
-        <div className="flex justify-center">
-          <ContactForm id="contact-section" className="contactForm" />
+        <div className="">
+          <ContactSection  />
         </div>
       </div>
 

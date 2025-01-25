@@ -9,7 +9,7 @@ import {
   MDBIcon,
 } from "mdb-react-ui-kit";
 
-const Footer = () => {
+const Footer = ({setmoveToContact}) => {
   return (
     <MDBFooter
       style={{ fontSize: "12px" }}
@@ -22,16 +22,16 @@ const Footer = () => {
         </div>
 
         <div>
-          <a href="www.facebook.com" className="me-4 text-reset">
+          <a href="https://www.facebook.com" className="me-4 text-reset">
             <MDBIcon color="secondary" fab icon="facebook-f" />
           </a>
-          <a href="www.twitter.com" className="me-4 text-reset">
+          <a href="https://www.twitter.com" className="me-4 text-reset">
             <MDBIcon color="secondary" fab icon="twitter" />
           </a>
-          <a href="www.google.com" className="me-4 text-reset">
+          <a href="https://www.google.com" className="me-4 text-reset">
             <MDBIcon color="secondary" fab icon="google" />
           </a>
-          <a href="www.instagram.com" className="me-4 text-reset">
+          <a href="https://www.instagram.com" className="me-4 text-reset">
             <MDBIcon color="secondary" fab icon="instagram" />
           </a>
         </div>
@@ -56,7 +56,7 @@ const Footer = () => {
             <MDBCol md="3" lg="2" xl="2" className="mx-auto mb-4">
               <h6 className=" fw-bold mb-4">Useful links</h6>
               <p>
-                <Link className="text-reset" to="/#contact">
+                <Link className="text-reset" to="/">
                   Contact Us
                 </Link>
               </p>
