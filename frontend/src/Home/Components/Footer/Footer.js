@@ -13,8 +13,10 @@ import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import ContactForm from "../Contact/ContactForm";
-import { Button } from "@mui/material";
+
+
 import { styled } from '@mui/material/styles';
+
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -88,9 +90,7 @@ const Footer = () => {
         aria-labelledby="customized-dialog-title"
         open={open}
       >
-        <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-         Contact Us
-        </DialogTitle>
+    
         <IconButton
           aria-label="close"
           onClick={handleClose}
@@ -106,11 +106,7 @@ const Footer = () => {
         <DialogContent dividers>
         <ContactForm />
         </DialogContent>
-        <DialogActions>
-          <Button autoFocus onClick={handleClose}>
-            Close
-          </Button>
-        </DialogActions>
+
       </BootstrapDialog>
             </MDBCol>
 
