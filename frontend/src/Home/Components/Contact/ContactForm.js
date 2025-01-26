@@ -48,7 +48,7 @@ const ContactForm = () => {
 
   return (
     <div className="flex flex-col items-center mt-8">
-      <h1 className="text-center opacity-70 mb-4">Get in Touch with us</h1>
+
       <form className="flex flex-col items-center mt-6" onSubmit={handleSubmit}>
         <div className="mb-4 w-80">
           <TextField

@@ -55,11 +55,7 @@ function Home() {
         <SeasonList  />
       </div>
 
-      <div className="mt-4 bg-gray-300 rounded-lg">
-        <div className="">
-          <ContactSection  />
-        </div>
-      </div>
+      
 
       <div className="mt-8">
         <NewBestSellerList />

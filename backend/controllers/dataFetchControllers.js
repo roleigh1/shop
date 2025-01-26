@@ -63,7 +63,7 @@ const getContent = async (req, res) => {
 
       case "bannerhomeSite":
         result = await fetchData(BannerData, limit, offset, {
-          location: "home",
+          id: 1,
         });
         res.status(200).json(result);
         break;

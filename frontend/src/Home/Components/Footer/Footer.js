@@ -1,6 +1,4 @@
-import React from "react";
-import { Link } from "react-router-dom";
-
+import React,{useState} from "react";
 import {
   MDBFooter,
   MDBContainer,
@@ -8,8 +6,33 @@ import {
   MDBCol,
   MDBIcon,
 } from "mdb-react-ui-kit";
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import ContactForm from "../Contact/ContactForm";
+import { Button } from "@mui/material";
+import { styled } from '@mui/material/styles';
 
-const Footer = ({setmoveToContact}) => {
+const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+  '& .MuiDialogContent-root': {
+    padding: theme.spacing(2),
+  },
+  '& .MuiDialogActions-root': {
+    padding: theme.spacing(1),
+  },
+}));
+const Footer = () => {
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <MDBFooter
       style={{ fontSize: "12px" }}
@@ -55,11 +78,40 @@ const Footer = ({setmoveToContact}) => {
 
             <MDBCol md="3" lg="2" xl="2" className="mx-auto mb-4">
               <h6 className=" fw-bold mb-4">Useful links</h6>
-              <p>
-                <Link className="text-reset" to="/">
+              <a onClick={handleClickOpen}>
+                
                   Contact Us
-                </Link>
-              </p>
+           
+              </a>
+              <BootstrapDialog
+        onClose={handleClose}
+        aria-labelledby="customized-dialog-title"
+        open={open}
+      >
+        <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+         Contact Us
+        </DialogTitle>
+        <IconButton
+          aria-label="close"
+          onClick={handleClose}
+          sx={(theme) => ({
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: theme.palette.grey[500],
+          })}
+        >
+          <CloseIcon />
+        </IconButton>
+        <DialogContent dividers>
+        <ContactForm />
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleClose}>
+            Close
+          </Button>
+        </DialogActions>
+      </BootstrapDialog>
             </MDBCol>
 
             <MDBCol md="4" lg="3" xl="3" className="mx-auto mb-md-0 mb-4">
