@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import {
   MDBFooter,
   MDBContainer,
@@ -6,23 +6,19 @@ import {
   MDBCol,
   MDBIcon,
 } from "mdb-react-ui-kit";
-import Dialog from '@mui/material/Dialog';
-import DialogTitle from '@mui/material/DialogTitle';
-import DialogContent from '@mui/material/DialogContent';
-import DialogActions from '@mui/material/DialogActions';
-import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
+import Dialog from "@mui/material/Dialog";
+import DialogContent from "@mui/material/DialogContent";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 import ContactForm from "../Contact/ContactForm";
 
-
-import { styled } from '@mui/material/styles';
-
+import { styled } from "@mui/material/styles";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-  '& .MuiDialogContent-root': {
+  "& .MuiDialogContent-root": {
     padding: theme.spacing(2),
   },
-  '& .MuiDialogActions-root': {
+  "& .MuiDialogActions-root": {
     padding: theme.spacing(1),
   },
 }));
@@ -68,46 +64,40 @@ const Footer = () => {
             <MDBCol md="3" lg="4" xl="3" className="mx-auto mb-4">
               <h6 className="e fw-bold mb-4">
                 <MDBIcon color="secondary" icon="gem" className="me-3" />
-                Gärtnerei Leitner:Frisches Gemüse für Wiens Märkte
+                Gärtnerei Leitner: Fresh vegetables for Vienna's markets.  
               </h6>
               <p>
-                Mitten im Herzen von Simmering, einem lebhaften Bezirk in Wien,
-                blüht eine besondere Gärtnerei. Hier, geschützt von der Hektik
-                der Stadt, wachsen knackige Salate, aromatische Kräuter und
-                bunte Gemüsesorten, die jeden Gaumen begeistern.
+                Right in the heart of Simmering, a lively district in Vienna, a
+                special nursery is flourishing. Here, protected from the hustle
+                and bustle of the city, crisp salads, aromatic herbs and
+                colorful vegetables grow to delight every palate.
               </p>
             </MDBCol>
 
             <MDBCol md="3" lg="2" xl="2" className="mx-auto mb-4">
               <h6 className=" fw-bold mb-4">Useful links</h6>
-              <a onClick={handleClickOpen}>
-                
-                  Contact Us
-           
-              </a>
+              <span onClick={handleClickOpen}>Contact Us</span>
               <BootstrapDialog
-        onClose={handleClose}
-        aria-labelledby="customized-dialog-title"
-        open={open}
-      >
-    
-        <IconButton
-          aria-label="close"
-          onClick={handleClose}
-          sx={(theme) => ({
-            position: 'absolute',
-            right: 8,
-            top: 8,
-            color: theme.palette.grey[500],
-          })}
-        >
-          <CloseIcon />
-        </IconButton>
-        <DialogContent dividers>
-        <ContactForm />
-        </DialogContent>
-
-      </BootstrapDialog>
+                onClose={handleClose}
+                aria-labelledby="customized-dialog-title"
+                open={open}
+              >
+                <IconButton
+                  aria-label="close"
+                  onClick={handleClose}
+                  sx={(theme) => ({
+                    position: "absolute",
+                    right: 8,
+                    top: 8,
+                    color: theme.palette.grey[500],
+                  })}
+                >
+                  <CloseIcon />
+                </IconButton>
+                <DialogContent dividers>
+                  <ContactForm />
+                </DialogContent>
+              </BootstrapDialog>
             </MDBCol>
 
             <MDBCol md="4" lg="3" xl="3" className="mx-auto mb-md-0 mb-4">
@@ -138,7 +128,6 @@ const Footer = () => {
         style={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}
       >
         Developed @RoLeigh
-   
       </div>
     </MDBFooter>
   );

@@ -6,13 +6,9 @@ import Cart from "./Components/Cart/Cart";
 import BurgerMenu from "./Components/Burger/Menu";
 import BannerHome from "./Components/Banner/BannerHome";
 import SeasonList from "./Components/SeasonItems/SeasonList";
-
-
 import NewBestSellerList from "./Components/Bestsellers/newBestsellerlist";
 import { useLocation } from "react-router-dom";
 import { useCart } from "../CartContext";
-
-
 import Alert from "./Components/Alert/Alert";
 
 function Home() {

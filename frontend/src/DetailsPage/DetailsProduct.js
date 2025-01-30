@@ -59,8 +59,8 @@ export default function DetailsItem({detailsItem}) {
   };
 
   return (
-    <div className="flex flex-row justify-center">
-      <div className="flex mr-5">
+    <div className="flex flex-row flex-wrap justify-center gap-2 ">
+      <div className="">
         <ImageGallery
           className="image-gallery"
           items={images}

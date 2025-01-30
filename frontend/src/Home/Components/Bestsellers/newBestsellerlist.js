@@ -27,7 +27,7 @@ export default function NewBestSellerList() {
           console.error("API error:", err);
         });
     }
-  }, [inView, hasAnimated, BASE_URL]);
+  }, [inView, hasAnimated, BASE_URL,endpoints.bestseller]);
 
   const slideInVariant = {
     hidden: { x: 100, opacity: 0 },
@@ -49,7 +49,7 @@ export default function NewBestSellerList() {
                 initial="hidden"
                 animate={inView ? "visible" : "hidden"} // Animation neu starten bei Sichtbarkeitswechsel
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                style={{ width: "25%" }}
+    
               >
                 <MDBCol className="mb-4">
                   <NewBestsellerItem className="card" item={item} />

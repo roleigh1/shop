@@ -6,14 +6,13 @@ const ContactForm = () => {
   const contactUrl = process.env.REACT_APP_POST_CONTACT;
   const [messageSend, setMessageSend] = useState(false);
 
-  // State für die Eingabefelder
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
 
-  // Handle input change
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
@@ -22,7 +21,7 @@ const ContactForm = () => {
     }));
   };
 
-  // Handle form submit
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -36,8 +35,8 @@ const ContactForm = () => {
       });
 
       if (response.ok) {
-        setMessageSend(true); // Erfolgreicher Versand
-        // Textfelder leeren
+        setMessageSend(true); 
+     
         setFormData({
           name: "",
           email: "",
@@ -54,7 +53,7 @@ const ContactForm = () => {
 
   return (
     <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
-      {/* Zeige SuccessSend-Komponente, wenn messageSend true ist */}
+    
       {messageSend ? (
         <SuccessSend />
       ) : (
