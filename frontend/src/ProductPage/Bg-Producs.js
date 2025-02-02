@@ -28,7 +28,7 @@ export default function Banner() {
           <div className="absolute inset-0 bg-gray-700 opacity-60 rounded-md"></div>
           <div className="absolute inset-0 text-center flex items-center justify-center flex-col">
             <h2 className="text-white text-1xl">{banner.headline}</h2>
-            <p className="text-white text-xl">{banner.text}</p>
+            <p className="text-white text-1xl">{banner.text}</p>
           </div>
         </div>
       ))}

@@ -26,17 +26,17 @@ function BannerHome() {
   }
   const banner = banners[0]; 
   return (
-    <div className="container  my-5 relative max-w-xl mx-auto mt-20">
+    <div className="container my-5 relative max-w-xl mx-auto mt-20">
       <div className="relative">
         <img
           className="h-60 w-full object-cover rounded-md"
           src={banner.img}
           alt="Banner"
         />
-
-        <div className="absolute inset-0  text-center flex items-center justify-center flex-col">
-          <h2 className=" text-white">{banner.headline}</h2>
-          <p className="text-white">{banner.text}</p>
+         <div className="absolute inset-0 bg-gray-700 opacity-60 rounded-md"></div>
+        <div className="absolute inset-0 text-center flex items-center justify-center flex-col">
+          <h2 className=" text-white text-1xl">{banner.headline}</h2>
+          <p className="text-white text-1xl">{banner.text}</p>
         </div>
       </div>
     </div>

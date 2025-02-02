@@ -35,32 +35,34 @@ export default function NewBestSellerList() {
   };
 
   return (
+ 
     <div ref={ref}>
-      <MDBContainer
-        fluid
-        className="my-5 text-center d-flex justify-content-center"
-      >
-        <MDBRow className="mobile">
-          {items.length > 0 ? (
-            items.map((item, index) => (
-              <motion.div
-                key={item.id}
-                variants={slideInVariant}
-                initial="hidden"
-                animate={inView ? "visible" : "hidden"} // Animation neu starten bei Sichtbarkeitswechsel
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-    
-              >
-                <MDBCol className="mb-4">
-                  <NewBestsellerItem className="card" item={item} />
-                </MDBCol>
-              </motion.div>
-            ))
-          ) : (
-            <p>No products available</p>
-          )}
-        </MDBRow>
-      </MDBContainer>
-    </div>
+    <MDBContainer
+      fluid
+      className="my-5 text-center flex justify-content-center"
+    >
+      <MDBRow className="mobile">
+        {items.length > 0 ? (
+          items.map((item, index) => (
+            <motion.div
+              key={item.id}
+              variants={slideInVariant}
+              initial="hidden"
+              animate={inView ? "visible" : "hidden"} // Animation neu starten bei Sichtbarkeitswechsel
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              style={{ width:"15rem" }}
+            >
+              <MDBCol className="mb-4">
+                <NewBestsellerItem className="card" item={item} />
+              </MDBCol>
+            </motion.div>
+          ))
+        ) : (
+          <p>No products available</p>
+        )}
+      </MDBRow>
+    </MDBContainer>
+  </div>
+
   );
 }
