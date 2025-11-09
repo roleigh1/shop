@@ -42,12 +42,12 @@ function Home() {
         </div>
       </div>
 
-      <div className="relative z-0 mt-8">
+      <div className="relative z-0  ">
         {success && <Alert />}
         <BannerHome  className="slider" />
       </div>
 
-      <div className="mt-8">
+      <div className="">
         <SeasonList  />
       </div>
 

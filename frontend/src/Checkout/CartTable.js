@@ -49,7 +49,9 @@ export default function CartTable() {
     setSelectedLocation(event.target.value);
   };
 
-  const handleCheckout = async () => {
+  const handleCheckout = async (event) => {
+    event.preventDefault();
+
     try {
       const response = await fetch(`${BASE_URL}${endpoints.checkout}`, {
         method: "POST",

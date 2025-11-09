@@ -13,7 +13,7 @@ export default function DetailsItem({detailsItem}) {
   const { addToCart } = useCart();
 
 
-    
+    console.log(detailsItem)
   if (!detailsItem) {
     return <p>Loading...</p>;
   }

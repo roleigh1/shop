@@ -15,8 +15,7 @@ COPY . .
 # Build the React application
 RUN npm run build
 #ssl
-COPY ssl/server.crt /etc/ssl/certs/server.crt
-COPY ssl/server.key /etc/ssl/private/server.key
+
 
 # Stage 2: Serve the app with Nginx
 FROM nginx:alpine

@@ -27,7 +27,7 @@ export default function NewBestsellerItem({item}) {
                 }}
                 alt="Sunset in the mountains"
               ></div>
-              <Link to={`/details/${item.id}/productsDetails`}>
+              <Link to={`/details/${item.id}/bestsellerDetails`}>
                 <svg
                   height="24"
                   width="24"
