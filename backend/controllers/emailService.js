@@ -1,10 +1,5 @@
 const nodemailer = require("nodemailer");
 const config = require("../config");
-const { google } = require("googleapis");
-const OAuth2 = google.auth.OAuth2;
-
-const OAuth2_client = new OAuth2(config.clientId, config.clientSecret);
-OAuth2_client.setCredentials({ refresh_token: config.refreshToken });
 
 function generateEmailTemplate(order, lineItems) {
   console.log(lineItems, "inEmail");
@@ -21,9 +16,9 @@ function generateEmailTemplate(order, lineItems) {
                 <td>${item.quantity}</td>
                 <td>€ ${(item.price.unit_amount / 100).toFixed(2)}</td>
                 <td>€ ${(
-                  (item.price.unit_amount / 100) *
-                  item.quantity
-                ).toFixed(2)}</td>
+          (item.price.unit_amount / 100) *
+          item.quantity
+        ).toFixed(2)}</td>
             </tr>
         `;
     })
@@ -106,23 +101,19 @@ function generateEmailTemplate(order, lineItems) {
 }
 
 function sendConfirmationEmail(customerEmail, order, lineItems) {
-  const accessToken = process.env.ACCESS_TOKEN;
   const transporter = nodemailer.createTransport({
-    service: "gmail",
+    host: "mail.smtp2go.com",
+    port: 2525,
     auth: {
-      type: "OAuth2",
-      user: config.user,
-      clientId: config.clientId,
-      clientSecret: config.clientSecret,
-      refreshToken: config.refreshToken,
-      accessToken: accessToken,
+      user: config.smtpUser,
+      pass: config.smtpPass
     },
   });
 
   const emailText = generateEmailTemplate(order, lineItems);
 
   const mailOptions = {
-    from: "robinl.leitner1@gmail.com",
+    from: "support@grtnereileitner.store",
     to: customerEmail,
     subject: "Bestellung bei Gärtnerei Leitner",
     html: emailText,
@@ -145,23 +136,20 @@ function sendConfirmationEmail(customerEmail, order, lineItems) {
 }
 function sendContactMail(req, res) {
   try {
-    const { name ,email,message} = req.body;
+    const { name, email, message } = req.body;
 
-    const accessToken = process.env.ACCESS_TOKEN;
+
     const transporter = nodemailer.createTransport({
-      service: "gmail",
+      host: "mail.smtp2go.com",
+      port: 2525,
       auth: {
-        type: "OAuth2",
-        user: config.user,
-        clientId: config.clientId,
-        clientSecret: config.clientSecret,
-        refreshToken: config.refreshToken,
-        accessToken: accessToken,
+      user: config.smtpUser,
+      pass: config.smtpPass
       },
     });
     const mailOptions = {
-      from: "robinl.leitner1@gmail.com",
-      to: "robinl.leitner1@gmail.com",
+      from: email,
+      to: "support@grtnereileitner.store",
       subject: "Contact reqest",
       html: `<p>Name: ${name}</p>
     <p>Email: ${email}</p>
