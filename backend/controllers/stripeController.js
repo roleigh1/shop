@@ -3,7 +3,7 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const inserController = require("./insertController");
 
 const Decimal = require("decimal.js");
-const YOUR_DOMAIN = "https://www.xn--grtnereileitner-0kb.at/#/";
+const YOUR_DOMAIN = "http://localhost:3000/#/";
 
 let selectedDate = null;
 let selectedLocation;

@@ -148,7 +148,7 @@ function sendContactMail(req, res) {
       },
     });
     const mailOptions = {
-      from: email,
+      from: "support@grtnereileitner.store",
       to: "support@grtnereileitner.store",
       subject: "Contact reqest",
       html: `<p>Name: ${name}</p>
