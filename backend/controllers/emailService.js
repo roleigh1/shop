@@ -59,10 +59,10 @@ function generateEmailTemplate(order, lineItems) {
         <hr size="1.5px" color="black" />
         <table style="width: 100%; margin: 20px 0; border-collapse: collapse; text-align: center;">
             <tr>
-                <th>Product Name</th>
+                <th>Product </th>
                 <th>Quantity</th>
                 <th>Price</th>
-                <th>Total Price</th>
+                <th>Total </th>
             </tr>
             <tr>
             <td>
@@ -98,8 +98,7 @@ function generateEmailTemplate(order, lineItems) {
     `;
 
   return emailText;
-}
-
+  }
 function sendConfirmationEmail(customerEmail, order, lineItems) {
   const transporter = nodemailer.createTransport({
     host: "mail.smtp2go.com",
@@ -110,7 +109,7 @@ function sendConfirmationEmail(customerEmail, order, lineItems) {
     },
   });
 
-  const emailText = generateEmailTemplate(order, lineItems);
+  const emailText = generateEmailTemplate( order, lineItems);
 
   const mailOptions = {
     from: "support@grtnereileitner.store",

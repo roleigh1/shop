@@ -79,7 +79,9 @@ export default function CartTable() {
   if (message) {
     return <Message message={message} />;
   }
-
+  if(cart.length === 0 ){
+    window.location.href = "/"; 
+  }
   function isWeekend(date) {
     const day = date.getDay();
     return day !== 5 && day !== 6;
