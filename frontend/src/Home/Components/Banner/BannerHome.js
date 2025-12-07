@@ -42,13 +42,20 @@ function BannerHome() {
             {banner.text}
           </p>
 
-          <div className="mt-4 flex justify-center gap-4 sm:mt-6">
+          <div className="mt-4 flex flex-row justify-center items-center sm:mt-6">
             <Link
               to="/products"
-              className="rounded border px-4 border-gray-200 py-3 font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50 hover:text-gray-900"
+              className="rounded border px-4 py-2  border-gray-200 font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50 hover:text-gray-900"
             >
               Shop now
             </Link>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 1024 768"
+              className="  w-50 h-auto text-gray-900   block  md:hidden"
+            >
+              <image href={banner.img} width="100%" height="100%" preserveAspectRatio="xMidYMid meet" />
+            </svg>
           </div>
         </div>
 
