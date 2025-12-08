@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import { MDBContainer, MDBRow, MDBCol } from "mdb-react-ui-kit";
 import InfiniteScroll from "react-infinite-scroll-component";
 import axios from "axios";
@@ -57,13 +57,13 @@ const ProductList = () => {
     };
 
     fetchProducts();
-  }, [selectedCategory, selectedPrice, selectedSort]);
+  }, [selectedCategory, selectedPrice, selectedSort,BASE_URL,endpoints]);
   useEffect(() => {
     if(isDrawerShowing){
        document.body.classList.add("no-scroll"); 
     } else {
       document.body.classList.remove("no-scroll"); 
-    }; 
+    } 
   },[isDrawerShowing]) 
 
   const fetchMoreData = () => {
@@ -136,9 +136,9 @@ const ProductList = () => {
     <MDBContainer fluid className="text-center ">
     
  
-        <MDBRow className="ml-3 mb-3">
+        <MDBRow className="mb-3 ml-3">
           <MDBCol className="d-flex  flex-row justify-end pl-11 ">
-            <Menu as="div" className="relative inline-block text-left ml-2 ">
+            <Menu as="div" className="relative ml-2 inline-block text-left ">
               <div>
                 <Menu.Button className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
                   Sort
@@ -149,7 +149,7 @@ const ProductList = () => {
                 </Menu.Button>
               </div>
 
-              <Menu.Items className="absolute right-0 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black/5 focus:outline-none z-10">
+              <Menu.Items className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black/5 focus:outline-none">
                 <div className="py-1">
                   {sortOptions.map((option) => (
                     <Menu.Item key={option.value}>
@@ -171,7 +171,7 @@ const ProductList = () => {
                 </div>
               </Menu.Items>
             </Menu>
-            <button className="sm:hidden block " onClick={handleTogglerDrawer}>
+            <button className="block sm:hidden " onClick={handleTogglerDrawer}>
               <svg
                 className="size-4 "
                 aria-hidden="true"
@@ -198,7 +198,7 @@ const ProductList = () => {
           </MDBCol>
         </MDBRow>
 
-        <div className="flex flex-row sm:flex-row gap-4 ">
+        <div className="flex flex-row gap-4 sm:flex-row ">
           <div className="hidden sm:block  ">
             <Sidebar
               handleCategoryChange={handleCategoryChange}
@@ -206,7 +206,7 @@ const ProductList = () => {
               selectedCategory={selectedCategory}
             />
           </div>
-          <div className=" w-full flex flex-wrap gap-3 justify-center">
+          <div className=" flex w-full flex-wrap justify-center gap-3">
             {products.items.length > 0 ? (
               products.items.map((product, index) => (
                 <motion.div
@@ -224,7 +224,7 @@ const ProductList = () => {
                 </motion.div>
               ))
             ) : (
-              <p className="text-center absolute right-0 left-0 mt-10 ">No products available</p>
+              <p className="absolute inset-x-0 mt-10 text-center ">No products available</p>
             )}
           </div>
         </div>

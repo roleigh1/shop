@@ -35,36 +35,36 @@ const Footer = () => {
     <MDBFooter
       style={{ fontSize: "12px" }}
       bgColor="light"
-      className="text-center text-lg-start text-muted"
+      className="text-lg-start text-muted text-center"
     >
-      <section className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-        <div className="me-5 d-none d-lg-block">
+      <section className="d-flex justify-content-center justify-content-lg-between border-bottom p-4">
+        <div className="d-none d-lg-block me-5">
           <span>Get connected with us on social networks:</span>
         </div>
 
         <div>
-          <a href="https://www.facebook.com" className="me-4 text-reset">
+          <a href="https://www.facebook.com" className="text-reset me-4">
             <MDBIcon color="secondary" fab icon="facebook-f" />
           </a>
-          <a href="https://www.twitter.com" className="me-4 text-reset">
+          <a href="https://www.twitter.com" className="text-reset me-4">
             <MDBIcon color="secondary" fab icon="twitter" />
           </a>
-          <a href="https://www.google.com" className="me-4 text-reset">
+          <a href="https://www.google.com" className="text-reset me-4">
             <MDBIcon color="secondary" fab icon="google" />
           </a>
-          <a href="https://www.instagram.com" className="me-4 text-reset">
+          <a href="https://www.instagram.com" className="text-reset me-4">
             <MDBIcon color="secondary" fab icon="instagram" />
           </a>
         </div>
       </section>
 
       <section className="">
-        <MDBContainer className="text-center text-md-start mt-5">
+        <MDBContainer className="text-md-start mt-5 text-center">
           <MDBRow className="mt-3">
             <MDBCol md="3" lg="4" xl="3" className="mx-auto mb-4">
               <h6 className="e fw-bold mb-4">
                 <MDBIcon color="secondary" icon="gem" className="me-3" />
-                Gärtnerei Leitner: Fresh vegetables for Vienna's markets.  
+                Gärtnerei Leitner: Fresh vegetables for Vienna&apos;s markets.  
               </h6>
               <p>
                 Right in the heart of Simmering, a lively district in Vienna, a
@@ -76,7 +76,7 @@ const Footer = () => {
 
             <MDBCol md="3" lg="2" xl="2" className="mx-auto mb-4">
               <h6 className=" fw-bold mb-4">Useful links</h6>
-              <span onClick={handleClickOpen}>Contact Us</span>
+              <span onClick={handleClickOpen} aria-hidden="true">Contact Us</span>
               <BootstrapDialog
                 onClose={handleClose}
                 aria-labelledby="customized-dialog-title"
@@ -100,7 +100,7 @@ const Footer = () => {
               </BootstrapDialog>
             </MDBCol>
 
-            <MDBCol md="4" lg="3" xl="3" className="mx-auto mb-md-0 mb-4">
+            <MDBCol md="4" lg="3" xl="3" className="mb-md-0 mx-auto mb-4">
               <h6 className=" fw-bold mb-4">Contact</h6>
               <p>
                 <MDBIcon color="secondary" icon="home" className="me-2" />
@@ -124,7 +124,7 @@ const Footer = () => {
       </section>
 
       <div
-        className="text-center p-4"
+        className="p-4 text-center"
         style={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}
       >
         Developed @RoLeigh

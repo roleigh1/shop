@@ -52,21 +52,21 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
+    <div className="mx-auto max-w-screen-md px-4 py-8 lg:py-16">
     
       {messageSend ? (
         <SuccessSend />
       ) : (
         <>
-          <h2 className="mb-4 text-4xl font-extrabold text-center text-gray-900 dark:text-white">
+          <h2 className="mb-4 text-center text-4xl font-extrabold text-gray-900 dark:text-white">
             Contact Us
           </h2>
 
           <form
-            className="flex flex-col items-center mt-6 space-y-8 gap-2"
+            className="mt-6 flex flex-col items-center gap-2 space-y-8"
             onSubmit={handleSubmit}
           >
-            <div className="w-80 flex gap-2 flex-col">
+            <div className="flex w-80 flex-col gap-2">
               <div>
                 <input
                   type="email"
@@ -74,7 +74,7 @@ const ContactForm = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="shadow-sm bg-gray-50 border text-sm rounded-lg focus:ring-primary-500 w-full p-2.5"
+                  className="focus:ring-primary-500 w-full rounded-lg border bg-gray-50 p-2.5 text-sm shadow-sm"
                   placeholder="name@domain.com"
                   required
                 />
@@ -86,7 +86,7 @@ const ContactForm = () => {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="shadow-sm bg-gray-50 border text-sm rounded-lg focus:ring-primary-500 w-full p-3"
+                  className="focus:ring-primary-500 w-full rounded-lg border bg-gray-50 p-3 text-sm shadow-sm"
                   placeholder="Your Name"
                   required
                 />
@@ -98,7 +98,7 @@ const ContactForm = () => {
                   value={formData.message}
                   onChange={handleChange}
                   rows="6"
-                  className="shadow-sm bg-gray-50 border text-sm rounded-lg focus:ring-primary-500 w-full p-2.5"
+                  className="focus:ring-primary-500 w-full rounded-lg border bg-gray-50 p-2.5 text-sm shadow-sm"
                   placeholder="Leave a comment..."
                   required
                 ></textarea>
@@ -106,7 +106,7 @@ const ContactForm = () => {
               <div>
                 <button
                   type="submit"
-                  className="py-3 px-5 text-sm font-medium text-white rounded-lg bg-blue-600 sm:w-fit hover:bg-blue-800 focus:ring-4"
+                  className="rounded-lg bg-blue-600 px-5 py-3 text-sm font-medium text-white hover:bg-blue-800 focus:ring-4 sm:w-fit"
                 >
                   Send message
                 </button>

@@ -17,18 +17,18 @@ export default function Banner() {
   const banners = data.result || [];
 
   return (
-    <div className="container my-5 relative max-w-xl mx-auto mt-20">
+    <div className="container relative mx-auto my-5 mt-20 max-w-xl">
       {banners.length > 0 && banners.map((banner) => (
         <div className="relative" key={banner.id}>
           <img
-            className="h-60  object-cover rounded-md w-full"
+            className="h-60  w-full rounded-md object-cover"
             src={banner.img}
             alt={banner.headline}
           />
-          <div className="absolute inset-0 bg-gray-700 opacity-60 rounded-md"></div>
-          <div className="absolute inset-0 text-center flex items-center justify-center flex-col">
-            <h2 className="text-white text-1xl">{banner.headline}</h2>
-            <p className="text-white text-1xl">{banner.text}</p>
+          <div className="absolute inset-0 rounded-md bg-gray-700 opacity-60"></div>
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
+            <h2 className="text-1xl text-white">{banner.headline}</h2>
+            <p className="text-1xl text-white">{banner.text}</p>
           </div>
         </div>
       ))}
@@ -37,5 +37,5 @@ export default function Banner() {
 }
 
 Banner.propTypes = {
-  banners: PropTypes.array,  // You can leave this for flexibility in case you use props later
+  banners: PropTypes.array, 
 };

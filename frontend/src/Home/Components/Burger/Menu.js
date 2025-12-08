@@ -27,8 +27,8 @@ function BurgerMenu() {
             </Link>
           </li>
         </ul>
-        <div className="hamburger" onClick={toggleHamburger}>
-          <Hamburger isOpen={hamburgerOpen} />
+        <div className="hamburger">
+          <Hamburger  onClick={toggleHamburger} isOpen={hamburgerOpen} />
         </div>
       </div>
 

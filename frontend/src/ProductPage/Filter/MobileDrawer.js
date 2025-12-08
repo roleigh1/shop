@@ -3,26 +3,28 @@ import { useSpring, animated } from "react-spring";
 import SidebarMobile from "./SidebarMobile";
 
 export default function MobileDrawer({ show,handleTogglerDrawer,handleCategoryChange,handlePriceChange }) {
-  const [drawerHeight, setDrawerHeight] = useState(window.innerHeight);
+  const [ drawerHeight,setDrawerHeight] = useState(window.innerHeight);
 
   useEffect(() => {
     const updateHeight = () => setDrawerHeight(window.innerHeight);
     window.addEventListener("resize", updateHeight);
   }, []);
-
+useEffect(() => {
+  document.body.style.overflow = show ? "auto" : "auto";
+}, [show])
   const drawerWidth = 220;
   const props = useSpring({
     right: show ? 0 : 320,
     top: 0,
     backgroundColor: "white",
-    height: `200rem`,
+    height: `${drawerHeight}px`,
     width: `${drawerWidth}px`,
     config: { tension: 220, friction: 20 },
   
   });
   return (
-    <animated.div style={props} className="absolute top-0   z-10  ">
-      <div className="p-4 overflow-x-hidden">
+    <animated.div style={props} className="absolute top-0   z-10    ">
+      <div className="p-4 ">
         <button onClick={handleTogglerDrawer} className="mr-40 mt-10">
         <svg
           xmlns="http://www.w3.org/2000/svg"

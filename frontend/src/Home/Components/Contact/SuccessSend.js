@@ -20,8 +20,8 @@ export default function SuccessSend() {
           ></path>
         </svg>
       </div>
-      <h2 className="text-xl font-bold text-center">Thank you!</h2>
-      <p className="text-sm text-center text-gray-700">
+      <h2 className="text-center text-xl font-bold">Thank you!</h2>
+      <p className="text-center text-sm text-gray-700">
         Your message has been sent.
       </p>
     </div>

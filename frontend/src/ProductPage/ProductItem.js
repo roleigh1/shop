@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import  { useState } from "react";
+
 import { Link } from "react-router-dom";
 import "./style.css";
 
@@ -7,14 +7,14 @@ export default function NewProductsItem({ product }) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-     <div className="max-w-sm rounded overflow-hidden shadow-lg  h-[23rem]  mb-5">
+     <div className="mb-5 h-[23rem] max-w-sm  rounded  shadow-lg">
          <div
            className="image-container"
            onMouseEnter={() => setIsHovered(true)}
            onMouseLeave={() => setIsHovered(false)}
          >
            <div
-             className="w-[13rem] h-[12rem] mt-1 m-auto object-contain"
+             className="m-auto mt-1 h-48 w-52 object-contain"
              style={{
                backgroundImage: `url(${
                  isHovered ? product.secondImage : product.firstImage
@@ -38,11 +38,11 @@ export default function NewProductsItem({ product }) {
            </Link>
          </div>
          <div className="px-6 py-4">
-           <div className="font-bold text-xl mb-2">{product.name}</div>
-           <p className="text-gray-700 text-base">{product.type}</p>
+           <div className="mb-2 text-xl font-bold">{product.name}</div>
+           <p className="text-base text-gray-700">{product.type}</p>
          </div>
          <div className="relative bottom-5">
-           <span className="bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-3">
+           <span className="mb-3 mr-2 rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700">
              {parseFloat(product.price).toFixed(2)}/{product.unit}
            </span>
          </div>
@@ -50,14 +50,3 @@ export default function NewProductsItem({ product }) {
   );
 }
 
-NewProductsItem.propTypes = {
-  product: PropTypes.shape({
-    id:PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
-    firstImage: PropTypes.string.isRequired,
-    secondImage: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    unit: PropTypes.string.isRequired,
-  }).isRequired,
-};

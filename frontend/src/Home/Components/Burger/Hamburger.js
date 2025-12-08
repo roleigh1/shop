@@ -3,21 +3,21 @@ import PropTypes from "prop-types";
 
 function Hamburger({ isOpen }) {
   return (
-    <div className="flex flex-col justify-around w-8 h-8  z-10">
+    <div className="z-10 flex size-8 flex-col justify-around">
       <div
-        className={`w-8 h-1 rounded transform transition-all duration-300 ${
+        className={`h-1 w-8 rounded transition-all duration-300${
           isOpen ? "rotate-45 bg-gray-500" : "rotate-0 bg-black"
         }`}
         style={{ transformOrigin: "1px" }}
       />
       <div
-        className={`w-8 h-1 rounded transform transition-all duration-300 ${
-          isOpen ? "opacity-0 bg-gray-500" : "opacity-100 bg-black"
+        className={`h-1 w-8 rounded transition-all duration-300${
+          isOpen ? "bg-gray-500 opacity-0" : "bg-black opacity-100"
         }`}
         style={{ transformOrigin: "1px" }}
       />
       <div
-        className={`w-8 h-1 rounded transform transition-all duration-300 ${
+        className={`h-1 w-8 rounded transition-all duration-300${
           isOpen ? "-rotate-45 bg-gray-500" : "rotate-0 bg-black"
         }`}
         style={{ transformOrigin: "1px" }}

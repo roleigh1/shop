@@ -89,15 +89,15 @@ export default function CartTable() {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-center mt-3 text-2xl font-bold">Your Purchase</h1>
-      <table className="w-full mt-3 border-separate border-spacing-y-3">
+      <h1 className="mt-3 text-center text-2xl font-bold">Your Purchase</h1>
+      <table className="mt-3 w-full border-separate border-spacing-y-3">
         <thead>
           <tr className="">
-            <th className="text-left p-2"></th>
-            <th className="text-left p-2">Name</th>
-            <th className="text-left p-2">Price</th>
-            <th className="text-left pl-8">Qty</th>
-            <th className="text-left p-2">Total</th>
+            <th className="p-2 text-left"></th>
+            <th className="p-2 text-left">Name</th>
+            <th className="p-2 text-left">Price</th>
+            <th className="pl-8 text-left">Qty</th>
+            <th className="p-2 text-left">Total</th>
             <th></th>
           </tr>
         </thead>
@@ -106,23 +106,23 @@ export default function CartTable() {
             <tr key={index} className="border-b">
               <td className="p-2">
                 <img
-                  className="w-16 h-12 rounded object-cover"
+                  className="h-12 w-16 rounded object-cover"
                   src={item.image}
                   alt={item.name}
                 />
               </td>
               <td className="p-2">{item.name}</td>
               <td className="p-2">{item.price}€</td>
-              <td className="p-2 mt-[11px] flex items-center gap-2">
+              <td className="mt-[11px] flex items-center gap-2 p-2">
                 <button
-                  className="bg-red-500 text-white font-bold w-6 h-6 rounded-full flex items-center justify-center"
+                  className="flex size-6 items-center justify-center rounded-full bg-red-500 font-bold text-white"
                   onClick={() => updateQuantity(item.name, -1)}
                 >
                   -
                 </button>
                 {item.quantity}
                 <button
-                  className="bg-green-500 text-white font-bold w-6 h-6 rounded-full flex items-center justify-center"
+                  className="flex size-6 items-center justify-center rounded-full bg-green-500 font-bold text-white"
                   onClick={() => updateQuantity(item.name, 1)}
                 >
                   +
@@ -135,7 +135,7 @@ export default function CartTable() {
              
                 <svg
                   onClick={() => removeFromCart(item.name)}
-                  className="w-[15px] h-[15px] fill-[#8e8e8e]"
+                  className="size-[15px] fill-[#8e8e8e]"
                   viewBox="0 0 448 512"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -177,13 +177,13 @@ export default function CartTable() {
               selected={selectedDate}
               onChange={handleDateChange}
               filterDate={(date) => !isWeekend(date)}
-              className="border border-gray-300 p-2 rounded"
+              className="rounded border border-gray-300 p-2"
             />
           </div>
 
           <button
             type="submit"
-            className="bg-red-500 text-white font-bold py-2 px-6 rounded hover:bg-red-600"
+            className="rounded bg-red-500 px-6 py-2 font-bold text-white hover:bg-red-600"
           >
             Checkout
           </button>

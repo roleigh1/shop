@@ -21,4 +21,4 @@ export default function Input({handleChange,value,name,color,title}){
             </label>
         </div>
     );
-};
+}

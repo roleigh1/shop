@@ -18,9 +18,7 @@ COPY . .
 # Exponiere den Port, auf dem der Server läuft
 EXPOSE 4242
 
-# SSL-Cert and key
-COPY ssl/server.crt /ssl/server.crt
-COPY ssl/server.key /ssl/server.key
+
 
 # Befehl zum Ausführen des Servers
 CMD ["npm", "start"]

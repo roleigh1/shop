@@ -9,14 +9,14 @@ export default function NewBestsellerItem({item}) {
 
 
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg  h-[23rem]  mb-5">
+    <div className="mb-5 h-[23rem] max-w-sm overflow-hidden  rounded  shadow-lg">
             <div
               className="image-container"
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >
               <div
-                className="w-[13rem] h-[12rem] mt-1 m-auto object-contain"
+                className="m-auto mt-1 h-48 w-52 object-contain"
                 style={{
                   backgroundImage: `url(${
                     isHovered ? item.secondImage : item.firstImage
@@ -40,11 +40,11 @@ export default function NewBestsellerItem({item}) {
               </Link>
             </div>
             <div className="px-6 py-4">
-              <div className="font-bold text-xl mb-2">{item.name}</div>
-              <p className="text-gray-700 text-base">{item.type}</p>
+              <div className="mb-2 text-xl font-bold">{item.name}</div>
+              <p className="text-base text-gray-700">{item.type}</p>
             </div>
             <div className="relative bottom-5">
-              <span className="bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-3">
+              <span className="mb-3 mr-2 rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700">
                 {parseFloat(item.price).toFixed(2)}/{item.unit}
               </span>
             </div>

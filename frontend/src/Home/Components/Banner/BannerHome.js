@@ -32,27 +32,27 @@ function BannerHome() {
         className="mx-auto max-w-screen-xl  sm:py-24 md:grid md:grid-cols-2 md:items-center md:gap-4  "
       >
         <div className=" pb-20  ">
-          <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl text-center ">
+          <h1 className="text-center text-4xl font-bold text-gray-900 sm:text-5xl ">
             {banner.headline}
 
 
           </h1>
 
-          <p className="mt-4 text-base text-pretty text-gray-700 text-center sm:text-lg/relaxed md:pl-10 max-w[15rem]">
+          <p className="max-w[15rem] mt-4 text-pretty text-center text-base text-gray-700 sm:text-lg/relaxed md:pl-10">
             {banner.text}
           </p>
 
-          <div className="mt-4 flex flex-row justify-center items-center sm:mt-6">
+          <div className="mt-4 flex flex-row items-center justify-center sm:mt-6">
             <Link
               to="/products"
-              className="rounded border px-4 py-2  border-gray-200 font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50 hover:text-gray-900"
+              className="rounded border border-gray-200 px-4  py-2 font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50 hover:text-gray-900"
             >
               Shop now
             </Link>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 1024 768"
-              className="  w-50 h-auto text-gray-900   block  md:hidden"
+              className="  w-50 block h-auto   text-gray-900  md:hidden"
             >
               <image href={banner.img} width="100%" height="100%" preserveAspectRatio="xMidYMid meet" />
             </svg>
@@ -62,7 +62,7 @@ function BannerHome() {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1024 768"
-          className="  text-gray-900   relative sm:bottom-14 hidden md:block"
+          className="  relative   hidden text-gray-900 sm:bottom-14 md:block"
         >
           <image href={banner.img} width="100%" height="100%" preserveAspectRatio="xMidYMid meet" />
         </svg>

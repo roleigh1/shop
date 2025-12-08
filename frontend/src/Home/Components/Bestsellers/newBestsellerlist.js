@@ -39,7 +39,7 @@ export default function NewBestSellerList() {
     <div ref={ref}>
     <MDBContainer
       fluid
-      className="my-5 text-center flex justify-content-center"
+      className="justify-content-center my-5 flex text-center"
     >
       <MDBRow className="mobile">
         {items.length > 0 ? (

@@ -9,7 +9,7 @@ export default function Price({handlePriceChange}) {
 
   return (
     <div>
-      <h2 className="sidebar-title text-sm sm:text-lg -mb-3">Price</h2>
+      <h2 className="sidebar-title -mb-3 text-sm sm:text-lg">Price</h2>
       <div className=" price-title ">
         <Input
           handleChange={handlePriceChange}

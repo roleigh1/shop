@@ -1,4 +1,4 @@
-import React , {useEffect } from "react";
+import React from "react";
 import Input from "./components/Input";
 import "./category.css";
 

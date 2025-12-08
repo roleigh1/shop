@@ -75,26 +75,26 @@ export default function DetailsItem({detailsItem}) {
         />
       </div>
 
-      <div className="flex flex-col mr-5 w-[30rem]">
+      <div className="mr-5 flex w-[30rem] flex-col">
         <h2>{detailsItem.name}</h2>
-        <hr className="h-px my-8 w-72 bg-gray-500 border-0 dark:bg-gray-700"></hr>
+        <hr className="my-8 h-px w-72 border-0 bg-gray-500 dark:bg-gray-700"></hr>
         {parseFloat(detailsItem.price).toFixed(2)} / {detailsItem.unit}
         <p>{detailsItem.description}</p>
         <label
           htmlFor="quantity-input"
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
         >
           Choose quantity:
         </label>
-        <div className="relative flex items-center max-w-[8rem]">
+        <div className="relative flex max-w-32 items-center">
           <button
             type="button"
             id="decrement-button"
             onClick={handleDecrement}
-            className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
+            className="h-11 rounded-s-lg border border-gray-300 bg-gray-100 p-3 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
           >
             <svg
-              className="w-3 h-3 text-gray-900 dark:text-white"
+              className="size-3 text-gray-900 dark:text-white"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -115,7 +115,7 @@ export default function DetailsItem({detailsItem}) {
             id="quantity-input"
             value={quantity}
             readOnly
-            className="bg-gray-50 border-x-0 border-gray-300 h-11 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="block h-11 w-full border-x-0 border-gray-300 bg-gray-50 py-2.5 text-center text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
             required
           />
 
@@ -123,10 +123,10 @@ export default function DetailsItem({detailsItem}) {
             type="button"
             id="increment-button"
             onClick={handleIncrement}
-            className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
+            className="h-11 rounded-e-lg border border-gray-300 bg-gray-100 p-3 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
           >
             <svg
-              className="w-3 h-3 text-gray-900 dark:text-white"
+              className="size-3 text-gray-900 dark:text-white"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -145,7 +145,7 @@ export default function DetailsItem({detailsItem}) {
         <button
           type="button"
           onClick={handleAddToCart}
-          className="py-2.5 mt-3 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+          className="mb-2 me-2 mt-3 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
         >
           Add to Cart
         </button>

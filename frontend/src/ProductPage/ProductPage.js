@@ -1,21 +1,19 @@
-import React,{useState} from "react";
-
 import Logo from "../Home/Components/Logo/Logo";
 import BurgerMenu from "../Home/Components/Burger/Menu";
 import Cart from "../Home/Components/Cart/Cart";
 import Banner from "./Bg-Producs";
 import ProductList from "./ProductList";
 import Footer from "../Home/Components/Footer/Footer";
-import Sidebar from "./Filter/Sidebar";
+
 export default function ProductPage({banners}) {
 
   return (
     <div className="container mx-auto ">
-    <div className="flex items-center justify-between mt-3">
+    <div className="mt-3 flex items-center justify-between">
       <div className="flex-none">
         <Logo />
       </div>
-      <div className="flex mt-4">
+      <div className="mt-4 flex">
         <Cart />
         <BurgerMenu />
       </div>
