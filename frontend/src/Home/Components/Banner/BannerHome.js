@@ -1,5 +1,4 @@
 import "react-slideshow-image/dist/styles.css";
-import React from "react";
 import "./style.css";
 import useSWR from "swr";
 

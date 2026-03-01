@@ -45,7 +45,7 @@ const ProductList = () => {
           `${BASE_URL}${endpoints.products}?offset=0&limit=${ITEMS_PER_PAGE}&category=${selectedCategory}&price=${selectedPrice}`
         )
         .then((res) => {
-          console.log("Fetched products:", res.data.result); 
+
           const initialProducts = res.data.result || [];
           setProducts({
             items: sortProduct(initialProducts, selectedSort),

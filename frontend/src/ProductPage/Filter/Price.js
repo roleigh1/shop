@@ -1,4 +1,4 @@
-import React from "react";
+
 import Input from "./components/Input";
 import "./price.css";
 import "./category.css";

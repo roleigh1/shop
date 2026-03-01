@@ -1,5 +1,4 @@
-import React from "react";
-import PropTypes from "prop-types";
+
 import "./style.css";
 import useSWR from "swr";
 import { apiConfig } from "../config";
@@ -35,7 +34,3 @@ export default function Banner() {
     </div>
   );
 }
-
-Banner.propTypes = {
-  banners: PropTypes.array, 
-};

@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
 
@@ -52,14 +51,3 @@ export default function NewBestsellerItem({item}) {
   );
 }
 
-NewBestsellerItem.propTypes = {
-  item: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
-    firstImage: PropTypes.string.isRequired,
-    secondImage: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    unit: PropTypes.string.isRequired,
-  }).isRequired,
-};

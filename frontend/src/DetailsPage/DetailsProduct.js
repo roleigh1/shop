@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import  { useState} from "react";
 
 
 import "./style.css";
@@ -13,7 +13,6 @@ export default function DetailsItem({detailsItem}) {
   const { addToCart } = useCart();
 
 
-    console.log(detailsItem)
   if (!detailsItem) {
     return <p>Loading...</p>;
   }
@@ -27,9 +26,7 @@ export default function DetailsItem({detailsItem}) {
     };
     if (Number(quantity) > 0) {
       addToCart(cartItem);
-    } else {
-      console.log("test");
-    }
+    } 
   };
   const images = [
     {

@@ -1,6 +1,6 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import Decimal from "decimal.js";
-import PropTypes from "prop-types";
+
 const CartContext = createContext();
 
 export function useCart() {
@@ -80,6 +80,3 @@ export function CartProvider({ children }) {
     </CartContext.Provider>
   );
 }
-CartProvider.propTypes = {
-  children: PropTypes.node.isRequired,
-};

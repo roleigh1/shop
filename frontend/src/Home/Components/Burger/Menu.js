@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { Link } from "react-router-dom";
 import Hamburger from "./Hamburger";
 function BurgerMenu() {
@@ -27,8 +27,8 @@ function BurgerMenu() {
             </Link>
           </li>
         </ul>
-        <div className="hamburger">
-          <Hamburger  onClick={toggleHamburger} isOpen={hamburgerOpen} />
+        <div className="hamburger"  onClick={toggleHamburger} aria-hidden="true">
+          <Hamburger  isOpen={hamburgerOpen} />
         </div>
       </div>
 

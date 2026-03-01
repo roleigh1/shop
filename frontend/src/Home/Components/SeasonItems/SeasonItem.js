@@ -4,7 +4,7 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import PropTypes from "prop-types";
+
 
 function SeasonItem({ item }) {
   return (
@@ -23,11 +23,5 @@ function SeasonItem({ item }) {
     </Card>
   );
 }
-SeasonItem.propTypes = {
-  item: PropTypes.shape({
-    image: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
-  }).isRequired,
-};
+
 export default SeasonItem;

@@ -1,4 +1,4 @@
-import React from "react";
+
 
 export default function Input({handleChange,value,name,color,title}){
 

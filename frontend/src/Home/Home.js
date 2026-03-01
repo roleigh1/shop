@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Footer from "../Home/Components/Footer/Footer";
 import Logo from "./Components/Logo/Logo";

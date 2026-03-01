@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useCart } from "../CartContext";
 import Decimal from "decimal.js";
 import "react-datepicker/dist/react-datepicker.css";
@@ -7,7 +7,6 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import PropTypes from "prop-types";
 import { apiConfig } from "../config";
 
 
@@ -195,6 +194,3 @@ export default function CartTable() {
   );
 }
 
-CartTable.propTypes = {
-  message: PropTypes.string,
-};

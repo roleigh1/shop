@@ -1,4 +1,4 @@
-import React from "react";
+
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./Home/Home";
 import CartPage from "./Checkout/CartPage";
