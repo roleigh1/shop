@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import "./App.css";
 import Footer from "../Home/Components/Footer/Footer";
 import Logo from "./Components/Logo/Logo";
@@ -7,7 +8,7 @@ import BurgerMenu from "./Components/Burger/Menu";
 import BannerHome from "./Components/Banner/BannerHome";
 import SeasonList from "./Components/SeasonItems/SeasonList";
 import NewBestSellerList from "./Components/Bestsellers/newBestsellerlist";
-import { useLocation } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 import { useCart } from "../CartContext";
 import Alert from "./Components/Alert/Alert";
 
@@ -15,8 +16,13 @@ function Home() {
   const location = useLocation();
   const { setCart } = useCart();
   const [success, setSuccess] = useState(false);
-
-  
+  const [searchParams] = useSearchParams();
+  const voucherToken = searchParams.get("voucher")
+  useEffect(() => {
+    if (voucherToken) {
+      console.log("hi")
+    }
+  }, [voucherToken])
 
   useEffect(() => {
     const hash = window.location.hash;
@@ -44,14 +50,14 @@ function Home() {
 
       <div className="relative z-0  ">
         {success && <Alert />}
-        <BannerHome  className="slider" />
+        <BannerHome className="slider" />
       </div>
 
       <div className="">
-        <SeasonList  />
+        <SeasonList />
       </div>
 
-      
+
 
       <div className="mt-8">
         <NewBestSellerList />

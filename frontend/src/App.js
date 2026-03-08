@@ -13,6 +13,7 @@ function App() {
     <CartProvider>
       <Router>
         <Routes>
+          <Route path="/redeem" element={<Home />} />
           <Route path="/" element={<Home />} />
           <Route path="/cartpage" element={<CartPage />} />
           <Route path="/products" element={<ProductPage />} />
