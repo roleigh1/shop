@@ -21,7 +21,7 @@ export default function CartTable() {
   const { cart, updateQuantity, removeFromCart, totalValue } = useCart();
   const [selectLocation, setSelectedLocation] = useState("");
   const [selectedDate, setSelectedDate] = useState(new Date());
-    const {BASE_URL,endpoints} = apiConfig; 
+  const { BASE_URL, endpoints } = apiConfig;
   useEffect(() => {
     const query = new URLSearchParams(window.location.search);
     const successMessage =
@@ -32,8 +32,8 @@ export default function CartTable() {
     const status = query.get("success")
       ? "success"
       : query.get("canceled")
-      ? "canceled"
-      : null;
+        ? "canceled"
+        : null;
 
     if (status) {
       setMessage(status === "success" ? successMessage : canceledMessage);
@@ -50,7 +50,6 @@ export default function CartTable() {
 
   const handleCheckout = async (event) => {
     event.preventDefault();
-
     try {
       const response = await fetch(`${BASE_URL}${endpoints.checkout}`, {
         method: "POST",
@@ -78,8 +77,8 @@ export default function CartTable() {
   if (message) {
     return <Message message={message} />;
   }
-  if(cart.length === 0 ){
-    window.location.href = "/"; 
+  if (cart.length === 0) {
+    window.location.href = "/";
   }
   function isWeekend(date) {
     const day = date.getDay();
@@ -131,7 +130,7 @@ export default function CartTable() {
                 {new Decimal(item.price).times(item.quantity).toFixed(2)}€
               </td>
               <td className="p-2">
-             
+
                 <svg
                   onClick={() => removeFromCart(item.name)}
                   className="size-[15px] fill-[#8e8e8e]"

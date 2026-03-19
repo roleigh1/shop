@@ -1,17 +1,17 @@
- 
 
-const stripeController = require("../controllers/stripeController"); 
+
+const stripeController = require("../controllers/stripeController");
 const fetchData = require("../controllers/dataFetchControllers");
-const emailSevices = require("../controllers/emailService"); 
+const emailSevices = require("../controllers/emailService");
 const express = require("express")
-const voucherFounder = require("../controllers/voucherController"); 
-const router = express.Router(); 
+const voucherFounder = require("../controllers/voucherController");
+const router = express.Router();
 
 
-router.get('/content/:whichContent' , fetchData.getContent); 
-router.get('/content/:whichContent/:id' , fetchData.getContent); 
-router.post('/create-checkout-session',  express.json(),stripeController.createCheckoutSession);
-router.post('/webhook', express.raw({type: 'application/json'}), stripeController.handleWebhook);
-router.post("/contact", express.json(),emailSevices.sendContactMail);
-router.post("/voucherFounder", express.json(), voucherFounder.voucherLink );
+router.get('/content/:whichContent', fetchData.getContent);
+router.get('/content/:whichContent/:id', fetchData.getContent);
+router.post('/create-checkout-session', express.json(), stripeController.createCheckoutSession);
+router.post('/webhook', express.raw({ type: 'application/json' }), stripeController.handleWebhook);
+router.post("/contact", express.json(), emailSevices.sendContactMail);
+router.post("/voucherFinder", express.json(), voucherFounder.voucherLinkHandler);
 module.exports = router;

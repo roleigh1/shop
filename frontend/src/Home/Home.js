@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-
 import "./App.css";
 import Footer from "../Home/Components/Footer/Footer";
 import Logo from "./Components/Logo/Logo";
@@ -11,18 +10,62 @@ import NewBestSellerList from "./Components/Bestsellers/newBestsellerlist";
 import { useLocation, useSearchParams } from "react-router-dom";
 import { useCart } from "../CartContext";
 import Alert from "./Components/Alert/Alert";
+import { apiConfig } from "../config";
 
 function Home() {
   const location = useLocation();
   const { setCart } = useCart();
   const [success, setSuccess] = useState(false);
   const [searchParams] = useSearchParams();
-  const voucherToken = searchParams.get("voucher")
-  useEffect(() => {
-    if (voucherToken) {
-      console.log("hi")
+  const [voucherStatus, setVoucherStatus] = useState({
+    active: false,
+    soonActive: false,
+    expired: false,
+    limitReached: false
+  });
+  const [voucherLinkData, setVoucherLinkData] = useState(null);
+
+  const token = searchParams.get("voucher")
+
+  const voucherCheck = async (token) => {
+    try {
+      const res = await fetch(apiConfig.BASE_URL + apiConfig.endpoints.voucherCheck, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ token })
+      })
+      const data = await res.json();
+      console.log(data.response)
+      switch (data.message) {
+        case "Voucher link valid":
+          setVoucherStatus({ active: true, soonActive: false, expired: false, limitReached: false });
+          localStorage.setItem("voucherToken", data.response.token);
+          break;
+
+        case "Voucher isnt active yet.":
+          setVoucherStatus({ active: false, soonActive: true, expired: false, limitReached: false });
+          break;
+
+        case "Voucher is expired":
+          setVoucherStatus({ active: false, soonActive: false, expired: true, limitReached: false });
+          break;
+
+        default:
+          setVoucherStatus({ active: false, soonActive: false, expired: false, limitReached: true });
+      }
+
+      setVoucherLinkData(data.response);
+    } catch (error) {
+      console.error("Error checking Voucher link ", error)
     }
-  }, [voucherToken])
+  }
+  useEffect(() => {
+    if (token) {
+      voucherCheck(token);
+    }
+  }, [token])
 
   useEffect(() => {
     const hash = window.location.hash;
@@ -30,6 +73,11 @@ function Home() {
     if (urlParams.get("success") === "true") {
       setSuccess(true);
       setCart([]);
+      setVoucherStatus({
+        active: false,
+        soonActive: false,
+        expired: false
+      })
     } else if (hash === "#contact") {
       document
         .getElementById("contact-section")
@@ -48,9 +96,12 @@ function Home() {
         </div>
       </div>
 
-      <div className="relative z-0  ">
-        {success && <Alert />}
-        <BannerHome className="slider" />
+      <div className="  ">
+
+        {(success || voucherStatus.active || voucherStatus.soonActive || voucherStatus.expired || voucherStatus.limitReached) && (
+          <Alert voucherLinkData={voucherLinkData} voucherStatus={voucherStatus} />
+        )}
+        <BannerHome className="slider " />
       </div>
 
       <div className="">

@@ -300,10 +300,10 @@ const VoucherLink = sequelize.define(
       allowNull: false
     },
 
-
   }
 
 )
+
 
 
 module.exports = {
