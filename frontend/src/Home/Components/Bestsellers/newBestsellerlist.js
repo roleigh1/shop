@@ -12,7 +12,7 @@ export default function NewBestSellerList() {
   const [hasAnimated, setHasAnimated] = useState(false); // Animation-Zustand
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: false }); // Kein `triggerOnce`, da wir wieder animieren wollen
   const {BASE_URL,endpoints} = apiConfig; 
-  const ITEMS_PER_PAGE = 4;
+  const ITEMS_PER_PAGE = 3;
 
   useEffect(() => {
     if (inView && !hasAnimated) {

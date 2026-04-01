@@ -57,7 +57,14 @@ const getContent = async (req, res) => {
         break;
 
       case "bestsellerContentData":
-        result = await fetchData(BestsellerItemsDB, limit, offset);
+        result = await fetchData(
+          ProductsDB,
+          limit,
+          offset,
+          {},
+          [["sales", "DESC"]]
+
+        );
         res.status(200).json(result);
         break;
 
@@ -81,7 +88,7 @@ const getContent = async (req, res) => {
             .status(400)
             .json({ message: "Valid Product ID is required" });
         }
-        result = await fetchItemById(BestsellerItemsDB, id);
+        result = await fetchItemById(ProductsDB, id);
         if (!result) {
           return res.status(404).json({ message: "Item not found" });
         }
@@ -117,13 +124,13 @@ const getContent = async (req, res) => {
   }
 };
 
-const fetchData = async (db, limit, offset, filter = {}) => {
+const fetchData = async (db, limit, offset, filter = {}, order = [["id", "ASC"]]) => {
   try {
     const { count, rows } = await db.findAndCountAll({
       where: filter,
       limit,
       offset,
-      order: [["id", "ASC"]],
+      order,
     });
     return {
       result: rows,

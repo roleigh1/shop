@@ -44,51 +44,7 @@ const SeasonCardsDB = sequelize.define(
     tableName: "infos",
   }
 );
-const BestsellerItemsDB = sequelize.define(
-  "Item",
-  {
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    price: {
-      type: DataTypes.FLOAT,
-      allowNull: false,
-    },
-    description: {
-      type: DataTypes.TEXT,
-      allowNull: true,
-    },
-    unit: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    firstImage: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    secondImage: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    thirdImage: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    fourthImage: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
 
-    type: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-  },
-  {
-    tableName: "items",
-  }
-);
 const ProductsDB = sequelize.define(
   "Product",
   {
@@ -99,6 +55,10 @@ const ProductsDB = sequelize.define(
     },
     price: {
       type: DataTypes.FLOAT,
+      allowNull: false,
+    },
+    sales: {
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     description: {
@@ -301,7 +261,6 @@ const VoucherLink = sequelize.define(
 module.exports = {
 
   BannerData,
-  BestsellerItemsDB,
   SeasonCardsDB,
   ProductsDB,
   Order,
