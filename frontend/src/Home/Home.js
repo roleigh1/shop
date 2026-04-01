@@ -37,7 +37,7 @@ function Home() {
         body: JSON.stringify({ token })
       })
       const data = await res.json();
-      console.log(data.response)
+      console.log("data",data)
       switch (data.message) {
         case "Voucher link valid":
           setVoucherStatus({ active: true, soonActive: false, expired: false, limitReached: false });

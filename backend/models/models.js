@@ -227,14 +227,6 @@ const Voucher = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    validityfrom: {
-      type: DataTypes.DATE,
-      defaultValue: Sequelize.fn("NOW"),
-    },
-    validitytill: {
-      type: DataTypes.DATE,
-      defaultValue: Sequelize.fn("NOW"),
-    },
     createdAt: {
       type: DataTypes.DATE,
       defaultValue: Sequelize.fn("NOW"),

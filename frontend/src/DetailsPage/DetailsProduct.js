@@ -17,12 +17,14 @@ export default function DetailsItem({detailsItem}) {
     return <p>Loading...</p>;
   }
   const handleAddToCart = () => {
+    
     const cartItem = {
       name: detailsItem.name,
       price: detailsItem.price,
       quantity: quantity,
       unit: detailsItem.unit,
       image: detailsItem.firstImage,
+      category: detailsItem.type
     };
     if (Number(quantity) > 0) {
       addToCart(cartItem);

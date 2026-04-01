@@ -30,8 +30,9 @@ export function CartProvider({ children }) {
       .toFixed(2);
   };
 
-  const totalValue = calculateTotalValue();
+  let totalValue = calculateTotalValue();
   function addToCart(item) {
+    console.log("Adding to cart:", item);
     setCart((prev) => {
       const existingItem = prev.find((i) => i.name === item.name);
       if (existingItem) {

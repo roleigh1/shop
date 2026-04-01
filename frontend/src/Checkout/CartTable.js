@@ -8,9 +8,9 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { apiConfig } from "../config";
+import TextField from '@mui/material/TextField';
 
-
-export default function CartTable() {
+export default function CartTable({ voucher, token }) {
   const Message = ({ message }) => (
     <section>
       <p>{message}</p>
@@ -21,6 +21,10 @@ export default function CartTable() {
   const { cart, updateQuantity, removeFromCart, totalValue } = useCart();
   const [selectLocation, setSelectedLocation] = useState("");
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [voucherApplied, setVoucherApplied] = useState({
+    state: false,
+    newTotal: null
+  });
   const { BASE_URL, endpoints } = apiConfig;
   useEffect(() => {
     const query = new URLSearchParams(window.location.search);
@@ -47,7 +51,79 @@ export default function CartTable() {
   const handleSelectChange = (event) => {
     setSelectedLocation(event.target.value);
   };
+  const handleVoucherApply = async () => {
+    try {
 
+      if (!token) {
+        setVoucherApplied({
+          state: true,
+          message: "You need a voucher link to apply a voucher to your cart.",
+        });
+        return; 
+      }
+      const response = await fetch(apiConfig.BASE_URL + apiConfig.endpoints.voucherApply, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          token: token,
+          cart: cart,
+
+        })
+      }
+      );
+      const data = await response.json();
+      if (!response.ok) {
+        console.error("ERROR:", data.message);
+        return;
+      }
+    
+      let messageText = "";
+      let stateValid = false;
+      let state = true;
+      switch (data.message) {
+        case "Voucher applied successfully":
+          state = false;
+          stateValid = true;
+          messageText = "Your voucher has been applied successfully";
+          break;
+
+        case "Voucher not valid yet":
+          messageText = "This voucher is not valid yet.";
+          break;
+
+        case "Voucher expired":
+          messageText = "This voucher has expired.";
+          break;
+
+        case "Voucher not found":
+          messageText = "We couldn’t find this voucher.";
+          break;
+
+        case "Voucher redemption limit exceeded":
+          messageText = "This voucher has already been used too many times.";
+          break;
+
+        case "No matching Products or category for voucher":
+          messageText = "This voucher doesn’t apply to the selected products.";
+          break;
+
+        default:
+          messageText = "The voucher could not be applied.";
+      }
+      setVoucherApplied({
+        state: state,
+        newTotal: data.newTotal,
+        message: messageText,
+        discountAmount: data.discountAmount,
+        stateValid: stateValid
+      });
+
+    } catch (error) {
+      console.error("Error applying voucher:", error);
+    }
+  }
   const handleCheckout = async (event) => {
     event.preventDefault();
     try {
@@ -178,16 +254,61 @@ export default function CartTable() {
               className="rounded border border-gray-300 p-2"
             />
           </div>
+          <div className="flex gap-4 flex-col items-center">
+            <TextField id="outlined-basic" aria-readonly label="Voucher %" value={voucher?.value ?? ""} variant="outlined" />
+            <TextField
+              label="Discount on"
+              value={
+                voucher?.voucherType === "total"
+                  ? voucher?.voucherType ?? ""
+                  : voucher?.discountedGroup ?? ""
+              }
+              variant="outlined"
+            />
+            <button
+              onClick={handleVoucherApply}
+              type="button"
+              className="rounded bg-gray-700 px-6 py-2 font-bold text-white hover:bg-gray-600"
+            >
+              Apply Voucher
+            </button>
+          </div>
+
+          {voucherApplied.state && (
+            <p className="text-red-600">{voucherApplied.message}</p>
+          )}
+
+
+
+          {voucherApplied.stateValid ? (
+            <div>
+              <p className="text-green-600">
+                {voucherApplied.message}
+              </p>
+
+              <p className="mt-4 text-lg font-semibold">
+                New Total: {voucherApplied.newTotal} €
+              </p>
+
+              <p className="mt-4 text-lg font-semibold">
+                Total before discount:{" "}
+                {Number(voucherApplied.newTotal) + Number(voucherApplied.discountAmount)} €
+              </p>
+            </div>
+          ) : (
+            <p className="mt-4 text-lg font-semibold">
+              Total: {totalValue} €
+            </p>
+          )}
 
           <button
             type="submit"
-            className="rounded bg-red-500 px-6 py-2 font-bold text-white hover:bg-red-600"
+            className="rounded bg-red-600 px-6 py-2 font-bold text-white hover:bg-red-600"
           >
             Checkout
           </button>
         </form>
 
-        <p className="mt-4 text-lg font-semibold">Total: {totalValue}€</p>
       </div>
     </div>
   );

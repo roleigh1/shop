@@ -1,4 +1,4 @@
-import  {useState,useEffect} from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Logo from "../Home/Components/Logo/Logo";
 import BurgerMenu from "../Home/Components/Burger/Menu";
@@ -11,34 +11,34 @@ export default function DetailsPage() {
   const api_base_url = process.env.REACT_APP_API_BASEURL;
   const [detailsItem, setDetailsItem] = useState(null);
   useEffect(() => {
-  
-  const fetchDetailsData = async () => {
-    if (whichProduct === "bestsellerDetails") {
-      try {
-        const response = await fetch(
-          `${api_base_url}/content/${whichProduct}/${id}`
-        );
-        const data = await response.json();
 
-        setDetailsItem(data);
-      } catch (error) {
-        console.error(error);
-      }
-    } else {
-      try {
-        const response = await fetch(
-          `${api_base_url}/content/${whichProduct}/${id}`
-        );
-        const data = await response.json();
-        setDetailsItem(data);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  };
-  fetchDetailsData()
+    const fetchDetailsData = async () => {
+      if (whichProduct === "bestsellerDetails") {
+        try {
+          const response = await fetch(
+            `${api_base_url}/content/${whichProduct}/${id}`
+          );
+          const data = await response.json();
 
-}, [id, whichProduct, api_base_url]);
+          setDetailsItem(data);
+        } catch (error) {
+          console.error(error);
+        }
+      } else {
+        try {
+          const response = await fetch(
+            `${api_base_url}/content/${whichProduct}/${id}`
+          );
+          const data = await response.json();
+          setDetailsItem(data);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    };
+    fetchDetailsData()
+
+  }, [id, whichProduct, api_base_url]);
 
   return (
     <div className="container mx-auto">
@@ -52,7 +52,7 @@ export default function DetailsPage() {
         </div>
       </div>
       <div className="mt-20">
-        <DetailsItem detailsItem={detailsItem}/>
+        <DetailsItem detailsItem={detailsItem} />
       </div>
 
       <div className="mt-8">
