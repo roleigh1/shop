@@ -1,4 +1,6 @@
-const { VoucherLink, Voucher } = require("../models/models");
+const { VoucherLink, Voucher, ProductsDB
+     
+ } = require("../models/models");
 const moment = require("moment");
 
 const expiredContent = {
@@ -98,7 +100,7 @@ const voucherCart = async (req, res) => {
         const validityfrom = moment(cartVoucher.validityfrom);
         const validitytill = moment(cartVoucher.validitytill);
         const datetoday = moment()
-      
+
         if (datetoday.isBefore(validityfrom)) {
             return res.status(200).json({ message: "voucher not active yet", validityfrom });
         }
@@ -139,7 +141,7 @@ const voucherCart = async (req, res) => {
 const voucherApply = async (req, res) => {
     try {
         const { token, cart } = req.body;
-        console.log("cart", cart); 
+
         if (!token || !cart || !Array.isArray(cart)) {
             return res.status(400).json({ message: "Invalid request data" });
         }
@@ -180,9 +182,21 @@ const voucherApply = async (req, res) => {
                 .status(400)
                 .json({ message: "Voucher redemption limit exceeded" });
         }
+        const products = await ProductsDB.findAll({
+            where: { id: cart.map(item => item.id) },
+            attributes: ["id", "name", "type", "price"]
+        });
+        const newProd = products.map(prod => prod.toJSON());
+        const productsWithQuantity = newProd.map(prod => {
 
+            const cartItem = cart.find(item => item.id === prod.id);
+            return {
+                ...prod,
+                quantity: cartItem ? cartItem.quantity : 0
+            };
+        });
 
-        const totalCartValue = cart.reduce(
+        const totalCartValue = productsWithQuantity.reduce(
             (total, item) => total + item.price * item.quantity,
             0
         );
@@ -197,13 +211,13 @@ const voucherApply = async (req, res) => {
         }
 
         else if (voucher.vouchertype === "product") {
-            const item = cart.find(
+            const item = productsWithQuantity.find(
                 (i) => i.name === voucher.discountedgroup
             );
 
             if (!item) {
                 return res
-                    .status(400)
+                    .status(200)
                     .json({ message: "Product not in cart" });
             }
 
@@ -214,13 +228,13 @@ const voucherApply = async (req, res) => {
         }
 
         else if (voucher.vouchertype === "category") {
-            const items = cart.filter(
+            const items = productsWithQuantity.filter(
                 (i) => i.category === voucher.discountedgroup
             );
 
             if (items.length === 0) {
                 return res
-                    .status(400)
+                    .status(200)
                     .json({ message: "No matching items for voucher" });
             }
 

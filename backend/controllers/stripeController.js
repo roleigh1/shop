@@ -1,5 +1,6 @@
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-
+const { ProductsDB, Voucher, VoucherLink} = require("../models/models"); 
+const moment = require("moment"); 
 const inserController = require("./insertController");
 
 const Decimal = require("decimal.js");
@@ -7,10 +8,46 @@ const YOUR_DOMAIN = "http://localhost:3000/#/";
 
 let selectedDate = null;
 let selectedLocation;
+const calculateDiscountedPrice = async (voucherToken, totalAmount) => {
+ try {
+  const VoucherLink = await VoucherLink.findOne({
+    where: {
+      redeemToken: voucherToken 
+    },
+     attributes: ["id", "voucherId", "validityfrom","validitytill"]
+  })
+  if(!VoucherLink){
+    return totalAmount; 
+  }
+  const dateToday = moment(); 
+  const validityFrom = moment(VoucherLink.validityfrom);
+  const validityTill = moment(VoucherLink.validitytill);
 
+  if(dateToday.isBefore(validityFrom) || dateToday.isAfter(validityTill)){
+    return totalAmount; 
+  }
+  const voucher = await Voucher.findOne({
+    where: {
+      id: VoucherLink.voucherId
+    }, 
+    attributes: ["id", "discountType", "discountValue", "maxredemptions", "currentredemptions"]
+  })
+  if(!voucher){
+    return totalAmount;
+  }
+  if(Number(Voucher.currentredemptions) >= Number(voucher.maxredemptions)){
+    return totalAmount; 
+  }
+
+ } catch (error) {
+  console.error("Error calculating discounted price: ", error);
+ }
+}
 const createCheckoutSession = async (req, res) => {
   try {
-    const cart = req.body.cart;
+    const { cart, voucherToken } = req.body; 
+    console.log(cart);
+    console.log(voucherToken); 
 
     const selectLocation = req.body.selectLocation;
     let pickupdate = req.body.selectedDate;
@@ -30,8 +67,22 @@ const createCheckoutSession = async (req, res) => {
     }
     console.log(selectedLocation);
     console.log(selectedDate);
+    const cartDb = await ProductsDB.findAll({
+      where: {
+        id: cart.map((item) => item.id)
+      },
+      attributes: ["id", "price", "name", "sales"]
+    })
+    const cartData = cartDb.map(prod => prod.toJSON());
+    const newCartWithQantity = cartData.map(item => {
+      const product = cart.find(prod => prod.id === item.id);
+      return {
+        ...item,
+        quantity: product ? product.quantity : 0
+      }
+    })
 
-    const line_items = cart.map((item) => {
+    const line_items = newCartWithQantity.map((item) => {
       const unitAmount = new Decimal(item.price).mul(100).toNumber();
       return {
         price_data: {
@@ -44,6 +95,7 @@ const createCheckoutSession = async (req, res) => {
         quantity: item.quantity,
       };
     });
+    console.log("line items", line_items);
     const session = await stripe.checkout.sessions.create({
       line_items,
       mode: "payment",

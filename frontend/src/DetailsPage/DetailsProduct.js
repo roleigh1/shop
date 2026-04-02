@@ -17,8 +17,9 @@ export default function DetailsItem({detailsItem}) {
     return <p>Loading...</p>;
   }
   const handleAddToCart = () => {
-    
-    const cartItem = {
+
+ const cartItem = {
+      id: detailsItem.id,
       name: detailsItem.name,
       price: detailsItem.price,
       quantity: quantity,

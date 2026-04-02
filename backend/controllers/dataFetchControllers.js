@@ -1,7 +1,6 @@
 const { Sequelize } = require("sequelize");
 const {
   SeasonCardsDB,
-  BestsellerItemsDB,
   ProductsDB,
   BannerData,
 } = require("../models/models");

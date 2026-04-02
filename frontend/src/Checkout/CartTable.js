@@ -105,10 +105,12 @@ export default function CartTable({ voucher, token }) {
           messageText = "This voucher has already been used too many times.";
           break;
 
-        case "No matching Products or category for voucher":
-          messageText = "This voucher doesn’t apply to the selected products.";
+        case "No matching items for voucher":
+          messageText = "This voucher doesn’t apply to the selected category.";
           break;
-
+        case "Product not in cart":
+          messageText = "This voucher applies to a product that is not in your cart.";
+          break;
         default:
           messageText = "The voucher could not be applied.";
       }
@@ -127,6 +129,7 @@ export default function CartTable({ voucher, token }) {
   const handleCheckout = async (event) => {
     event.preventDefault();
     try {
+      console.log("state VoucheraApplied", voucherApplied.stateValid);
       const response = await fetch(`${BASE_URL}${endpoints.checkout}`, {
         method: "POST",
         mode: "cors",
@@ -139,6 +142,7 @@ export default function CartTable({ voucher, token }) {
           cart: cart,
           selectLocation: selectLocation,
           selectedDate: selectedDate,
+          ...(voucherApplied.stateValid && { voucherToken: token}) 
         }),
       });
       const data = await response.json();

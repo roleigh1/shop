@@ -9,8 +9,8 @@ import { apiConfig } from "../../../config";
 export default function NewBestSellerList() {
 
   const [items, setItems] = useState([]);
-  const [hasAnimated, setHasAnimated] = useState(false); // Animation-Zustand
-  const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: false }); // Kein `triggerOnce`, da wir wieder animieren wollen
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: false }); 
   const {BASE_URL,endpoints} = apiConfig; 
   const ITEMS_PER_PAGE = 3;
 
