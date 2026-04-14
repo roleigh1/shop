@@ -62,11 +62,11 @@ const voucherLinkHandler = async (req, res) => {
                     break;
                 case "category":
                     response.bannerHeadline = "Congratulations!";
-                    response.bannerText = `Enjoy ${voucherData.value}% off all items in the category of ${voucherData.vouchertype}.`;
+                    response.bannerText = `Enjoy ${voucherData.value}% off all items in the category of ${voucherData.discountedgroup.toLowerCase()}.`;
                     break;
                 case "product":
                     response.bannerHeadline = "Congratulations!";
-                    response.bannerText = `Enjoy ${voucherData.value}% off ${voucherData.discountedgroup}.`;
+                    response.bannerText = `Enjoy ${voucherData.value}% off ${voucherData.discountedgroup.toLowerCase()}.`;
                     break;
             }
 
@@ -130,7 +130,6 @@ const voucherCart = async (req, res) => {
             const response = voucherData.toJSON();
             console.log(response)
             return res.status(200).json({ message: "Voucher valid", response });
-
         }
     } catch (error) {
         console.error("Error getting Voucher to cart", error);
@@ -141,34 +140,25 @@ const voucherCart = async (req, res) => {
 const voucherApply = async (req, res) => {
     try {
         const { token, cart } = req.body;
-
         if (!token || !cart || !Array.isArray(cart)) {
             return res.status(400).json({ message: "Invalid request data" });
         }
-
-
         const voucherLink = await VoucherLink.findOne({
             where: { redeemToken: token },
             attributes: ["voucherId", "validityfrom", "validitytill"]
         });
-
         if (!voucherLink) {
             return res.status(404).json({ message: "Voucher not found" });
         }
-
-
         const today = moment();
         if (today.isBefore(moment(voucherLink.validityfrom))) {
             return res.status(400).json({ message: "Voucher not valid yet" });
         }
-
         if (today.isAfter(moment(voucherLink.validitytill))) {
             return res.status(400).json({ message: "Voucher expired" });
         }
-
-
-        const voucher = await Voucher.findByPk(voucherLink.voucherId);
-        console.log("voucher", voucher);
+        const voucherData = await Voucher.findByPk(voucherLink.voucherId);
+        const voucher = voucherData.toJSON(); 
         if (!voucher) {
             return res.status(404).json({ message: "Voucher data not found" });
         }
@@ -211,9 +201,11 @@ const voucherApply = async (req, res) => {
         }
 
         else if (voucher.vouchertype === "product") {
+            console.log("products with quantity", productsWithQuantity)
             const item = productsWithQuantity.find(
                 (i) => i.name === voucher.discountedgroup
             );
+            console.log("item",item); 
 
             if (!item) {
                 return res
@@ -228,10 +220,12 @@ const voucherApply = async (req, res) => {
         }
 
         else if (voucher.vouchertype === "category") {
+    
             const items = productsWithQuantity.filter(
-                (i) => i.category === voucher.discountedgroup
+                (i) => i.type === voucher.discountedgroup
             );
-
+            
+            console.log(items)
             if (items.length === 0) {
                 return res
                     .status(200)

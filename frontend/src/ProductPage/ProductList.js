@@ -130,8 +130,8 @@ const ProductList = () => {
     dataLength={products?.items?.length || 0}
     next={fetchMoreData}
     hasMore={hasMore}
-    loader={<p className="text-center">Loading...</p>}
-    className="infinite-scroll  "
+  
+    className="infinite-scroll overflow-hidden "
   >
     <MDBContainer fluid className="text-center ">
     

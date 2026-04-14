@@ -59,7 +59,7 @@ const ProductsDB = sequelize.define(
     },
     sales: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
     description: {
       type: DataTypes.TEXT,
@@ -89,6 +89,7 @@ const ProductsDB = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+   
   },
   {
     tableName: "products",

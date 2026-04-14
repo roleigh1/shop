@@ -148,6 +148,9 @@ export default function CartTable({ voucher, token }) {
       const data = await response.json();
       if (data.url) {
         window.location.href = data.url;
+        if(token){
+          localStorage.removeItem("voucherToken"); 
+        }
       }
     } catch (error) {
       console.error("Error during checkout:", error);
@@ -164,6 +167,8 @@ export default function CartTable({ voucher, token }) {
     const day = date.getDay();
     return day !== 5 && day !== 6;
   }
+
+  console.log(cart)
 
   return (
     <div className="container mx-auto p-4">

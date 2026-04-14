@@ -13,18 +13,6 @@ export default function DetailsPage() {
   useEffect(() => {
 
     const fetchDetailsData = async () => {
-      if (whichProduct === "bestsellerDetails") {
-        try {
-          const response = await fetch(
-            `${api_base_url}/content/${whichProduct}/${id}`
-          );
-          const data = await response.json();
-
-          setDetailsItem(data);
-        } catch (error) {
-          console.error(error);
-        }
-      } else {
         try {
           const response = await fetch(
             `${api_base_url}/content/${whichProduct}/${id}`
@@ -34,8 +22,8 @@ export default function DetailsPage() {
         } catch (error) {
           console.error(error);
         }
-      }
     };
+   
     fetchDetailsData()
 
   }, [id, whichProduct, api_base_url]);

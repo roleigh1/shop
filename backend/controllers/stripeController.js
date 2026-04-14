@@ -1,53 +1,108 @@
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-const { ProductsDB, Voucher, VoucherLink} = require("../models/models"); 
-const moment = require("moment"); 
+const { ProductsDB, Voucher, VoucherLink } = require("../models/models");
+const moment = require("moment");
 const inserController = require("./insertController");
 
 const Decimal = require("decimal.js");
 const YOUR_DOMAIN = "http://localhost:3000/#/";
 
+
 let selectedDate = null;
 let selectedLocation;
-const calculateDiscountedPrice = async (voucherToken, totalAmount) => {
- try {
-  const VoucherLink = await VoucherLink.findOne({
-    where: {
-      redeemToken: voucherToken 
-    },
-     attributes: ["id", "voucherId", "validityfrom","validitytill"]
-  })
-  if(!VoucherLink){
-    return totalAmount; 
-  }
-  const dateToday = moment(); 
-  const validityFrom = moment(VoucherLink.validityfrom);
-  const validityTill = moment(VoucherLink.validitytill);
+const calculateDiscountedPrice = async (voucherToken, cart) => {
+  try {
+    const VoucherLinkData = await VoucherLink.findOne({
+      where: {
+        redeemToken: voucherToken
+      },
+      attributes: [
+        "voucherId", "validityfrom", "validitytill"]
+    })
+    if (!VoucherLinkData) {
+      return cart
+    }
+    const dateToday = moment();
+    const validityFrom = moment(VoucherLinkData.validityfrom);
+    const validityTill = moment(VoucherLinkData.validitytill);
 
-  if(dateToday.isBefore(validityFrom) || dateToday.isAfter(validityTill)){
-    return totalAmount; 
-  }
-  const voucher = await Voucher.findOne({
-    where: {
-      id: VoucherLink.voucherId
-    }, 
-    attributes: ["id", "discountType", "discountValue", "maxredemptions", "currentredemptions"]
-  })
-  if(!voucher){
-    return totalAmount;
-  }
-  if(Number(Voucher.currentredemptions) >= Number(voucher.maxredemptions)){
-    return totalAmount; 
-  }
+    if (dateToday.isBefore(validityFrom) || dateToday.isAfter(validityTill)) {
+      return cart
+    }
+    const voucherData = await Voucher.findOne({
+      where: {
+        id: VoucherLinkData.voucherId
+      },
+      attributes: ["VOUCHERTYPE", "DISCOUNTEDGROUP", "MAXREDEMPTIONS", "CURRENTREDEMPTIONS", "VALUE"]
+    })
+    const voucher = voucherData.toJSON();
+    if (!voucher) {
+      return cart
 
- } catch (error) {
-  console.error("Error calculating discounted price: ", error);
- }
+    }
+
+    if (Number(voucher.CURRENTREDEMPTIONS) >= Number(voucher.MAXREDEMPTIONS)) {
+      return cart;
+    }
+    if (voucher.VOUCHERTYPE.trim().toLowerCase() === "total") {
+      const cartDiscountWhole = cart.map((item) => {
+        const price = new Decimal(item.price);
+
+        const discountedPrice = price.mul(
+          new Decimal(1).minus(new Decimal(voucher.VALUE).div(100))
+        );
+        return {
+          ...item,
+          price: discountedPrice.toNumber()
+        }
+      })
+      return cartDiscountWhole;
+    }
+
+    if (voucher.VOUCHERTYPE.trim().toLowerCase() === "product") {
+      const cartDiscountedProduct = cart.map((item) => {
+        if (item.name === voucher.DISCOUNTEDGROUP) {
+          const price = new Decimal(item.price);
+
+          const discountedPrice = price.mul(
+            new Decimal(1).minus(new Decimal(voucher.VALUE).div(100))
+          );
+          return {
+            ...item,
+            price: discountedPrice.toNumber()
+          }
+        }
+        return item;
+      });
+
+
+      return cartDiscountedProduct;
+    }
+    if (voucher.VOUCHERTYPE.trim().toLowerCase() === "category") {
+      const cartDiscountedCategory = cart.map((item) => {
+        if (item.type === voucher.DISCOUNTEDGROUP) {
+          const price = new Decimal(item.price);
+
+          const discountedPrice = price.mul(
+            new Decimal(1).minus(new Decimal(voucher.VALUE).div(100))
+          );
+          return {
+            ...item,
+            price: discountedPrice.toNumber()
+          }
+        }
+        return item;
+      })
+      return cartDiscountedCategory;
+    }
+  } catch (error) {
+    console.error("Error calculating discounted price: ", error);
+  }
 }
 const createCheckoutSession = async (req, res) => {
   try {
-    const { cart, voucherToken } = req.body; 
-    console.log(cart);
-    console.log(voucherToken); 
+    const { cart, voucherToken } = req.body;
+
+    console.log(req.body);
 
     const selectLocation = req.body.selectLocation;
     let pickupdate = req.body.selectedDate;
@@ -65,23 +120,30 @@ const createCheckoutSession = async (req, res) => {
     if (!pickupdate) {
       return res.status(400).json({ error: `'Pickup Date not selected` });
     }
-    console.log(selectedLocation);
-    console.log(selectedDate);
+
     const cartDb = await ProductsDB.findAll({
       where: {
         id: cart.map((item) => item.id)
       },
-      attributes: ["id", "price", "name", "sales"]
+      attributes: ["id", "price", "name", "sales", "type"]
     })
     const cartData = cartDb.map(prod => prod.toJSON());
-    const newCartWithQantity = cartData.map(item => {
+
+    let newCartWithQantity = cartData.map(item => {
       const product = cart.find(prod => prod.id === item.id);
       return {
         ...item,
-        quantity: product ? product.quantity : 0
+        quantity: product ? product.quantity : 0,
+
       }
     })
 
+    
+    if (voucherToken) {
+      const discountedPrice = await calculateDiscountedPrice(voucherToken, newCartWithQantity);
+
+      newCartWithQantity = discountedPrice;
+    } 
     const line_items = newCartWithQantity.map((item) => {
       const unitAmount = new Decimal(item.price).mul(100).toNumber();
       return {
@@ -93,11 +155,14 @@ const createCheckoutSession = async (req, res) => {
           unit_amount: unitAmount,
         },
         quantity: item.quantity,
+        category: item.type
+
       };
     });
-    console.log("line items", line_items);
+
+    const cleanedLineItems = line_items.map(({ category, ...rest }) => rest);
     const session = await stripe.checkout.sessions.create({
-      line_items,
+      line_items: cleanedLineItems,
       mode: "payment",
       success_url: `${YOUR_DOMAIN}?success=true`,
       cancel_url: `${YOUR_DOMAIN}?canceled=true`,
@@ -120,17 +185,17 @@ const handleWebhook = async (request, response) => {
     switch (event.type) {
       case "payment_intent.succeeded":
         console.log("payment successfull");
-
         break;
-
       case "checkout.session.completed":
         try {
           const session = event.data.object;
           const customerEmail = session.customer_details.email;
           const customerName = session.customer_details.name;
           const totalAmount = session.amount_total / 100;
-
+       
+         
           inserController.insertRecord(
+
             session,
             customerEmail,
             customerName,
