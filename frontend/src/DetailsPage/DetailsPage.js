@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Logo from "../Home/Components/Logo/Logo";
-import BurgerMenu from "../Home/Components/Burger/Menu";
-import Cart from "../Home/Components/Cart/Cart";
+
 import Footer from "../Home/Components/Footer/Footer";
 import DetailsItem from "./DetailsProduct";
-
+import Navbar from "../Nav/Navbar";
 export default function DetailsPage() {
   const { id, whichProduct } = useParams();
   const api_base_url = process.env.REACT_APP_API_BASEURL;
@@ -30,14 +28,8 @@ export default function DetailsPage() {
 
   return (
     <div className="container mx-auto">
-      <div className="mt-3 flex items-center">
-        <div className="grow">
-          <Logo />
-        </div>
-        <div className="mt-4  flex  ">
-          <Cart />
-          <BurgerMenu />
-        </div>
+      <div className="">
+        <Navbar />
       </div>
       <div className="mt-20">
         <DetailsItem detailsItem={detailsItem} />

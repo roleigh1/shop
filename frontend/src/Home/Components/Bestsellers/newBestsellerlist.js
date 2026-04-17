@@ -39,7 +39,7 @@ export default function NewBestSellerList() {
     <div ref={ref}>
     <MDBContainer
       fluid
-      className="justify-content-center my-5 flex text-center"
+      className="justify-content-center flex text-center"
     >
       <MDBRow className="mobile">
         {items.length > 0 ? (
@@ -48,7 +48,7 @@ export default function NewBestSellerList() {
               key={item.id}
               variants={slideInVariant}
               initial="hidden"
-              animate={inView ? "visible" : "hidden"} // Animation neu starten bei Sichtbarkeitswechsel
+              animate={inView ? "visible" : "hidden"} 
               transition={{ duration: 0.5, delay: index * 0.1 }}
               style={{ width:"15rem" }}
             >

@@ -8,7 +8,7 @@ export default function NewBestsellerItem({item}) {
 
 
   return (
-    <div className="mb-5 h-[23rem] max-w-sm overflow-hidden  rounded  shadow-lg">
+    <div className=" h-[23rem] max-w-sm overflow-hidden  rounded  shadow-lg">
             <div
               className="image-container"
               onMouseEnter={() => setIsHovered(true)}

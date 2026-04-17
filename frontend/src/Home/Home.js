@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import Footer from "../Home/Components/Footer/Footer";
-import Logo from "./Components/Logo/Logo";
-import Cart from "./Components/Cart/Cart";
-import BurgerMenu from "./Components/Burger/Menu";
+
 import BannerHome from "./Components/Banner/BannerHome";
 import SeasonList from "./Components/SeasonItems/SeasonList";
 import NewBestSellerList from "./Components/Bestsellers/newBestsellerlist";
@@ -11,6 +9,7 @@ import { useLocation, useSearchParams } from "react-router-dom";
 import { useCart } from "../CartContext";
 import Alert from "./Components/Alert/Alert";
 import { apiConfig } from "../config";
+import Navbar from "../Nav/Navbar";
 
 function Home() {
   const location = useLocation();
@@ -37,7 +36,7 @@ function Home() {
         body: JSON.stringify({ token })
       })
       const data = await res.json();
-      console.log("data",data)
+      console.log("data", data)
       switch (data.message) {
         case "Voucher link valid":
           setVoucherStatus({ active: true, soonActive: false, expired: false, limitReached: false });
@@ -86,14 +85,8 @@ function Home() {
   }, [location.search, setCart]);
   return (
     <div className="container mx-auto">
-      <div className="mt-3 flex items-center">
-        <div className="grow">
-          <Logo />
-        </div>
-        <div className="mt-4  flex  ">
-          <Cart />
-          <BurgerMenu />
-        </div>
+      <div className="">
+        <Navbar />
       </div>
 
       <div className="  ">
@@ -110,7 +103,7 @@ function Home() {
 
 
 
-      <div className="mt-8">
+      <div className="">
         <NewBestSellerList />
       </div>
 
