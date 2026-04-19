@@ -16,5 +16,6 @@ router.post("/contact", express.json(), emailSevices.sendContactMail);
 router.post("/voucherFinder", express.json(), voucherFounder.voucherLinkHandler);
 router.post("/voucherCart",express.json(), voucherFounder.voucherCart); 
 router.post("/voucherApply", express.json(), voucherFounder.voucherApply);
+router.post("/searchItem", express.json(), fetchData.searchItem); 
 
 module.exports = router;

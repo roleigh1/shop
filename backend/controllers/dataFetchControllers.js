@@ -8,10 +8,8 @@ const { Op } = require("sequelize");
 
 const getContent = async (req, res) => {
   const { whichContent, id } = req.params;
-
   const selectedCategory = req.query.category;
   const selectedPrice = req.query.price;
-
   const limit = parseInt(req.query.limit) || 12;
   const offset = parseInt(req.query.offset) || 0;
 
@@ -142,7 +140,7 @@ const fetchData = async (db, limit, offset, filter = {}, order = [["id", "ASC"]]
   }
 };
 
-// Hilfsfunktion für Details
+
 const fetchItemById = async (db, id) => {
   try {
     const item = await db.findOne({ where: { id } });
@@ -153,6 +151,47 @@ const fetchItemById = async (db, id) => {
   }
 };
 
+const searchItem = async (req, res) => {
+  try {
+    const { query } = req.body; 
+
+  
+    if (!query || query.trim() === "") {
+      return res.status(400).json({ message: "Search Params missing" });
+    }
+
+    const searchResult = await ProductsDB.findAll({
+      where: {
+        [Op.or]: [
+          {
+            name: {
+              [Op.like]: `${query}%`
+            }
+          },
+          {
+            type: {
+              [Op.like]: `${query}%`
+            }
+          }
+        ]
+      },
+      limit: 4,
+      attributes: ["id", "name"],
+      raw: true
+    });
+
+    console.log("RESULT:", searchResult);
+
+    return res.status(200).json(searchResult);
+
+  } catch (error) {
+    console.error("Error searching Data", error);
+    return res.status(500).json({ message: "Error searching Data" });
+  }
+};
+
+
 module.exports = {
   getContent,
+  searchItem
 };
