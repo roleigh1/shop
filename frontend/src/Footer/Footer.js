@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useState } from "react";
 import {
   MDBFooter,
   MDBContainer,
@@ -10,7 +10,7 @@ import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import ContactForm from "../Contact/ContactForm";
+import ContactForm from "../Home/Components/Contact/ContactForm";
 
 import { styled } from "@mui/material/styles";
 
@@ -23,14 +23,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 const Footer = () => {
-  const [open, setOpen] = useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
   return (
     <MDBFooter
       style={{ fontSize: "12px" }}
@@ -64,7 +57,7 @@ const Footer = () => {
             <MDBCol md="3" lg="4" xl="3" className="mx-auto mb-4">
               <h6 className="e fw-bold mb-4">
                 <MDBIcon color="secondary" icon="gem" className="me-3" />
-                Gärtnerei Leitner: Fresh vegetables for Vienna&apos;s markets.  
+                Gärtnerei Leitner: Fresh vegetables for Vienna&apos;s markets.
               </h6>
               <p>
                 Right in the heart of Simmering, a lively district in Vienna, a
@@ -74,30 +67,13 @@ const Footer = () => {
               </p>
             </MDBCol>
 
-            <MDBCol md="3" lg="2" xl="2" className="mx-auto mb-4">
+            <MDBCol md="3" lg="2" xl="2" className="mx-auto mb-4 flex flex-col">
               <h6 className=" fw-bold mb-4">Useful links</h6>
-              <span onClick={handleClickOpen} aria-hidden="true">Contact Us</span>
-              <BootstrapDialog
-                onClose={handleClose}
-                aria-labelledby="customized-dialog-title"
-                open={open}
-              >
-                <IconButton
-                  aria-label="close"
-                  onClick={handleClose}
-                  sx={(theme) => ({
-                    position: "absolute",
-                    right: 8,
-                    top: 8,
-                    color: theme.palette.grey[500],
-                  })}
-                >
-                  <CloseIcon />
-                </IconButton>
-                <DialogContent dividers>
-                  <ContactForm />
-                </DialogContent>
-              </BootstrapDialog>
+
+              <span aria-hidden="true">Impressum</span>
+              <span aria-hidden="true">Datenschutzerklärung</span>
+              <span>Allgemeine Geschäftsbedingunge</span>
+              <span>Widerrufsbelehrung</span>
             </MDBCol>
 
             <MDBCol md="4" lg="3" xl="3" className="mb-md-0 mx-auto mb-4">

@@ -96,6 +96,27 @@ const ProductsDB = sequelize.define(
   }
 );
 
+
+const Faq = sequelize.define("Faq", {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+    },
+    question: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    answer: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+    },
+}, {
+    tableName: "Faq",
+    timestamps: true, 
+});
+
+
 const Order = sequelize.define(
   "Order",
   {
@@ -266,6 +287,7 @@ module.exports = {
   ProductsDB,
   Order,
   Voucher,
-  VoucherLink
+  VoucherLink,
+  Faq
 
 };

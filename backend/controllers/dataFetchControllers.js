@@ -3,6 +3,7 @@ const {
   SeasonCardsDB,
   ProductsDB,
   BannerData,
+  Faq
 } = require("../models/models");
 const { Op } = require("sequelize");
 
@@ -110,6 +111,10 @@ const getContent = async (req, res) => {
         });
         res.status(200).json(result);
         break;
+      case "faqs":
+        result = await fetchData(Faq, limit, offset);
+        res.status(200).json(result);
+        break;
       default:
         return res.status(400).json({ message: "Invalid content type" });
     }
@@ -153,9 +158,9 @@ const fetchItemById = async (db, id) => {
 
 const searchItem = async (req, res) => {
   try {
-    const { query } = req.body; 
+    const { query } = req.body;
 
-  
+
     if (!query || query.trim() === "") {
       return res.status(400).json({ message: "Search Params missing" });
     }
@@ -176,7 +181,7 @@ const searchItem = async (req, res) => {
         ]
       },
       limit: 4,
-      attributes: ["id", "name"],
+      attributes: ["id", "name", "firstImage"],
       raw: true
     });
 

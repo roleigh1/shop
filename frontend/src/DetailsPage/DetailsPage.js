@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import Footer from "../Home/Components/Footer/Footer";
+import Footer from "../Footer/Footer";
 import DetailsItem from "./DetailsProduct";
 import Navbar from "../Nav/Navbar";
 export default function DetailsPage() {

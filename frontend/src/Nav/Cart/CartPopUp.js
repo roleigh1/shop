@@ -8,7 +8,7 @@ export default function CartPopUp({ setOpen }) {
 
     return (
         <div
-            className="absolute overflow-hidden  z-[9999] w-[20rem] border border-gray-600 bg-gray-100 top-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+            className="absolute overflow-hidden   z-[9999] w-[20rem] border border-gray-600 bg-gray-100 top-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
             aria-modal="true"
             role="dialog"
             tabIndex={-1}
@@ -32,14 +32,14 @@ export default function CartPopUp({ setOpen }) {
                 </svg>
             </button>
 
-            <div className="mt-4 space-y-6">
-                <ul className="space-y-4">
+            <div className="mt-4 space-y-6 flex  flex-col justify-center items-center">
+                <ul className="space-y-4 flex justify-center flex-col items-center">
                     {cart.map((item) => (
-                        <li key={item} className="flex items-center gap-4">
+                        <li key={item} className="flex  gap-1 justify-center items-center pr-5">
                             <img
                                 src={item.image}
                                 alt="img"
-                                className="size-16 rounded-sm object-cover"
+                                className="w-20 h-20 rounded-sm object-cover pb-4 pr-3"
                             />
 
                             <div>

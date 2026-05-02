@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Searchdrawer from "./SearchDrawer";
+import { apiConfig } from "../../config";
 export default function SearchBar() {
 
 
@@ -11,7 +12,7 @@ export default function SearchBar() {
 
         const searchRequest = async () => {
             try {
-                const response = await fetch("http://localhost:4242/api/searchItem", {
+                const response = await fetch(apiConfig.BASE_URL + apiConfig.endpoints.productSearch, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -54,13 +55,13 @@ export default function SearchBar() {
                     type="text"
                     placeholder="Search products"
                 />
-                <svg width="16" height="16" viewBox="0 0 16 16">
+                <svg onClick={() => setOpen(false) } width="16" height="16" viewBox="0 0 16 16">
                     <path d="M10.836 10.615 15 14.695" stroke="#7A7B7D" strokeWidth="1.2" strokeLinecap="round" />
                     <path d="M9.141 11.738c2.729-1.136 4.001-4.224 2.841-6.898S7.67.921 4.942 2.057C2.211 3.193.94 6.281 2.1 8.955s4.312 3.92 7.041 2.783" stroke="#7A7B7D" strokeWidth="1.2" strokeLinecap="round" />
                 </svg>
             </div>
             {open && (
-                <div className="absolute top-full left-0 w-full z-50">
+                <div className="absolute top-full w-full flex left-0 right-0 z-50">
                     <Searchdrawer result={result} />
                 </div>
             )}

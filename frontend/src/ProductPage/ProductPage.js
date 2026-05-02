@@ -1,6 +1,7 @@
 import Banner from "./Bg-Producs";
 import ProductList from "./ProductList";
-import Footer from "../Home/Components/Footer/Footer";
+import Footer from "../Footer/Footer";
+
 import Navbar from "../Nav/Navbar";
 export default function ProductPage({ banners }) {
 

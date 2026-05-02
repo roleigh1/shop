@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import Footer from "../Home/Components/Footer/Footer";
+import Footer from "../Footer/Footer";
 
 import BannerHome from "./Components/Banner/BannerHome";
 import SeasonList from "./Components/SeasonItems/SeasonList";

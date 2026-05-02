@@ -3,24 +3,75 @@ import { Link } from "react-router-dom";
 import logo from "./Logo/logo.png";
 import Cart from "./Cart/Cart";
 import SearchBar from "./Search/Searchbar";
+import ContactForm from "../Home/Components/Contact/ContactForm";
+import {
+
+
+  MDBCol,
+
+} from "mdb-react-ui-kit";
+import Dialog from "@mui/material/Dialog";
+import DialogContent from "@mui/material/DialogContent";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
+import { styled } from "@mui/material/styles";
+const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+  "& .MuiDialogContent-root": {
+    padding: theme.spacing(2),
+  },
+  "& .MuiDialogActions-root": {
+    padding: theme.spacing(1),
+  },
+}));
+
 export default function Navbar() {
     const [open, setOpen] = useState(false);
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
     return (
         <div className="flex justify-center  px-6 md:px-16 lg:px-24 xl:px-32 py-4 border-b border-gray-300 bg-white transition-all relative">
             <div className="flex items-center justify-between w-full">
 
-                {/* LEFT: Logo */}
-                <div className="flex ">
+
+                <div className="flex">
                     <Link to="/" className="text-white no-underline">
                         <img src={logo} className="w-32 " alt="logo" />
                     </Link>
                 </div>
 
                 {/* CENTER: Navigation */}
-                <div className="hidden sm:flex gap-6 items-center justify-center flex-1 text-black text">
+                <div className="hidden sm:flex  gap-6 items-center justify-center  text-black text">
                     <Link className="text-black no-underline" to="/">Home</Link>
                     <Link className="text-black no-underline" to="/products">Shop</Link>
-                    <Link className="text-black no-underline" to="">Contact</Link>
+                    <Link onClick={handleClickOpen} className="text-black no-underline" to="">Contact</Link>
+                    <MDBCol md="3" lg="2" xl="2" className="mx-auto mb-4">
+                      
+                        <BootstrapDialog
+                            onClose={handleClose}
+                            aria-labelledby="customized-dialog-title"
+                            open={open}
+                        >
+                            <IconButton
+                                aria-label="close"
+                                onClick={handleClose}
+                                sx={(theme) => ({
+                                    position: "absolute",
+                                    right: 8,
+                                    top: 8,
+                                    color: theme.palette.grey[500],
+                                })}
+                            >
+                                <CloseIcon />
+                            </IconButton>
+                            <DialogContent dividers>
+                                <ContactForm />
+                            </DialogContent>
+                        </BootstrapDialog>
+                    </MDBCol>
                 </div>
 
                 {/* RIGHT: Search + Cart */}

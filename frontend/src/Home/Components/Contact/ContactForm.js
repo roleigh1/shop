@@ -21,7 +21,7 @@ const ContactForm = () => {
     }));
   };
 
- 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -35,8 +35,8 @@ const ContactForm = () => {
       });
 
       if (response.ok) {
-        setMessageSend(true); 
-     
+        setMessageSend(true);
+
         setFormData({
           name: "",
           email: "",
@@ -53,15 +53,16 @@ const ContactForm = () => {
 
   return (
     <div className="mx-auto max-w-screen-md px-4 py-8 lg:py-16">
-    
+
       {messageSend ? (
         <SuccessSend />
       ) : (
         <>
-          <h2 className="mb-4 text-center text-4xl font-extrabold text-gray-900 dark:text-white">
-            Contact Us
+          <h2 className="mb-4 text-center text-4xl font-extrabold text-gray-900 ">
+            Get in Touch
           </h2>
-
+          <p>Got a question or just want to say hello? Send us a message and we’ll get back to you soon.</p>
+  
           <form
             className="mt-6 flex flex-col items-center gap-2 space-y-8"
             onSubmit={handleSubmit}

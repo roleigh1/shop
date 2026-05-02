@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { Row, Col } from "react-bootstrap";
 
-import Footer from "../Home/Components/Footer/Footer";
+import Footer from "../Footer/Footer";
 import CartTable from "./CartTable";
 import { apiConfig } from "../config";
 import Navbar from "../Nav/Navbar";
+
 
 function CartPage() {
   const [token] = useState(() => {
