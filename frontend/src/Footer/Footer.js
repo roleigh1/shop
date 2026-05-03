@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   MDBFooter,
   MDBContainer,
@@ -6,22 +5,8 @@ import {
   MDBCol,
   MDBIcon,
 } from "mdb-react-ui-kit";
-import Dialog from "@mui/material/Dialog";
-import DialogContent from "@mui/material/DialogContent";
-import IconButton from "@mui/material/IconButton";
-import CloseIcon from "@mui/icons-material/Close";
-import ContactForm from "../Home/Components/Contact/ContactForm";
 
-import { styled } from "@mui/material/styles";
 
-const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-  "& .MuiDialogContent-root": {
-    padding: theme.spacing(2),
-  },
-  "& .MuiDialogActions-root": {
-    padding: theme.spacing(1),
-  },
-}));
 const Footer = () => {
 
   return (

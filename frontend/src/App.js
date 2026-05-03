@@ -16,7 +16,7 @@ function App() {
           <Route path="/redeem" element={<Home />} />
           <Route path="/" element={<Home />} />
           <Route path="/cartpage" element={<CartPage />} />
-          <Route path="/products" element={<ProductPage />} />
+          <Route path="/Shop" element={<ProductPage />} />
           <Route path="/details/:id/:whichProduct" element={<DetailsPage />} />
           <Route path="/faq" element={<Faq />} />
         </Routes>

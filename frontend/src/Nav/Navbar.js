@@ -7,7 +7,7 @@ import ContactForm from "../Home/Components/Contact/ContactForm";
 import {
 
 
-  MDBCol,
+    MDBCol,
 
 } from "mdb-react-ui-kit";
 import Dialog from "@mui/material/Dialog";
@@ -16,12 +16,12 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import { styled } from "@mui/material/styles";
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-  "& .MuiDialogContent-root": {
-    padding: theme.spacing(2),
-  },
-  "& .MuiDialogActions-root": {
-    padding: theme.spacing(1),
-  },
+    "& .MuiDialogContent-root": {
+        padding: theme.spacing(2),
+    },
+    "& .MuiDialogActions-root": {
+        padding: theme.spacing(1),
+    },
 }));
 
 export default function Navbar() {
@@ -46,10 +46,10 @@ export default function Navbar() {
                 {/* CENTER: Navigation */}
                 <div className="hidden sm:flex  gap-6 items-center justify-center  text-black text">
                     <Link className="text-black no-underline" to="/">Home</Link>
-                    <Link className="text-black no-underline" to="/products">Shop</Link>
+                    <Link className="text-black no-underline" to="/Shop">Shop</Link>
                     <Link onClick={handleClickOpen} className="text-black no-underline" to="">Contact</Link>
                     <MDBCol md="3" lg="2" xl="2" className="mx-auto mb-4">
-                      
+
                         <BootstrapDialog
                             onClose={handleClose}
                             aria-labelledby="customized-dialog-title"
@@ -97,11 +97,10 @@ export default function Navbar() {
             {/* Mobile Menu */}
             <div className={`${open ? 'flex' : 'hidden'} absolute top-[60px] left-0 w-full bg-white shadow-md py-4 flex-col items-start gap-2 px-5 text-sm md:hidden`}>
 
-                <Link href="#" className="block">Home</Link>
-                <Link href="#" className="block">About</Link>
-                <Link href="#" className="block">Contact</Link>
-
-
+                <Link className="text-black no-underline" to="/">Home</Link>
+                <Link className="text-black no-underline" to="/products">Shop</Link>
+                <Link onClick={handleClickOpen} className="text-black no-underline" to="">Contact</Link>
+                  <Link className="text-black no-underline" to="/products">Ratgeber</Link>
             </div>
 
         </div>
