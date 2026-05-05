@@ -43,7 +43,7 @@ function BannerHome() {
 
           <div className="mt-4 flex flex-row items-center justify-center sm:mt-6">
             <Link
-              to="/products"
+              to="/Shop"
               className="rounded border border-gray-200 px-4  py-2 font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50 hover:text-gray-900"
             >
               Shop now
